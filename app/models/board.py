@@ -26,7 +26,7 @@ class Board(db.Model):
         }
 
     # one-to-many: one user can have many boards
-    users_rel = db.relationship("User", back_populates="orders_rel")
+    users_rel = db.relationship("User", back_populates="boards_rel")
 
     # one-to-many: one board can have many columns
     columns_rel = db.relationship("Column", back_populates="boards_rel", cascade="all, delete-orphan")
