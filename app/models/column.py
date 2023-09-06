@@ -28,5 +28,8 @@ class Column(db.Model):
     # one-to-many: one board can have many columns
     boards_rel = db.relationship("Board", back_populates="columns_rel")
 
+    # one-to-many: one preset color can have many columns
+    preset_colors_rel = db.relationship("PresetColor", back_populates="columns_rel")
+
     # one-to-many: one column can have many cards
     cards_rel = db.relationship("Card", back_populates="columns_rel", cascade="all, delete-orphan")

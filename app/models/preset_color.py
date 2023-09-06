@@ -1,23 +1,23 @@
 from .db import db, environment, SCHEMA
 
-class PresetImage(db.Model):
-    __tablename__ = 'preset_images'
+class PresetColor(db.Model):
+    __tablename__ = 'preset_colors'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(255), nullable=False)
+    hex = db.Column(db.String(7), nullable=False)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
     def to_dict(self):
         return {
             'id': self.id,
-            'url': self.url,
+            'hex': self.hex,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
 
-    # one-to-many: one preset image can have many boards
-    boards_rel = db.relationship("Board", back_populates="preset_images_rel")
+    # one-to-many: one preset color can have many columns
+    columns_rel = db.relationship("Column", back_populates="preset_colors_rel")
