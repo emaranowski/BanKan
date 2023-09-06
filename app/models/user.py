@@ -10,8 +10,8 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(30), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(50))
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -41,4 +41,4 @@ class User(db.Model, UserMixin):
         }
 
     # one-to-many: one user can have many boards
-    boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")
+    # boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")

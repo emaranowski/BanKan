@@ -34,6 +34,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        # add an ALTER TABLE command here for each table created in the file
     # ### end Alembic commands ###qqqqqqqqq
 
 
