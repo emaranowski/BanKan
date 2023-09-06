@@ -1,4 +1,4 @@
-
+# from future import with_statement
 from __future__ import with_statement
 
 import logging
@@ -30,7 +30,7 @@ logger = logging.getLogger('alembic.env')
 from flask import current_app
 config.set_main_option(
     'sqlalchemy.url',
-    str(current_app.extensions['migrate'].db.get_engine().url).replace('%', '%%'))
+    str(current_app.extensions['migrate'].db.engine.url).replace('%', '%%'))
 target_metadata = current_app.extensions['migrate'].db.metadata
 
 # other values from the config, defined by the needs of env.py,
