@@ -39,3 +39,6 @@ class User(db.Model, UserMixin):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+
+    # one-to-many: one user can have many boards
+    boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")
