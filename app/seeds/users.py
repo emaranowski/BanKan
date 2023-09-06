@@ -1,15 +1,36 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
-
+import datetime
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        first_name='Demo', last_name='Demo', username='Demo', email='demo@aa.io', password='password')
+        first_name='Demo',
+        last_name='Demo',
+        username='Demo',
+        email='demo@aa.io',
+        password='password',
+        created_at=datetime.datetime.now(),
+        updated_at=datetime.datetime.now()
+    )
     marnie = User(
-        first_name='Marnie', last_name='Smith', username='marnie', email='marnie@aa.io', password='password')
+        first_name='Marnie',
+        last_name='Smith',
+        username='marnie',
+        email='marnie@aa.io',
+        password='password',
+        created_at=datetime.datetime.now(),
+        updated_at=datetime.datetime.now()
+    )
     bobbie = User(
-        first_name='Bobbie', last_name='Smith', username='bobbie', email='bobbie@aa.io', password='password')
+        first_name='Bobbie',
+        last_name='Smith',
+        username='bobbie',
+        email='bobbie@aa.io',
+        password='password',
+        created_at=datetime.datetime.now(),
+        updated_at=datetime.datetime.now()
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
