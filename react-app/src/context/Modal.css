@@ -20,5 +20,52 @@
 
 #modal-content {
   position: absolute;
-  background-color:white;
+  background-color: white;
+  border-radius: 3px;
+  padding: 45px;
+}
+
+#modal-content h1 {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: -5px;
+}
+
+#modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* justify-content: center; */
+}
+
+#modal-content form input {
+  background-color: #FFFFFF;
+  padding: 10px;
+  border: 2px solid #dcdcdc;
+  border-radius: 3px;
+}
+
+#modal-content form input:focus {
+  border: 2px solid #000000;
+}
+
+#modal-content form button {
+  font-size: 16px;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+
+#modalLoginSignup button {
+  color: #FFFFFF;
+  background-color: #60ac44;
+}
+
+#modalLoginSignup button:hover {
+  color: #FFFFFF;
+  background-color: #68bc4c;
 }
