@@ -1,25 +1,61 @@
-/* TODO Add site wide styles */
+/* site wide styles */
+
+* {
+    color: #000000;
+    /* font-family: ; */
+    text-decoration: none;
+}
+
+#root {
+    width: 100%;
+}
+
+button {
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
 
 .logoBlue {
-    color: #0864fc
+    color: #0864fc;
 }
 
 .accentPink {
-    color: #f054b4
+    color: #f054b4;
 }
 
 .accentPurple {
-    color: #5844ac
+    color: #5844ac;
 }
 
 .fontBlueNav {
-    color: #283c5c
+    color: #283c5c;
 }
 
 .fontBlueGeneral {
-    color: #101c44
+    color: #101c44;
 }
 
 .bgBlueFooter {
-    color: #182c4c
+    color: #182c4c;
+}
+
+.borderHighlightBlue {
+    color: #2596be;
+}
+
+.continueBtnGreen {
+    color: #60ac44;
+}
+
+.continueBtnGreenHover {
+    color: #68bc4c;
+}
+
+.continueBtnMintGreen {
+    color: #38b47c;
+}
+
+.continueBtnMintGreenHover {
+    color: #58dca4;
 }
