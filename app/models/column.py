@@ -8,7 +8,7 @@ class Column(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), nullable=False)
-    color_id = db.Columndb.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('colors.id')))
+    color_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('preset_colors.id')), nullable=False)
     color_hex = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(30), nullable=False)
     created_at = db.Column(db.Date, nullable=False)

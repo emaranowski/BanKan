@@ -8,7 +8,7 @@ class Board(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    image_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('preset_images.id')))
+    image_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('preset_images.id')), nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
     title = db.Column(db.String(30), nullable=False)
     created_at = db.Column(db.Date, nullable=False)
