@@ -33,36 +33,6 @@ users = [
   }
 ]
 
-boards = [
-  {
-    'id': 1,
-    'user_id': 1,
-    'image_id': 1,
-    'image_url': 'https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
-    'title': 'Build Website',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 2,
-    'user_id': 1,
-    'image_id': 2,
-    'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
-    'title': 'Write Presentation',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 3,
-    'user_id': 1,
-    'image_id': 3,
-    'image_url': 'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
-    'title': 'Revamp Database',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  }
-]
-
 preset_images = [
   {
     'id': 1,
@@ -121,6 +91,102 @@ preset_images = [
   {
     'id': 10,
     'url': 'https://images.unsplash.com/photo-1595404603599-2ad07f19556d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  }
+]
+
+boards = [
+  {
+    'id': 1,
+    'user_id': 1,
+    'image_id': 1,
+    'image_url': 'https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
+    'title': 'Build Website',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 2,
+    'user_id': 1,
+    'image_id': 2,
+    'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
+    'title': 'Write Presentation',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 3,
+    'user_id': 1,
+    'image_id': 3,
+    'image_url': 'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
+    'title': 'Revamp Database',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  }
+]
+
+preset_colors = [
+  {
+    'id': 1,
+    'hex': '#a11800',
+    'name': 'red',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 2,
+    'hex': '#a15600',
+    'name': 'orange',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 3,
+    'hex': '#b08307',
+    'name': 'yellow',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 4,
+    'hex': '#3a8501',
+    'name': 'green',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 5,
+    'hex': '#016285',
+    'name': 'blue',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 6,
+    'hex': '#450185',
+    'name': 'purple',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 7,
+    'hex': '#FFFFFF',
+    'name': 'white',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 8,
+    'hex': '#8f8f8f',
+    'name': 'gray',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 9,
+    'hex': '#000000',
+    'name': 'black',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   }
@@ -205,72 +271,6 @@ columns = [
     'color_id': 9,
     'color_hex': '#000000',
     'title': 'Draft tech specs',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  }
-]
-
-preset_colors = [
-  {
-    'id': 1,
-    'hex': '#a11800',
-    'name': 'red',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 2,
-    'hex': '#a15600',
-    'name': 'orange',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 3,
-    'hex': '#b08307',
-    'name': 'yellow',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 4,
-    'hex': '#3a8501',
-    'name': 'green',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 5,
-    'hex': '#016285',
-    'name': 'blue',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 6,
-    'hex': '#450185',
-    'name': 'purple',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 7,
-    'hex': '#FFFFFF',
-    'name': 'white',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 8,
-    'hex': '#8f8f8f',
-    'name': 'gray',
-    'created_at': datetime.datetime.now(),
-    'updated_at': datetime.datetime.now()
-  },
-  {
-    'id': 9,
-    'hex': '#000000',
-    'name': 'black',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   }
