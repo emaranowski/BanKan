@@ -1,21 +1,23 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-// import ProfileButton from './ProfileButton';
+import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 export default function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/');
   };
 
   return (
@@ -44,6 +46,9 @@ export default function Navigation({ isLoaded }) {
             <button onClick={handleLogout}>
               Log Out
             </button>
+            <span>
+              {isLoaded && (<ProfileButton user={sessionUser} />)}
+            </span>
           </>)
           :
           (<>
