@@ -2,12 +2,13 @@
 
 * {
     color: #000000;
-    /* font-family: ; */
+    font-family: 'Figtree', sans-serif;
     text-decoration: none;
 }
 
 #root {
     width: 100%;
+    /* border: 5px solid coral; */
 }
 
 button {

@@ -1,0 +1,27 @@
+#boardsPage {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 50px;
+}
+
+#boardsHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#boardsHeaderText {
+    font-size: 40px;
+}
+
+#boardsHeaderAddBtn {
+    font-size: 40px;
+    padding: 0 12px;
+    color: #FFFFFF;
+    background-color: #38b47c;
+}
+
+#boardsHeaderAddBtn:hover {
+    background-color: #58dca4;
+}

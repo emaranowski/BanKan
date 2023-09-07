@@ -5,7 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-// import HomePage from "./components/HomePage";
+import Home from "./components/Home";
+import Boards from "./components/Boards";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,11 +20,24 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+
+          <Route exact path='/boards'>
+            <Boards />
+          </Route>
+
           <Route path="/login" >
             <LoginFormPage />
           </Route>
+
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+
+          <Route>
+            <h1>Route does not exist</h1>
           </Route>
         </Switch>
       )}

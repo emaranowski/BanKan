@@ -42,8 +42,23 @@ nav {
 
 .profile-dropdown {
   position: absolute;
+  top: 0px;
+  right: -1px;
+  height: 15%;
+  width: 120px;
+  padding: 40px 50px;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 10px 0px 100px #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .hidden {
   display: none;
+}
+
+#dropdownLogout {
+  cursor: pointer;
 }
