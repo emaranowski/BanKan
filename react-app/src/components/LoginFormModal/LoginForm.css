@@ -1,0 +1,14 @@
+#demoUserBtn {
+    width: 100%;
+    font-size: 14px;
+    padding: 14px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    color: #FFFFFF;
+    background-color: #60ac44;
+}
+
+#demoUserBtn:hover {
+    background-color: #68bc4c;
+}
