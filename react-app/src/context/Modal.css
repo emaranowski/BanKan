@@ -52,6 +52,7 @@
 }
 
 #modal-content form button {
+  width: 100%;
   font-size: 16px;
   padding: 14px;
   display: flex;
@@ -66,6 +67,5 @@
 }
 
 #modalLoginSignup button:hover {
-  color: #FFFFFF;
   background-color: #68bc4c;
 }
