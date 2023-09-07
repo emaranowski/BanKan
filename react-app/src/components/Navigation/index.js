@@ -1,24 +1,67 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import { NavLink } from 'react-router-dom';
+import { logout } from "../../store/session";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
+// import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
-	const sessionUser = useSelector(state => state.session.user);
+export default function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
 
-	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
-			)}
-		</ul>
-	);
-}
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
 
-export default Navigation;
+  return (
+    <nav>
+      <span id="navRight">
+        <span id='navLogo'>
+          <NavLink exact to="/">BanKan</NavLink>
+        </span>
+        <NavLink exact to="/features">
+          <span id='navFeatures'>
+            Features
+          </span>
+        </NavLink>
+        <NavLink exact to="/plans">
+          <span id='navPlans'>
+            Plans & Pricing
+          </span>
+        </NavLink>
+      </span>
+      <span id="navLeft">
+        {/* <span>
+          {isLoaded && (<ProfileButton user={sessionUser} />)}
+        </span> */}
+        {sessionUser ?
+          (<>
+            <button onClick={handleLogout}>
+              Log Out
+            </button>
+          </>)
+          :
+          (<>
+            <span>
+              <OpenModalButton
+                buttonText="Log in"
+                modalComponent={<LoginFormModal />}
+              />
+            </span>
+            <span>
+              <OpenModalButton
+                buttonText="Get BanKan for free"
+                modalComponent={<SignupFormModal />}
+              />
+            </span>
+          </>)
+        }
+      </span>
+    </nav>
+  )
+};

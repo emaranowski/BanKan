@@ -1,3 +1,44 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+}
+
+#navRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+#navLogo {
+  font-size: 30px;
+}
+
+#navFeatures {
+  font-size: 17px;
+}
+
+#navPlans {
+  font-size: 17px;
+}
+
+#navLeft {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+#navLogin {
+  font-size: 17px;
+}
+
+#navSignup {
+  font-size: 17px;
+}
+
 .profile-dropdown {
   position: absolute;
 }
