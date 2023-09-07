@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
+import Boards from "./components/Boards";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Home />
+          </Route>
+
+          <Route exact path='/boards'>
+            <Boards />
           </Route>
 
           <Route path="/login" >

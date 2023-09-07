@@ -1,0 +1,9 @@
+.board-form-top-header {
+    font-size: 24px;
+    padding: 15px 0 5px 3px;
+}
+
+.board-error-text {
+    color: rgba(159, 0, 0, 0.778);
+    font-size: 11.5px;
+}
