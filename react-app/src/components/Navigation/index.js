@@ -47,13 +47,13 @@ export default function Navigation({ isLoaded }) {
           </>)
           :
           (<>
-            <span>
+            <span id='navLogin'>
               <OpenModalButton
                 buttonText="Log in"
                 modalComponent={<LoginFormModal />}
               />
             </span>
-            <span>
+            <span id='navSignup'>
               <OpenModalButton
                 buttonText="Get BanKan for free"
                 modalComponent={<SignupFormModal />}
