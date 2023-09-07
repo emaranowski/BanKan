@@ -1,1 +1,25 @@
 /* TODO Add site wide styles */
+
+.logoBlue {
+    color: #0864fc
+}
+
+.accentPink {
+    color: #f054b4
+}
+
+.accentPurple {
+    color: #5844ac
+}
+
+.fontBlueNav {
+    color: #283c5c
+}
+
+.fontBlueGeneral {
+    color: #101c44
+}
+
+.bgBlueFooter {
+    color: #182c4c
+}

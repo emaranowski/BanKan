@@ -8,6 +8,7 @@ class PresetColor(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     hex = db.Column(db.String(7), nullable=False)
+    name = db.Column(db.String(10), nullable=False)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
@@ -15,6 +16,7 @@ class PresetColor(db.Model):
         return {
             'id': self.id,
             'hex': self.hex,
+            'name': self.name,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }

@@ -1,41 +1,56 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
-import datetime
+from .data import users
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        first_name='Demo',
-        last_name='Demo',
-        username='Demo',
-        email='demo@aa.io',
-        password='password',
-        created_at=datetime.datetime.now(),
-        updated_at=datetime.datetime.now()
-    )
-    marnie = User(
-        first_name='Marnie',
-        last_name='Smith',
-        username='marnie',
-        email='marnie@aa.io',
-        password='password',
-        created_at=datetime.datetime.now(),
-        updated_at=datetime.datetime.now()
-    )
-    bobbie = User(
-        first_name='Bobbie',
-        last_name='Smith',
-        username='bobbie',
-        email='bobbie@aa.io',
-        password='password',
-        created_at=datetime.datetime.now(),
-        updated_at=datetime.datetime.now()
-    )
+    for user in users:
+        seed_user = User(
+            first_name = user['first_name'],
+            last_name = user['last_name'],
+            username = user['username'],
+            email = user['email'],
+            password = user['password'],
+            created_at = user['created_at'],
+            updated_at = user['updated_at']
+        )
+        db.session.add(seed_user)
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
     db.session.commit()
+
+# def seed_users():
+#     demo = User(
+#         first_name='Demo',
+#         last_name='Demo',
+#         username='Demo',
+#         email='demo@aa.io',
+#         password='password',
+#         created_at=datetime.datetime.now(),
+#         updated_at=datetime.datetime.now()
+#     )
+#     marnie = User(
+#         first_name='Marnie',
+#         last_name='Smith',
+#         username='marnie',
+#         email='marnie@aa.io',
+#         password='password',
+#         created_at=datetime.datetime.now(),
+#         updated_at=datetime.datetime.now()
+#     )
+#     bobbie = User(
+#         first_name='Bobbie',
+#         last_name='Smith',
+#         username='bobbie',
+#         email='bobbie@aa.io',
+#         password='password',
+#         created_at=datetime.datetime.now(),
+#         updated_at=datetime.datetime.now()
+#     )
+
+#     db.session.add(demo)
+#     db.session.add(marnie)
+#     db.session.add(bobbie)
+#     db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
