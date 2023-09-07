@@ -17,13 +17,25 @@ export default function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-      closeModal()
+      closeModal();
+    }
+  };
+
+  const handleDemoUser = async (e) => {
+    e.preventDefault()
+    let demoEmail = 'demo@aa.io'
+    let demoPassword = 'password'
+    const data = await dispatch(login(demoEmail, demoPassword));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal();
     }
   };
 
   return (
     <div id='modalLoginSignup'>
-      <h1>Log In</h1>
+      <h1>Log in</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <ul>
@@ -52,10 +64,15 @@ export default function LoginFormModal() {
         </div>
         {/* <div> */}
         <button type="submit">
-          Continue
+          Log in
         </button>
         {/* </div> */}
       </form>
+      <div id='demoUserBtnDiv'>
+        <button id='demoUserBtn' onClick={handleDemoUser}>
+          Log in as demo user
+        </button>
+      </div>
     </div>
   )
 };
