@@ -26,16 +26,16 @@ def seed():
         # (see comment in users.py undo_users function).
         # Make sure to add all your other models' undo functions below
         # undo_cards()
-        # undo_preset_colors()
         # undo_columns()
-        # undo_preset_images()
+        # undo_preset_colors()
         # undo_boards()
+        # undo_preset_images()
         # undo_users()
     seed_users()
-    seed_boards()
     seed_preset_images()
-    seed_columns()
+    seed_boards()
     seed_preset_colors()
+    seed_columns()
     seed_cards()
     # Add other seed functions here
 
@@ -44,9 +44,9 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_cards()
-    undo_preset_colors()
     undo_columns()
-    undo_preset_images()
+    undo_preset_colors()
     undo_boards()
+    undo_preset_images()
     undo_users()
     # Add other undo functions here
