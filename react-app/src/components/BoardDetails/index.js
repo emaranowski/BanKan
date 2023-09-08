@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormUpdate from "../BoardFormUpdate";
 import BoardDeleteModal from "../BoardDeleteModal";
+import Column from "../Column";
 import './BoardDetails.css';
 
 export default function BoardDetails() {
@@ -64,11 +65,11 @@ export default function BoardDetails() {
       <div id='boardDetailsColumns'>
         {columnsArr.length ?
           columnsArr.map((column) => (
-            <div id='columnCardDiv' key={column.id}>
-              {/* <ColumnCard column={column} /> */}
-              Column Board ID: {column.boardId}
+            <div className='columnDiv' key={column.id}>
+              <Column column={column} />
+              {/* Column Board ID: {column.boardId}
               Column Color HEX: {column.colorHex}
-              Column Title: {column.title}
+              Column Title: {column.title} */}
             </div>
           ))
           :
