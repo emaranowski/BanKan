@@ -1,21 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { thunkGetAllCardsForColumn } from '../../store/cards';
 import OpenModalButton from '../../components/OpenModalButton';
-// import CardFormCreate from '../CardFormCreate';
+import Card from '../Card';
+import CardFormCreate from '../CardFormCreate';
 import ColumnFormUpdate from '../ColumnFormUpdate';
 import ColumnDeleteModal from '../ColumnDeleteModal';
 import './Column.css';
 
 export default function Column({ column }) {
   const dispatch = useDispatch();
-  // const columnId = column.id;
-  // const sessionUser = useSelector(state => state.session.user);
-  // const userId = sessionUser.id;
-  const [isLoaded, setIsLoaded] = useState(false);
+  const columnId = column.id;
+  const cardsArr = Object.values(useSelector(state => state.cards.allCards));
 
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    setIsLoaded(true);
-  }, [dispatch])
+    dispatch(thunkGetAllCardsForColumn(columnId))
+    setIsLoaded(true)
+  }, [dispatch, columnId])
 
   return (<>{isLoaded && (
     <div id='column'>
@@ -49,8 +51,6 @@ export default function Column({ column }) {
       </div>
 
       <div>
-        [cards here]
-
         {/* <div className='columnUpdateAndDeleteBtns'>
           <Card
             columnId={column.id}
@@ -73,13 +73,12 @@ export default function Column({ column }) {
               </div>
             ))
             :
-            (<span>You have no columns!</span>)
+            (<span>You have no cards!</span>)
           }
         </div>
       </div>
 
       <div>
-        [+ Add card]
         <div className='columnUpdateAndDeleteBtns'>
           <OpenModalButton
             buttonText="+ Add card"

@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { thunkDeleteCard } from "../../store/cards";
 import "./CardDeleteModal.css";
 
-export default function CardDeleteModal({ cardId }) {
+export default function CardDeleteModal({ cardId, boardId }) { // must pass in boardId
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();

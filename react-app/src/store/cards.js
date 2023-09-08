@@ -64,7 +64,7 @@ const deleteCard = (cardId) => {
 // };
 
 // THUNK: GET ALL CARDS
-export const getAllCardsForColumn = (columnId) => async (dispatch) => {
+export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}/cards`, { method: "GET" });
 
   if (res.ok) {

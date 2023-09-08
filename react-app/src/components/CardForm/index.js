@@ -14,7 +14,7 @@ export default function CardForm({ formType, card, boardId }) {
   const columnId = card.columnId;
 
   const [title, setTitle] = useState(card?.title);
-  const [description, setDescription] = useState(card?.colorHex);
+  const [description, setDescription] = useState(card?.description);
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
@@ -61,7 +61,7 @@ export default function CardForm({ formType, card, boardId }) {
       card = {
         ...card,
         title,
-        colorHex,
+        description,
         columnId
       };
       console.log('**** in UPDATE CARD, card:', card)
@@ -96,25 +96,6 @@ export default function CardForm({ formType, card, boardId }) {
           </div>
 
           <div className='create_card_form_section'>
-            <div id='colorButtons'>
-              {colorHexs.length ?
-                colorHexs.map((colorHex) => (
-                  <div
-                    id='colorButtonDiv'
-                    className={colorHex.name}
-                    key={colorHex.id}
-                    onClick={() => setColorHex(colorHex.hex)}
-                  >
-                  </div>
-                ))
-                :
-                (<></>)
-              }
-            </div>
-            {errors.background && (<div className="card_error_text">{errors.background}</div>)}
-          </div>
-
-          <div className='create_card_form_section'>
             <div>
               <input
                 size="57"
@@ -127,6 +108,20 @@ export default function CardForm({ formType, card, boardId }) {
               />
             </div>
             {errors.title && (<div className="card_error_text">{errors.title}</div>)}
+          </div>
+
+          <div className='create_card_form_section'>
+            <div>
+              <input
+                size="57"
+                type="text"
+                name="description"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                placeholder='Description (optional)'
+              />
+            </div>
+            {errors.description && (<div className="card_error_text">{errors.description}</div>)}
           </div>
 
           <button
