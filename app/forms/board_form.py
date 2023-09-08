@@ -4,6 +4,5 @@ from wtforms.validators import DataRequired
 
 class BoardForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
-    # image_id = IntegerField('image_id', validators=[DataRequired()])
     image_url = StringField('image_url', validators=[DataRequired()])
     title = StringField('title', validators=[DataRequired()])

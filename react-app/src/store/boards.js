@@ -88,7 +88,6 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      // image_id: imageId,
       image_url: imageUrl,
       title,
       user_id: userId,
@@ -118,7 +117,6 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
       image_url: imageUrl,
       title,
       user_id: userId,
-      // image_id: imageId
     })
   })
   console.log('**** in thunkUpdateBoard, res:', res)
