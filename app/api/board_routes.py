@@ -1,5 +1,5 @@
-from flask import Blueprint, request
-from flask_login import login_required
+from flask import Blueprint, request, jsonify
+from flask_login import current_user, login_required
 from app.models import Board, db
 from ..forms.board_form import BoardForm
 import datetime
@@ -22,7 +22,7 @@ def get_one_board(id):
         return { "error": "Board couldn't be found" }, 404
 
 
-@board_routes.route('/', methods=['GET'])
+@board_routes.route('/user/<int:id>', methods=['GET'])
 @login_required
 def get_all_boards(id):
     """
