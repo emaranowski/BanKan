@@ -20,6 +20,3 @@ class PresetColor(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
-
-    # one-to-many: one preset color can have many columns
-    # columns_rel = db.relationship("Column", back_populates="preset_colors_rel")

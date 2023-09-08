@@ -100,7 +100,6 @@ boards = [
   {
     'id': 1,
     'user_id': 1,
-    # 'image_id': 1,
     'image_url': 'https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
     'title': 'Build Website',
     'created_at': datetime.datetime.now(),
@@ -109,7 +108,6 @@ boards = [
   {
     'id': 2,
     'user_id': 1,
-    # 'image_id': 2,
     'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
     'title': 'Write Presentation',
     'created_at': datetime.datetime.now(),
@@ -118,7 +116,6 @@ boards = [
   {
     'id': 3,
     'user_id': 1,
-    # 'image_id': 3,
     'image_url': 'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
     'title': 'Revamp Database',
     'created_at': datetime.datetime.now(),
@@ -196,7 +193,6 @@ columns = [
   {
     'id': 1,
     'board_id': 1,
-    # 'color_id': 1,
     'color_hex': '#a11800',
     'title': 'Create documentation',
     'created_at': datetime.datetime.now(),
@@ -205,7 +201,6 @@ columns = [
   {
     'id': 2,
     'board_id': 1,
-    # 'color_id': 2,
     'color_hex': '#a15600',
     'title': 'Test local + live deployment',
     'created_at': datetime.datetime.now(),
@@ -214,7 +209,6 @@ columns = [
   {
     'id': 3,
     'board_id': 1,
-    # 'color_id': 3,
     'color_hex': '#b08307',
     'title': 'Make models + seeds',
     'created_at': datetime.datetime.now(),
@@ -223,7 +217,6 @@ columns = [
   {
     'id': 4,
     'board_id': 2,
-    # 'color_id': 4,
     'color_hex': '#3a8501',
     'title': 'Process data',
     'created_at': datetime.datetime.now(),
@@ -232,7 +225,6 @@ columns = [
   {
     'id': 5,
     'board_id': 2,
-    # 'color_id': 5,
     'color_hex': '#016285',
     'title': 'Draft slides',
     'created_at': datetime.datetime.now(),
@@ -241,7 +233,6 @@ columns = [
   {
     'id': 6,
     'board_id': 2,
-    # 'color_id': 6,
     'color_hex': '#450185',
     'title': 'Practice presenting',
     'created_at': datetime.datetime.now(),
@@ -250,7 +241,6 @@ columns = [
   {
     'id': 7,
     'board_id': 2,
-    # 'color_id': 7,
     'color_hex': '#FFFFFF',
     'title': 'Review client feedback',
     'created_at': datetime.datetime.now(),
@@ -259,7 +249,6 @@ columns = [
   {
     'id': 8,
     'board_id': 2,
-    # 'color_id': 8,
     'color_hex': '#8f8f8f',
     'title': 'Propose changes',
     'created_at': datetime.datetime.now(),
@@ -268,7 +257,6 @@ columns = [
   {
     'id': 9,
     'board_id': 2,
-    # 'color_id': 9,
     'color_hex': '#000000',
     'title': 'Draft tech specs',
     'created_at': datetime.datetime.now(),

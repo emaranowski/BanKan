@@ -18,6 +18,3 @@ class PresetImage(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
-
-    # one-to-many: one preset image can have many boards
-    # boards_rel = db.relationship("Board", back_populates="preset_images_rel")
