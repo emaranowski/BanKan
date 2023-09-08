@@ -45,12 +45,12 @@ def upgrade():
     op.create_table('boards',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('image_id', sa.Integer(), nullable=False),
+    # sa.Column('image_id', sa.Integer(), nullable=False),
     sa.Column('image_url', sa.String(length=255), nullable=False),
     sa.Column('title', sa.String(length=30), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=False),
     sa.Column('updated_at', sa.Date(), nullable=False),
-    sa.ForeignKeyConstraint(['image_id'], ['preset_images.id'], ),
+    # sa.ForeignKeyConstraint(['image_id'], ['preset_images.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

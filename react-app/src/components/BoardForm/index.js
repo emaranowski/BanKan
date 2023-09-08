@@ -15,7 +15,7 @@ export default function BoardForm({ formType, board }) {
   const userId = board.userId;
 
   const [title, setTitle] = useState(board?.title);
-  const [imageId, setImageId] = useState(board?.imageId);
+  // const [imageId, setImageId] = useState(board?.imageId);
   const [imageUrl, setImageUrl] = useState(board?.imageUrl);
   const [imageFile, setImageFile] = useState('');
   const [imageFileUpdated, setImageFileUpdated] = useState(false);
@@ -98,13 +98,13 @@ export default function BoardForm({ formType, board }) {
       board = {
         ...board,
         title,
-        imageId: 1,
+        // imageId: 1,
         imageUrl,
         userId
       };
 
       console.log('**** in Create Board, board:', board)
-      console.log('**** in Create Board, imageId:', imageId)
+      // console.log('**** in Create Board, imageId:', imageId)
 
       try { // CREATE BOARD
         const res = await dispatch(thunkCreateBoard(board)); // VScode gives note about not needing 'await', but it IS needed
@@ -152,7 +152,7 @@ export default function BoardForm({ formType, board }) {
       board = {
         ...board,
         title,
-        imageId,
+        // imageId,
         imageUrl,
         userId
       };
@@ -178,7 +178,7 @@ export default function BoardForm({ formType, board }) {
       board = {
         ...board,
         title,
-        imageId,
+        // imageId,
         imageUrl
       };
 

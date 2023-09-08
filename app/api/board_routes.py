@@ -47,7 +47,7 @@ def create_board(id):
         new_board = Board(
             user_id = id,
             title = form.data['title'],
-            image_id = form.data['image_id'],
+            # image_id = form.data['image_id'],
             image_url = form.data['image_url'],
             created_at = datetime.datetime.now(),
             updated_at = datetime.datetime.now()
@@ -75,7 +75,7 @@ def update_board(id):
         board_to_update.title = form.data['title']
         board_to_update.image_url = form.data['image_url']
         board_to_update.user_id = form.data['user_id']
-        board_to_update.image_id = form.data['image_id']
+        # board_to_update.image_id = form.data['image_id']
         board_to_update.updated_at = datetime.datetime.now()
         db.session.commit()
         res = board_to_update.to_dict()
