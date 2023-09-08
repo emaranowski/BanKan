@@ -60,7 +60,7 @@ def get_all_cards_for_column(id):
     """
     Get all cards for column (by column_id): GET /api/columns/:column_id/cards
     """
-    columns = Ca.query.filter(Card.column_id == id).all()
+    cards = Card.query.filter(Card.column_id == id).all()
     return { "cards": [card.to_dict() for card in cards] }
 
 
