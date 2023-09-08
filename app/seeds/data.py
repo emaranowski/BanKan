@@ -196,7 +196,7 @@ columns = [
   {
     'id': 1,
     'board_id': 1,
-    'color_id': 1,
+    # 'color_id': 1,
     'color_hex': '#a11800',
     'title': 'Create documentation',
     'created_at': datetime.datetime.now(),
@@ -205,7 +205,7 @@ columns = [
   {
     'id': 2,
     'board_id': 1,
-    'color_id': 2,
+    # 'color_id': 2,
     'color_hex': '#a15600',
     'title': 'Test local + live deployment',
     'created_at': datetime.datetime.now(),
@@ -214,7 +214,7 @@ columns = [
   {
     'id': 3,
     'board_id': 1,
-    'color_id': 3,
+    # 'color_id': 3,
     'color_hex': '#b08307',
     'title': 'Make models + seeds',
     'created_at': datetime.datetime.now(),
@@ -223,7 +223,7 @@ columns = [
   {
     'id': 4,
     'board_id': 2,
-    'color_id': 4,
+    # 'color_id': 4,
     'color_hex': '#3a8501',
     'title': 'Process data',
     'created_at': datetime.datetime.now(),
@@ -232,7 +232,7 @@ columns = [
   {
     'id': 5,
     'board_id': 2,
-    'color_id': 5,
+    # 'color_id': 5,
     'color_hex': '#016285',
     'title': 'Draft slides',
     'created_at': datetime.datetime.now(),
@@ -241,7 +241,7 @@ columns = [
   {
     'id': 6,
     'board_id': 2,
-    'color_id': 6,
+    # 'color_id': 6,
     'color_hex': '#450185',
     'title': 'Practice presenting',
     'created_at': datetime.datetime.now(),
@@ -250,7 +250,7 @@ columns = [
   {
     'id': 7,
     'board_id': 2,
-    'color_id': 7,
+    # 'color_id': 7,
     'color_hex': '#FFFFFF',
     'title': 'Review client feedback',
     'created_at': datetime.datetime.now(),
@@ -259,7 +259,7 @@ columns = [
   {
     'id': 8,
     'board_id': 2,
-    'color_id': 8,
+    # 'color_id': 8,
     'color_hex': '#8f8f8f',
     'title': 'Propose changes',
     'created_at': datetime.datetime.now(),
@@ -268,7 +268,7 @@ columns = [
   {
     'id': 9,
     'board_id': 2,
-    'color_id': 9,
+    # 'color_id': 9,
     'color_hex': '#000000',
     'title': 'Draft tech specs',
     'created_at': datetime.datetime.now(),
