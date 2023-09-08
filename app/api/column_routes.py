@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Column
+from app.models import db, Column, Card
 from ..forms.column_form import ColumnForm
+from ..forms.card_form import CardForm
 import datetime
 
 
@@ -51,3 +52,37 @@ def delete_column(id):
         }
     else:
         return {"error": "Column could not be deleted"}
+
+
+@column_routes.route('/<int:id>/cards', methods=['GET'])
+@login_required
+def get_all_cards_for_column(id):
+    """
+    Get all cards for column (by column_id): GET /api/columns/:column_id/cards
+    """
+    columns = Ca.query.filter(Card.column_id == id).all()
+    return { "cards": [card.to_dict() for card in cards] }
+
+
+@column_routes.route('/<int:id>/cards/create', methods=['POST'])
+@login_required
+def create_card_for_column(id):
+    """
+    Create card for column (by column_id): POST /api/columns/:column_id/cards/create
+    """
+    form = CardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_card = Card(
+            column_id = id,
+            title = form.data['title'],
+            description = form.data['description'],
+            created_at = datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
+        )
+        db.session.add(new_card)
+        db.session.commit()
+        return new_card.to_dict()
+    if form.errors:
+        return { "errors": form.errors }, 400
