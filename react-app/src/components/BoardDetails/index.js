@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { thunkGetOneBoard } from '../../store/boards';
 import { Link, useParams } from 'react-router-dom';
+import OpenModalButton from "../OpenModalButton";
+import BoardFormUpdate from "../BoardFormUpdate";
 import './BoardDetails.css';
 
 export default function BoardDetails() {
@@ -22,8 +24,32 @@ export default function BoardDetails() {
     <div id='boardDetailsPage'>
       <Link to={`/boards`}>⬅ Back to my boards</Link>
 
-      <div id='boardDetailsTitle'>
-        Board: {board.title}
+      <div id='boardDetailsHeader'>
+        <div id='boardDetailsTitle'>
+          {board.title}
+        </div>
+
+        <div id='boardDetailsBtns'>
+          <span id='boardDetailsUpdateBtn'>
+            <OpenModalButton
+              buttonText="Update"
+              modalComponent={
+                <BoardFormUpdate
+                  board={board}
+                />}
+            />
+          </span>
+
+          <span id='boardDetailsDeleteBtn'>
+            <OpenModalButton
+              buttonText="Delete"
+              modalComponent={
+                <BoardFormUpdate
+                  board={board}
+                />}
+            />
+          </span>
+        </div>
       </div>
 
       <div id='boardDetailsImgDiv'>

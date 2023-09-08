@@ -4,9 +4,23 @@
     margin: 25px 50px 50px 50px;
 }
 
+#boardDetailsHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
 #boardDetailsTitle {
     margin: 15px 0;
     font-size: 30px;
+}
+
+#boardDetailsBtns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
 }
 
 #boardDetailsImgDiv {}
