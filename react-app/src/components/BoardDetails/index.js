@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormUpdate from "../BoardFormUpdate";
 import BoardDeleteModal from "../BoardDeleteModal";
+import ColumnFormCreate from '../ColumnFormCreate';
 import Column from "../Column";
 import './BoardDetails.css';
 
@@ -32,13 +33,13 @@ export default function BoardDetails() {
 
       <div id='boardDetailsHeader'>
         <div id='boardDetailsTitle'>
-          {board.title}
+          Board: {board.title}
         </div>
 
         <div id='boardDetailsBtns'>
           <span id='boardDetailsUpdateBtn'>
             <OpenModalButton
-              buttonText="Update"
+              buttonText="Edit"
               modalComponent={
                 <BoardFormUpdate
                   board={board}
@@ -51,6 +52,16 @@ export default function BoardDetails() {
               buttonText="Delete"
               modalComponent={
                 <BoardDeleteModal
+                  boardId={boardId}
+                />}
+            />
+          </span>
+
+          <span id='boardDetailsAddColBtn'>
+            <OpenModalButton
+              buttonText="+ Add column"
+              modalComponent={
+                <ColumnFormCreate
                   boardId={boardId}
                 />}
             />

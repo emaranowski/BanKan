@@ -1,6 +1,6 @@
 import ColumnForm from '../ColumnForm';
 
-export default function ColumnFormCreate({ column }) {
+export default function ColumnFormCreate({ boardId }) {
 
   let column = {
     title: '',
