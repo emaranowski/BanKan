@@ -38,14 +38,11 @@ export default function Navigation({ isLoaded }) {
         </NavLink>
       </span>
       <span id="navLeft">
-        {/* <span>
-          {isLoaded && (<ProfileButton user={sessionUser} />)}
-        </span> */}
         {sessionUser ?
           (<>
-            <button onClick={handleLogout}>
+            {/* <button onClick={handleLogout}>
               Log Out
-            </button>
+            </button> */}
             <span>
               {isLoaded && (<ProfileButton user={sessionUser} />)}
             </span>
