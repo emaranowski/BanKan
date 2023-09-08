@@ -107,7 +107,9 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
 
 // THUNK: UPDATE BOARD
 export const thunkUpdateBoard = (board) => async (dispatch) => {
-  const { imageUrl, title, id } = board;
+  console.log('**** in thunkUpdateBoard, board:', board)
+  const { imageUrl, title, id, userId, imageId } = board;
+  console.log('**** in thunkUpdateBoard, id:', id)
 
   const res = await fetch(`/api/boards/${id}/update`, {
     method: "PUT",
@@ -115,8 +117,11 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
     body: JSON.stringify({
       image_url: imageUrl,
       title,
+      user_id: userId,
+      image_id: imageId
     })
   })
+  console.log('**** in thunkUpdateBoard, res:', res)
 
   if (res.ok) {
     const board = await res.json();
@@ -124,6 +129,7 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
     return board;
   } else {
     const errors = await res.json();
+    console.log('**** in thunkUpdateBoard, errors:', errors)
     return errors;
   }
 };

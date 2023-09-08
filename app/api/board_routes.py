@@ -65,18 +65,25 @@ def update_board(id):
     """
     Update board (by board_id): PUT /api/boards/:board_id/update
     """
+    print('**** in update_board, id:', id)
     form = BoardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         board_to_update = Board.query.get(id)
+        print('**** in update_board, board_to_update:', board_to_update)
         board_to_update.title = form.data['title']
         board_to_update.image_url = form.data['image_url']
+        board_to_update.user_id = form.data['user_id']
+        board_to_update.image_id = form.data['image_id']
         board_to_update.updated_at = datetime.datetime.now()
         db.session.commit()
-        return board_to_update.to_dict()
+        res = board_to_update.to_dict()
+        return res
     if form.errors:
-        return { "errors": form.errors }, 400
+        res = { "errors": form.errors }
+        print('**** in update_board, res:', res)
+        return res, 400
 
 
 @board_routes.route('/<int:id>/delete', methods=['DELETE'])
