@@ -182,7 +182,7 @@ export default function BoardForm({ formType, board }) {
         imageUrl
       };
 
-      console.log('**** !!!! in Update Board, board:', board)
+      // console.log('**** !!!! in Update Board, board:', board)
 
       try { // UPDATE BOARD
         const res = await dispatch(thunkUpdateBoard(board)); // VScode notes not needing 'await', but it IS needed

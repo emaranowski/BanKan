@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import { login } from "../../store/session";
 import "./LoginForm.css";
 
 export default function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,6 +20,7 @@ export default function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal();
+      history.push(`/boards`);
     }
   };
 
@@ -30,6 +33,7 @@ export default function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal();
+      history.push(`/boards`);
     }
   };
 
