@@ -82,13 +82,13 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
   console.log('**** in thunkCreateBoard ****')
   console.log('**** in thunkCreateBoard, board:', board)
 
-  const { imageId, imageUrl, title, userId } = board;
+  const { imageUrl, title, userId } = board;
 
   const res = await fetch(`/api/boards/create/user/${userId}`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      image_id: imageId,
+      // image_id: imageId,
       image_url: imageUrl,
       title,
       user_id: userId,
@@ -108,7 +108,7 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
 // THUNK: UPDATE BOARD
 export const thunkUpdateBoard = (board) => async (dispatch) => {
   console.log('**** in thunkUpdateBoard, board:', board)
-  const { imageUrl, title, id, userId, imageId } = board;
+  const { imageUrl, title, id, userId } = board;
   console.log('**** in thunkUpdateBoard, id:', id)
 
   const res = await fetch(`/api/boards/${id}/update`, {
@@ -118,7 +118,7 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
       image_url: imageUrl,
       title,
       user_id: userId,
-      image_id: imageId
+      // image_id: imageId
     })
   })
   console.log('**** in thunkUpdateBoard, res:', res)
