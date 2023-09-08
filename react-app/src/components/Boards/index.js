@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { thunkGetAllBoards } from '../../store/boards';
+import BoardCard from "../BoardCard";
 // import { Link } from 'react-router-dom';
 // import OpenModalButton from "../OpenModalButton";
 // import BoardFormCreate from "../BoardFormCreate";
@@ -44,8 +45,7 @@ export default function Boards() {
             {boardsArr.length ?
               boardsArr.map((board) => (
                 <div id='boardCardDiv' key={board.id}>
-                  {/* <BoardCard board={board} /> */}
-                  {board.title}
+                  <BoardCard board={board} />
                 </div>
               ))
               :
