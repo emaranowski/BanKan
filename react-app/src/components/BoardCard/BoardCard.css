@@ -1,0 +1,29 @@
+#boardCard {
+    display: flex;
+    justify-items: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* gap: 20px; */
+}
+
+#boardCardImgDiv {
+    z-index: -2;
+}
+
+#boardCardImg {
+    width: 350px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#boardCardTitle {
+    z-index: -1;
+    position: fixed;
+    margin: 20px;
+    padding: 14px 18px;
+    font-size: 20px;
+    background-color: rgb(255 255 255 / 0.15);
+    border-radius: 20px;
+    box-shadow: 5px 15px 75px #FFFFFF;
+}

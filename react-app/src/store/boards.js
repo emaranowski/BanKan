@@ -46,36 +46,39 @@ const deleteBoard = (boardId) => {
 //////////////////////////////// THUNKS ////////////////////////////////
 
 // THUNK: GET ONE BOARD
-export const getOneBoardThunk = (boardId) => async (dispatch) => {
+export const thunkGetOneBoard = (boardId) => async (dispatch) => {
+  // console.log('*** in thunkGetOneBoard, boardId:', boardId);
   const res = await fetch(`/api/boards/${boardId}`, { method: "GET" });
+  // console.log('*** in thunkGetOneBoard, res:', res);
 
   if (res.ok) {
     const board = await res.json();
+    // console.log('*** in thunkGetOneBoard, RES OK board:', board);
     dispatch(getOneBoard(board));
-    return board; // added
+    return board;
   } else {
     const errors = await res.json();
+    // console.log('*** in thunkGetOneBoard, RES NOTOK errors:', errors);
     return errors;
-  };
+  }
 };
 
 // THUNK: GET ALL BOARDS
-export const getAllBoardsThunk = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/boards`, { method: "GET" });
+export const thunkGetAllBoards = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/boards/user/${userId}`, { method: "GET" });
 
   if (res.ok) {
     const boards = await res.json();
-    dispatch(getAllBoards(userId));
+    dispatch(getAllBoards(boards));
+    return boards;
   } else {
-    console.log("***** in getAllBoardsThunk: RES NOT OK ****")
     const errors = await res.json();
-    console.log("***** in getAllBoardsThunk: errors ****", errors)
     return errors;
-  };
+  }
 };
 
 // THUNK: CREATE BOARD
-export const createBoardThunk = (board) => async (dispatch) => {
+export const thunkCreateBoard = (board) => async (dispatch) => {
   const { imageUrl, title, userId } = board;
 
   const res = await fetch(`/api/boards/create`, {
@@ -91,7 +94,7 @@ export const createBoardThunk = (board) => async (dispatch) => {
   if (res.ok) {
     const board = await res.json();
     dispatch(createBoard(board));
-    return board; // added
+    return board;
   } else {
     const errors = await res.json();
     return errors;
@@ -99,7 +102,7 @@ export const createBoardThunk = (board) => async (dispatch) => {
 };
 
 // THUNK: UPDATE BOARD
-export const updateBoardThunk = (board) => async (dispatch) => {
+export const thunkUpdateBoard = (board) => async (dispatch) => {
   const { imageUrl, title, id } = board;
 
   const res = await fetch(`/api/boards/${id}/update`, {
@@ -122,7 +125,7 @@ export const updateBoardThunk = (board) => async (dispatch) => {
 };
 
 // THUNK: DELETE BOARD
-export const deleteBoardThunk = (boardId) => async (dispatch) => {
+export const thunkDeleteBoard = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}/delete`, {
     method: "DELETE",
     headers: { 'Content-Type': 'application/json' },

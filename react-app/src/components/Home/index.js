@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import OpenModalButton from '../OpenModalButton';
-import SignupFormModal from '../SignupFormModal';
+// import { useSelector } from 'react-redux';
+// import { Link } from 'react-router-dom';
+// import OpenModalButton from '../OpenModalButton';
+// import SignupFormModal from '../SignupFormModal';
 import './Home.css'
 
 export default function Home() {
-  const sessionUser = useSelector(state => state.session.user)
+  // const sessionUser = useSelector(state => state.session.user)
 
   return (
     <>

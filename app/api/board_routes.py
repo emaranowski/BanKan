@@ -1,5 +1,5 @@
-from flask import Blueprint, request
-from flask_login import login_required
+from flask import Blueprint, request, jsonify
+from flask_login import current_user, login_required
 from app.models import Board, db
 from ..forms.board_form import BoardForm
 import datetime
@@ -14,15 +14,17 @@ def get_one_board(id):
     """
     Get details of one board (by board_id): GET /api/boards/:board_id
     """
+    # print('***** in get_one_board, id:', id)
     board = Board.query.get(id)
+    # print('***** in get_one_board, board:', board)
 
     if board.id:
         return board.to_dict()
     else:
-        return { "error": "Board couldn't be found" }, 404
+        return { "error": "Board could not be found" }, 404
 
 
-@board_routes.route('/', methods=['GET'])
+@board_routes.route('/user/<int:id>', methods=['GET'])
 @login_required
 def get_all_boards(id):
     """
@@ -91,3 +93,5 @@ def delete_board(id):
         "message": "Successfully deleted board",
         "id": id
         }
+    else:
+        return {"error": "Board could not be deleted"}

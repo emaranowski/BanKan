@@ -25,3 +25,10 @@
 #boardsHeaderAddBtn:hover {
     background-color: #58dca4;
 }
+
+#boardCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
