@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { thunkGetAllBoards } from '../../store/boards';
 import BoardCard from "../BoardCard";
 // import { Link } from 'react-router-dom';
-// import OpenModalButton from "../OpenModalButton";
-// import BoardFormCreate from "../BoardFormCreate";
+import OpenModalButton from "../OpenModalButton";
+import BoardFormCreate from "../BoardFormCreate";
 import './Boards.css'
 
 export default function Boards() {
@@ -30,15 +30,15 @@ export default function Boards() {
       {isLoaded && (
         <div id='boardsPage'>
           <div id='boardsHeader'>
-            <span id='boardsHeaderText'>Boards</span>
+            <span id='boardsHeaderText'>My Boards</span>
             <span id='boardsHeaderAddBtn'>
-              {/* <OpenModalButton
-            buttonText="+"
-            modalComponent={
-              <BoardFormCreate
-                userId={userId}
-              />}
-          /> */}
+              <OpenModalButton
+                buttonText="+"
+                modalComponent={
+                  <BoardFormCreate
+                    userId={userId}
+                  />}
+              />
             </span>
           </div>
           <div id='boardCards'>

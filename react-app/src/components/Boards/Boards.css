@@ -15,7 +15,7 @@
     font-size: 40px;
 }
 
-#boardsHeaderAddBtn {
+/* #boardsHeaderAddBtn {
     font-size: 40px;
     padding: 0 12px;
     color: #FFFFFF;
@@ -24,7 +24,7 @@
 
 #boardsHeaderAddBtn:hover {
     background-color: #58dca4;
-}
+} */
 
 #boardCards {
     display: flex;
