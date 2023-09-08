@@ -65,13 +65,13 @@ def upgrade():
     op.create_table('columns',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('board_id', sa.Integer(), nullable=False),
-    sa.Column('color_id', sa.Integer(), nullable=False),
+    # sa.Column('color_id', sa.Integer(), nullable=False),
     sa.Column('color_hex', sa.String(length=30), nullable=False),
     sa.Column('title', sa.String(length=30), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=False),
     sa.Column('updated_at', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['board_id'], ['boards.id'], ),
-    sa.ForeignKeyConstraint(['color_id'], ['preset_colors.id'], ),
+    # sa.ForeignKeyConstraint(['color_id'], ['preset_colors.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('cards',
