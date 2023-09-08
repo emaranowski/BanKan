@@ -85,7 +85,8 @@ export default function BoardDetails() {
           ))
           :
           (<span>You have no columns!</span>)
-        }      </div>
+        }
+      </div>
 
     </div >
   )

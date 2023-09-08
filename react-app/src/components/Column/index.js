@@ -47,21 +47,49 @@ export default function Column({ column }) {
       <div>
         HEX: {column.colorHex}
       </div>
+
       <div>
         [cards here]
+
+        {/* <div className='columnUpdateAndDeleteBtns'>
+          <Card
+            columnId={column.id}
+            boardId={column.boardId}
+          />
+        </div> */}
+
+        <div id='columnCards'>
+          {cardsArr.length ?
+            cardsArr.map((card) => (
+              <div className='cardDiv' key={card.id}>
+                <Card
+                  card={card}
+                  columnId={column.id}
+                  boardId={column.boardId}
+                />
+                {/* Column Board ID: {column.boardId}
+              Column Color HEX: {column.colorHex}
+              Column Title: {column.title} */}
+              </div>
+            ))
+            :
+            (<span>You have no columns!</span>)
+          }
+        </div>
       </div>
 
       <div>
         [+ Add card]
-        {/* <div className='columnUpdateAndDeleteBtns'>
-        <OpenModalButton
-          buttonText="+ Add card"
-          modalComponent={
-            <CardFormCreate
-              boardId={column.boardId}
-            />}
-        />
-      </div> */}
+        <div className='columnUpdateAndDeleteBtns'>
+          <OpenModalButton
+            buttonText="+ Add card"
+            modalComponent={
+              <CardFormCreate
+                columnId={column.id}
+                boardId={column.boardId}
+              />}
+          />
+        </div>
       </div>
     </div>
   )}</>)
