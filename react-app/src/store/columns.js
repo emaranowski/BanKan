@@ -106,9 +106,9 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
 
 // THUNK: UPDATE COLUMN
 export const thunkUpdateColumn = (column) => async (dispatch) => {
-    console.log('**** in thunkUpdateColumn, column:', column)
+    // console.log('**** in thunkUpdateColumn, column:', column)
     const { id, boardId, colorHex, title } = column;
-    console.log('**** in thunkUpdateColumn, id:', id)
+    // console.log('**** in thunkUpdateColumn, id:', id)
 
     const res = await fetch(`/api/columns/${id}/update`, {
         method: "PUT",

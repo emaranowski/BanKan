@@ -90,11 +90,11 @@ export default function ColumnForm({ formType, column }) {
         colorHex,
         boardId
       };
-      // console.log('**** in Create Column, column:', column)
+      // console.log('**** in CREATE COLUMN, column:', column)
 
       try {
         const res = await dispatch(thunkCreateColumnForBoard(column)); // VScode gives note about not needing 'await', but it IS needed
-        // console.log('**** in Create Column TRY, res:', res)
+        // console.log('**** in CREATE COLUMN TRY, res:', res)
         if (res.id) {
           setErrors({});
           history.push(`/boards/${boardId}`);
@@ -103,9 +103,9 @@ export default function ColumnForm({ formType, column }) {
           setErrors(res.errors);
         }
       } catch (res) {
-        // console.log('**** in Create Column CATCH, res:', res)
+        // console.log('**** in CREATE COLUMN CATCH, res:', res)
         const data = await res.json();
-        // console.log('**** in Create Column CATCH, data:', data)
+        // console.log('**** in CREATE COLUMN CATCH, data:', data)
         if (data && data.errors) {
           setErrors(data.errors);
         }
@@ -119,6 +119,7 @@ export default function ColumnForm({ formType, column }) {
         colorHex,
         boardId
       };
+      console.log('**** in UPDATE COLUMN, column:', column)
 
       try {
         const res = await dispatch(thunkUpdateColumn(column)); // VScode notes not needing 'await', but it IS needed

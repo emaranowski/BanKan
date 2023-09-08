@@ -45,7 +45,9 @@ export default function Column({ column }) {
       </div>
 
       <div>
-        {/* Column Color: {column.colorHex} */}
+        HEX: {column.colorHex}
+      </div>
+      <div>
         [cards here]
       </div>
 
