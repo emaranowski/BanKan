@@ -47,16 +47,20 @@ const deleteBoard = (boardId) => {
 
 // THUNK: GET ONE BOARD
 export const thunkGetOneBoard = (boardId) => async (dispatch) => {
+  // console.log('*** in thunkGetOneBoard, boardId:', boardId);
   const res = await fetch(`/api/boards/${boardId}`, { method: "GET" });
+  // console.log('*** in thunkGetOneBoard, res:', res);
 
   if (res.ok) {
     const board = await res.json();
+    // console.log('*** in thunkGetOneBoard, RES OK board:', board);
     dispatch(getOneBoard(board));
     return board;
   } else {
     const errors = await res.json();
+    // console.log('*** in thunkGetOneBoard, RES NOTOK errors:', errors);
     return errors;
-  };
+  }
 };
 
 // THUNK: GET ALL BOARDS
@@ -70,7 +74,7 @@ export const thunkGetAllBoards = (userId) => async (dispatch) => {
   } else {
     const errors = await res.json();
     return errors;
-  };
+  }
 };
 
 // THUNK: CREATE BOARD

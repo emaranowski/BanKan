@@ -8,6 +8,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Boards from "./components/Boards";
+import BoardDetails from "./components/BoardDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,10 @@ function App() {
 
           <ProtectedRoute exact path='/boards'>
             <Boards />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path='/boards/:boardId'>
+            <BoardDetails />
           </ProtectedRoute>
 
           <Route path="/login" >

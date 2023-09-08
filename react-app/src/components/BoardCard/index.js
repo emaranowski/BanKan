@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // import OpenModalButton from '../../components/OpenModalButton';
 // import BoardDeleteModal from '../BoardDeleteModal';
 // import BoardFormUpdate from '../BoardFormUpdate';
@@ -9,7 +10,7 @@ export default function BoardCard({ board }) {
   const dispatch = useDispatch();
   const boardId = board.id;
   const sessionUser = useSelector(state => state.session.user);
-  const userId = sessionUser.id;
+  // const userId = sessionUser.id;
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -17,19 +18,20 @@ export default function BoardCard({ board }) {
   }, [dispatch])
 
   return (<>{isLoaded && (
-    <div id='boardCard'>
+    <Link to={`/boards/${boardId}`}>
+      <div id='boardCard'>
 
-      <div id='boardCardImgDiv'>
-        <img id='boardCardImg' src={board.imageUrl}></img>
-      </div>
+        <div id='boardCardImgDiv'>
+          <img id='boardCardImg' src={board.imageUrl}></img>
+        </div>
 
-      <div id='boardCardTitle'>
-        {board.title}
-      </div>
+        <div id='boardCardTitle'>
+          {board.title}
+        </div>
 
-      <div id='boardCardBtns'>
+        <div id='boardCardBtns'>
 
-        {/* <div className='boardCardUpdateAndDeleteBtns'>
+          {/* <div className='boardCardUpdateAndDeleteBtns'>
         <OpenModalButton
           buttonText="Update"
           modalComponent={
@@ -39,7 +41,7 @@ export default function BoardCard({ board }) {
         />
       </div> */}
 
-        {/* <div className='boardCardUpdateAndDeleteBtns'>
+          {/* <div className='boardCardUpdateAndDeleteBtns'>
         <OpenModalButton
           buttonText="Delete"
           modalComponent={<BoardDeleteModal
@@ -49,8 +51,9 @@ export default function BoardCard({ board }) {
         />
       </div> */}
 
-      </div>
+        </div>
 
-    </div>
+      </div>
+    </Link>
   )}</>)
 };

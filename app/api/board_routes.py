@@ -14,12 +14,14 @@ def get_one_board(id):
     """
     Get details of one board (by board_id): GET /api/boards/:board_id
     """
+    # print('***** in get_one_board, id:', id)
     board = Board.query.get(id)
+    # print('***** in get_one_board, board:', board)
 
     if board.id:
         return board.to_dict()
     else:
-        return { "error": "Board couldn't be found" }, 404
+        return { "error": "Board could not be found" }, 404
 
 
 @board_routes.route('/user/<int:id>', methods=['GET'])
@@ -91,3 +93,5 @@ def delete_board(id):
         "message": "Successfully deleted board",
         "id": id
         }
+    else:
+        return {"error": "Board could not be deleted"}
