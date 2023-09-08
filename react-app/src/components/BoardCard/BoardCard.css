@@ -19,7 +19,7 @@
 
 #boardCardTitle {
     z-index: -1;
-    position: fixed;
+    position: absolute;
     margin: 20px;
     padding: 14px 18px;
     font-size: 20px;

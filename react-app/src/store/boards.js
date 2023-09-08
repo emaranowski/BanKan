@@ -79,12 +79,16 @@ export const thunkGetAllBoards = (userId) => async (dispatch) => {
 
 // THUNK: CREATE BOARD
 export const thunkCreateBoard = (board) => async (dispatch) => {
-  const { imageUrl, title, userId } = board;
+  console.log('**** in thunkCreateBoard ****')
+  console.log('**** in thunkCreateBoard, board:', board)
 
-  const res = await fetch(`/api/boards/create`, {
+  const { imageId, imageUrl, title, userId } = board;
+
+  const res = await fetch(`/api/boards/create/user/${userId}`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      image_id: imageId,
       image_url: imageUrl,
       title,
       user_id: userId,

@@ -28,17 +28,17 @@ def get_one_board(id):
 @login_required
 def get_all_boards(id):
     """
-    Get all boards for user (by user_id): GET /api/boards
+    Get all boards for user (by user_id): GET /api/boards/user/:user_id
     """
     boards = Board.query.filter(Board.user_id == id).all()
     return { "boards": [board.to_dict() for board in boards] }
 
 
-@board_routes.route('/create', methods=['POST'])
+@board_routes.route('/create/user/<int:id>', methods=['POST'])
 @login_required
 def create_board(id):
     """
-    Create board for user (by user_id): POST /api/boards/create
+    Create board for user (by user_id): POST /api/boards/create/user/:user_id
     """
     form = BoardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -47,6 +47,7 @@ def create_board(id):
         new_board = Board(
             user_id = id,
             title = form.data['title'],
+            image_id = form.data['image_id'],
             image_url = form.data['image_url'],
             created_at = datetime.datetime.now(),
             updated_at = datetime.datetime.now()
