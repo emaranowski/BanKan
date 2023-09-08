@@ -4,6 +4,7 @@ import { thunkGetOneBoard } from '../../store/boards';
 import { Link, useParams } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormUpdate from "../BoardFormUpdate";
+import BoardDeleteModal from "../BoardDeleteModal";
 import './BoardDetails.css';
 
 export default function BoardDetails() {
@@ -44,8 +45,8 @@ export default function BoardDetails() {
             <OpenModalButton
               buttonText="Delete"
               modalComponent={
-                <BoardFormUpdate
-                  board={board}
+                <BoardDeleteModal
+                  boardId={boardId}
                 />}
             />
           </span>
