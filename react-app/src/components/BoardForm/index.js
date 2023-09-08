@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 // import { createImageFileAndUrl, deleteImageFileBoard } from "../../store/image"
-// import { createBoardThunk } from "../../store/boards";
-// import { updateBoardThunk } from "../../store/boards";
+import { thunkCreateBoard } from "../../store/boards";
+import { thunkUpdateBoard } from "../../store/boards";
 import './BoardForm.css';
 
 export default function BoardForm({ formType, board }) {
@@ -57,7 +57,7 @@ export default function BoardForm({ formType, board }) {
       };
 
       try { // CREATE BOARD
-        const res = await dispatch(createBoardThunk(board)); // VScode gives note about not needing 'await', but it IS needed
+        const res = await dispatch(thunkCreateBoard(board)); // VScode gives note about not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
           history.push(`/boards/${boardId}`);
@@ -104,7 +104,7 @@ export default function BoardForm({ formType, board }) {
       };
 
       try { // UPDATE BOARD
-        const res = await dispatch(updateBoardThunk(board)); // VScode notes not needing 'await', but it IS needed
+        const res = await dispatch(thunkUpdateBoard(board)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
           history.push(`/boards/${boardId}`);
@@ -128,7 +128,7 @@ export default function BoardForm({ formType, board }) {
       };
 
       try { // UPDATE BOARD
-        const res = await dispatch(updateBoardThunk(board)); // VScode notes not needing 'await', but it IS needed
+        const res = await dispatch(thunkUpdateBoard(board)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
           history.push(`/boards/${boardId}`);
