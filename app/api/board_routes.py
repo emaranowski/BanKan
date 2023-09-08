@@ -1,6 +1,6 @@
-from flask import Blueprint, request, jsonify
-from flask_login import current_user, login_required
-from app.models import Board, db
+from flask import Blueprint, request
+from flask_login import login_required
+from app.models import db, Board, Column
 from ..forms.board_form import BoardForm
 import datetime
 
@@ -22,6 +22,16 @@ def get_one_board(id):
         return board.to_dict()
     else:
         return { "error": "Board could not be found" }, 404
+
+
+@board_routes.route('/<int:id>/columns', methods=['GET'])
+@login_required
+def get_all_columns_for_one_board(id):
+    """
+    Get all columns for one board (by board_id): GET /api/boards/:board_id/columns
+    """
+    columns = Column.query.filter(Column.board_id == id).all()
+    return { "columns": [column.to_dict() for column in columns] }
 
 
 @board_routes.route('/user/<int:id>', methods=['GET'])
