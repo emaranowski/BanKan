@@ -22,4 +22,4 @@ class PresetColor(db.Model):
         }
 
     # one-to-many: one preset color can have many columns
-    columns_rel = db.relationship("Column", back_populates="preset_colors_rel")
+    # columns_rel = db.relationship("Column", back_populates="preset_colors_rel")
