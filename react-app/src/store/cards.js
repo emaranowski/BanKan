@@ -106,17 +106,17 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
 
 // THUNK: UPDATE CARD
 export const thunkUpdateCard = (card) => async (dispatch) => {
-  // console.log('**** in thunkUpdateCard, card:', card)
-  const { id, boardId, colorHex, title } = card;
-  // console.log('**** in thunkUpdateCard, id:', id)
+  console.log('**** in thunkUpdateCard, card:', card)
+  const { id, columnId, title, description } = card;
+  console.log('**** in thunkUpdateCard, id:', id)
 
   const res = await fetch(`/api/cards/${id}/update`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      board_id: boardId,
-      color_hex: colorHex,
+      column_id: columnId,
       title,
+      description,
     })
   })
   console.log('**** in thunkUpdateCard, res:', res)
