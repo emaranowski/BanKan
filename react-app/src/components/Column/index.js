@@ -35,9 +35,9 @@ export default function Column({ column }) {
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='column_title_and_btns'>
+      <div id='color_swatch' className={column.colorName}></div>
 
-        <div id='color_swatch' className={column.colorName}></div>
+      <div id='column_title_and_btns'>
 
         <div id='column_title'>
           {column.title}
@@ -74,7 +74,7 @@ export default function Column({ column }) {
           />
         </div> */}
 
-        <div id='columnCards'>
+        <div id='column_cards'>
           {cardsArr.length ?
             cardsArr.map((card) => (
               <div className='cardDiv' key={card.id}>
@@ -93,7 +93,7 @@ export default function Column({ column }) {
         </div>
       </div>
 
-      <div>
+      <div id='column_btn_add_card'>
         <div className='column_btn'>
           <OpenModalButton
             buttonText="+ Add card"

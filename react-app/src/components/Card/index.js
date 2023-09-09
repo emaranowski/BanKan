@@ -19,14 +19,15 @@ export default function Card({ card, columnId, boardId }) {
 
   return (<>{isLoaded && (
     <div id='card'>
-      <span>
+
+      <span id='card_title'>
         {card.title}
       </span>
 
-      <span id='cardUpdateAndDeleteBtnsBox'>
-        <span className='cardUpdateAndDeleteBtns'>
+      <span id='card_btns'>
+        <span className='card_btn'>
           <OpenModalButton
-            buttonText="Edit"
+            buttonText="🖊️"
             modalComponent={
               <CardFormUpdate
                 card={card}
@@ -35,9 +36,9 @@ export default function Card({ card, columnId, boardId }) {
           />
         </span>
 
-        <span className='cardUpdateAndDeleteBtns'>
+        <span className='card_btn'>
           <OpenModalButton
-            buttonText="X"
+            buttonText="🗑️"
             modalComponent={
               <CardDeleteModal
                 cardId={card.id}
@@ -46,6 +47,7 @@ export default function Card({ card, columnId, boardId }) {
           />
         </span>
       </span>
+
     </div>
   )}</>)
 };

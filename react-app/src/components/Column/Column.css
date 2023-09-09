@@ -3,7 +3,7 @@
     background-color: #FFFFFF;
     border: .5px solid #cecece;
     border-radius: 7px;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -12,6 +12,8 @@
 #column_title_and_btns {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    margin: 0 10px;
 }
 
 #color_swatch {
@@ -72,4 +74,14 @@
 
 .column_btn {
     color: #016285;
+}
+
+#column_cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#column_btn_add_card {
+    align-self: end;
 }
