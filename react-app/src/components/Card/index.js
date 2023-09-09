@@ -6,16 +6,16 @@ import CardFormUpdate from '../CardFormUpdate';
 import CardDeleteModal from '../CardDeleteModal';
 import './Card.css';
 
-export default function Card({ card, boardId }) {
+export default function Card({ card, columnId, boardId }) {
   const dispatch = useDispatch();
-  // const columnId = column.id;
   // const sessionUser = useSelector(state => state.session.user);
   // const userId = sessionUser.id;
-  const [isLoaded, setIsLoaded] = useState(false);
+  // console.log('**** in Card, boardId is:', boardId)
 
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);
-  }, [dispatch])
+  }, [dispatch, columnId])
 
   return (<>{isLoaded && (
     <div id='card'>
@@ -38,10 +38,11 @@ export default function Card({ card, boardId }) {
         <span className='cardUpdateAndDeleteBtns'>
           <OpenModalButton
             buttonText="X"
-            modalComponent={<CardDeleteModal
-              cardId={card.id}
-              boardId={card.boardId}
-            />}
+            modalComponent={
+              <CardDeleteModal
+                cardId={card.id}
+                boardId={card.boardId}
+              />}
           />
         </span>
       </span>

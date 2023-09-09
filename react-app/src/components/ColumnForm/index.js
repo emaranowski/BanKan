@@ -14,19 +14,20 @@ export default function ColumnForm({ formType, column }) {
   const boardId = column.boardId;
 
   const [title, setTitle] = useState(column?.title);
-  const [colorHex, setColorHex] = useState(column?.colorHex);
+  // const [colorHex, setColorHex] = useState(column?.colorHex);
+  const [colorName, setColorName] = useState(column?.colorName);
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log('**** in ColumnForm, colorHex:', colorHex)
+  console.log('**** in ColumnForm, colorName:', colorName)
 
   useEffect(() => {
     setIsLoaded(true);
   }, [dispatch]);
 
-  const colorHexs = [
+  const colorNames = [
     {
       'id': 1,
       'hex': '#a11800',
@@ -87,7 +88,7 @@ export default function ColumnForm({ formType, column }) {
       column = {
         ...column,
         title,
-        colorHex,
+        colorName,
         boardId
       };
       // console.log('**** in CREATE COLUMN, column:', column)
@@ -116,7 +117,7 @@ export default function ColumnForm({ formType, column }) {
       column = {
         ...column,
         title,
-        colorHex,
+        colorName,
         boardId
       };
       console.log('**** in UPDATE COLUMN, column:', column)
@@ -152,13 +153,13 @@ export default function ColumnForm({ formType, column }) {
 
           <div className='create_column_form_section'>
             <div id='colorButtons'>
-              {colorHexs.length ?
-                colorHexs.map((colorHex) => (
+              {colorNames.length ?
+                colorNames.map((colorName) => (
                   <div
                     id='colorButtonDiv'
-                    className={colorHex.name}
-                    key={colorHex.id}
-                    onClick={() => setColorHex(colorHex.hex)}
+                    className={colorName.name}
+                    key={colorName.id}
+                    onClick={() => setColorName(colorName.name)}
                   >
                   </div>
                 ))

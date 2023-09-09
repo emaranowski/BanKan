@@ -200,7 +200,8 @@ columns = [
   {
     'id': 1,
     'board_id': 1,
-    'color_hex': '#a11800',
+    # 'color_hex': '#a11800',
+    'color_name': 'red',
     'title': 'Create documentation',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -208,7 +209,8 @@ columns = [
   {
     'id': 2,
     'board_id': 1,
-    'color_hex': '#a15600',
+    # 'color_hex': '#a15600',
+    'color_name': 'orange',
     'title': 'Test local + live deployment',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -216,7 +218,8 @@ columns = [
   {
     'id': 3,
     'board_id': 1,
-    'color_hex': '#b08307',
+    # 'color_hex': '#b08307',
+    'color_name': 'yellow',
     'title': 'Make models + seeds',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -224,7 +227,8 @@ columns = [
   {
     'id': 4,
     'board_id': 2,
-    'color_hex': '#3a8501',
+    # 'color_hex': '#3a8501',
+    'color_name': 'green',
     'title': 'Process data',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -232,7 +236,8 @@ columns = [
   {
     'id': 5,
     'board_id': 2,
-    'color_hex': '#016285',
+    # 'color_hex': '#016285',
+    'color_name': 'blue',
     'title': 'Draft slides',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -240,7 +245,8 @@ columns = [
   {
     'id': 6,
     'board_id': 2,
-    'color_hex': '#450185',
+    # 'color_hex': '#450185',
+    'color_name': 'purple',
     'title': 'Practice presenting',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -248,7 +254,8 @@ columns = [
   {
     'id': 7,
     'board_id': 2,
-    'color_hex': '#FFFFFF',
+    # 'color_hex': '#FFFFFF',
+    'color_name': 'white',
     'title': 'Review client feedback',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -256,7 +263,8 @@ columns = [
   {
     'id': 8,
     'board_id': 2,
-    'color_hex': '#8f8f8f',
+    # 'color_hex': '#8f8f8f',
+    'color_name': 'lightgray',
     'title': 'Propose changes',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -264,7 +272,8 @@ columns = [
   {
     'id': 9,
     'board_id': 2,
-    'color_hex': '#000000',
+    # 'color_hex': '#000000',
+    'color_name': 'black',
     'title': 'Draft tech specs',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()

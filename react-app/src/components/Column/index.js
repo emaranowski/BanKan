@@ -12,6 +12,19 @@ export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
   const cardsArr = Object.values(useSelector(state => state.cards.allCards));
+  const [colorName, setColorName] = useState('');
+
+  console.log('**** in Column, column:', column)
+  // if (column.colorHex === '#a11800') setColorName('red');
+  // if (column.colorHex === '#a15600') setColorName('orange');
+  // if (column.colorHex === '#b08307') setColorName('yellow');
+  // if (column.colorHex === '#3a8501') setColorName('green');
+  // if (column.colorHex === '#016285') setColorName('blue');
+  // if (column.colorHex === '#450185') setColorName('purple');
+  // if (column.colorHex === '#cecece') setColorName('lightgray');
+  // if (column.colorHex === '#8f8f8f') setColorName('medgray');
+  // if (column.colorHex === '#686868') setColorName('darkgrey');
+  // if (column.colorHex === '#000000') setColorName('black');
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -22,32 +35,35 @@ export default function Column({ column }) {
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='columnTitle'>
-        <span>
-          {column.title}
-        </span>
-        <span className='columnUpdateAndDeleteBtns'>
-          <OpenModalButton
-            buttonText="Edit"
-            modalComponent={
-              <ColumnFormUpdate
-                column={column}
-              />}
-          />
-        </span>
-        <span className='columnUpdateAndDeleteBtns'>
-          <OpenModalButton
-            buttonText="X"
-            modalComponent={<ColumnDeleteModal
-              columnId={column.id}
-              boardId={column.boardId}
-            />}
-          />
-        </span>
-      </div>
+      <div id='column_title_and_btns'>
 
-      <div>
-        HEX: {column.colorHex}
+        <div id='color_swatch' className={column.colorName}></div>
+
+        <div id='column_title'>
+          {column.title}
+        </div>
+
+        <div id='column_btns'>
+          <span className='column_btn'>
+            <OpenModalButton
+              buttonText="🖊️"
+              modalComponent={
+                <ColumnFormUpdate
+                  column={column}
+                />}
+            />
+          </span>
+
+          <span className='column_btn'>
+            <OpenModalButton
+              buttonText="🗑️"
+              modalComponent={<ColumnDeleteModal
+                columnId={column.id}
+                boardId={column.boardId}
+              />}
+            />
+          </span>
+        </div>
       </div>
 
       <div>
@@ -72,14 +88,13 @@ export default function Column({ column }) {
               Column Title: {column.title} */}
               </div>
             ))
-            :
-            (<span>You have no cards!</span>)
+            : (<span>You have no cards!</span>)
           }
         </div>
       </div>
 
       <div>
-        <div className='columnUpdateAndDeleteBtns'>
+        <div className='column_btn'>
           <OpenModalButton
             buttonText="+ Add card"
             modalComponent={

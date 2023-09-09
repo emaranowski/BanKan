@@ -8,7 +8,8 @@ class Column(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), nullable=False)
-    color_hex = db.Column(db.String(30), nullable=False)
+    # color_hex = db.Column(db.String(30), nullable=False)
+    color_name = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(30), nullable=False)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
@@ -17,7 +18,8 @@ class Column(db.Model):
         return {
             'id': self.id,
             'boardId': self.board_id,
-            'colorHex': self.color_hex,
+            # 'colorHex': self.color_hex,
+            'colorName': self.color_name,
             'title': self.title,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at

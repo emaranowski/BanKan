@@ -9,6 +9,7 @@ import BoardDeleteModal from "../BoardDeleteModal";
 import ColumnFormCreate from '../ColumnFormCreate';
 import Column from "../Column";
 import './BoardDetails.css';
+import { thunkGetAllCardsForColumn } from '../../store/cards';
 
 export default function BoardDetails() {
   const dispatch = useDispatch();
@@ -16,11 +17,15 @@ export default function BoardDetails() {
   const board = useSelector(state => state.boards.oneBoard);
   // const columns = useSelector(state => state.columns.allColumns);
   const columnsArr = Object.values(useSelector(state => state.columns.allColumns));
+  // console.log('**** in BoardDetails, columnsArr:', columnsArr)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
+    // columnsArr.forEach(column => {
+    //   dispatch(thunkGetAllCardsForColumn(column.id))
+    // })
     setIsLoaded(true)
   }, [dispatch, boardId, board.title, board.imageUrl]);
 
