@@ -1,7 +1,8 @@
-from flask import Blueprint, request, jsonify
-from flask_login import current_user, login_required
-from app.models import Board, db
+from flask import Blueprint, request
+from flask_login import login_required
+from app.models import db, Board, Column
 from ..forms.board_form import BoardForm
+from ..forms.column_form import ColumnForm
 import datetime
 
 
@@ -71,9 +72,9 @@ def update_board(id):
     if form.validate_on_submit():
         board_to_update = Board.query.get(id)
         print('**** in update_board, board_to_update:', board_to_update)
-        board_to_update.title = form.data['title']
-        board_to_update.image_url = form.data['image_url']
         board_to_update.user_id = form.data['user_id']
+        board_to_update.image_url = form.data['image_url']
+        board_to_update.title = form.data['title']
         board_to_update.updated_at = datetime.datetime.now()
         db.session.commit()
         res = board_to_update.to_dict()
@@ -101,3 +102,37 @@ def delete_board(id):
         }
     else:
         return {"error": "Board could not be deleted"}
+
+
+@board_routes.route('/<int:id>/columns', methods=['GET'])
+@login_required
+def get_all_columns_for_board(id):
+    """
+    Get all columns for board (by board_id): GET /api/boards/:board_id/columns
+    """
+    columns = Column.query.filter(Column.board_id == id).all()
+    return { "columns": [column.to_dict() for column in columns] }
+
+
+@board_routes.route('/<int:id>/columns/create', methods=['POST'])
+@login_required
+def create_column_for_board(id):
+    """
+    Create column for board (by board_id): POST /api/boards/:board_id/columns/create
+    """
+    form = ColumnForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_column = Column(
+            board_id = id,
+            color_hex = form.data['color_hex'],
+            title = form.data['title'],
+            created_at = datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
+        )
+        db.session.add(new_column)
+        db.session.commit()
+        return new_column.to_dict()
+    if form.errors:
+        return { "errors": form.errors }, 400
