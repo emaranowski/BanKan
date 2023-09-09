@@ -169,21 +169,21 @@ preset_colors = [
   {
     'id': 7,
     'hex': '#cecece',
-    'name': 'light_gray',
+    'name': 'lightgray',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
   {
     'id': 8,
     'hex': '#8f8f8f',
-    'name': 'medium_gray',
+    'name': 'medgray',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
   {
     'id': 9,
     'hex': '#686868',
-    'name': 'dark_grey',
+    'name': 'darkgrey',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
