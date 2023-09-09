@@ -31,3 +31,12 @@
     object-fit: cover;
     border-radius: 7px;
 }
+
+#boardDetailsColumns {
+    display: flex;
+    flex-direction: row;
+}
+
+.columnDiv {
+    width: 275px;
+}

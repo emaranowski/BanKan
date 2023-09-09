@@ -1,0 +1,46 @@
+#card_delete_modal_outermost_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+#card_delete_modal_text {
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+
+#card_delete_modal_btns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#card_cancel_delete_btn {
+    color: #000000;
+    background-color: rgb(219, 219, 219);
+    font-size: 17px;
+    padding: 10px 12px;
+    border-radius: 7px;
+    border: none;
+}
+
+#card_cancel_delete_btn:hover {
+    background-color: rgb(190, 190, 190);
+    cursor: pointer;
+}
+
+#card_confirm_delete_btn {
+    color: #FFFFFF;
+    background-color: #991900de;
+    font-size: 17px;
+    padding: 10px 12px;
+    border-radius: 7px;
+    border: none;
+}
+
+#card_confirm_delete_btn:hover {
+    background-color: #711300de;
+    cursor: pointer;
+}
