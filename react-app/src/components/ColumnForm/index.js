@@ -60,17 +60,17 @@ export default function ColumnForm({ formType, column }) {
     {
       'id': 7,
       'hex': '#cecece',
-      'name': 'light_gray',
+      'name': 'lightgray',
     },
     {
       'id': 8,
       'hex': '#8f8f8f',
-      'name': 'medium_gray',
+      'name': 'medgray',
     },
     {
       'id': 9,
       'hex': '#686868',
-      'name': 'dark_gray',
+      'name': 'darkgray',
     },
     {
       'id': 10,
