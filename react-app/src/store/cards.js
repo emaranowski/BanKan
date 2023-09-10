@@ -79,8 +79,8 @@ export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
 
 // THUNK: CREATE CARD
 export const thunkCreateCardForColumn = (card) => async (dispatch) => {
-  console.log('**** in thunkCreateCardForColumn ****')
-  console.log('**** in thunkCreateCardForColumn, card:', card)
+  // console.log('**** in thunkCreateCardForColumn ****')
+  // console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
 
   const { columnId, title, description } = card;
 
@@ -93,22 +93,25 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
       description,
     })
   })
+  // console.log('**** in thunkCreateCardForColumn, res:', res)
 
   if (res.ok) {
     const card = await res.json();
+    // console.log('**** in thunkCreateCardForColumn RES.OK, card:', card)
     dispatch(createCard(card));
     return card;
   } else {
     const errors = await res.json();
+    // console.log('**** in thunkCreateCardForColumn, errors:', errors)
     return errors;
   }
 };
 
 // THUNK: UPDATE CARD
 export const thunkUpdateCard = (card) => async (dispatch) => {
-  console.log('**** in thunkUpdateCard, card:', card)
+  // console.log('**** in thunkUpdateCard, card:', card)
   const { id, columnId, title, description } = card;
-  console.log('**** in thunkUpdateCard, id:', id)
+  // console.log('**** in thunkUpdateCard, id:', id)
 
   const res = await fetch(`/api/cards/${id}/update`, {
     method: "PUT",
@@ -119,7 +122,7 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
       description,
     })
   })
-  console.log('**** in thunkUpdateCard, res:', res)
+  // console.log('**** in thunkUpdateCard, res:', res)
 
   if (res.ok) {
     const card = await res.json();
@@ -127,7 +130,7 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
     return card;
   } else {
     const errors = await res.json();
-    console.log('**** in thunkUpdateCard, errors:', errors)
+    // console.log('**** in thunkUpdateCard, errors:', errors)
     return errors;
   }
 };

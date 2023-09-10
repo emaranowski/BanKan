@@ -6,18 +6,15 @@ import BoardCard from "../BoardCard";
 // import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormCreate from "../BoardFormCreate";
-import './Boards.css'
+import './BoardsAll.css'
 
-export default function Boards() {
+export default function BoardsAll() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id;
-  // const boards = useSelector(state => state.boards.allBoards);
-  const boardsArr = Object.values(useSelector(state => state.boards.allBoards));
+  const boards = Object.values(useSelector(state => state.boards.allBoards));
 
-  // console.log('**** in Boards, sessionUser:', sessionUser)
-  // console.log('**** in Boards, boards:', boards)
-  console.log('**** in Boards, boardsArr:', boardsArr)
+  // console.log('**** in BoardsAll, boards:', boards)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -33,7 +30,7 @@ export default function Boards() {
             <span id='boardsHeaderText'>My Boards</span>
             <span id='boardsHeaderAddBtn'>
               <OpenModalButton
-                buttonText="+"
+                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
                 modalComponent={
                   <BoardFormCreate
                     userId={userId}
@@ -42,8 +39,8 @@ export default function Boards() {
             </span>
           </div>
           <div id='boardCards'>
-            {boardsArr.length ?
-              boardsArr.map((board) => (
+            {boards.length ?
+              boards.map((board) => (
                 <div id='boardCardDiv' key={board.id}>
                   <BoardCard board={board} />
                 </div>

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import CardForm from '../CardForm';
 
-export default function CardFormUpdate({ card }) {
+export default function CardFormUpdate({ card, boardId }) {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -16,6 +16,7 @@ export default function CardFormUpdate({ card }) {
         <CardForm
           formType='Update Card'
           card={card}
+          boardId={boardId}
         />
       )}
     </>

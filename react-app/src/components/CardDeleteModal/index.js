@@ -1,13 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 import { thunkDeleteCard } from "../../store/cards";
+import { thunkGetAllColumnsForBoard } from '../../store/columns';
 import "./CardDeleteModal.css";
 
-export default function CardDeleteModal({ cardId, boardId }) { // must pass in boardId
+export default function CardDeleteModal({ cardId, boardId }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { closeModal } = useModal();
 
   const handleDelete = async (e) => {
@@ -17,7 +16,7 @@ export default function CardDeleteModal({ cardId, boardId }) { // must pass in b
       const res = await dispatch(thunkDeleteCard(cardId));
       if (res.message) {
         closeModal();
-        history.push(`/boards/${boardId}`);
+        dispatch(thunkGetAllColumnsForBoard(boardId));
       }
     } catch {
       closeModal();
