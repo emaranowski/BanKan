@@ -13,6 +13,12 @@ class Board(db.Model):
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
+    # one-to-many: one user can have many boards
+    users_rel = db.relationship("User", back_populates="boards_rel")
+
+    # one-to-many: one board can have many columns
+    columns_rel = db.relationship("Column", back_populates="boards_rel", cascade="all, delete-orphan")
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -20,11 +26,7 @@ class Board(db.Model):
             'imageUrl': self.image_url,
             'title': self.title,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'user': self.users_rel,
+            'columns': self.columns_rel
         }
-
-    # one-to-many: one user can have many boards
-    users_rel = db.relationship("User", back_populates="boards_rel")
-
-    # one-to-many: one board can have many columns
-    columns_rel = db.relationship("Column", back_populates="boards_rel", cascade="all, delete-orphan")

@@ -14,6 +14,12 @@ class Column(db.Model):
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
+    # one-to-many: one board can have many columns
+    boards_rel = db.relationship("Board", back_populates="columns_rel")
+
+    # one-to-many: one column can have many cards
+    cards_rel = db.relationship("Card", back_populates="columns_rel", cascade="all, delete-orphan")
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -22,11 +28,7 @@ class Column(db.Model):
             'colorName': self.color_name,
             'title': self.title,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'board': self.boards_rel,
+            'cards': self.cards_rel
         }
-
-    # one-to-many: one board can have many columns
-    boards_rel = db.relationship("Board", back_populates="columns_rel")
-
-    # one-to-many: one column can have many cards
-    cards_rel = db.relationship("Card", back_populates="columns_rel", cascade="all, delete-orphan")

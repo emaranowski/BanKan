@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
+    # one-to-many: one user can have many boards
+    boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")
+
     @property
     def password(self):
         return self.hashed_password
@@ -37,8 +40,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'boards': self.boards_rel
         }
-
-    # one-to-many: one user can have many boards
-    boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")

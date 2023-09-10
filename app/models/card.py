@@ -13,6 +13,9 @@ class Card(db.Model):
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
+    # one-to-many: one column can have many cards
+    columns_rel = db.relationship("Column", back_populates="cards_rel")
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -20,8 +23,6 @@ class Card(db.Model):
             'title': self.title,
             'description': self.description,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'column': self.columns_rel
         }
-
-    # one-to-many: one column can have many cards
-    columns_rel = db.relationship("Column", back_populates="cards_rel")
