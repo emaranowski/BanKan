@@ -10,7 +10,7 @@ export default function Card({ card, boardId }) {
   const dispatch = useDispatch();
   // const sessionUser = useSelector(state => state.session.user);
   // const userId = sessionUser.id;
-  // console.log('**** in Card, boardId is:', boardId)
+  console.log('**** in Card, boardId is:', boardId)
 
   // const card = useSelector(state => state.cards.oneCard);
 
@@ -44,7 +44,7 @@ export default function Card({ card, boardId }) {
             modalComponent={
               <CardDeleteModal
                 cardId={card.id}
-                boardId={card.boardId}
+                boardId={boardId}
               />}
           />
         </span>

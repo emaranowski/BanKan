@@ -28,6 +28,11 @@
     gap: 15px;
 }
 
+#board_details_update_btn button {
+    /* color: red;
+    background-color: blue; */
+}
+
 #board_details_all_columns {
     display: flex;
     flex-direction: row;

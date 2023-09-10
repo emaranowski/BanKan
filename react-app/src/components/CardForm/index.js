@@ -24,6 +24,8 @@ export default function CardForm({ formType, card, boardId }) {
     setIsLoaded(true);
   }, [dispatch]);
 
+  console.log('**** in CardForm, boardId:', boardId)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

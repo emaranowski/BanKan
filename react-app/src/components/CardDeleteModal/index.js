@@ -24,6 +24,8 @@ export default function CardDeleteModal({ cardId, boardId }) { // must pass in b
     }
   }
 
+  console.log('**** in CardDeleteModal, boardId:', boardId)
+
   return (
     <>
       <div id='card_delete_modal_outermost_box'>
