@@ -3,7 +3,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 6px 12px 12px 12px;
-  border-bottom: .5px solid grey;
+  /* border-bottom: .5px solid grey; */
 }
 
 #navRight {

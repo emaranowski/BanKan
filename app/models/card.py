@@ -20,7 +20,8 @@ class Card(db.Model):
             'title': self.title,
             'description': self.description,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            # 'column': [column.to_dict() for column in self.columns_rel]
         }
 
     # one-to-many: one column can have many cards

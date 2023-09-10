@@ -9,55 +9,77 @@ import BoardDeleteModal from "../BoardDeleteModal";
 import ColumnFormCreate from '../ColumnFormCreate';
 import Column from "../Column";
 import './BoardDetails.css';
+import { thunkGetAllCardsForColumn } from '../../store/cards';
 
 export default function BoardDetails() {
   const dispatch = useDispatch();
   const { boardId } = useParams();
   const board = useSelector(state => state.boards.oneBoard);
-  // const columns = useSelector(state => state.columns.allColumns);
   const columnsArr = Object.values(useSelector(state => state.columns.allColumns));
+  // console.log('**** in BoardDetails, columnsArr:', columnsArr)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
+    // async function getAllItemsForBoardDetails() {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
+    columnsArr.forEach(column => {
+      dispatch(thunkGetAllCardsForColumn(column.id))
+    })
     setIsLoaded(true)
+    // };
+    // getAllItemsForBoardDetails();
   }, [dispatch, boardId, board.title, board.imageUrl]);
 
   return (<>{isLoaded && (
-    <div id='boardDetailsPage'>
+    <div id='board_details_page' style={{ backgroundImage: `url(${board.imageUrl})` }}>
 
-      <Link to={`/boards`}>
-        ⬅ Back to my boards
-      </Link>
+      <div id='board_details_page_content'>
+        <Link to={`/boards`}>
+          ⬅ Back to my boards
+        </Link>
 
-      <div id='boardDetailsHeader'>
-        <div id='boardDetailsTitle'>
-          Board: {board.title}
+        <div id='board_details_header'>
+          <div id='board_details_title'>
+            Board: <span id='board_details_title_text'>{board.title}</span>
+          </div>
+
+          <div id='board_details_btns'>
+            <span id='board_details_update_btn'>
+              <OpenModalButton
+                buttonText="Edit"
+                modalComponent={
+                  <BoardFormUpdate
+                    board={board}
+                  />}
+              />
+            </span>
+
+            <span id='board_details_delete_btn'>
+              <OpenModalButton
+                buttonText="Delete"
+                modalComponent={
+                  <BoardDeleteModal
+                    boardId={boardId}
+                  />}
+              />
+            </span>
+
+          </div>
         </div>
 
-        <div id='boardDetailsBtns'>
-          <span id='boardDetailsUpdateBtn'>
-            <OpenModalButton
-              buttonText="Edit"
-              modalComponent={
-                <BoardFormUpdate
-                  board={board}
-                />}
-            />
-          </span>
+        <div id='board_details_all_columns'>
+          {columnsArr.length ?
+            columnsArr.map((column) => (
+              <div className='board_details_one_column' key={column.id}>
+                <Column column={column} />
+              </div>
+            ))
+            :
+            (<span>You have no columns!</span>)
+          }
 
-          <span id='boardDetailsDeleteBtn'>
-            <OpenModalButton
-              buttonText="Delete"
-              modalComponent={
-                <BoardDeleteModal
-                  boardId={boardId}
-                />}
-            />
-          </span>
-
-          <span id='boardDetailsAddColBtn'>
+          <span id='board_details_add_col_btn'>
             <OpenModalButton
               buttonText="+ Add column"
               modalComponent={
@@ -67,25 +89,6 @@ export default function BoardDetails() {
             />
           </span>
         </div>
-      </div>
-
-      <div id='boardDetailsImgDiv'>
-        <img id='boardDetailsImg' src={board.imageUrl}></img>
-      </div>
-
-      <div id='boardDetailsColumns'>
-        {columnsArr.length ?
-          columnsArr.map((column) => (
-            <div className='columnDiv' key={column.id}>
-              <Column column={column} />
-              {/* Column Board ID: {column.boardId}
-              Column Color HEX: {column.colorHex}
-              Column Title: {column.title} */}
-            </div>
-          ))
-          :
-          (<span>You have no columns!</span>)
-        }
       </div>
 
     </div >

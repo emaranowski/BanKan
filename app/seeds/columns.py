@@ -6,7 +6,8 @@ def seed_columns():
     for column in columns:
         seed_column = Column(
             board_id = column['board_id'],
-            color_hex = column['color_hex'],
+            # color_hex = column['color_hex'],
+            color_name = column['color_name'],
             title = column['title'],
             created_at = column['created_at'],
             updated_at = column['updated_at']
