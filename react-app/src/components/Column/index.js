@@ -11,7 +11,6 @@ import './Column.css';
 export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
-  const cardsArr = Object.values(useSelector(state => state.cards.allCards));
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -22,69 +21,56 @@ export default function Column({ column }) {
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='columnTitle'>
-        <span>
+      <div id='color_swatch' className={column.colorName}></div>
+
+      <div id='column_title_and_btns'>
+        <div id='column_title'>
           {column.title}
-        </span>
-        <span className='columnUpdateAndDeleteBtns'>
-          <OpenModalButton
-            buttonText="Edit"
-            modalComponent={
-              <ColumnFormUpdate
-                column={column}
+        </div>
+
+        <div id='column_btns'>
+          <span className='column_btn'>
+            <OpenModalButton
+              buttonText="🖊️"
+              modalComponent={
+                <ColumnFormUpdate
+                  column={column}
+                />}
+            />
+          </span>
+
+          <span className='column_btn'>
+            <OpenModalButton
+              buttonText="🗑️"
+              modalComponent={<ColumnDeleteModal
+                columnId={columnId}
+                boardId={column.boardId}
               />}
-          />
-        </span>
-        <span className='columnUpdateAndDeleteBtns'>
-          <OpenModalButton
-            buttonText="X"
-            modalComponent={<ColumnDeleteModal
-              columnId={column.id}
-              boardId={column.boardId}
-            />}
-          />
-        </span>
-      </div>
-
-      <div>
-        HEX: {column.colorHex}
-      </div>
-
-      <div>
-        {/* <div className='columnUpdateAndDeleteBtns'>
-          <Card
-            columnId={column.id}
-            boardId={column.boardId}
-          />
-        </div> */}
-
-        <div id='columnCards'>
-          {cardsArr.length ?
-            cardsArr.map((card) => (
-              <div className='cardDiv' key={card.id}>
-                <Card
-                  card={card}
-                  columnId={column.id}
-                  boardId={column.boardId}
-                />
-                {/* Column Board ID: {column.boardId}
-              Column Color HEX: {column.colorHex}
-              Column Title: {column.title} */}
-              </div>
-            ))
-            :
-            (<span>You have no cards!</span>)
-          }
+            />
+          </span>
         </div>
       </div>
 
       <div>
-        <div className='columnUpdateAndDeleteBtns'>
+        <div id='column_cards'>
+          {column.cards.map((card) => (
+            <div className='cardDiv' key={card.id}>
+              <Card
+                card={card}
+                boardId={column.boardId}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div id='column_btn_add_card'>
+        <div className='column_btn'>
           <OpenModalButton
             buttonText="+ Add card"
             modalComponent={
               <CardFormCreate
-                columnId={column.id}
+                columnId={columnId}
                 boardId={column.boardId}
               />}
           />

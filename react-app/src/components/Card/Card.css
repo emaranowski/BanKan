@@ -1,4 +1,15 @@
 #card {
     z-index: -1;
-    border: 1.5px solid cornflowerblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: .5px solid #cecece;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+#card_btns {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }

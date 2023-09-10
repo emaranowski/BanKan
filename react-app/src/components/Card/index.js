@@ -8,25 +8,28 @@ import './Card.css';
 
 export default function Card({ card, boardId }) {
   const dispatch = useDispatch();
-  // const columnId = column.id;
   // const sessionUser = useSelector(state => state.session.user);
   // const userId = sessionUser.id;
-  const [isLoaded, setIsLoaded] = useState(false);
+  // console.log('**** in Card, boardId is:', boardId)
 
+  // const card = useSelector(state => state.cards.oneCard);
+
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);
-  }, [dispatch])
+  }, [dispatch, card.columnId])
 
   return (<>{isLoaded && (
     <div id='card'>
-      <span>
+
+      <span id='card_title'>
         {card.title}
       </span>
 
-      <span id='cardUpdateAndDeleteBtnsBox'>
-        <span className='cardUpdateAndDeleteBtns'>
+      <span id='card_btns'>
+        <span className='card_btn'>
           <OpenModalButton
-            buttonText="Edit"
+            buttonText="🖊️"
             modalComponent={
               <CardFormUpdate
                 card={card}
@@ -35,16 +38,18 @@ export default function Card({ card, boardId }) {
           />
         </span>
 
-        <span className='cardUpdateAndDeleteBtns'>
+        <span className='card_btn'>
           <OpenModalButton
-            buttonText="X"
-            modalComponent={<CardDeleteModal
-              cardId={card.id}
-              boardId={card.boardId}
-            />}
+            buttonText="🗑️"
+            modalComponent={
+              <CardDeleteModal
+                cardId={card.id}
+                boardId={card.boardId}
+              />}
           />
         </span>
       </span>
+
     </div>
   )}</>)
 };

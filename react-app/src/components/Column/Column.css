@@ -1,4 +1,87 @@
 #column {
     z-index: -1;
-    border: 2px solid coral;
+    background-color: #FFFFFF;
+    border: .5px solid #cecece;
+    border-radius: 7px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#column_title_and_btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 10px;
+}
+
+#color_swatch {
+    height: 7px;
+    border-radius: 50px;
+}
+
+.red {
+    background-color: #a11800;
+}
+
+.orange {
+    background-color: #a15600;
+}
+
+.yellow {
+    background-color: #b08307;
+}
+
+.green {
+    background-color: #3a8501;
+}
+
+.blue {
+    background-color: #016285;
+}
+
+.purple {
+    background-color: #450185;
+}
+
+.lightgray {
+    background-color: #cecece;
+}
+
+.medgray {
+    background-color: #8f8f8f;
+}
+
+.darkgray {
+    background-color: #686868;
+}
+
+.black {
+    background-color: #000000;
+}
+
+#column_title {
+    font-size: 18px;
+}
+
+#column_btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 5px;
+}
+
+.column_btn {
+    color: #016285;
+}
+
+#column_cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#column_btn_add_card {
+    align-self: end;
 }

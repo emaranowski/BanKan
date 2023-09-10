@@ -126,7 +126,8 @@ def create_column_for_board(id):
     if form.validate_on_submit():
         new_column = Column(
             board_id = id,
-            color_hex = form.data['color_hex'],
+            # color_hex = form.data['color_hex'],
+            color_name = form.data['color_name'],
             title = form.data['title'],
             created_at = datetime.datetime.now(),
             updated_at = datetime.datetime.now()

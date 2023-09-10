@@ -4,7 +4,7 @@ export default function ColumnFormCreate({ boardId }) {
 
   let column = {
     title: '',
-    colorHex: '',
+    colorName: '',
     boardId,
   }
 
