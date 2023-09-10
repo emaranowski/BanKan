@@ -253,27 +253,27 @@ columns = [
   },
   {
     'id': 7,
-    'board_id': 2,
-    # 'color_hex': '#FFFFFF',
-    'color_name': 'white',
+    'board_id': 3,
+    # 'color_hex': '#cecece',
+    'color_name': 'lightgray',
     'title': 'Review client feedback',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
   {
     'id': 8,
-    'board_id': 2,
+    'board_id': 3,
     # 'color_hex': '#8f8f8f',
-    'color_name': 'lightgray',
+    'color_name': 'medgray',
     'title': 'Propose changes',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
   {
     'id': 9,
-    'board_id': 2,
-    # 'color_hex': '#000000',
-    'color_name': 'black',
+    'board_id': 3,
+    # 'color_hex': '#686868',
+    'color_name': 'darkgray',
     'title': 'Draft tech specs',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
