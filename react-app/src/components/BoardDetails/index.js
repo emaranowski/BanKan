@@ -41,7 +41,7 @@ export default function BoardDetails() {
           <div id='board_details_btns'>
             <span id='board_details_update_btn'>
               <OpenModalButton
-                buttonText="Edit"
+                buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                 modalComponent={
                   <BoardFormUpdate
                     board={board}
@@ -51,7 +51,7 @@ export default function BoardDetails() {
 
             <span id='board_details_delete_btn'>
               <OpenModalButton
-                buttonText="Delete"
+                buttonText={<i class="fa-regular fa-trash-can"></i>}
                 modalComponent={
                   <BoardDeleteModal
                     boardId={boardId}

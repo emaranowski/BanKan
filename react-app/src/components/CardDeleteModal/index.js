@@ -5,7 +5,7 @@ import { thunkDeleteCard } from "../../store/cards";
 import { thunkGetAllColumnsForBoard } from '../../store/columns';
 import "./CardDeleteModal.css";
 
-export default function CardDeleteModal({ cardId, boardId }) { // must pass in boardId
+export default function CardDeleteModal({ cardId, boardId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -22,8 +22,6 @@ export default function CardDeleteModal({ cardId, boardId }) { // must pass in b
       closeModal();
     }
   }
-
-  console.log('**** in CardDeleteModal, boardId:', boardId)
 
   return (
     <>

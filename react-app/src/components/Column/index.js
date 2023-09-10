@@ -39,7 +39,7 @@ export default function Column({ column }) {
         <div id='column_btns'>
           <span className='column_btn'>
             <OpenModalButton
-              buttonText="🖊️"
+              buttonText={<i class="fa-regular fa-pen-to-square"></i>}
               modalComponent={
                 <ColumnFormUpdate
                   column={column}
@@ -49,7 +49,7 @@ export default function Column({ column }) {
 
           <span className='column_btn'>
             <OpenModalButton
-              buttonText="🗑️"
+              buttonText={<i class="fa-regular fa-trash-can"></i>}
               modalComponent={<ColumnDeleteModal
                 columnId={columnId}
                 boardId={boardId}
@@ -77,7 +77,7 @@ export default function Column({ column }) {
       <div id='column_btn_add_card'>
         <div className='column_btn'>
           <OpenModalButton
-            buttonText="+ Add card"
+            buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add card</span></i>}
             modalComponent={
               <CardFormCreate
                 columnId={columnId}
