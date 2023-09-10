@@ -7,7 +7,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
-import Boards from "./components/Boards";
+import BoardsAll from "./components/BoardsAll";
 import BoardDetails from "./components/BoardDetails";
 import Footer from "./components/Footer";
 
@@ -36,7 +36,7 @@ function App() {
           </Route>
 
           <ProtectedRoute exact path='/boards'>
-            <Boards />
+            <BoardsAll />
           </ProtectedRoute>
 
           <ProtectedRoute exact path='/boards/:boardId'>

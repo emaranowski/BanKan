@@ -11,21 +11,29 @@ import './Column.css';
 export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
+  const boardId = column.boardId;
+  const color = column.colorName;
+  const title = column.title;
+  // const cards = Object.values(useSelector(state => state.cards.allCards));
+  const cards = column.cards;
+
+  console.log('**** in Column, cards:', cards)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(thunkGetAllCardsForColumn(columnId))
     setIsLoaded(true)
-  }, [dispatch, columnId])
+  }, [dispatch, columnId, boardId, color, title]);
 
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='color_swatch' className={column.colorName}></div>
+      <div id='color_swatch' className={color}>
+      </div>
 
       <div id='column_title_and_btns'>
         <div id='column_title'>
-          {column.title}
+          {title}
         </div>
 
         <div id='column_btns'>
@@ -44,7 +52,7 @@ export default function Column({ column }) {
               buttonText="🗑️"
               modalComponent={<ColumnDeleteModal
                 columnId={columnId}
-                boardId={column.boardId}
+                boardId={boardId}
               />}
             />
           </span>
@@ -53,12 +61,12 @@ export default function Column({ column }) {
 
       <div>
         <div id='column_cards'>
-          {column.cards && (
-            column.cards.map((card) => (
+          {cards && (
+            cards.map((card) => (
               <div className='cardDiv' key={card.id}>
                 <Card
                   card={card}
-                  boardId={column.boardId}
+                  boardId={boardId}
                 />
               </div>
             ))
@@ -73,7 +81,7 @@ export default function Column({ column }) {
             modalComponent={
               <CardFormCreate
                 columnId={columnId}
-                boardId={column.boardId}
+                boardId={boardId}
               />}
           />
         </div>

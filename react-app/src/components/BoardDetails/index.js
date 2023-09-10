@@ -14,28 +14,19 @@ export default function BoardDetails() {
   const dispatch = useDispatch();
   const { boardId } = useParams();
   const board = useSelector(state => state.boards.oneBoard);
-  const columnsArr = Object.values(useSelector(state => state.columns.allColumns));
-  const columnsArrV2 = board.columns;
-  console.log('**** in BoardDetails, board.columns:', board.columns)
-  console.log('**** in BoardDetails, columnsArr:', columnsArr)
-  console.log('**** in BoardDetails, columnsArrV2:', columnsArrV2)
-
+  const imageUrl = board.imageUrl;
+  const title = board.title;
+  const columns = Object.values(useSelector(state => state.columns.allColumns));
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
-    // async function getAllItemsForBoardDetails() {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
-    // columnsArr.forEach(column => {
-    //   dispatch(thunkGetAllCardsForColumn(column.id))
-    // })
     setIsLoaded(true)
-    // };
-    // getAllItemsForBoardDetails();
-  }, [dispatch, boardId, board.title, board.imageUrl]);
+  }, [dispatch, boardId, imageUrl, title]);
 
   return (<>{isLoaded && (
-    <div id='board_details_page' style={{ backgroundImage: `url(${board.imageUrl})` }}>
+    <div id='board_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
       <div id='board_details_page_content'>
         <Link to={`/boards`}>
@@ -44,7 +35,7 @@ export default function BoardDetails() {
 
         <div id='board_details_header'>
           <div id='board_details_title'>
-            Board: <span id='board_details_title_text'>{board.title}</span>
+            Board: <span id='board_details_title_text'>{title}</span>
           </div>
 
           <div id='board_details_btns'>
@@ -72,8 +63,8 @@ export default function BoardDetails() {
         </div>
 
         <div id='board_details_all_columns'>
-          {board.columns && (
-            board.columns.map((column) => (
+          {columns && (
+            columns.map((column) => (
               <div className='board_details_one_column' key={column.id}>
                 <Column column={column} />
               </div>

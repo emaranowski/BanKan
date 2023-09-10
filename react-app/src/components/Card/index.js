@@ -7,22 +7,20 @@ import './Card.css';
 
 export default function Card({ card, boardId }) {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector(state => state.session.user);
-  // const userId = sessionUser.id;
-  // console.log('**** in Card, boardId is:', boardId)
-
-  // const card = useSelector(state => state.cards.oneCard);
+  const cardId = card.id;
+  const columnId = card.columnId;
+  const title = card.title;
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);
-  }, [dispatch, card.columnId])
+  }, [dispatch, cardId, columnId, boardId, title]);
 
   return (<>{isLoaded && (
     <div id='card'>
 
       <span id='card_title'>
-        {card.title}
+        {title}
       </span>
 
       <span id='card_btns'>
@@ -42,7 +40,7 @@ export default function Card({ card, boardId }) {
             buttonText="🗑️"
             modalComponent={
               <CardDeleteModal
-                cardId={card.id}
+                cardId={cardId}
                 boardId={boardId}
               />}
           />

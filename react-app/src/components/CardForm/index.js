@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateCardForColumn } from "../../store/cards";
+import { thunkGetAllColumnsForBoard } from '../../store/columns';
 import { thunkUpdateCard } from "../../store/cards";
 import './CardForm.css';
 
@@ -19,6 +20,7 @@ export default function CardForm({ formType, card, boardId }) {
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  // const [reload, setReload] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -44,8 +46,12 @@ export default function CardForm({ formType, card, boardId }) {
         // console.log('**** in CREATE CARD TRY, res:', res)
         if (res.id) {
           setErrors({});
-          history.push(`/boards/${boardId}`);
+          // history.push(`/boards/${boardId}`);
           closeModal();
+          // setIsLoaded(false);
+          // setIsLoaded(true);
+          dispatch(thunkGetAllColumnsForBoard(boardId));
+          // setReload(!reload);
         } else if (res.errors) {
           setErrors(res.errors);
         }
@@ -72,8 +78,9 @@ export default function CardForm({ formType, card, boardId }) {
         const res = await dispatch(thunkUpdateCard(card)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
-          history.push(`/boards/${boardId}`);
           closeModal();
+          dispatch(thunkGetAllColumnsForBoard(boardId));
+          // history.push(`/boards/${boardId}`);
         } else {
           return res;
         }
