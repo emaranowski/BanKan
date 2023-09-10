@@ -15,18 +15,20 @@ export default function BoardDetails() {
   const dispatch = useDispatch();
   const { boardId } = useParams();
   const board = useSelector(state => state.boards.oneBoard);
-  // const columns = useSelector(state => state.columns.allColumns);
   const columnsArr = Object.values(useSelector(state => state.columns.allColumns));
   // console.log('**** in BoardDetails, columnsArr:', columnsArr)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
+    // async function getAllItemsForBoardDetails() {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
-    // columnsArr.forEach(column => {
-    //   dispatch(thunkGetAllCardsForColumn(column.id))
-    // })
+    columnsArr.forEach(column => {
+      dispatch(thunkGetAllCardsForColumn(column.id))
+    })
     setIsLoaded(true)
+    // };
+    // getAllItemsForBoardDetails();
   }, [dispatch, boardId, board.title, board.imageUrl]);
 
   return (<>{isLoaded && (

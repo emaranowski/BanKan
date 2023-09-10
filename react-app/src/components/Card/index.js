@@ -12,6 +12,8 @@ export default function Card({ card, boardId }) {
   // const userId = sessionUser.id;
   // console.log('**** in Card, boardId is:', boardId)
 
+  // const card = useSelector(state => state.cards.oneCard);
+
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);

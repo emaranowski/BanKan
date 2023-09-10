@@ -1,6 +1,6 @@
 //////////////////////////////// ACTION TYPE CONSTANTS ////////////////////////////////
 
-// const GET_ONE_COLUMN = "columns/getOneColumn";
+const GET_ONE_COLUMN = "columns/getOneColumn";
 const GET_ALL_COLUMNS = "columns/getAllColumns";
 const CREATE_COLUMN = "columns/createColumn";
 const UPDATE_COLUMN = "columns/updateColumn";
@@ -8,12 +8,12 @@ const DELETE_COLUMN = "columns/deleteColumn";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
 
-// const getOneColumn = (column) => {
-//   return {
-//     type: GET_ONE_COLUMN,
-//     column
-//   }
-// };
+const getOneColumn = (column) => {
+    return {
+        type: GET_ONE_COLUMN,
+        column
+    }
+};
 
 const getAllColumns = (columns) => {
     return {
@@ -46,22 +46,22 @@ const deleteColumn = (columnId) => {
 //////////////////////////////// THUNKS ////////////////////////////////
 
 // THUNK: GET ONE COLUMN
-// export const thunkGetOneColumn = (columnId) => async (dispatch) => {
-//   // console.log('*** in thunkGetOneColumn, columnId:', columnId);
-//   const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
-//   // console.log('*** in thunkGetOneColumn, res:', res);
+export const thunkGetOneColumn = (columnId) => async (dispatch) => {
+    // console.log('*** in thunkGetOneColumn, columnId:', columnId);
+    const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
+    // console.log('*** in thunkGetOneColumn, res:', res);
 
-//   if (res.ok) {
-//     const column = await res.json();
-//     // console.log('*** in thunkGetOneColumn, RES OK column:', column);
-//     dispatch(getOneColumn(column));
-//     return column;
-//   } else {
-//     const errors = await res.json();
-//     // console.log('*** in thunkGetOneColumn, RES NOTOK errors:', errors);
-//     return errors;
-//   }
-// };
+    if (res.ok) {
+        const column = await res.json();
+        // console.log('*** in thunkGetOneColumn, RES OK column:', column);
+        dispatch(getOneColumn(column));
+        return column;
+    } else {
+        const errors = await res.json();
+        // console.log('*** in thunkGetOneColumn, RES NOTOK errors:', errors);
+        return errors;
+    }
+};
 
 // THUNK: GET ALL COLUMNS
 export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
@@ -161,11 +161,11 @@ const initialState = {
 export default function columnsReducer(state = initialState, action) {
     switch (action.type) {
 
-        // case GET_ONE_COLUMN: {
-        //   const newState = { ...state, oneColumn: {} };
-        //   newState.oneColumn = action.column;
-        //   return newState;
-        // }
+        case GET_ONE_COLUMN: {
+            const newState = { ...state, oneColumn: {} };
+            newState.oneColumn = action.column;
+            return newState;
+        }
 
         case GET_ALL_COLUMNS: {
             const newState = { ...state, allColumns: {} };

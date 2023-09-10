@@ -9,6 +9,22 @@ import datetime
 column_routes = Blueprint('columns', __name__)
 
 
+@column_routes.route('/<int:id>', methods=['GET'])
+@login_required
+def get_one_column(id):
+    """
+    Get details of one column (by column_id): GET /api/columns/:column_id
+    """
+    # print('***** in get_one_column, id:', id)
+    column = Column.query.get(id)
+    # print('***** in get_one_column, column:', column)
+
+    if column:
+        return column.to_dict()
+    else:
+        return { "error": "Column could not be found" }, 404
+
+
 @column_routes.route('/<int:id>/update', methods=['PUT'])
 @login_required
 def update_column(id):
