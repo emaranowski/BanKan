@@ -6,7 +6,7 @@ import CardFormUpdate from '../CardFormUpdate';
 import CardDeleteModal from '../CardDeleteModal';
 import './Card.css';
 
-export default function Card({ card, columnId, boardId }) {
+export default function Card({ card, boardId }) {
   const dispatch = useDispatch();
   // const sessionUser = useSelector(state => state.session.user);
   // const userId = sessionUser.id;
@@ -15,7 +15,7 @@ export default function Card({ card, columnId, boardId }) {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);
-  }, [dispatch, columnId])
+  }, [dispatch, card.columnId])
 
   return (<>{isLoaded && (
     <div id='card'>
