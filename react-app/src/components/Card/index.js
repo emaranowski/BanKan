@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import OpenModalButton from '../../components/OpenModalButton';
-// import CardFormCreate from '../CardFormCreate';
 import CardFormUpdate from '../CardFormUpdate';
 import CardDeleteModal from '../CardDeleteModal';
 import './Card.css';
@@ -10,7 +9,7 @@ export default function Card({ card, boardId }) {
   const dispatch = useDispatch();
   // const sessionUser = useSelector(state => state.session.user);
   // const userId = sessionUser.id;
-  console.log('**** in Card, boardId is:', boardId)
+  // console.log('**** in Card, boardId is:', boardId)
 
   // const card = useSelector(state => state.cards.oneCard);
 

@@ -9,23 +9,26 @@ import BoardDeleteModal from "../BoardDeleteModal";
 import ColumnFormCreate from '../ColumnFormCreate';
 import Column from "../Column";
 import './BoardDetails.css';
-import { thunkGetAllCardsForColumn } from '../../store/cards';
 
 export default function BoardDetails() {
   const dispatch = useDispatch();
   const { boardId } = useParams();
   const board = useSelector(state => state.boards.oneBoard);
   const columnsArr = Object.values(useSelector(state => state.columns.allColumns));
-  // console.log('**** in BoardDetails, columnsArr:', columnsArr)
+  const columnsArrV2 = board.columns;
+  console.log('**** in BoardDetails, board.columns:', board.columns)
+  console.log('**** in BoardDetails, columnsArr:', columnsArr)
+  console.log('**** in BoardDetails, columnsArrV2:', columnsArrV2)
+
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
     // async function getAllItemsForBoardDetails() {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
-    columnsArr.forEach(column => {
-      dispatch(thunkGetAllCardsForColumn(column.id))
-    })
+    // columnsArr.forEach(column => {
+    //   dispatch(thunkGetAllCardsForColumn(column.id))
+    // })
     setIsLoaded(true)
     // };
     // getAllItemsForBoardDetails();
@@ -69,15 +72,13 @@ export default function BoardDetails() {
         </div>
 
         <div id='board_details_all_columns'>
-          {columnsArr.length ?
-            columnsArr.map((column) => (
+          {board.columns && (
+            board.columns.map((column) => (
               <div className='board_details_one_column' key={column.id}>
                 <Column column={column} />
               </div>
             ))
-            :
-            (<span>You have no columns!</span>)
-          }
+          )}
 
           <span id='board_details_add_col_btn'>
             <OpenModalButton

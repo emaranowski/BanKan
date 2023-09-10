@@ -53,14 +53,16 @@ export default function Column({ column }) {
 
       <div>
         <div id='column_cards'>
-          {column.cards.map((card) => (
-            <div className='cardDiv' key={card.id}>
-              <Card
-                card={card}
-                boardId={column.boardId}
-              />
-            </div>
-          ))}
+          {column.cards && (
+            column.cards.map((card) => (
+              <div className='cardDiv' key={card.id}>
+                <Card
+                  card={card}
+                  boardId={column.boardId}
+                />
+              </div>
+            ))
+          )}
         </div>
       </div>
 
