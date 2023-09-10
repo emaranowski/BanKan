@@ -73,7 +73,7 @@ export default function BoardDetails() {
 
           <span id='board_details_add_col_btn'>
             <OpenModalButton
-              buttonText="+ Add column"
+              buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
               modalComponent={
                 <ColumnFormCreate
                   boardId={boardId}
