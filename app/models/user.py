@@ -38,7 +38,7 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            # 'boards': self.boards_rel
+            'boards': [board.to_dict() for board in self.boards_rel]
         }
 
     # one-to-many: one user can have many boards

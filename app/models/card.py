@@ -21,7 +21,7 @@ class Card(db.Model):
             'description': self.description,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'column': self.columns_rel
+            # 'column': [column.to_dict() for column in self.columns_rel]
         }
 
     # one-to-many: one column can have many cards

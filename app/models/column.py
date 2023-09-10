@@ -23,8 +23,8 @@ class Column(db.Model):
             'title': self.title,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'board': self.boards_rel,
-            'cards': self.cards_rel
+            # 'board': [board.to_dict() for board in self.boards_rel],
+            'cards': [card.to_dict() for card in self.cards_rel]
         }
 
     # one-to-many: one board can have many columns

@@ -21,8 +21,8 @@ class Board(db.Model):
             'title': self.title,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            # 'user': self.users_rel,
-            # 'columns': self.columns_rel
+            # 'user': [user.to_dict() for user in self.users_rel],
+            'columns': [column.to_dict() for column in self.columns_rel]
         }
 
     # one-to-many: one user can have many boards
