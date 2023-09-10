@@ -1,5 +1,5 @@
 #board_details_page_content {
-    padding: 25px 50px 600px 50px;
+    padding: 25px 50px 800px 50px;
     display: flex;
     flex-direction: column;
 }
@@ -28,6 +28,11 @@
     gap: 15px;
 }
 
+#board_details_update_btn button {
+    /* color: red;
+    background-color: blue; */
+}
+
 #board_details_all_columns {
     display: flex;
     flex-direction: row;
@@ -40,6 +45,6 @@
 }
 
 #board_details_add_col_btn {
-    min-width: 100px;
-    max-width: 100px;
+    min-width: 108px;
+    max-width: 108px;
 }

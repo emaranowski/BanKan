@@ -1,25 +1,22 @@
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateCardForColumn } from "../../store/cards";
+import { thunkGetAllColumnsForBoard } from '../../store/columns';
 import { thunkUpdateCard } from "../../store/cards";
 import './CardForm.css';
 
 export default function CardForm({ formType, card, boardId }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { closeModal } = useModal();
-  const cardId = card.id;
   const columnId = card.columnId;
 
   const [title, setTitle] = useState(card?.title);
   const [description, setDescription] = useState(card?.description);
-
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
 
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);
   }, [dispatch]);
@@ -42,8 +39,8 @@ export default function CardForm({ formType, card, boardId }) {
         // console.log('**** in CREATE CARD TRY, res:', res)
         if (res.id) {
           setErrors({});
-          history.push(`/boards/${boardId}`);
           closeModal();
+          dispatch(thunkGetAllColumnsForBoard(boardId));
         } else if (res.errors) {
           setErrors(res.errors);
         }
@@ -70,8 +67,8 @@ export default function CardForm({ formType, card, boardId }) {
         const res = await dispatch(thunkUpdateCard(card)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
-          history.push(`/boards/${boardId}`);
           closeModal();
+          dispatch(thunkGetAllColumnsForBoard(boardId));
         } else {
           return res;
         }

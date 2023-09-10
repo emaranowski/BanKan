@@ -1,0 +1,18 @@
+#footer {
+    margin-top: 130px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #182c4c;
+    height: 130px;
+    padding: 20px;
+}
+
+#footer_logo {
+    color: #FFFFFF;
+    font-size: 25px;
+}
+
+#footer_copyright {
+    color: #FFFFFF;
+}

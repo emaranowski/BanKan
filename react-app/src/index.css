@@ -7,13 +7,14 @@
 }
 
 #root {
-    width: 100%;
+    width: 100% !important;
     /* border: 5px solid coral; */
 }
 
 button {
     border: none;
     border-radius: 3px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 

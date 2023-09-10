@@ -9,7 +9,7 @@ class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     column_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('columns.id')), nullable=False)
     title = db.Column(db.String(30), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255))
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
