@@ -17,16 +17,7 @@ export default function Column({ column }) {
   const title = column.title;
   // const cards = Object.values(useSelector(state => state.cards.allCards));
   const cards = column.cards;
-  // const droppableId = 'column-' + columnId;
   const dndId = column.dndId;
-
-  // console.log('**** in Column, column.droppableId:', droppableId)
-  // console.log('**** in Column, column:', column)
-  // console.log('**** in Column, column.cards:', column.cards)
-  // console.log('**** in Column, column.cardIds:', column.cardIds)
-
-  // console.log('**** in Column, droppableId:', droppableId)
-  // console.log('**** in Column, typeof droppableId:', typeof droppableId)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {

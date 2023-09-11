@@ -11,7 +11,7 @@ export default function Card({ boardId, card, index }) { // added index
   const cardId = card.id;
   const columnId = card.columnId;
   const title = card.title;
-  const draggableId = 'card-' + cardId;
+  const dndId = card.dndId;
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Card({ boardId, card, index }) { // added index
 
   return (<>{isLoaded && (
     <Draggable
-      draggableId={draggableId}
+      draggableId={dndId}
       index={index}
     >
       {(provided, snapshot) => (

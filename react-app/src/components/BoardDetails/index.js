@@ -19,6 +19,20 @@ export default function BoardDetails() {
   const columns = Object.values(useSelector(state => state.columns.allColumns));
   const dndId = board.dndId;
 
+  // separate model/table/etc for columnOrderIndex and cardOrderIndex?
+  // or index could just live on existing col/card models,
+  // and whenever creating/updating or drag/dropping a col/card,
+  // orderIndex would be created/updated behind the scenes;
+  // moving a col/card would trigger submission of update form,
+  // where only change would be orderIndex
+
+  // let columnsOrdered = [];
+  // const columnOrder = state.columns.columnOrder = ['column-2', 'column-1', 'column-3']
+  // using col order, we can map over 'columns' from state.columns.allColumns,
+  // and if column.dndId === columnOrder[i], then: columnsOrdered.push(columnOrder[i])
+  // column-2 has index 0, etc.
+  // then render columnsOrdered.map
+
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
     dispatch(thunkGetOneBoard(boardId))
@@ -66,9 +80,9 @@ export default function BoardDetails() {
         <div id='board_details_all_columns'>
           {columns && (
             columns.map((column) => (
-              <div className='board_details_one_column' key={column.id}>
-                <Column column={column} />
-              </div>
+              <span className='board_details_one_column' key={column.id}>
+                <Column key={column.id} column={column} />
+              </span>
             ))
           )}
 
