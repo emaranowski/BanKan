@@ -3,7 +3,7 @@
     background-color: #FFFFFF;
     border: .5px solid #cecece;
     border-radius: 7px;
-    padding: 10px 10px 15px 10px;
+    padding: 11px 11px 13px 11px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 0 10px;
+    margin: 0 5px 0 5px;
 }
 
 #column_color_swatch {
@@ -63,21 +63,45 @@
 }
 
 #column_title {
-    font-size: 18px;
+    font-size: 18.5px;
 }
 
 #column_btns {
     display: flex;
     flex-direction: row;
     justify-content: end;
-    gap: 5px;
+    gap: 2px;
 }
 
-.column_btn {
-    color: #016285;
+#column_btns button {
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+#column_btns button:hover {
+    background-color: #ededed;
 }
 
 #column_btn_add_card {
     align-self: end;
-    margin-right: 10px;
+}
+
+#column_btn_add_card button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    padding: 12.5px;
+    margin-top: -3px;
+    border-radius: 9px;
+    background-color: #ededed;
+    width: 253px;
+}
+
+#column_btn_add_card button:hover {
+    background-color: #e5e5e5;
+}
+
+#column_btns i {
+    color: #707070;
 }

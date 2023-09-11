@@ -16,16 +16,24 @@
     font-size: 40px;
 }
 
-/* #boardsHeaderAddBtn {
-    font-size: 40px;
-    padding: 0 12px;
-    color: #FFFFFF;
-    background-color: #38b47c;
+#boardsHeaderAddBtn button {
+    min-width: 105px;
+    max-width: 105px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    padding: 12.5px;
+    margin-top: -3px;
+
+    border-radius: 9px;
+    background-color: #ededed;
 }
 
-#boardsHeaderAddBtn:hover {
-    background-color: #58dca4;
-} */
+#boardsHeaderAddBtn button:hover {
+    background-color: #e5e5e5;
+}
 
 #boardCards {
     display: flex;
