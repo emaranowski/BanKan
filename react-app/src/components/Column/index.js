@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import { thunkGetAllCardsForColumn } from '../../store/cards';
 import OpenModalButton from '../../components/OpenModalButton';
 import Card from '../Card';
@@ -16,8 +17,7 @@ export default function Column({ column }) {
   const title = column.title;
   // const cards = Object.values(useSelector(state => state.cards.allCards));
   const cards = column.cards;
-
-  console.log('**** in Column, cards:', cards)
+  const dndId = column.dndId;
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -25,10 +25,12 @@ export default function Column({ column }) {
     setIsLoaded(true)
   }, [dispatch, columnId, boardId, color, title]);
 
+  // style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
+
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='color_swatch' className={color}>
+      <div id='column_color_swatch' className={color}>
       </div>
 
       <div id='column_title_and_btns'>
@@ -59,20 +61,42 @@ export default function Column({ column }) {
         </div>
       </div>
 
-      <div>
-        <div id='column_cards'>
-          {cards && (
-            cards.map((card) => (
-              <div className='cardDiv' key={card.id}>
+      <Droppable
+        droppableId={dndId}
+      >
+        {(provided, snapshot) => (
+          <div
+            id='column_cards'
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {cards && (
+              cards.map((card, index) => (
                 <Card
-                  card={card}
                   boardId={boardId}
+                  key={card.id}
+                  card={card}
+                  index={index}
                 />
-              </div>
-            ))
-          )}
-        </div>
-      </div>
+              ))
+            )}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+
+      {/* <div id='column_cards'>
+        {cards && (
+          cards.map((card) => (
+            <div className='cardDiv' key={card.id}>
+              <Card
+                card={card}
+                boardId={boardId}
+              />
+            </div>
+          ))
+        )}
+      </div> */}
 
       <div id='column_btn_add_card'>
         <div className='column_btn'>

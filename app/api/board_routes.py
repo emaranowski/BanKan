@@ -76,6 +76,7 @@ def update_board(id):
         board_to_update.image_url = form.data['image_url']
         board_to_update.title = form.data['title']
         board_to_update.updated_at = datetime.datetime.now()
+        # board_to_update.updated_at = func.now()
         db.session.commit()
         res = board_to_update.to_dict()
         return res
