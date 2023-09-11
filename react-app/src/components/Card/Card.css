@@ -3,8 +3,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     border: .5px solid #cecece;
-    padding: 10px;
+    padding: 10px 5px 10px 10px;
     border-radius: 14px;
     background-color: white;
     margin: 10px 0;
@@ -13,5 +14,18 @@
 #card_btns {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 2px;
+}
+
+#card_btns button {
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+#card_btns button:hover {
+    background-color: #ededed;
+}
+
+#card_btns i {
+    color: #707070;
 }

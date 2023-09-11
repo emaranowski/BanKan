@@ -38,27 +38,23 @@ export default function Card({ boardId, card, index }) { // added index
           </span>
 
           <span id='card_btns'>
-            <span className='card_btn'>
-              <OpenModalButton
-                buttonText={<i class="fa-regular fa-pen-to-square"></i>}
-                modalComponent={
-                  <CardFormUpdate
-                    card={card}
-                    boardId={boardId}
-                  />}
-              />
-            </span>
+            <OpenModalButton
+              buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+              modalComponent={
+                <CardFormUpdate
+                  card={card}
+                  boardId={boardId}
+                />}
+            />
 
-            <span className='card_btn'>
-              <OpenModalButton
-                buttonText={<i class="fa-regular fa-trash-can"></i>}
-                modalComponent={
-                  <CardDeleteModal
-                    cardId={cardId}
-                    boardId={boardId}
-                  />}
-              />
-            </span>
+            <OpenModalButton
+              buttonText={<i class="fa-regular fa-trash-can"></i>}
+              modalComponent={
+                <CardDeleteModal
+                  cardId={cardId}
+                  boardId={boardId}
+                />}
+            />
           </span>
         </div>
       )}
