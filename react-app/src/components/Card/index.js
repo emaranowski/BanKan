@@ -23,7 +23,6 @@ export default function Card({ boardId, card, index }) { // added index
 
   return (<>{isLoaded && (
     <Draggable
-      key={draggableId}
       draggableId={draggableId}
       index={index}
     >
@@ -34,7 +33,6 @@ export default function Card({ boardId, card, index }) { // added index
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-
           <span id='card_title'>
             {title}
           </span>
@@ -62,7 +60,6 @@ export default function Card({ boardId, card, index }) { // added index
               />
             </span>
           </span>
-
         </div>
       )}
     </Draggable>

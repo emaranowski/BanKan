@@ -33,7 +33,7 @@ export default function Column({ column }) {
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='color_swatch' className={color}>
+      <div id='column_color_swatch' className={color}>
       </div>
 
       <div id='column_title_and_btns'>
@@ -64,13 +64,12 @@ export default function Column({ column }) {
         </div>
       </div>
 
-      {/* <div> */}
       <Droppable
         droppableId={droppableId}
       >
         {(provided, snapshot) => (
           <div
-            id='column_cards_LIKE_TASKLIST'
+            id='column_cards'
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
@@ -88,7 +87,6 @@ export default function Column({ column }) {
           </div>
         )}
       </Droppable>
-      {/* </div> */}
 
       {/* <div id='column_cards'>
         {cards && (

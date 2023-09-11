@@ -6,6 +6,8 @@
     border: .5px solid #cecece;
     padding: 10px;
     border-radius: 14px;
+    background-color: white;
+    margin: 10px 0;
 }
 
 #card_btns {
