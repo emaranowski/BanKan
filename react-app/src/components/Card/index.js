@@ -13,6 +13,8 @@ export default function Card({ boardId, column, card, index }) { // added index
   const title = card.title;
   const dndId = card.dndId;
 
+  // console.log('**** in Card, card:', card)
+
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);

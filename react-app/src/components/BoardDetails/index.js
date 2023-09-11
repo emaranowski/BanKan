@@ -22,7 +22,7 @@ export default function BoardDetails() {
   const columnsDnd = board.columnsDnd;
 
   // console.log('*** in BoardDetails, board:', board)
-  console.log('*** in BoardDetails, board.columns:', board.columns)
+  // console.log('*** in BoardDetails, board.columns:', board.columns)
   // console.log('*** in BoardDetails, columnDndIds:', columnDndIds)
   // console.log('*** in BoardDetails, columnsDnd:', columnsDnd)
 

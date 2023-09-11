@@ -20,7 +20,7 @@ export default function Column({ column }) {
   // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
 
-  console.log('**** in Column, columnId:', columnId)
+  // console.log('**** in Column, columnId:', columnId)
   // console.log('**** in Column, numCardsInColumn:', numCardsInColumn)
 
   const [isLoaded, setIsLoaded] = useState(false);

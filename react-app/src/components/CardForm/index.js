@@ -13,6 +13,7 @@ export default function CardForm({ formType, card, column, boardId }) {
   const numCardsInColumn = column.cards.length;
 
   // want to generate index when creating new card
+  // console.log('**** in CardForm, card:', card)
   // console.log('**** in CardForm, column:', column)
   // console.log('**** in CardForm, numCardsInColumn:', numCardsInColumn)
 
@@ -35,9 +36,9 @@ export default function CardForm({ formType, card, column, boardId }) {
         ...card,
         title,
         description,
-        index: numCardsInColumn,
+        index: column.cards.length ? numCardsInColumn : 0,
       };
-      // console.log('**** in CREATE CARD, card:', card)
+      console.log('**** in CREATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkCreateCardForColumn(card)); // VScode gives note about not needing 'await', but it IS needed

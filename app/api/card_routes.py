@@ -22,6 +22,7 @@ def update_card(id):
         card_to_update = Card.query.get(id)
         print('**** in update_card, card_to_update:', card_to_update)
         card_to_update.column_id = form.data['column_id']
+        card_to_update.index = form.data['index']
         card_to_update.title = form.data['title']
         card_to_update.description = form.data['description']
         card_to_update.updated_at = datetime.datetime.now()

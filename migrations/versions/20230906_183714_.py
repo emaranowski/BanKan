@@ -74,6 +74,7 @@ def upgrade():
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('column_id', sa.Integer(), nullable=False),
+    sa.Column('index', sa.Integer(), nullable=True),
     sa.Column('title', sa.String(length=30), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=False),

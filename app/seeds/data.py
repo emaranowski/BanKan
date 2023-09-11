@@ -284,6 +284,7 @@ cards = [
   {
     'id': 1,
     'column_id': 1,
+    'index': 0,
     'title': 'User stories',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -292,6 +293,7 @@ cards = [
   {
     'id': 2,
     'column_id': 1,
+    'index': 1,
     'title': 'DB schema diagram',
     'description': 'Ideally use dbdiagram.io',
     'created_at': datetime.datetime.now(),
@@ -300,6 +302,7 @@ cards = [
   {
     'id': 3,
     'column_id': 1,
+    'index': 2,
     'title': 'Endpoints',
     'description': 'May need to add/update later',
     'created_at': datetime.datetime.now(),
@@ -308,6 +311,7 @@ cards = [
   {
     'id': 4,
     'column_id': 1,
+    'index': 3,
     'title': 'Wireframes',
     'description': 'Probably use drawIO (app.diagrams.net), but maybe Figma?',
     'created_at': datetime.datetime.now(),
@@ -316,6 +320,7 @@ cards = [
   {
     'id': 5,
     'column_id': 4,
+    'index': 0,
     'title': 'Run frequencies',
     'description': 'Look at city, zip code, and county',
     'created_at': datetime.datetime.now(),
@@ -324,6 +329,7 @@ cards = [
   {
     'id': 6,
     'column_id': 4,
+    'index': 1,
     'title': 'Make tables',
     'description': 'For city + zip code. County also?',
     'created_at': datetime.datetime.now(),
@@ -332,6 +338,7 @@ cards = [
   {
     'id': 7,
     'column_id': 5,
+    'index': 0,
     'title': 'Draft slide text',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -340,6 +347,7 @@ cards = [
   {
     'id': 8,
     'column_id': 5,
+    'index': 1,
     'title': 'Format tables for slides',
     'description': 'For city + zip code. County also?',
     'created_at': datetime.datetime.now(),
@@ -348,6 +356,7 @@ cards = [
   {
     'id': 9,
     'column_id': 5,
+    'index': 2,
     'title': 'Add images',
     'description': 'For city + zip code. County also?',
     'created_at': datetime.datetime.now(),
@@ -356,6 +365,7 @@ cards = [
   {
     'id': 10,
     'column_id': 6,
+    'index': 0,
     'title': 'Run thru timing solo',
     'description': 'Aim for 4-5 min',
     'created_at': datetime.datetime.now(),
@@ -364,6 +374,7 @@ cards = [
   {
     'id': 11,
     'column_id': 6,
+    'index': 1,
     'title': 'Time with a coworker',
     'description': 'Bribe Ted with coffee',
     'created_at': datetime.datetime.now(),
@@ -372,6 +383,7 @@ cards = [
   {
     'id': 12,
     'column_id': 7,
+    'index': 0,
     'title': 'Compile survey themes',
     'description': 'Group into ~15 themes max',
     'created_at': datetime.datetime.now(),
@@ -380,6 +392,7 @@ cards = [
   {
     'id': 13,
     'column_id': 8,
+    'index': 0,
     'title': 'Propose 3-5 new fields',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -388,6 +401,7 @@ cards = [
   {
     'id': 14,
     'column_id': 9,
+    'index': 0,
     'title': 'Draft specs',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -396,6 +410,7 @@ cards = [
   {
     'id': 14,
     'column_id': 9,
+    'index': 1,
     'title': 'Clear specs w/ DB people',
     'description': '',
     'created_at': datetime.datetime.now(),

@@ -8,6 +8,7 @@ class Card(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     column_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('columns.id')), nullable=False)
+    index = db.Column(db.Integer)
     title = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(255))
     created_at = db.Column(db.Date, nullable=False)
@@ -17,6 +18,7 @@ class Card(db.Model):
         return {
             'id': self.id,
             'columnId': self.column_id,
+            'index': self.index,
             'title': self.title,
             'description': self.description,
             'createdAt': self.created_at,

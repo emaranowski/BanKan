@@ -93,6 +93,7 @@ def create_card_for_column(id):
     if form.validate_on_submit():
         new_card = Card(
             column_id = id,
+            index = form.data['index'],
             title = form.data['title'],
             description = form.data['description'],
             created_at = datetime.datetime.now(),
