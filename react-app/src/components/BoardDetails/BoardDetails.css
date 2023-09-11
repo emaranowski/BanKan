@@ -28,9 +28,17 @@
     gap: 15px;
 }
 
-#board_details_update_btn button {
-    /* color: red;
-    background-color: blue; */
+#board_details_btns button {
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+#board_details_btns button:hover {
+    background-color: #ededed;
+}
+
+#board_details_btns i {
+    color: #707070;
 }
 
 #board_details_all_columns {
@@ -44,7 +52,21 @@
     max-width: 275px;
 }
 
-#board_details_add_col_btn {
-    min-width: 108px;
-    max-width: 108px;
+#board_details_add_col_btn button {
+    min-width: 275px;
+    max-width: 275px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    padding: 12.5px;
+    margin-top: -3px;
+
+    border-radius: 9px;
+    background-color: #ededed;
+}
+
+#board_details_add_col_btn button:hover {
+    background-color: #e5e5e5;
 }
