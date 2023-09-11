@@ -3,8 +3,12 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ModalProvider, Modal } from "./context/Modal";
-// import DragDropContext from "./context/ReactBeautifulDnd";
-import { DragDropContext } from 'react-beautiful-dnd';
+
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useState, useEffect } from 'react';
+
+import DragDropContext from "./context/ReactBeautifulDnd";
+// import { DragDropContext } from 'react-beautiful-dnd';
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
@@ -22,6 +26,14 @@ if (process.env.NODE_ENV !== "production") {
 // after the App component so that all the Modal content will be layered as
 // HTML elements on top of the all the other HTML elements:
 function Root() {
+  // const state = useSelector(state => state);
+  // console.log('**** IN ROOT, state:', state)
+  // console.log('**** IN ROOT, store:', store)
+
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // useEffect(() => {
+  //   setIsLoaded(true);
+  // }, [dispatch, cardId, columnId, boardId, title]);
 
   // // for functional comps
   // const onDragEnd = useCallback(() => {
@@ -30,8 +42,8 @@ function Root() {
 
   const result = {
     draggableId: 'card-1',
-    type: 'CARD',
-    reason: 'DROP',
+    // type: 'CARD',
+    // reason: 'DROP',
     source: {
       droppableId: 'column-1',
       index: 0,
@@ -43,16 +55,16 @@ function Root() {
   };
 
   // for functional comps
-  const onDragEnd = (() => {
+  const onDragEnd = ((result) => {
     // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
 
-    const { destination, source, draggableId } = result;
+    const { draggableId, source, destination } = result;
 
     if (!destination) return;
 
     if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
     ) {
       return;
     }

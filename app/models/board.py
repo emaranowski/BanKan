@@ -22,7 +22,9 @@ class Board(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             # 'user': [user.to_dict() for user in self.users_rel],
-            'columns': [column.to_dict() for column in self.columns_rel]
+            'columns': [column.to_dict() for column in self.columns_rel],
+            'droppableId': 'board-'+str(self.id),
+            'columnIds': ['column-'+str(column.id) for column in self.columns_rel]
         }
 
     # one-to-many: one user can have many boards

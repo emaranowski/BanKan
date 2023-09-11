@@ -17,6 +17,7 @@ export default function BoardDetails() {
   const imageUrl = board.imageUrl;
   const title = board.title;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
+  const droppableId = board.droppableId;
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
