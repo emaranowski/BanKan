@@ -23,7 +23,7 @@ class Board(db.Model):
             'updatedAt': self.updated_at,
             # 'user': [user.to_dict() for user in self.users_rel],
             'columns': [column.to_dict() for column in self.columns_rel],
-            'droppableId': 'board-'+str(self.id),
+            'dndId': 'board-'+str(self.id),
             'columnIds': ['column-'+str(column.id) for column in self.columns_rel]
         }
 

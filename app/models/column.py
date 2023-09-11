@@ -25,7 +25,7 @@ class Column(db.Model):
             'updatedAt': self.updated_at,
             # 'board': [board.to_dict() for board in self.boards_rel],
             'cards': [card.to_dict() for card in self.cards_rel],
-            'droppableId': 'column-'+str(self.id),
+            'dndId': 'column-'+str(self.id),
             'cardIds': ['card-'+str(card.id) for card in self.cards_rel]
         }
 

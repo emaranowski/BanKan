@@ -18,7 +18,7 @@ export default function Column({ column }) {
   // const cards = Object.values(useSelector(state => state.cards.allCards));
   const cards = column.cards;
   // const droppableId = 'column-' + columnId;
-  const droppableId = column.droppableId;
+  const dndId = column.dndId;
 
   // console.log('**** in Column, column.droppableId:', droppableId)
   // console.log('**** in Column, column:', column)
@@ -71,7 +71,7 @@ export default function Column({ column }) {
       </div>
 
       <Droppable
-        droppableId={droppableId}
+        droppableId={dndId}
       >
         {(provided, snapshot) => (
           <div
