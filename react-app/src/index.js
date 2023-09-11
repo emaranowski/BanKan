@@ -35,9 +35,7 @@ function Root() {
   //   setIsLoaded(true);
   // }, [dispatch, cardId, columnId, boardId, title]);
 
-  // // for functional comps
   // const onDragEnd = useCallback(() => {
-  //   // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
   // }, []);
 
   const result = {
@@ -54,77 +52,37 @@ function Root() {
     },
   };
 
-  // for functional comps
-  const onDragEnd = ((result) => {
-    // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
-
+  const onDragEnd = ((result) => { // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
     const { draggableId, source, destination } = result;
 
     if (!destination) return;
-
     if (
       source.droppableId === destination.droppableId &&
       source.index === destination.index
     ) {
       return;
-    }
-
-    const column = this.state.columns[source.droppableId];
-    const newCardIds = Array.from(column.cardIds);
-    newCardIds.splice(source.index, 1);
-    newCardIds.splice(destination.index, 0, draggableId);
-
-    const newColumn = {
-      ...column,
-      cardIds: newCardIds,
     };
 
-    const newState = {
-      ...this.state,
-      columns: {
-        ...this.state.columns,
-        [newColumn.id]: newColumn,
-      },
+    const column = this.state.columns[source.droppableId]; // normalized, like... column-1: {}
+    const newCardIds = Array.from(column.cardIds); // can maybe just do "= column.cardIds"
+    newCardIds.splice(source.index, 1); // remove 1 at idx
+    newCardIds.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
+
+    const newColumn = { // more like updatedColumn than newColumn
+      ...column, // copy
+      cardIds: newCardIds, // collide to update cardIds, after splicing
+    };
+
+    const newState = { // more like updatedState
+      ...this.state, // copy
+      columns: { // collide to update columns
+        ...this.state.columns, // copy
+        [newColumn.id]: newColumn, // collide to newCol (normalized, like column-1: {})
+      }, // ^^^ !!! may need dndId instead of id !!!
     };
 
     this.setState(newState);
   }, []);
-
-  // for class comps
-  // onDragEnd = (result) => {
-  //   // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
-  //   const { destination, source, draggableId } = result;
-
-  //   if (!destination) return;
-
-  //   if (
-  //     destination.droppableId === source.droppableId &&
-  //     destination.index === source.index
-  //   ) {
-  //     return;
-  //   }
-
-  //   const column = this.state.columns[source.droppableId];
-  //   const newCardIds = Array.from(column.cardIds);
-  //   newCardIds.splice(source.index, 1);
-  //   newCardIds.splice(destination.index, 0, draggableId);
-
-  //   const newColumn = {
-  //     ...column,
-  //     cardIds: newCardIds,
-  //   };
-
-  //   const newState = {
-  //     ...this.state,
-  //     columns: {
-  //       ...this.state.columns,
-  //       [newColumn.id]: newColumn,
-  //     },
-  //   };
-
-  //   this.setState(newState);
-
-  // };
 
   return (
     <ModalProvider>

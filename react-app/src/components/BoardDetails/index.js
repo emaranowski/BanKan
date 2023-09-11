@@ -18,6 +18,14 @@ export default function BoardDetails() {
   const title = board.title;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
   const dndId = board.dndId;
+  const columnDndIds = board.columnDndIds;
+  const columnsDnd = board.columnsDnd;
+
+  // console.log('*** in BoardDetails, board:', board)
+  console.log('*** in BoardDetails, board.columns:', board.columns)
+  // console.log('*** in BoardDetails, columnDndIds:', columnDndIds)
+  // console.log('*** in BoardDetails, columnsDnd:', columnsDnd)
+
 
   // separate model/table/etc for columnOrderIndex and cardOrderIndex?
   // or index could just live on existing col/card models,
@@ -50,7 +58,7 @@ export default function BoardDetails() {
 
         <div id='board_details_header'>
           <div id='board_details_title'>
-            Board: <span id='board_details_title_text'>{title}</span>
+            <span id='board_details_title_text'>{title}</span>
           </div>
 
           <div id='board_details_btns'>

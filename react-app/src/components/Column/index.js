@@ -17,7 +17,11 @@ export default function Column({ column }) {
   const title = column.title;
   // const cards = Object.values(useSelector(state => state.cards.allCards));
   const cards = column.cards;
+  // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
+
+  console.log('**** in Column, columnId:', columnId)
+  // console.log('**** in Column, numCardsInColumn:', numCardsInColumn)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -75,6 +79,7 @@ export default function Column({ column }) {
                 <Card
                   boardId={boardId}
                   key={card.id}
+                  column={column}
                   card={card}
                   index={index}
                 />
@@ -104,6 +109,7 @@ export default function Column({ column }) {
             buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add card</span></i>}
             modalComponent={
               <CardFormCreate
+                column={column}
                 columnId={columnId}
                 boardId={boardId}
               />}

@@ -82,7 +82,8 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
   // console.log('**** in thunkCreateCardForColumn ****')
   // console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
 
-  const { columnId, title, description } = card;
+  const { columnId, title, description, index } = card;
+  // const columnId = card.columnId;
 
   const res = await fetch(`/api/columns/${columnId}/cards/create`, {
     method: "POST",

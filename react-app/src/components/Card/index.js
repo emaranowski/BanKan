@@ -6,7 +6,7 @@ import CardFormUpdate from '../CardFormUpdate';
 import CardDeleteModal from '../CardDeleteModal';
 import './Card.css';
 
-export default function Card({ boardId, card, index }) { // added index
+export default function Card({ boardId, column, card, index }) { // added index
   const dispatch = useDispatch();
   const cardId = card.id;
   const columnId = card.columnId;
@@ -43,6 +43,7 @@ export default function Card({ boardId, card, index }) { // added index
               modalComponent={
                 <CardFormUpdate
                   card={card}
+                  column={column}
                   boardId={boardId}
                 />}
             />
