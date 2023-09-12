@@ -39,6 +39,7 @@ def update_column(id):
         column_to_update = Column.query.get(id)
         print('**** in update_column, column_to_update:', column_to_update)
         column_to_update.board_id = form.data['board_id']
+        column_to_update.card_order = form.data['card_order']
         # column_to_update.color_hex = form.data['color_hex']
         column_to_update.color_name = form.data['color_name']
         column_to_update.title = form.data['title']

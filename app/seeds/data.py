@@ -200,6 +200,7 @@ columns = [
   {
     'id': 1,
     'board_id': 1,
+    'card_order': 'card-1,card-2,card-3,card-4',
     # 'color_hex': '#a11800',
     'color_name': 'red',
     'title': 'Create documentation',
@@ -209,6 +210,7 @@ columns = [
   {
     'id': 2,
     'board_id': 1,
+    'card_order': '',
     # 'color_hex': '#a15600',
     'color_name': 'orange',
     'title': 'Test local + live deployment',
@@ -218,6 +220,7 @@ columns = [
   {
     'id': 3,
     'board_id': 1,
+    'card_order': '',
     # 'color_hex': '#b08307',
     'color_name': 'yellow',
     'title': 'Make models + seeds',
@@ -227,6 +230,7 @@ columns = [
   {
     'id': 4,
     'board_id': 2,
+    'card_order': 'card-5,card-6',
     # 'color_hex': '#3a8501',
     'color_name': 'green',
     'title': 'Process data',
@@ -236,6 +240,7 @@ columns = [
   {
     'id': 5,
     'board_id': 2,
+    'card_order': 'card-7,card-8,card-9',
     # 'color_hex': '#016285',
     'color_name': 'blue',
     'title': 'Draft slides',
@@ -245,6 +250,7 @@ columns = [
   {
     'id': 6,
     'board_id': 2,
+    'card_order': 'card-10,card-11',
     # 'color_hex': '#450185',
     'color_name': 'purple',
     'title': 'Practice presenting',
@@ -254,6 +260,7 @@ columns = [
   {
     'id': 7,
     'board_id': 3,
+    'card_order': 'card-12',
     # 'color_hex': '#cecece',
     'color_name': 'lightgray',
     'title': 'Review client feedback',
@@ -263,6 +270,7 @@ columns = [
   {
     'id': 8,
     'board_id': 3,
+    'card_order': 'card-13',
     # 'color_hex': '#8f8f8f',
     'color_name': 'medgray',
     'title': 'Propose changes',
@@ -272,6 +280,7 @@ columns = [
   {
     'id': 9,
     'board_id': 3,
+    'card_order': 'card-14,card-15',
     # 'color_hex': '#686868',
     'color_name': 'darkgray',
     'title': 'Draft tech specs',
@@ -408,7 +417,7 @@ cards = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 14,
+    'id': 15,
     'column_id': 9,
     'index': 1,
     'title': 'Clear specs w/ DB people',

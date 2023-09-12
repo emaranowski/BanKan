@@ -21,7 +21,7 @@ export default function ColumnForm({ formType, column }) {
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log('**** in ColumnForm, colorName:', colorName)
+  // console.log('**** in ColumnForm, colorName:', colorName)
 
   useEffect(() => {
     setIsLoaded(true);

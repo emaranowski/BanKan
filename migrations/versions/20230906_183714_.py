@@ -63,6 +63,7 @@ def upgrade():
     op.create_table('columns',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('board_id', sa.Integer(), nullable=False),
+    sa.Column('card_order', sa.String(), nullable=True),
     # sa.Column('color_hex', sa.String(length=30), nullable=False),
     sa.Column('color_name', sa.String(length=30), nullable=False),
     sa.Column('title', sa.String(length=30), nullable=False),
