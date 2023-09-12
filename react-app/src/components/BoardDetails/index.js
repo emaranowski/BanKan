@@ -25,6 +25,9 @@ export default function BoardDetails() {
   const columnDndIds = board.columnDndIds;
   const columnsDnd = board.columnsDnd;
 
+  const [cardId, setCardId] = useState('');
+  const [card, setCard] = useState({});
+
   // columns.forEach(column => {
   //   console.log(column.dndId)
   //   console.log(column.cardDndIds)
@@ -61,8 +64,9 @@ export default function BoardDetails() {
   useEffect(async () => {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
+    // dispatch(thunkUpdateCard(card))
     setIsLoaded(true)
-  }, [dispatch, boardId, imageUrl, title]);
+  }, [dispatch, boardId, imageUrl, title, cardId, card]);
 
 
 
@@ -82,28 +86,36 @@ export default function BoardDetails() {
     },
   };
 
-  const onDragStart = (result) => {
-    console.log('**** in BoardDetails onDragStart')
-    const { draggableId, source } = result;
-    // console.log('**** in BoardDetails onDragStart, result:', result) // {}
-    // draggableId: "card-4"
-    // mode:  "FLUID"
-    // source: {droppableId: 'column-1', index: 3}
-    // type: "DEFAULT"
-    // console.log('**** in BoardDetails onDragStart, draggableId:', draggableId) // "card-4"
-    // console.log('**** in BoardDetails onDragStart, source:', source) // {droppableId: 'column-1', index: 3}
+  // const onDragStart = (result) => {
+  //   console.log('**** in BoardDetails onDragStart')
+  //   const { draggableId, source } = result;
+  //   console.log('**** in BoardDetails onDragStart, result:', result) // {}
+  //   // draggableId: "card-4"
+  //   // mode:  "FLUID"
+  //   // source: {droppableId: 'column-1', index: 3}
+  //   // type: "DEFAULT"
+  //   console.log('**** in BoardDetails onDragStart, draggableId:', draggableId) // "card-4"
+  //   console.log('**** in BoardDetails onDragStart, source:', source) // {droppableId: 'column-1', index: 3}
+  // };
+
+
+  const updateCard = (cardId) => {
+
   };
 
   const onDragEnd = (result) => { // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
-    console.log('**** in BoardDetails onDragEnd')
-    console.log('**** in BoardDetails onDragEnd')
-    console.log('**** in BoardDetails onDragEnd')
-
+    // console.log('**** in BoardDetails onDragEnd')
     const { draggableId, source, destination } = result;
+    const cardId = draggableId.split('-')[1];
+    setCardId(cardId);
+
 
     console.log('**** in BoardDetails onDragEnd, draggableId:', draggableId)
-    console.log('**** in BoardDetails onDragEnd, source:', source)
-    console.log('**** in BoardDetails onDragEnd, destination:', destination)
+    console.log('**** in BoardDetails onDragEnd, cardId:', cardId)
+    // console.log('**** in BoardDetails onDragEnd, card:', card)
+
+    // console.log('**** in BoardDetails onDragEnd, source:', source)
+    // console.log('**** in BoardDetails onDragEnd, destination:', destination)
 
     if (!destination) return;
     if (
@@ -115,10 +127,65 @@ export default function BoardDetails() {
 
     // get source column
     // const column = this.state.columns[source.droppableId]; // normalized, like... column-1: {}
+
     const columnArr = columns.filter(column => {
       return column.dndId === source.droppableId;
     });
+
     const column = columnArr[0];
+    const cards = column.cards;
+
+    const cardArr = cards.filter(card => {
+      return card.dndId === draggableId;
+    });
+
+    const cardToUpdate = cardArr[0];
+
+    // console.log('**** in BoardDetails onDragEnd, column:', column)
+    // console.log('**** in BoardDetails onDragEnd, cards:', cards)
+    console.log('**** in BoardDetails onDragEnd, cardToUpdate:', cardToUpdate)
+    console.log('**** in BoardDetails onDragEnd, cardToUpdate.index:', cardToUpdate.index)
+    cardToUpdate.index = destination.index;
+    console.log('**** in BoardDetails onDragEnd, cardToUpdate:', cardToUpdate)
+    console.log('**** in BoardDetails onDragEnd, cardToUpdate.index:', cardToUpdate.index)
+
+    const cardUpdated = {
+      ...cardToUpdate,
+      index: destination.index,
+    };
+
+
+    const updateCard = async (cardUpdated) => {
+      try {
+        const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+        console.log('**** !!!! in onDragEnd -- updateCard, TRY, res:', res)
+        console.log('****************')
+
+        if (res.id) {
+          // setErrors({});
+          console.log('**** !!!! in onDragEnd -- updateCard, RES OK:', res)
+
+          dispatch(thunkGetAllColumnsForBoard(boardId));
+        } else {
+          console.log('**** !!!! in onDragEnd -- updateCard, RES NOT OK:', res)
+
+          return res;
+        }
+      } catch (res) {
+        // const data = await res.json();
+        // if (data && data.errors) {
+        //   setErrors(data.errors);
+        // }
+      }
+    };
+    updateCard(cardUpdated);
+
+
+
+
+
+
+
 
     const newCardDndIds = Array.from(column.cardDndIds);
     // console.log('**** !!!! in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
@@ -144,6 +211,9 @@ export default function BoardDetails() {
     // this.setState(newState);
 
     ///////////////////////
+    ///////////////////////
+    ///////////////////////
+
 
     // const updateCard = async () => {
     //   card = {
