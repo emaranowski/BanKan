@@ -79,8 +79,8 @@ export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
 
 // THUNK: CREATE COLUMN
 export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
-    console.log('**** in thunkCreateColumnForBoard ****')
-    console.log('**** in thunkCreateColumnForBoard, column:', column)
+    // console.log('**** in thunkCreateColumnForBoard ****')
+    // console.log('**** in thunkCreateColumnForBoard, column:', column)
 
     const { boardId, cardOrder, colorName, title } = column; // removed colorHex
 
@@ -123,7 +123,7 @@ export const thunkUpdateColumn = (column) => async (dispatch) => {
             title,
         })
     })
-    console.log('**** in thunkUpdateColumn, res:', res)
+    // console.log('**** in thunkUpdateColumn, res:', res)
 
     if (res.ok) {
         const column = await res.json();
@@ -131,7 +131,7 @@ export const thunkUpdateColumn = (column) => async (dispatch) => {
         return column;
     } else {
         const errors = await res.json();
-        console.log('**** in thunkUpdateColumn, errors:', errors)
+        // console.log('**** in thunkUpdateColumn, errors:', errors)
         return errors;
     }
 };

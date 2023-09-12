@@ -64,70 +64,99 @@ export default function BoardDetails() {
     const oneColumnArr = columns.filter(column => {
       return column.dndId === source.droppableId;
     });
+    const columnToUpdate = oneColumnArr[0];
 
-    const column = oneColumnArr[0];
-    const cards = column.cards;
-
+    const cards = columnToUpdate.cards;
     const oneCardArr = cards.filter(card => {
       return card.dndId === draggableId;
     });
-
     const cardToUpdate = oneCardArr[0];
-    const cardWithUpdate = {
+
+    const cardUpdated = {
       ...cardToUpdate,
       index: destination.index,
     };
 
-    const updateIndexOnCard = async (cardWithUpdate) => {
+
+
+    const cardOrderStr = columnToUpdate.cardOrder;
+    // console.log('||||||||| in onDragEnd -- cardOrderStr:', cardOrderStr)
+
+    const cardOrderArr = cardOrderStr.split(',');
+    // console.log('||||||||| in onDragEnd -- cardOrderArr:', cardOrderArr)
+
+    cardOrderArr.splice(source.index, 1); // remove 1 at idx
+    cardOrderArr.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
+    // console.log('||||||||| in onDragEnd -- cardOrderArr:', cardOrderArr)
+
+    const cardOrderUpdatedStr = cardOrderArr.toString();
+    // console.log('||||||||| in onDragEnd -- cardOrderUpdatedStr:', cardOrderUpdatedStr)
+
+
+    console.log('||||||||| in onDragEnd -- columnToUpdate:', columnToUpdate)
+    const columnUpdated = {
+      ...columnToUpdate,
+      cardOrder: cardOrderUpdatedStr,
+    };
+    console.log('||||||||| in onDragEnd -- columnUpdated:', columnUpdated)
+
+
+    const updateIndexOnCard = async (cardUpdated) => {
       try {
-        const res = await dispatch(thunkUpdateCard(cardWithUpdate)); // VScode notes not needing 'await', but it IS needed
+        const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
-          console.log('**** !!!! in onDragEnd -- updateIndexOnCard, RES OK:', res)
+          // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES OK:', res)
           dispatch(thunkGetAllColumnsForBoard(boardId));
+          return res;
         } else {
-          console.log('**** !!!! in onDragEnd -- updateIndexOnCard, RES NOT OK:', res)
+          // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES NOT OK:', res)
           return res;
         }
       } catch (res) {
+        // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH RES:', res)
         const data = await res.json();
+        // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH data:', data)
         return data;
       }
     };
-    updateIndexOnCard(cardWithUpdate);
+    updateIndexOnCard(cardUpdated);
+
+
+    const updateCardOrderOnColumn = async (columnUpdated) => {
+      try {
+        const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
+        if (res.id) {
+          // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, TRY RES OK:', res)
+          dispatch(thunkGetAllColumnsForBoard(boardId));
+          return res;
+        } else {
+          // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, TRY RES NOT OK:', res)
+          return res;
+        }
+      } catch (res) {
+        // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, CATCH RES:', res)
+        const data = await res.json();
+        // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, CATCH data:', data)
+        return data;
+      }
+    };
+    updateCardOrderOnColumn(columnUpdated);
 
 
 
 
-    // const updateCardOrderOnColumn = async (columnUpdated) => {
-    //   try {
-    //     const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
-    //     if (res.id) {
-    //       dispatch(thunkGetAllColumnsForBoard(boardId));
-    //     } else {
-    //       return res;
-    //     }
-    //   } catch (res) {
-    //     const data = await res.json();
-    //     return data;
-    //   }
-    // };
-    // updateCardOrderOnColumn(columnUpdated);
+    // const newCardDndIds = Array.from(columnToUpdate.cardDndIds);
+    // // console.log('||||||||| in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
+    // newCardDndIds.splice(source.index, 1); // remove 1 at idx
+    // newCardDndIds.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
+    // // console.log('||||||||| in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
 
-
-
-
-    const newCardDndIds = Array.from(column.cardDndIds);
-    console.log('**** !!!! in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
-    newCardDndIds.splice(source.index, 1); // remove 1 at idx
-    newCardDndIds.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
-    console.log('**** !!!! in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
-
-    // // console.log('**** !!!! in BoardDetails onDragEnd, column:', column)
+    // // console.log('||||||||| in BoardDetails onDragEnd, column:', column)
     // const newColumn = { // more like updatedColumn than newColumn
     //   ...column,
     //   cardDndIds: newCardDndIds, // collide to update cardDndIds, after splicing
     // };
-    // console.log('**** !!!! in BoardDetails onDragEnd, newColumn:', newColumn)
+    // console.log('||||||||| in BoardDetails onDragEnd, newColumn:', newColumn)
 
     // const newState = {
     //   ...this.state,
