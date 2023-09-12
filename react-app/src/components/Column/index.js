@@ -65,9 +65,7 @@ export default function Column({ column }) {
         </div>
       </div>
 
-      <Droppable
-        droppableId={dndId}
-      >
+      <Droppable droppableId={dndId}>
         {(provided, snapshot) => (
           <div
             id='column_cards'
@@ -89,19 +87,6 @@ export default function Column({ column }) {
           </div>
         )}
       </Droppable>
-
-      {/* <div id='column_cards'>
-        {cards && (
-          cards.map((card) => (
-            <div className='cardDiv' key={card.id}>
-              <Card
-                card={card}
-                boardId={boardId}
-              />
-            </div>
-          ))
-        )}
-      </div> */}
 
       <div id='column_btn_add_card'>
         <div className='column_btn'>

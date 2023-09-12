@@ -26,7 +26,7 @@ class Column(db.Model):
             # 'board': [board.to_dict() for board in self.boards_rel],
             'cards': [card.to_dict() for card in self.cards_rel],
             'dndId': 'column-'+str(self.id),
-            'cardIds': ['card-'+str(card.id) for card in self.cards_rel]
+            'cardDndIds': ['card-'+str(card.id) for card in self.cards_rel]
         }
 
     # one-to-many: one board can have many columns

@@ -24,10 +24,7 @@ export default function Card({ boardId, column, card, index }) { // added index
   // can just use draggableId as key
 
   return (<>{isLoaded && (
-    <Draggable
-      draggableId={dndId}
-      index={index}
-    >
+    <Draggable draggableId={dndId} index={index}>
       {(provided, snapshot) => (
         <div
           id='card'
