@@ -1,6 +1,7 @@
 //////////////////////////////// ACTION TYPE CONSTANTS ////////////////////////////////
 
 const GET_ONE_COLUMN = "columns/getOneColumn";
+// const GET_ONE_COLUMN_CARD_ORDER = "columns/getOneColumnCardOrder";
 const GET_ALL_COLUMNS = "columns/getAllColumns";
 const CREATE_COLUMN = "columns/createColumn";
 const UPDATE_COLUMN = "columns/updateColumn";
@@ -14,6 +15,13 @@ const getOneColumn = (column) => {
         column
     }
 };
+
+// const getOneColumnCardOrder = (column) => {
+//     return {
+//         type: GET_ONE_COLUMN_CARD_ORDER,
+//         column
+//     }
+// };
 
 const getAllColumns = (columns) => {
     return {
@@ -29,7 +37,7 @@ const createColumn = (column) => {
     }
 };
 
-const updateColumn = (column) => {
+export const updateColumn = (column) => {
     return {
         type: UPDATE_COLUMN,
         column
@@ -62,6 +70,14 @@ export const thunkGetOneColumn = (columnId) => async (dispatch) => {
         return errors;
     }
 };
+
+// // THUNK: GET ONE COLUMN CARD ORDER
+// export const thunkGetOneColumnCardOrder = (columnId) => async (dispatch) => {
+//     // console.log('*** in thunkGetOneColumnCardOrder, columnId:', columnId);
+//     // const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
+//     // console.log('*** in thunkGetOneColumnCardOrder, res:', res);
+//     dispatch(getOneColumnCardOrder(columnId));
+// };
 
 // THUNK: GET ALL COLUMNS
 export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
@@ -107,11 +123,11 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
 };
 
 // THUNK: UPDATE COLUMN
-export const thunkUpdateColumn = (column) => async (dispatch) => {
+export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add oldCol param
     // console.log('**** in thunkUpdateColumn, column:', column)
     const { id, boardId, cardOrder, colorName, title } = column; // removed colorHex
     // console.log('**** in thunkUpdateColumn, id:', id)
-
+    dispatch(updateColumn(column));
     const res = await fetch(`/api/columns/${id}/update`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
@@ -128,8 +144,10 @@ export const thunkUpdateColumn = (column) => async (dispatch) => {
     if (res.ok) {
         const column = await res.json();
         dispatch(updateColumn(column));
+        dispatch(thunkGetAllColumnsForBoard(boardId));
         return column;
     } else {
+        // dispatch(updateColumn(oldColumn));
         const errors = await res.json();
         // console.log('**** in thunkUpdateColumn, errors:', errors)
         return errors;
@@ -157,7 +175,8 @@ export const thunkDeleteColumn = (columnId) => async (dispatch) => {
 
 const initialState = {
     oneColumn: {},
-    allColumns: {}
+    allColumns: {},
+    // oneColumnCardOrder: {}
 };
 
 export default function columnsReducer(state = initialState, action) {

@@ -13,12 +13,11 @@ export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
   const boardId = column.boardId;
-  const cardOrderStr = column.cardOrder;
-  const cardOrderArr = column.cardOrder.split(',');
   const color = column.colorName;
   const title = column.title;
-  // const cards = Object.values(useSelector(state => state.cards.allCards));
+  const cardOrderArr = column.cardOrder.split(',');
   const cards = column.cards;
+  // const cards = Object.values(useSelector(state => state.cards.allCards));
   // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
 
@@ -30,7 +29,6 @@ export default function Column({ column }) {
   });
 
   if (columnId === 1) {
-    console.log('**** in Column, cardOrderStr:', cardOrderStr)
     console.log('**** in Column, cardOrderArr:', cardOrderArr)
     console.log('**** in Column, cards:', cards)
     console.log('**** in Column, cardsOrdered:', cardsOrdered)
@@ -45,7 +43,7 @@ export default function Column({ column }) {
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(thunkGetAllCardsForColumn(columnId))
+    // dispatch(thunkGetAllCardsForColumn(columnId))
     setIsLoaded(true)
   }, [dispatch, columnId, boardId, color, title]);
 
