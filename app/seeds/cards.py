@@ -6,6 +6,7 @@ def seed_cards():
     for card in cards:
         seed_card = Card(
             column_id = card['column_id'],
+            index = card['index'],
             title = card['title'],
             description = card['description'],
             created_at = card['created_at'],

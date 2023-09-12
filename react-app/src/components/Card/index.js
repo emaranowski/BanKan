@@ -6,12 +6,14 @@ import CardFormUpdate from '../CardFormUpdate';
 import CardDeleteModal from '../CardDeleteModal';
 import './Card.css';
 
-export default function Card({ boardId, card, index }) { // added index
+export default function Card({ boardId, column, card, index }) { // added index
   const dispatch = useDispatch();
   const cardId = card.id;
   const columnId = card.columnId;
   const title = card.title;
   const dndId = card.dndId;
+
+  // console.log('**** in Card, card:', card)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -22,10 +24,7 @@ export default function Card({ boardId, card, index }) { // added index
   // can just use draggableId as key
 
   return (<>{isLoaded && (
-    <Draggable
-      draggableId={dndId}
-      index={index}
-    >
+    <Draggable draggableId={dndId} index={index}>
       {(provided, snapshot) => (
         <div
           id='card'
@@ -43,6 +42,7 @@ export default function Card({ boardId, card, index }) { // added index
               modalComponent={
                 <CardFormUpdate
                   card={card}
+                  column={column}
                   boardId={boardId}
                 />}
             />
