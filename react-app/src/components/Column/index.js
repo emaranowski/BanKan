@@ -21,8 +21,21 @@ export default function Column({ column }) {
   // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
 
-  // console.log('**** in Column, columnId:', columnId)
-  // console.log('**** in Column, numCardsInColumn:', numCardsInColumn)
+  const cardsOrdered = [];
+
+
+
+  if (columnId === 1) {
+    console.log('**** in Column, cardOrder:', cardOrder)
+    // console.log('**** in Column, cards:', cards)
+  }
+
+
+
+
+
+
+
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
