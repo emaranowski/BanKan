@@ -8,6 +8,7 @@ class Column(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), nullable=False)
+    card_order = db.Column(db.String)
     # color_hex = db.Column(db.String(30), nullable=False)
     color_name = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(30), nullable=False)
@@ -18,6 +19,7 @@ class Column(db.Model):
         return {
             'id': self.id,
             'boardId': self.board_id,
+            'cardOrder': self.card_order,
             # 'colorHex': self.color_hex,
             'colorName': self.color_name,
             'title': self.title,

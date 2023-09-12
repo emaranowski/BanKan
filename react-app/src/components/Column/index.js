@@ -13,6 +13,7 @@ export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
   const boardId = column.boardId;
+  const cardOrder = column.cardOrder;
   const color = column.colorName;
   const title = column.title;
   // const cards = Object.values(useSelector(state => state.cards.allCards));

@@ -3,9 +3,10 @@ import ColumnForm from '../ColumnForm';
 export default function ColumnFormCreate({ boardId }) {
 
   let column = {
+    boardId,
+    cardOrder: '',
     title: '',
     colorName: '',
-    boardId,
   }
 
   return (

@@ -82,13 +82,14 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
     console.log('**** in thunkCreateColumnForBoard ****')
     console.log('**** in thunkCreateColumnForBoard, column:', column)
 
-    const { boardId, colorName, title } = column; // removed colorHex
+    const { boardId, cardOrder, colorName, title } = column; // removed colorHex
 
     const res = await fetch(`/api/boards/${boardId}/columns/create`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             board_id: boardId,
+            card_order: cardOrder,
             // color_hex: colorHex,
             color_name: colorName,
             title,
@@ -108,7 +109,7 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
 // THUNK: UPDATE COLUMN
 export const thunkUpdateColumn = (column) => async (dispatch) => {
     // console.log('**** in thunkUpdateColumn, column:', column)
-    const { id, boardId, colorName, title } = column; // removed colorHex
+    const { id, boardId, cardOrder, colorName, title } = column; // removed colorHex
     // console.log('**** in thunkUpdateColumn, id:', id)
 
     const res = await fetch(`/api/columns/${id}/update`, {
@@ -116,6 +117,7 @@ export const thunkUpdateColumn = (column) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             board_id: boardId,
+            card_order: cardOrder,
             // color_hex: colorHex,
             color_name: colorName,
             title,
