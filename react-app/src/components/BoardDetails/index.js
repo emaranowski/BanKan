@@ -53,7 +53,6 @@ export default function BoardDetails() {
 
   const onDragEnd = (result) => { // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
     const { draggableId, source, destination } = result;
-    // const cardId = draggableId.split('-')[1];
 
     if (!destination) return;
     if (source.droppableId === destination.droppableId &&
@@ -64,12 +63,15 @@ export default function BoardDetails() {
     const oneColumnArr = columns.filter(column => {
       return column.dndId === source.droppableId;
     });
+
     const columnToUpdate = oneColumnArr[0];
 
     const cards = columnToUpdate.cards;
+
     const oneCardArr = cards.filter(card => {
       return card.dndId === draggableId;
     });
+
     const cardToUpdate = oneCardArr[0];
 
     const cardUpdated = {
@@ -77,29 +79,34 @@ export default function BoardDetails() {
       index: destination.index,
     };
 
-
-
     const cardOrderStr = columnToUpdate.cardOrder;
-    // console.log('||||||||| in onDragEnd -- cardOrderStr:', cardOrderStr)
 
     const cardOrderArr = cardOrderStr.split(',');
-    // console.log('||||||||| in onDragEnd -- cardOrderArr:', cardOrderArr)
 
-    cardOrderArr.splice(source.index, 1); // remove 1 at idx
-    cardOrderArr.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
-    // console.log('||||||||| in onDragEnd -- cardOrderArr:', cardOrderArr)
+    // ORIG
+    // cardOrderArr.splice(source.index, 1); // remove 1 at idx
+    // cardOrderArr.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
+
+    const draggableRemovedArr = cardOrderArr.splice(source.index, 1); // remove 1 at idx
+    const draggableRemoved = draggableRemovedArr[0];
+    cardOrderArr.splice(destination.index, 0, draggableRemoved); // remove 0, add draggableId at idx
+
+    // 1 2 3 4
+    // 1 2 3
+    // 1 2 4 3
+
+    // 1 2 4 3
+    // 1 2 4
+    // 1 2 4 4
 
     const cardOrderUpdatedStr = cardOrderArr.toString();
-    // console.log('||||||||| in onDragEnd -- cardOrderUpdatedStr:', cardOrderUpdatedStr)
 
-
-    console.log('||||||||| in onDragEnd -- columnToUpdate:', columnToUpdate)
+    // console.log('||||||||| in onDragEnd -- columnToUpdate:', columnToUpdate)
     const columnUpdated = {
       ...columnToUpdate,
       cardOrder: cardOrderUpdatedStr,
     };
-    console.log('||||||||| in onDragEnd -- columnUpdated:', columnUpdated)
-
+    // console.log('||||||||| in onDragEnd -- columnUpdated:', columnUpdated)
 
     const updateIndexOnCard = async (cardUpdated) => {
       try {
@@ -119,8 +126,6 @@ export default function BoardDetails() {
         return data;
       }
     };
-    updateIndexOnCard(cardUpdated);
-
 
     const updateCardOrderOnColumn = async (columnUpdated) => {
       try {
@@ -140,33 +145,9 @@ export default function BoardDetails() {
         return data;
       }
     };
+
+    updateIndexOnCard(cardUpdated);
     updateCardOrderOnColumn(columnUpdated);
-
-
-
-
-    // const newCardDndIds = Array.from(columnToUpdate.cardDndIds);
-    // // console.log('||||||||| in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
-    // newCardDndIds.splice(source.index, 1); // remove 1 at idx
-    // newCardDndIds.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
-    // // console.log('||||||||| in BoardDetails onDragEnd, newCardDndIds:', newCardDndIds)
-
-    // // console.log('||||||||| in BoardDetails onDragEnd, column:', column)
-    // const newColumn = { // more like updatedColumn than newColumn
-    //   ...column,
-    //   cardDndIds: newCardDndIds, // collide to update cardDndIds, after splicing
-    // };
-    // console.log('||||||||| in BoardDetails onDragEnd, newColumn:', newColumn)
-
-    // const newState = {
-    //   ...this.state,
-    //   columns: { // update columns
-    //     ...this.state.columns,
-    //     [newColumn.id]: newColumn, // update to newColumn (normalized, like column-1: {})
-    //   }, // ^^^ !!! may need dndId instead of id !!!
-    // };
-
-    // this.setState(newState);
   };
 
 

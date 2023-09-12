@@ -13,7 +13,8 @@ export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
   const boardId = column.boardId;
-  const cardOrder = column.cardOrder;
+  const cardOrderStr = column.cardOrder;
+  const cardOrderArr = column.cardOrder.split(',');
   const color = column.colorName;
   const title = column.title;
   // const cards = Object.values(useSelector(state => state.cards.allCards));
@@ -21,8 +22,26 @@ export default function Column({ column }) {
   // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
 
-  // console.log('**** in Column, columnId:', columnId)
-  // console.log('**** in Column, numCardsInColumn:', numCardsInColumn)
+  const cardsOrdered = [];
+  cardOrderArr.forEach(cardDndId => {
+    cards.forEach(card => {
+      if (cardDndId === card.dndId) cardsOrdered.push(card);
+    })
+  });
+
+  if (columnId === 1) {
+    console.log('**** in Column, cardOrderStr:', cardOrderStr)
+    console.log('**** in Column, cardOrderArr:', cardOrderArr)
+    console.log('**** in Column, cards:', cards)
+    console.log('**** in Column, cardsOrdered:', cardsOrdered)
+  }
+
+
+
+
+
+
+
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -73,8 +92,8 @@ export default function Column({ column }) {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {cards && (
-              cards.map((card, index) => (
+            {cardsOrdered && (
+              cardsOrdered.map((card, index) => (
                 <Card
                   boardId={boardId}
                   key={card.id}
