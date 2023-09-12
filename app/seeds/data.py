@@ -200,6 +200,7 @@ columns = [
   {
     'id': 1,
     'board_id': 1,
+    'card_order': 'card-1,card-2,card-3,card-4',
     # 'color_hex': '#a11800',
     'color_name': 'red',
     'title': 'Create documentation',
@@ -209,6 +210,7 @@ columns = [
   {
     'id': 2,
     'board_id': 1,
+    'card_order': '',
     # 'color_hex': '#a15600',
     'color_name': 'orange',
     'title': 'Test local + live deployment',
@@ -218,6 +220,7 @@ columns = [
   {
     'id': 3,
     'board_id': 1,
+    'card_order': '',
     # 'color_hex': '#b08307',
     'color_name': 'yellow',
     'title': 'Make models + seeds',
@@ -227,6 +230,7 @@ columns = [
   {
     'id': 4,
     'board_id': 2,
+    'card_order': 'card-5,card-6',
     # 'color_hex': '#3a8501',
     'color_name': 'green',
     'title': 'Process data',
@@ -236,6 +240,7 @@ columns = [
   {
     'id': 5,
     'board_id': 2,
+    'card_order': 'card-7,card-8,card-9',
     # 'color_hex': '#016285',
     'color_name': 'blue',
     'title': 'Draft slides',
@@ -245,6 +250,7 @@ columns = [
   {
     'id': 6,
     'board_id': 2,
+    'card_order': 'card-10,card-11',
     # 'color_hex': '#450185',
     'color_name': 'purple',
     'title': 'Practice presenting',
@@ -254,6 +260,7 @@ columns = [
   {
     'id': 7,
     'board_id': 3,
+    'card_order': 'card-12',
     # 'color_hex': '#cecece',
     'color_name': 'lightgray',
     'title': 'Review client feedback',
@@ -263,6 +270,7 @@ columns = [
   {
     'id': 8,
     'board_id': 3,
+    'card_order': 'card-13',
     # 'color_hex': '#8f8f8f',
     'color_name': 'medgray',
     'title': 'Propose changes',
@@ -272,6 +280,7 @@ columns = [
   {
     'id': 9,
     'board_id': 3,
+    'card_order': 'card-14,card-15',
     # 'color_hex': '#686868',
     'color_name': 'darkgray',
     'title': 'Draft tech specs',
@@ -284,6 +293,7 @@ cards = [
   {
     'id': 1,
     'column_id': 1,
+    'index': 0,
     'title': 'User stories',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -292,6 +302,7 @@ cards = [
   {
     'id': 2,
     'column_id': 1,
+    'index': 1,
     'title': 'DB schema diagram',
     'description': 'Ideally use dbdiagram.io',
     'created_at': datetime.datetime.now(),
@@ -300,6 +311,7 @@ cards = [
   {
     'id': 3,
     'column_id': 1,
+    'index': 2,
     'title': 'Endpoints',
     'description': 'May need to add/update later',
     'created_at': datetime.datetime.now(),
@@ -308,6 +320,7 @@ cards = [
   {
     'id': 4,
     'column_id': 1,
+    'index': 3,
     'title': 'Wireframes',
     'description': 'Probably use drawIO (app.diagrams.net), but maybe Figma?',
     'created_at': datetime.datetime.now(),
@@ -316,6 +329,7 @@ cards = [
   {
     'id': 5,
     'column_id': 4,
+    'index': 0,
     'title': 'Run frequencies',
     'description': 'Look at city, zip code, and county',
     'created_at': datetime.datetime.now(),
@@ -324,6 +338,7 @@ cards = [
   {
     'id': 6,
     'column_id': 4,
+    'index': 1,
     'title': 'Make tables',
     'description': 'For city + zip code. County also?',
     'created_at': datetime.datetime.now(),
@@ -332,6 +347,7 @@ cards = [
   {
     'id': 7,
     'column_id': 5,
+    'index': 0,
     'title': 'Draft slide text',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -340,6 +356,7 @@ cards = [
   {
     'id': 8,
     'column_id': 5,
+    'index': 1,
     'title': 'Format tables for slides',
     'description': 'For city + zip code. County also?',
     'created_at': datetime.datetime.now(),
@@ -348,6 +365,7 @@ cards = [
   {
     'id': 9,
     'column_id': 5,
+    'index': 2,
     'title': 'Add images',
     'description': 'For city + zip code. County also?',
     'created_at': datetime.datetime.now(),
@@ -356,6 +374,7 @@ cards = [
   {
     'id': 10,
     'column_id': 6,
+    'index': 0,
     'title': 'Run thru timing solo',
     'description': 'Aim for 4-5 min',
     'created_at': datetime.datetime.now(),
@@ -364,6 +383,7 @@ cards = [
   {
     'id': 11,
     'column_id': 6,
+    'index': 1,
     'title': 'Time with a coworker',
     'description': 'Bribe Ted with coffee',
     'created_at': datetime.datetime.now(),
@@ -372,6 +392,7 @@ cards = [
   {
     'id': 12,
     'column_id': 7,
+    'index': 0,
     'title': 'Compile survey themes',
     'description': 'Group into ~15 themes max',
     'created_at': datetime.datetime.now(),
@@ -380,6 +401,7 @@ cards = [
   {
     'id': 13,
     'column_id': 8,
+    'index': 0,
     'title': 'Propose 3-5 new fields',
     'description': '',
     'created_at': datetime.datetime.now(),
@@ -388,14 +410,16 @@ cards = [
   {
     'id': 14,
     'column_id': 9,
+    'index': 0,
     'title': 'Draft specs',
     'description': '',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 14,
+    'id': 15,
     'column_id': 9,
+    'index': 1,
     'title': 'Clear specs w/ DB people',
     'description': '',
     'created_at': datetime.datetime.now(),

@@ -13,11 +13,16 @@ export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
   const boardId = column.boardId;
+  const cardOrder = column.cardOrder;
   const color = column.colorName;
   const title = column.title;
   // const cards = Object.values(useSelector(state => state.cards.allCards));
   const cards = column.cards;
+  // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
+
+  // console.log('**** in Column, columnId:', columnId)
+  // console.log('**** in Column, numCardsInColumn:', numCardsInColumn)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -61,9 +66,7 @@ export default function Column({ column }) {
         </div>
       </div>
 
-      <Droppable
-        droppableId={dndId}
-      >
+      <Droppable droppableId={dndId}>
         {(provided, snapshot) => (
           <div
             id='column_cards'
@@ -75,6 +78,7 @@ export default function Column({ column }) {
                 <Card
                   boardId={boardId}
                   key={card.id}
+                  column={column}
                   card={card}
                   index={index}
                 />
@@ -85,25 +89,13 @@ export default function Column({ column }) {
         )}
       </Droppable>
 
-      {/* <div id='column_cards'>
-        {cards && (
-          cards.map((card) => (
-            <div className='cardDiv' key={card.id}>
-              <Card
-                card={card}
-                boardId={boardId}
-              />
-            </div>
-          ))
-        )}
-      </div> */}
-
       <div id='column_btn_add_card'>
         <div className='column_btn'>
           <OpenModalButton
             buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add card</span></i>}
             modalComponent={
               <CardFormCreate
+                column={column}
                 columnId={columnId}
                 boardId={boardId}
               />}

@@ -79,30 +79,32 @@ export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
 
 // THUNK: CREATE CARD
 export const thunkCreateCardForColumn = (card) => async (dispatch) => {
-  // console.log('**** in thunkCreateCardForColumn ****')
-  // console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
+  console.log('**** in thunkCreateCardForColumn ****')
+  console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
 
-  const { columnId, title, description } = card;
+  const { columnId, index, title, description } = card;
+  // const columnId = card.columnId;
 
   const res = await fetch(`/api/columns/${columnId}/cards/create`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       column_id: columnId,
+      index,
       title,
       description,
     })
   })
-  // console.log('**** in thunkCreateCardForColumn, res:', res)
+  console.log('**** in thunkCreateCardForColumn, res:', res)
 
   if (res.ok) {
     const card = await res.json();
-    // console.log('**** in thunkCreateCardForColumn RES.OK, card:', card)
+    console.log('**** in thunkCreateCardForColumn RES.OK, card:', card)
     dispatch(createCard(card));
     return card;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkCreateCardForColumn, errors:', errors)
+    console.log('**** in thunkCreateCardForColumn, errors:', errors)
     return errors;
   }
 };
@@ -110,7 +112,7 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
 // THUNK: UPDATE CARD
 export const thunkUpdateCard = (card) => async (dispatch) => {
   // console.log('**** in thunkUpdateCard, card:', card)
-  const { id, columnId, title, description } = card;
+  const { id, columnId, index, title, description } = card;
   // console.log('**** in thunkUpdateCard, id:', id)
 
   const res = await fetch(`/api/cards/${id}/update`, {
@@ -118,6 +120,7 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       column_id: columnId,
+      index,
       title,
       description,
     })

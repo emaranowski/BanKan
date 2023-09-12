@@ -127,6 +127,7 @@ def create_column_for_board(id):
     if form.validate_on_submit():
         new_column = Column(
             board_id = id,
+            card_order = form.data['card_order'],
             # color_hex = form.data['color_hex'],
             color_name = form.data['color_name'],
             title = form.data['title'],

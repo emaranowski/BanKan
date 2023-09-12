@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateCardForColumn } from "../../store/cards";
@@ -6,10 +6,16 @@ import { thunkGetAllColumnsForBoard } from '../../store/columns';
 import { thunkUpdateCard } from "../../store/cards";
 import './CardForm.css';
 
-export default function CardForm({ formType, card, boardId }) {
+export default function CardForm({ formType, card, column, boardId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const columnId = card.columnId;
+  const numCardsInColumn = column.cards.length;
+
+  // want to generate index when creating new card
+  // console.log('**** in CardForm, card:', card)
+  // console.log('**** in CardForm, column:', column)
+  // console.log('**** in CardForm, numCardsInColumn:', numCardsInColumn)
 
   const [title, setTitle] = useState(card?.title);
   const [description, setDescription] = useState(card?.description);
@@ -30,9 +36,9 @@ export default function CardForm({ formType, card, boardId }) {
         ...card,
         title,
         description,
-        columnId
+        index: column.cards.length ? numCardsInColumn : 0,
       };
-      // console.log('**** in CREATE CARD, card:', card)
+      console.log('**** in CREATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkCreateCardForColumn(card)); // VScode gives note about not needing 'await', but it IS needed
@@ -59,9 +65,9 @@ export default function CardForm({ formType, card, boardId }) {
         ...card,
         title,
         description,
-        columnId
+        // index,
       };
-      console.log('**** in UPDATE CARD, card:', card)
+      // console.log('**** in UPDATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkUpdateCard(card)); // VScode notes not needing 'await', but it IS needed
