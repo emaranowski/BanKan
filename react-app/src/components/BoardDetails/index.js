@@ -20,6 +20,7 @@ export default function BoardDetails() {
   const board = useSelector(state => state.boards.oneBoard);
   const imageUrl = board.imageUrl;
   const title = board.title;
+  // const columns = board.columns;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
   const dndId = board.dndId;
   const columnDndIds = board.columnDndIds;
@@ -30,7 +31,12 @@ export default function BoardDetails() {
   //   console.log(column.cardDndIds)
   // })
 
-  // console.log('*** in BoardDetails, column:', column)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+
 
   // 1. add idx to card models, forms, etc.
   // 2. create/update idx when creating/updating card

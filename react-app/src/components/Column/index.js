@@ -28,10 +28,12 @@ export default function Column({ column }) {
     })
   });
 
-  if (columnId === 1) {
+  if (columnId) {
+    console.log('**** in Column, columnId:', columnId)
     console.log('**** in Column, cardOrderArr:', cardOrderArr)
     console.log('**** in Column, cards:', cards)
     console.log('**** in Column, cardsOrdered:', cardsOrdered)
+    console.log('******************')
   }
 
 
