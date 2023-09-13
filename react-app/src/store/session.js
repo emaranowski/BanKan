@@ -81,17 +81,13 @@ export const signUp = (firstName, lastName, username, email, password) => async 
 			password,
 		}),
 	});
-	console.log('||||| in signUp thunk, response:', response)
 
 	if (response.ok) {
-		console.log('||||| in signUp thunk, RES OK response:', response)
 		const data = await response.json();
-		console.log('||||| in signUp thunk, RES OK data:', data)
 		dispatch(setUser(data));
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
-		console.log('||||| in signUp thunk, RES NOT OK < 500 data:', data)
 		if (data.errors) {
 			return data.errors;
 		}
