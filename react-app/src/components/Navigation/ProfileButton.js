@@ -57,11 +57,11 @@ function ProfileButton({ user }) {
                 Boards
               </span>
             </Link>
-            <Link exact to="/account">
+            {/* <Link exact to="/account">
               <span id='dropdownAccount' onClick={closeMenu} >
                 Account
               </span>
-            </Link>
+            </Link> */}
             <div>
               <span id='dropdownLogout' onClick={handleLogout}>
                 Log Out
