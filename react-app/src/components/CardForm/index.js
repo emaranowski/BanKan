@@ -14,11 +14,6 @@ export default function CardForm({ formType, card, column, boardId }) {
   const cards = column.cards;
   const numCardsInColumn = column.cards.length;
 
-  // want to generate index when creating new card
-  // console.log('**** in CardForm, cardOrderArr:', cardOrderArr)
-  // console.log('**** in CardForm, column:', column)
-  // console.log('**** in CardForm, numCardsInColumn:', numCardsInColumn)
-
   const [title, setTitle] = useState(card?.title);
   const [description, setDescription] = useState(card?.description);
   const [disabled, setDisabled] = useState(false);
@@ -40,15 +35,10 @@ export default function CardForm({ formType, card, column, boardId }) {
         description,
         index: column.cards.length ? numCardsInColumn : 0,
       };
-      // console.log('**** in CREATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkCreateCardForColumn(card)); // VScode gives note about not needing 'await', but it IS needed
-        // console.log('**** in CREATE CARD TRY, res:', res)
         if (res.id) {
-
-          // console.log('**** in CREATE CARD TRY, RES OK:', res)
-          // console.log('**** in CREATE CARD TRY, RES OK cardOrderArr:', cardOrderArr)
 
           if (cardOrderArr[0] === '') {
             cardOrderArr.splice(0, 1); // remove 1 at idx 0
@@ -57,19 +47,12 @@ export default function CardForm({ formType, card, column, boardId }) {
             cardOrderArr.push(res.dndId)
           }
 
-          // console.log('**** in CREATE CARD TRY, RES OK cardOrderArr:', cardOrderArr)
-
           const cardOrderUpdatedStr = cardOrderArr.toString();
-
-          // console.log('**** in CREATE CARD TRY, RES OK cardOrderUpdatedStr:', cardOrderUpdatedStr)
 
           const columnUpdated = {
             ...column,
             cardOrder: cardOrderUpdatedStr,
           };
-
-          // console.log('**** in CREATE CARD TRY, RES OK column:', column)
-          // console.log('**** in CREATE CARD TRY, RES OK columnUpdated:', columnUpdated)
 
           dispatch(thunkUpdateColumn(columnUpdated))
 
@@ -80,9 +63,7 @@ export default function CardForm({ formType, card, column, boardId }) {
           setErrors(res.errors);
         }
       } catch (res) {
-        // console.log('**** in CREATE CARD CATCH, res:', res)
         const data = await res.json();
-        // console.log('**** in CREATE CARD CATCH, data:', data)
         if (data && data.errors) {
           setErrors(data.errors);
         }
@@ -96,7 +77,6 @@ export default function CardForm({ formType, card, column, boardId }) {
         description,
         // index,
       };
-      // console.log('**** in UPDATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkUpdateCard(card)); // VScode notes not needing 'await', but it IS needed
