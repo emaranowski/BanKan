@@ -1,11 +1,10 @@
 //////////////////////////////// ACTION TYPE CONSTANTS ////////////////////////////////
 
-const GET_ONE_COLUMN = "columns/getOneColumn";
-// const GET_ONE_COLUMN_CARD_ORDER = "columns/getOneColumnCardOrder";
+const GET_CARD_ORDER_ON_ONE_COLUMN = "columns/getColumnOrderOnOneColmn";
+const GET_CARD_ORDER_ON_ALL_COLUMNS = "columns/getColumnOrderOnAllColmns";
 const GET_ALL_COLUMNS = "columns/getAllColumns";
 const CREATE_COLUMN = "columns/createColumn";
 const UPDATE_COLUMN = "columns/updateColumn";
-const DELETE_COLUMN = "columns/deleteColumn";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
 

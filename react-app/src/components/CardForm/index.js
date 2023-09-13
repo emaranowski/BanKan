@@ -2,20 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateCardForColumn } from "../../store/cards";
-import { thunkGetAllColumnsForBoard } from '../../store/columns';
+import { thunkUpdateColumn, thunkGetAllColumnsForBoard } from '../../store/columns';
 import { thunkUpdateCard } from "../../store/cards";
 import './CardForm.css';
 
 export default function CardForm({ formType, card, column, boardId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const columnId = card.columnId;
+  const columnId = column.id;
+  const cardOrderArr = column.cardOrder.split(',');
+  const cards = column.cards;
   const numCardsInColumn = column.cards.length;
-
-  // want to generate index when creating new card
-  // console.log('**** in CardForm, card:', card)
-  // console.log('**** in CardForm, column:', column)
-  // console.log('**** in CardForm, numCardsInColumn:', numCardsInColumn)
 
   const [title, setTitle] = useState(card?.title);
   const [description, setDescription] = useState(card?.description);
@@ -38,22 +35,35 @@ export default function CardForm({ formType, card, column, boardId }) {
         description,
         index: column.cards.length ? numCardsInColumn : 0,
       };
-      console.log('**** in CREATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkCreateCardForColumn(card)); // VScode gives note about not needing 'await', but it IS needed
-        // console.log('**** in CREATE CARD TRY, res:', res)
         if (res.id) {
+
+          if (cardOrderArr[0] === '') {
+            cardOrderArr.splice(0, 1); // remove 1 at idx 0
+            cardOrderArr.splice(0, 0, res.dndId); // remove 0, add res.dndId at idx 0
+          } else if (cardOrderArr[0] !== '') {
+            cardOrderArr.push(res.dndId)
+          }
+
+          const cardOrderUpdatedStr = cardOrderArr.toString();
+
+          const columnUpdated = {
+            ...column,
+            cardOrder: cardOrderUpdatedStr,
+          };
+
+          dispatch(thunkUpdateColumn(columnUpdated))
+
           setErrors({});
           closeModal();
-          dispatch(thunkGetAllColumnsForBoard(boardId));
+          // dispatch(thunkGetAllColumnsForBoard(boardId));
         } else if (res.errors) {
           setErrors(res.errors);
         }
       } catch (res) {
-        // console.log('**** in CREATE CARD CATCH, res:', res)
         const data = await res.json();
-        // console.log('**** in CREATE CARD CATCH, data:', data)
         if (data && data.errors) {
           setErrors(data.errors);
         }
@@ -67,7 +77,6 @@ export default function CardForm({ formType, card, column, boardId }) {
         description,
         // index,
       };
-      // console.log('**** in UPDATE CARD, card:', card)
 
       try {
         const res = await dispatch(thunkUpdateCard(card)); // VScode notes not needing 'await', but it IS needed

@@ -51,7 +51,8 @@ export default function Card({ boardId, column, card, index }) { // added index
               buttonText={<i class="fa-regular fa-trash-can"></i>}
               modalComponent={
                 <CardDeleteModal
-                  cardId={cardId}
+                  card={card}
+                  column={column}
                   boardId={boardId}
                 />}
             />
