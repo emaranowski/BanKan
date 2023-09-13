@@ -42,7 +42,7 @@ function SignupFormModal() {
             ))}
           </ul>
         </div>
-        <label>
+        {/* <label>
           First name:
           <div>
             <input
@@ -63,7 +63,7 @@ function SignupFormModal() {
               placeholder="(optional)"
             />
           </div>
-        </label>
+        </label> */}
         <labl>
           Email:
           <div>
