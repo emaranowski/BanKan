@@ -25,13 +25,16 @@ export default function BoardDetails() {
   const dndId = board.dndId;
   const columnDndIds = board.columnDndIds;
   const columnsDnd = board.columnsDnd;
+  const cardOrdersObj = {};
+
+  const [changed, setChanged] = useState(false);
 
   // columns.forEach(column => {
   //   console.log(column.dndId)
   //   console.log(column.cardDndIds)
   // })
 
-  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('||||| in BoardDetails, columns:', columns)
   // console.log('*** in BoardDetails, cols:', cols)
   // console.log('*** in BoardDetails, cols:', cols)
   // console.log('*** in BoardDetails, cols:', cols)
@@ -55,7 +58,7 @@ export default function BoardDetails() {
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
     setIsLoaded(true)
-  }, [dispatch, boardId, imageUrl, title]);
+  }, [dispatch, boardId, imageUrl, title, changed]);
 
   const onDragEnd = (result) => { // TODO: CHANGE WHICH COLUMN A CARD BELONGS TO
     const { draggableId, source, destination } = result;
@@ -114,6 +117,25 @@ export default function BoardDetails() {
     };
     // console.log('||||||||| in onDragEnd -- columnUpdated:', columnUpdated)
 
+    const columnUpdatedIdx = columns.indexOf(columnToUpdate);
+    // console.log('||||||||| in onDragEnd -- columns before splice:', columns)
+    columns.splice(columnUpdatedIdx, 1, columnUpdated);
+    // console.log('||||||||| in onDragEnd -- columns after splice:', columns)
+
+    columns.forEach(column => {
+      const cardOrderArr = column.cardOrder.split(',');
+      column['cardOrderArr'] = cardOrderArr;
+      // cardOrdersObj[column.id] = cardOrderArr;
+      // console.log('||||| in onDragEnd -- columns.forEach cardOrderArr:', cardOrderArr)
+
+      console.log('||||| !!!!! in onDragEnd -- columns.forEach column:', column)
+
+      // console.log('||||| in onDragEnd -- columns.forEach cardOrdersObj:', cardOrdersObj)
+      // console.log('||||| in onDragEnd -- columns.forEach cardOrdersObj[column.id]:', cardOrdersObj[column.id])
+    })
+
+    // console.log('||||| in onDragEnd -- cardOrdersObj:', cardOrdersObj)
+
 
     // const newState = {
     //   ...state.columns,
@@ -128,18 +150,14 @@ export default function BoardDetails() {
     //   try {
     //     const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
     //     if (res.id) {
-    //       // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES OK:', res)
     //       dispatch(thunkGetOneBoard(boardId));
     //       dispatch(thunkGetAllColumnsForBoard(boardId));
     //       return res;
     //     } else {
-    //       // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES NOT OK:', res)
     //       return res;
     //     }
     //   } catch (res) {
-    //     // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH RES:', res)
     //     const data = await res.json();
-    //     // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH data:', data)
     //     return data;
     //   }
     // };
@@ -150,22 +168,19 @@ export default function BoardDetails() {
         dispatch(updateColumn(columnUpdated));
         const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
-          // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, TRY RES OK:', res)
           // dispatch(thunkGetOneBoard(boardId));
           dispatch(thunkGetAllColumnsForBoard(boardId));
           return res;
         } else {
-          // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, TRY RES NOT OK:', res)
           return res;
         }
       } catch (res) {
-        // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, CATCH RES:', res)
         const data = await res.json();
-        // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, CATCH data:', data)
         return data;
       }
     };
     updateCardOrderOnColumn(columnUpdated);
+    setChanged(!changed);
   };
 
 
@@ -211,7 +226,7 @@ export default function BoardDetails() {
             {columns && (
               columns.map((column) => (
                 <span className='board_details_one_column' key={column.id}>
-                  <Column key={column.id} column={column} />
+                  <Column key={column.id} column={column} cardOrderArr={column.cardOrderArr} />
                 </span>
               ))
             )}
