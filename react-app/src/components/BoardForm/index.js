@@ -18,6 +18,8 @@ export default function BoardForm({ formType, board }) {
   const [imageUrl, setImageUrl] = useState(board?.imageUrl);
   const [imageFile, setImageFile] = useState('');
   const [imageFileUpdated, setImageFileUpdated] = useState(false);
+  const [imageSelected, setImageSelected] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
@@ -75,8 +77,8 @@ export default function BoardForm({ formType, board }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (imageUrl === '') {
-      errors['missingImage'] = 'Please select a background image';
+    if (!imageSelected) {
+      setImageError(true);
       return;
     }
 
@@ -219,7 +221,10 @@ export default function BoardForm({ formType, board }) {
                 id='imageButtonDiv'
                 key={imgUrl.id}
                 src={imgUrl.url}
-                onClick={() => setImageUrl(imgUrl.url)}
+                onClick={() => {
+                  setImageUrl(imgUrl.url)
+                  setImageSelected(true)
+                }}
                 className={imageUrl === imgUrl.url ? 'selected' : ''}
               >
               </img>
@@ -228,6 +233,7 @@ export default function BoardForm({ formType, board }) {
             (<></>)
           }
         </div>
+        {imageError && !imageUrl ? ('Please select an image') : null}
         {errors.missingImage && (<div className="board-error-text">{errors.missingImage}</div>)}
       </div>
 
