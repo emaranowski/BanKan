@@ -16,12 +16,14 @@ export default function ColumnForm({ formType, column }) {
   const [title, setTitle] = useState(column?.title);
   // const [colorHex, setColorHex] = useState(column?.colorHex);
   const [colorName, setColorName] = useState(column?.colorName);
+  const [colorSelected, setColorSelected] = useState(false);
+  const [colorError, setColorError] = useState(false);
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // console.log('**** in ColumnForm, colorName:', colorName)
+  console.log('**** in ColumnForm, colorName:', colorName)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -82,6 +84,11 @@ export default function ColumnForm({ formType, column }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!colorName) {
+      setColorError(true);
+      return;
+    }
 
     //////// CASE 1: CREATE COLUMN
     if (formType === 'Create Column') {
@@ -167,7 +174,8 @@ export default function ColumnForm({ formType, column }) {
                 (<></>)
               }
             </div>
-            {errors.background && (<div className="column_error_text">{errors.background}</div>)}
+            {colorError && !colorName ? ('Please select a color') : null}
+            {/* {errors.background && (<div className="column_error_text">{errors.background}</div>)} */}
           </div>
 
           <div className='create_column_form_section'>
