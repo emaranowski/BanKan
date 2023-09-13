@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { thunkGetOneBoard } from '../../store/boards';
-import { thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
+import { updateColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
 import { thunkUpdateCard } from '../../store/cards';
 import { useParams, Link } from 'react-router-dom';
 // import { DragDropContext } from 'react-beautiful-dnd';
@@ -20,6 +20,7 @@ export default function BoardDetails() {
   const board = useSelector(state => state.boards.oneBoard);
   const imageUrl = board.imageUrl;
   const title = board.title;
+  // const columns = board.columns;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
   const dndId = board.dndId;
   const columnDndIds = board.columnDndIds;
@@ -30,7 +31,12 @@ export default function BoardDetails() {
   //   console.log(column.cardDndIds)
   // })
 
-  // console.log('*** in BoardDetails, column:', column)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+  // console.log('*** in BoardDetails, cols:', cols)
+
 
   // 1. add idx to card models, forms, etc.
   // 2. create/update idx when creating/updating card
@@ -108,30 +114,44 @@ export default function BoardDetails() {
     };
     // console.log('||||||||| in onDragEnd -- columnUpdated:', columnUpdated)
 
-    const updateIndexOnCard = async (cardUpdated) => {
-      try {
-        const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
-        if (res.id) {
-          // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES OK:', res)
-          dispatch(thunkGetAllColumnsForBoard(boardId));
-          return res;
-        } else {
-          // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES NOT OK:', res)
-          return res;
-        }
-      } catch (res) {
-        // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH RES:', res)
-        const data = await res.json();
-        // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH data:', data)
-        return data;
-      }
-    };
+
+    // const newState = {
+    //   ...state.columns,
+    //   allColumns: {
+    //     ...state.columns.allColumns,
+    //     [columnUpdated.id]: columnUpdated,
+    //   },
+    // };
+
+
+    // const updateIndexOnCard = async (cardUpdated) => {
+    //   try {
+    //     const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+    //     if (res.id) {
+    //       // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES OK:', res)
+    //       dispatch(thunkGetOneBoard(boardId));
+    //       dispatch(thunkGetAllColumnsForBoard(boardId));
+    //       return res;
+    //     } else {
+    //       // console.log('||||||||| in onDragEnd -- updateIndexOnCard, TRY RES NOT OK:', res)
+    //       return res;
+    //     }
+    //   } catch (res) {
+    //     // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH RES:', res)
+    //     const data = await res.json();
+    //     // console.log('||||||||| in onDragEnd -- updateIndexOnCard, CATCH data:', data)
+    //     return data;
+    //   }
+    // };
+    // updateIndexOnCard(cardUpdated);
 
     const updateCardOrderOnColumn = async (columnUpdated) => {
       try {
+        dispatch(updateColumn(columnUpdated));
         const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           // console.log('||||||||| in onDragEnd -- updateCardOrderOnColumn, TRY RES OK:', res)
+          // dispatch(thunkGetOneBoard(boardId));
           dispatch(thunkGetAllColumnsForBoard(boardId));
           return res;
         } else {
@@ -145,8 +165,6 @@ export default function BoardDetails() {
         return data;
       }
     };
-
-    updateIndexOnCard(cardUpdated);
     updateCardOrderOnColumn(columnUpdated);
   };
 
