@@ -77,7 +77,7 @@ export default function BoardForm({ formType, board }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!imageSelected) {
+    if (!imageUrl) {
       setImageError(true);
       return;
     }
