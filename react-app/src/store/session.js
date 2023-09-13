@@ -67,29 +67,43 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (firstName, lastName, username, email, password) => async (dispatch) => {
+	// console.log('||||| in signUp thunk')
+	// console.log('||||| in signUp thunk, firstName:', firstName)
+	// console.log('||||| in signUp thunk, lastName:', lastName)
+	// console.log('||||| in signUp thunk, username:', username)
+	// console.log('||||| in signUp thunk, email:', email)
+	// console.log('||||| in signUp thunk, password:', password)
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
+			first_name: firstName,
+			last_name: lastName,
 			username,
 			email,
 			password,
 		}),
 	});
+	console.log('||||| in signUp thunk, response:', response)
 
 	if (response.ok) {
+		console.log('||||| in signUp thunk, RES OK response:', response)
 		const data = await response.json();
+		console.log('||||| in signUp thunk, RES OK data:', data)
 		dispatch(setUser(data));
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
+		console.log('||||| in signUp thunk, RES NOT OK < 500 data:', data)
 		if (data.errors) {
 			return data.errors;
 		}
 	} else {
+		// const data = await response.json();
+		// console.log('||||| in signUp thunk, RES NOT OK >= 500 data:', data)
 		return ["An error occurred. Please try again."];
 	}
 };
