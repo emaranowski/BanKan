@@ -18,14 +18,12 @@ export default function BoardForm({ formType, board }) {
   const [imageUrl, setImageUrl] = useState(board?.imageUrl);
   const [imageFile, setImageFile] = useState('');
   const [imageFileUpdated, setImageFileUpdated] = useState(false);
-  const [selected, setSelected] = useState('');
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   console.log('**** in BoardForm, imageUrl:', imageUrl)
-  console.log('**** in BoardForm, selected:', selected)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -219,13 +217,10 @@ export default function BoardForm({ formType, board }) {
             imageUrls.map((imgUrl) => (
               <img
                 id='imageButtonDiv'
-                className={imageUrl === imgUrl.url ? 'selected' : ''}
                 key={imgUrl.id}
                 src={imgUrl.url}
-                onClick={() => {
-                  setImageUrl(imgUrl.url)
-                  // setSelected(imgUrl.id)
-                }}
+                onClick={() => setImageUrl(imgUrl.url)}
+                className={imageUrl === imgUrl.url ? 'selected' : ''}
               >
               </img>
             ))

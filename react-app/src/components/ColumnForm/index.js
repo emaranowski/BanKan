@@ -154,12 +154,12 @@ export default function ColumnForm({ formType, column }) {
           <div className='create_column_form_section'>
             <div id='colorButtons'>
               {colorNames.length ?
-                colorNames.map((colorName) => (
+                colorNames.map((clrName) => (
                   <div
-                    id='colorButtonDiv'
-                    className={colorName.name}
-                    key={colorName.id}
-                    onClick={() => setColorName(colorName.name)}
+                    id={clrName.name}
+                    key={clrName.id}
+                    onClick={() => setColorName(clrName.name)}
+                    className={colorName === clrName.name ? 'selected' : ''}
                   >
                   </div>
                 ))
