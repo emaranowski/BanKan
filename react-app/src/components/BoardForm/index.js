@@ -18,12 +18,14 @@ export default function BoardForm({ formType, board }) {
   const [imageUrl, setImageUrl] = useState(board?.imageUrl);
   const [imageFile, setImageFile] = useState('');
   const [imageFileUpdated, setImageFileUpdated] = useState(false);
+  const [selected, setSelected] = useState('');
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   console.log('**** in BoardForm, imageUrl:', imageUrl)
+  console.log('**** in BoardForm, selected:', selected)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -75,6 +77,11 @@ export default function BoardForm({ formType, board }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (imageUrl === '') {
+      errors['missingImage'] = 'Please select a background image';
+      return;
+    }
+
     /////// 1. CREATE IMAGE + CREATE BOARD
     if (formType === 'Create Board') {
       // try { // CREATE IMAGE
@@ -101,7 +108,7 @@ export default function BoardForm({ formType, board }) {
         userId
       };
 
-      console.log('**** in Create Board, board:', board)
+      // console.log('**** in Create Board, board:', board)
 
       try { // CREATE BOARD
         const res = await dispatch(thunkCreateBoard(board)); // VScode gives note about not needing 'await', but it IS needed
@@ -209,16 +216,24 @@ export default function BoardForm({ formType, board }) {
       <div className='create-board-form-section'>
         <div id='imageButtons'>
           {imageUrls.length ?
-            imageUrls.map((imageUrl) => (
-              <div id='imageButtonDiv' key={imageUrl.id} onClick={() => setImageUrl(imageUrl.url)}>
-                <img id='imageButtonImg' src={imageUrl.url}></img>
-              </div>
+            imageUrls.map((imgUrl) => (
+              <img
+                id='imageButtonDiv'
+                className={imageUrl === imgUrl.url ? 'selected' : ''}
+                key={imgUrl.id}
+                src={imgUrl.url}
+                onClick={() => {
+                  setImageUrl(imgUrl.url)
+                  // setSelected(imgUrl.id)
+                }}
+              >
+              </img>
             ))
             :
             (<></>)
           }
         </div>
-        {errors.background && (<div className="board-error-text">{errors.background}</div>)}
+        {errors.missingImage && (<div className="board-error-text">{errors.missingImage}</div>)}
       </div>
 
       {/* <div className='create-board-form-section'>
