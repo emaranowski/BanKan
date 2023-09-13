@@ -26,16 +26,16 @@ export default function Navigation({ isLoaded }) {
         <span id='navLogo'>
           <NavLink exact to="/">BanKan</NavLink>
         </span>
-        <NavLink exact to="/features">
+        {/* <NavLink exact to="/features">
           <span id='navFeatures'>
             Features
           </span>
-        </NavLink>
-        <NavLink exact to="/plans">
+        </NavLink> */}
+        {/* <NavLink exact to="/plans">
           <span id='navPlans'>
             Plans & Pricing
           </span>
-        </NavLink>
+        </NavLink> */}
       </span>
       <span id="navLeft">
         {sessionUser ?
