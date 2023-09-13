@@ -9,7 +9,7 @@ import ColumnFormUpdate from '../ColumnFormUpdate';
 import ColumnDeleteModal from '../ColumnDeleteModal';
 import './Column.css';
 
-export default function Column({ column }) { // , cardOrderArr
+export default function Column({ column }) {
   const dispatch = useDispatch();
   const columnId = column.id;
   const boardId = column.boardId;
@@ -17,8 +17,6 @@ export default function Column({ column }) { // , cardOrderArr
   const title = column.title;
   const cardOrderArr = column.cardOrder.split(',');
   const cards = column.cards;
-  // const cards = Object.values(useSelector(state => state.cards.allCards));
-  // const numCardsInColumn = column.cards.length;
   const dndId = column.dndId;
 
   const cardsOrdered = [];
@@ -27,21 +25,6 @@ export default function Column({ column }) { // , cardOrderArr
       if (cardDndId === card.dndId) cardsOrdered.push(card);
     })
   });
-
-  if (columnId) {
-    // console.log('**** in Column, columnId:', columnId)
-    console.log('**** in Column, cardOrderArr:', cardOrderArr)
-    // console.log('**** in Column, cards:', cards)
-    console.log('**** in Column, cardsOrdered:', cardsOrdered)
-    console.log('******************')
-  }
-
-
-
-
-
-
-
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
