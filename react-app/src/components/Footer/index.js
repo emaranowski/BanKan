@@ -14,7 +14,7 @@ export default function Footer() {
 
         <div id='footer-row-1'>
 
-          <span id='footer-col-1'>
+          <span id='footer-logo-login'>
             <Link exact to="/">
               <div id='footer-logo'>
                 BanKan
@@ -30,17 +30,43 @@ export default function Footer() {
             </div>
           </span>
 
-          <span className='footer-col-2'>
-
+          <span id='footer-dev-info'>
+            <div id='footer-contact-the-dev'>
+              Contact the developer
+            </div>
+            <div id='footer-dev-name-and-links'>
+              Erica Maranowski
+              <a href="https://www.linkedin.com/in/erica-maranowski/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+              <a href="https://github.com/emaranowski" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
           </span>
 
         </div>
 
         <div id='footer-row-2'>
 
-          <div id='footer-copyright'>
+          <span id='footer-copyright'>
             @ 2023 BanKan
-          </div>
+          </span>
+
+          <span id='footer-tech'>
+            <span id='footer-tech-used'>
+              TECHNOLOGIES USED:
+            </span>
+            <span className='footer-tech-icon'>REACT BEAUTIFUL DND</span>
+            <span className='footer-tech-icon'>REACT</span>
+            <span className='footer-tech-icon'>REDUX</span>
+            <span className='footer-tech-icon'>PYTHON</span>
+            <span className='footer-tech-icon'>POSTGRESQL</span>
+            <span className='footer-tech-icon'>SQLITE</span>
+            <span className='footer-tech-icon'>JS</span>
+            <span className='footer-tech-icon'>HTML</span>
+            <span className='footer-tech-icon'>CSS</span>
+          </span>
 
         </div>
 
