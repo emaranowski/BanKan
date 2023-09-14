@@ -8,56 +8,59 @@
 
 #root {
     width: 100% !important;
-    /* border: 5px solid coral; */
 }
 
 button {
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
     padding: 5px 10px;
     cursor: pointer;
 }
 
-.logoBlue {
+.logo-blue {
     color: #0864fc;
 }
 
-.accentPink {
+.btn-hover-blue {
+    color: #0844a4;
+}
+
+.accent-pink {
     color: #f054b4;
 }
 
-.accentPurple {
+.accent-purple {
     color: #5844ac;
 }
 
-.fontBlueNav {
+.font-blue-nav {
     color: #283c5c;
 }
 
-.fontBlueGeneral {
+.font-blue-general {
     color: #101c44;
 }
 
-.bgBlueFooter {
+.bg-blue-footer {
     color: #182c4c;
 }
 
-.borderHighlightBlue {
+.border-highlight-blue {
     color: #2596be;
 }
 
-.continueBtnGreen {
+.continue-btn-green {
     color: #60ac44;
 }
 
-.continueBtnGreenHover {
+.continue-btn-green-hover {
     color: #68bc4c;
 }
 
-.continueBtnMintGreen {
+.continue-btn-mint-green {
     color: #38b47c;
 }
 
-.continueBtnMintGreenHover {
+.continue-btn-mint-green-hover {
     color: #58dca4;
 }
