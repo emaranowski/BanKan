@@ -1,14 +1,15 @@
-#demoUserBtn {
+#demo-user-btn {
     width: 100%;
     font-size: 14px;
     padding: 14px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 25px;
     color: #FFFFFF;
     background-color: #60ac44;
+    transition: background-color .5s;
 }
 
-#demoUserBtn:hover {
+#demo-user-btn:hover {
     background-color: #68bc4c;
 }
