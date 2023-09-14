@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button id='nav-profile-dropdown-btn' onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <div className={ulClassName} ref={ulRef}>
@@ -63,7 +63,7 @@ function ProfileButton({ user }) {
               </span>
             </Link> */}
             <div>
-              <span id='dropdownLogout' onClick={handleLogout}>
+              <span id='dropdown-logout' onClick={handleLogout}>
                 Log Out
               </span>
             </div>

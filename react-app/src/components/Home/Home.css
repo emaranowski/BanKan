@@ -70,14 +70,14 @@
     max-width: 165px;
     padding: 16px 0;
     color: #FFFFFF;
-    background-color: #0864fc;
+    background-color: #0844a4;
     border: none;
     border-radius: 6px;
     transition: background-color .5s;
 }
 
 #home-my-boards-btn:hover {
-    background-color: #0844a4;
+    background-color: #0864fc;
 }
 
 #home-content-productivity {

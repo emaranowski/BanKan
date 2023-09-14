@@ -1,12 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import { logout } from "../../store/session";
 import { Link } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
-import { useSelector } from 'react-redux';
 import './Footer.css';
 
 export default function Footer() {
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    history.push('/');
+  };
 
   return (
     <>
@@ -21,12 +31,18 @@ export default function Footer() {
               </div>
             </Link>
             <div>
-              <span id='footer-login'>
-                <OpenModalButton
-                  buttonText="Log In"
-                  modalComponent={<LoginFormModal />}
-                />
-              </span>
+              {!sessionUser ?
+                <span id='footer-login'>
+                  <OpenModalButton
+                    buttonText="Log In"
+                    modalComponent={<LoginFormModal />}
+                  />
+                </span>
+                :
+                <span id='footer-logout' onClick={handleLogout}>
+                  Log Out
+                </span>
+              }
             </div>
           </span>
 
