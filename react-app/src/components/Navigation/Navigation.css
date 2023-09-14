@@ -53,6 +53,7 @@ nav {
   background-color: #0864fc;
   padding: 0 18px;
   border-radius: 0;
+  transition: background-color .5s;
 }
 
 #nav-signup button:hover {

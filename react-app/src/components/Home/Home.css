@@ -53,6 +53,7 @@
     background-color: #0864fc;
     border: none;
     border-radius: 6px;
+    transition: background-color .5s;
 }
 
 #home-signup-btn button:hover {
@@ -72,6 +73,7 @@
     background-color: #0864fc;
     border: none;
     border-radius: 6px;
+    transition: background-color .5s;
 }
 
 #home-my-boards-btn:hover {

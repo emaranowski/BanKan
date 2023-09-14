@@ -5,6 +5,8 @@
     justify-content: space-between;
     background-color: #182c4c;
     padding: 0 12px;
+    position: relative;
+    bottom: -96px;
 }
 
 #footer-row-1 {
