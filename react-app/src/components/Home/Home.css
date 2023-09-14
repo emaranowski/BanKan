@@ -15,7 +15,7 @@
 }
 
 #home-content {
-    margin-left: 75px;
+    margin-left: 90px;
 }
 
 #home-banner-text {
@@ -85,6 +85,7 @@
 }
 
 #home-bankan-101 {
+    color: #283c5c;
     font-size: 15px;
     font-weight: 600;
 }

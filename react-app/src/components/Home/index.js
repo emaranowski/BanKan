@@ -24,7 +24,7 @@ export default function Home() {
             tools and tasks together
           </div>
           <div id='home-sub-header'>
-            Keep it all in one place
+            Keep it all in one place.
           </div>
           {!sessionUser ?
             <div id='home-signup-btn'>
@@ -52,7 +52,7 @@ export default function Home() {
           <div id='home-productivity-text'>
             Streamlined and minimalistic.
             Create dynamic boards. Jot down notes. Check things off your lists.
-            Cut the clutter with just what you need. Get started in seconds.
+            Cut the clutter with just what you need. Start in seconds.
           </div>
         </div>
       </div>

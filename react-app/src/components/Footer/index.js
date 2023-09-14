@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
-import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
 import { useSelector } from 'react-redux';
 import './Footer.css';
@@ -13,17 +12,37 @@ export default function Footer() {
     <>
       <div id="footer">
 
-        <span id='footer_left_col'>
-          <Link exact to="/">
-            <div id='footer_logo'>BanKan</div>
-          </Link>
-        </span>
+        <div id='footer-row-1'>
 
-        <span className='footer_right_col'>
-          <div id='footer_copyright'>
+          <span id='footer-col-1'>
+            <Link exact to="/">
+              <div id='footer-logo'>
+                BanKan
+              </div>
+            </Link>
+            <div>
+              <span id='footer-login'>
+                <OpenModalButton
+                  buttonText="Log In"
+                  modalComponent={<LoginFormModal />}
+                />
+              </span>
+            </div>
+          </span>
+
+          <span className='footer-col-2'>
+
+          </span>
+
+        </div>
+
+        <div id='footer-row-2'>
+
+          <div id='footer-copyright'>
             @ 2023 BanKan
           </div>
-        </span>
+
+        </div>
 
       </div>
     </>

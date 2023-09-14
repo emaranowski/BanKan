@@ -1,43 +1,62 @@
 nav {
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 12px 11px 12px;
-  /* border-bottom: .5px solid grey; */
+  height: 61px;
+  position: sticky;
+  top: 0px;
+  box-shadow: 0px 5px 25px rgba(44, 44, 255, 0.25);
+  background-color: #FFFFFF;
 }
 
-#navRight {
+#nav-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 25px;
 }
 
-#navLogo {
+#nav-logo-text {
   font-size: 30px;
+  margin-left: 20px;
+  font-weight: 600;
+  color: #283c5c;
 }
 
-#navFeatures {
+#nav-features {
   font-size: 17px;
 }
 
-#navPlans {
+#nav-plans {
   font-size: 17px;
 }
 
-#navLeft {
+#nav-left {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
+  gap: 13px;
 }
 
-#navLogin {
-  font-size: 17px;
+#nav-login button {
+  font-size: 19px;
+  color: #182c4c;
+  background-color: white;
+  font-weight: 500;
 }
 
-#navSignup {
-  font-size: 17px;
+#nav-signup button {
+  font-size: 19px;
+  height: 61px;
+  color: #FFFFFF;
+  background-color: #0864fc;
+  padding: 0 18px;
+  border-radius: 0;
+}
+
+#nav-signup button:hover {
+  background-color: #0844a4;
 }
 
 .profile-dropdown {
