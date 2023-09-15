@@ -5,6 +5,7 @@ import boardsReducer from './boards';
 import columnsReducer from './columns';
 import cardsReducer from './cards';
 import notebooksReducer from './notebooks';
+import notesReducer from './notes';
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   columns: columnsReducer,
   cards: cardsReducer,
   notebooks: notebooksReducer,
+  notes: notesReducer,
 });
 
 
