@@ -38,7 +38,7 @@ export default function LoginFormModal() {
   };
 
   return (
-    <div id='modalLoginSignup'>
+    <div id='modal-login-signup'>
       <h1>Log in</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -70,14 +70,12 @@ export default function LoginFormModal() {
             />
           </div>
         </label>
-        {/* <div> */}
         <button type="submit">
           Log in
         </button>
-        {/* </div> */}
       </form>
       <div id='demoUserBtnDiv'>
-        <button id='demoUserBtn' onClick={handleDemoUser}>
+        <button id='demo-user-btn' onClick={handleDemoUser}>
           Log in as demo user
         </button>
       </div>

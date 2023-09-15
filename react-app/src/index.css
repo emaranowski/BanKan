@@ -7,57 +7,74 @@
 }
 
 #root {
-    width: 100% !important;
-    /* border: 5px solid coral; */
+    /* width: 100% !important; */
+    position: relative;
+    min-height: 100vh;
+}
+
+#content {
+    /* padding-bottom: 15rem; */
 }
 
 button {
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
 }
 
-.logoBlue {
+.logo-blue {
     color: #0864fc;
 }
 
-.accentPink {
-    color: #f054b4;
-}
-
-.accentPurple {
-    color: #5844ac;
-}
-
-.fontBlueNav {
+.nav-logo-blue {
     color: #283c5c;
 }
 
-.fontBlueGeneral {
-    color: #101c44;
-}
-
-.bgBlueFooter {
+.nav-link-blue {
     color: #182c4c;
 }
 
-.borderHighlightBlue {
+.btn-hover-blue {
+    color: #0844a4;
+}
+
+.accent-pink {
+    color: #f054b4;
+}
+
+.accent-purple {
+    color: #5844ac;
+}
+
+.font-blue-nav {
+    color: #283c5c;
+}
+
+.font-blue-general {
+    color: #101c44;
+}
+
+.bg-blue-footer {
+    color: #182c4c;
+}
+
+.border-highlight-blue {
     color: #2596be;
 }
 
-.continueBtnGreen {
+.continue-btn-green {
     color: #60ac44;
 }
 
-.continueBtnGreenHover {
+.continue-btn-green-hover {
     color: #68bc4c;
 }
 
-.continueBtnMintGreen {
+.continue-btn-mint-green {
     color: #38b47c;
 }
 
-.continueBtnMintGreenHover {
+.continue-btn-mint-green-hover {
     color: #58dca4;
 }

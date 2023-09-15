@@ -32,7 +32,7 @@ function SignupFormModal() {
   };
 
   return (
-    <div id='modalLoginSignup'>
+    <div id='modal-login-signup'>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -64,7 +64,7 @@ function SignupFormModal() {
             />
           </div>
         </label> */}
-        <labl>
+        <label>
           Email:
           <div>
             <input
@@ -74,7 +74,7 @@ function SignupFormModal() {
               required
             />
           </div>
-        </labl>
+        </label>
         <label>
           Username:
           <div>

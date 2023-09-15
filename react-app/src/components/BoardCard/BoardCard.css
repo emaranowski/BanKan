@@ -3,7 +3,12 @@
     justify-items: start;
     flex-direction: row;
     flex-wrap: wrap;
-    /* gap: 20px; */
+    border-radius: 5px;
+    transition: box-shadow .5s;
+}
+
+#boardCard:hover {
+    box-shadow: 5px 5px 25px #cccccc;
 }
 
 #boardCardImgDiv {
@@ -12,9 +17,10 @@
 
 #boardCardImg {
     width: 350px;
-    height: 175px;
+    height: 185px;
     object-fit: cover;
     border-radius: 5px;
+    margin-bottom: -4px;
 }
 
 #boardCardTitle {

@@ -22,22 +22,24 @@ export default function Navigation({ isLoaded }) {
 
   return (
     <nav>
-      <span id="navRight">
-        <span id='navLogo'>
-          <NavLink exact to="/">BanKan</NavLink>
-        </span>
+      <span id="nav-right">
+        <NavLink exact to="/">
+          <span id='nav-logo-text'>
+            BanKan
+          </span>
+        </NavLink>
         {/* <NavLink exact to="/features">
-          <span id='navFeatures'>
+          <span id='nav-features'>
             Features
           </span>
         </NavLink> */}
         {/* <NavLink exact to="/plans">
-          <span id='navPlans'>
+          <span id='nav-plans'>
             Plans & Pricing
           </span>
         </NavLink> */}
       </span>
-      <span id="navLeft">
+      <span id="nav-left">
         {sessionUser ?
           (<>
             {/* <button onClick={handleLogout}>
@@ -49,13 +51,13 @@ export default function Navigation({ isLoaded }) {
           </>)
           :
           (<>
-            <span id='navLogin'>
+            <span id='nav-login'>
               <OpenModalButton
                 buttonText="Log in"
                 modalComponent={<LoginFormModal />}
               />
             </span>
-            <span id='navSignup'>
+            <span id='nav-signup'>
               <OpenModalButton
                 buttonText="Get BanKan for free"
                 modalComponent={<SignupFormModal />}
