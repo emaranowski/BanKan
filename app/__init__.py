@@ -10,6 +10,8 @@ from .api.auth_routes import auth_routes
 from .api.board_routes import board_routes
 from .api.column_routes import column_routes
 from .api.card_routes import card_routes
+# from .api.notebook_routes import notebook_routes
+# from .api.note_routes import note_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -34,6 +36,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(board_routes, url_prefix='/api/boards')
 app.register_blueprint(column_routes, url_prefix='/api/columns')
 app.register_blueprint(card_routes, url_prefix='/api/cards')
+# app.register_blueprint(notebook_routes, url_prefix='/api/notebooks')
+# app.register_blueprint(notes, url_prefix='/api/notes')
 db.init_app(app)
 Migrate(app, db)
 
