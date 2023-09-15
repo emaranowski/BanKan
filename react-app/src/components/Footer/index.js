@@ -56,7 +56,7 @@ export default function Footer() {
                 <i class="fa-brands fa-linkedin"></i>
               </a>
               <a href="https://github.com/emaranowski" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-github"></i>
+                <i class="fa-brands fa-github" id='github-icon'></i>
               </a>
             </div>
           </span>
