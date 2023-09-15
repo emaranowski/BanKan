@@ -42,19 +42,46 @@ export default function Home() {
           }
         </div>
 
-        <div id='home-content-productivity'>
-          <div id='home-bankan-101'>
+        <div id='home-content-section'>
+          <div id='home-content-mini-header'>
             BANKAN 101
           </div>
-          <div id='home-productivity'>
+          <div id='home-content-section-header'>
             Power your productivity
           </div>
-          <div id='home-productivity-text'>
+          <div id='home-content-section-text'>
             Streamlined and minimalistic.
             Create dynamic boards. Jot down notes. Check things off your lists.
             Cut the clutter with just what you need. Start in seconds.
           </div>
         </div>
+
+        <div id='home-content-section'>
+          <div id='home-content-mini-header'>
+            BANKAN IN ACTION
+          </div>
+          <div id='home-content-section-header'>
+            Tackle workflows for any project
+          </div>
+          <div id='home-content-section-text'>
+            Whether it's project management, meetings, brainstorming, or onboarding – BanKan makes it easy.
+          </div>
+        </div>
+
+        <div id='home-content-section'>
+          <div id='home-content-mini-header'>
+            POWERFUL WAYS TO GROW
+          </div>
+          <div id='home-content-section-header'>
+            Focus on what really counts
+          </div>
+          <div id='home-content-section-text'>
+            Take the headache out of tracking tasks, notes, and to-dos.
+            BanKan keeps it all clear and organized,
+            so you can focus on the work that inspires you.
+          </div>
+        </div>
+
       </div>
     </>
   )

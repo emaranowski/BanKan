@@ -1,5 +1,5 @@
 #footer {
-    margin-top: 130px;
+    margin-top: 120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -75,8 +75,7 @@
 
 #footer-dev-name-and-links i:hover {
     color: #c6d2ff;
-    color: #c6d8ff;
-    box-shadow: 0px 0px 20px rgba(223, 223, 255, 0.25);
+    box-shadow: 0px 0px 15px rgba(223, 223, 255, 0.25);
 }
 
 #footer-row-2 {

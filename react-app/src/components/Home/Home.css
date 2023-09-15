@@ -80,28 +80,29 @@
     background-color: #0864fc;
 }
 
-#home-content-productivity {
+#home-content-section {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 60px;
 }
 
-#home-bankan-101 {
+#home-content-mini-header {
     color: #283c5c;
     font-size: 15px;
     font-weight: 600;
 }
 
-#home-productivity {
+#home-content-section-header {
     font-size: 34px;
     font-weight: 600;
 }
 
-#home-productivity-text {
+#home-content-section-text {
     margin-top: 8px;
     font-size: 19.5px;
     font-weight: 400;
     letter-spacing: .04rem;
     line-height: 1.75rem;
-    width: 500px;
+    width: 505px;
 }
