@@ -1,15 +1,17 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import session from './session'
-import boardsReducer from './boards'
-import columnsReducer from './columns'
-import cardsReducer from './cards'
+import session from './session';
+import boardsReducer from './boards';
+import columnsReducer from './columns';
+import cardsReducer from './cards';
+import notebooksReducer from './notebooks';
 
 const rootReducer = combineReducers({
   session,
   boards: boardsReducer,
   columns: columnsReducer,
   cards: cardsReducer,
+  notebooks: notebooksReducer,
 });
 
 

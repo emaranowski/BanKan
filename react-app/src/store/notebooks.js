@@ -108,7 +108,7 @@ export const thunkCreateNotebook = (notebook) => async (dispatch) => {
 // THUNK: UPDATE NOTEBOOK
 export const thunkUpdateNotebook = (notebook) => async (dispatch) => {
   // console.log('**** in thunkUpdateNotebook, notebook:', notebook)
-  const { imageUrl, title, id, userId } = notebook;
+  const { id, userId, imageUrl, title, noteOrder } = notebook;
   // console.log('**** in thunkUpdateNotebook, id:', id)
 
   const res = await fetch(`/api/notebooks/${id}/update`, {
