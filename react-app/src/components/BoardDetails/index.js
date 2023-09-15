@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { thunkGetOneBoard } from '../../store/boards';
 import { updateColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
 import { thunkUpdateCard } from '../../store/cards';
+// import { thunkGetOneCard } from '../../store/cards';
+// import { thunkGetOneColumn } from '../../store/columns';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -35,10 +37,32 @@ export default function BoardDetails() {
 
   const updateCardOrderOnColumn = async (columnUpdated) => {
     try {
-      dispatch(updateColumn(columnUpdated));
+      // dispatch(updateColumn(columnUpdated));
       const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
         // setTriggerRerenderToggle(!triggerRerenderToggle);
+        // dispatch(thunkGetOneBoard(boardId));
+        // dispatch(thunkGetAllColumnsForBoard(boardId));
+        // dispatch(thunkGetOneColumn(columnUpdated.id))
+        return res;
+      } else {
+        return res;
+      }
+    } catch (res) {
+      const data = await res.json();
+      return data;
+    }
+  };
+
+  const updateColumnIdOnCard = async (cardUpdated, columnUpdatedSrc, columnUpdatedDest) => {
+    try {
+      // dispatch(updateColumn(columnUpdatedSrc));
+      // dispatch(updateColumn(columnUpdatedDest));
+      const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+      if (res.id) {
+        // setTriggerRerenderToggle(!triggerRerenderToggle);
+        // dispatch(thunkGetOneCard(cardUpdated.id));
+        // dispatch(thunkGetOneColumn(cardUpdated.columnId))
         // dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         return res;
@@ -51,22 +75,21 @@ export default function BoardDetails() {
     }
   };
 
-  const updateColumnIdOnCard = async (cardUpdated) => {
-    try {
-      const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
-      if (res.id) {
-        // setTriggerRerenderToggle(!triggerRerenderToggle);
-        // dispatch(thunkGetOneBoard(boardId));
-        // dispatch(thunkGetAllColumnsForBoard(boardId));
-        return res;
-      } else {
-        return res;
-      }
-    } catch (res) {
-      const data = await res.json();
-      return data;
-    }
-  };
+  // const updateCardAndCols = async (cardUpdated, columnUpdatedSrc, columnUpdatedDest) => {
+  //   const res1 = await dispatch(thunkUpdateColumn(columnUpdatedSrc)); // VScode notes not needing 'await', but it IS needed
+  //   const res2 = await dispatch(thunkUpdateColumn(columnUpdatedDest)); // VScode notes not needing 'await', but it IS needed
+  //   const res3 = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+  //   if (res1.id && res2.id && res3.id) {
+  //     setTriggerRerenderToggle(!triggerRerenderToggle);
+  //     dispatch(thunkGetOneCard(cardUpdated.id));
+  //     dispatch(thunkGetOneColumn(cardUpdated.columnId))
+  //     dispatch(thunkGetOneBoard(boardId));
+  //     dispatch(thunkGetAllColumnsForBoard(boardId));
+  //     return;
+  //   } else {
+  //     return;
+  //   }
+  // }
 
   const onDragEnd = (result) => {
     const { draggableId, source, destination } = result;
@@ -185,9 +208,19 @@ export default function BoardDetails() {
       columns.splice(columnToUpdateIdxSrc, 1, columnUpdatedSrc);
       columns.splice(columnToUpdateIdxDest, 1, columnUpdatedDest);
 
-      updateColumnIdOnCard(cardUpdated);
-      updateCardOrderOnColumn(columnUpdatedDest);
+      // const updateCardAndBothCols = async () => {
+      //   const res1 = await updateCardOrderOnColumn(columnUpdatedSrc);
+      //   const res2 = await updateColumnIdOnCard(cardUpdated);
+      //   const res3 = await updateCardOrderOnColumn(columnUpdatedDest);
+      //   if (res1 && res2 && res3) setTriggerRerenderToggle(!triggerRerenderToggle);
+      // };
+      // updateCardAndBothCols();
+
+      // updateCardAndCols(cardUpdated, columnUpdatedSrc, columnUpdatedDest);
+
       updateCardOrderOnColumn(columnUpdatedSrc);
+      updateColumnIdOnCard(cardUpdated, columnUpdatedSrc, columnUpdatedDest);
+      updateCardOrderOnColumn(columnUpdatedDest);
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
 
