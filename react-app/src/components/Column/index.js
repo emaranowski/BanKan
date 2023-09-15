@@ -17,7 +17,10 @@ export default function Column({ column }) {
   const title = column.title;
   const cardOrderArr = column.cardOrder.split(',');
   const cards = column.cards;
+  // const cards = useSelector(state => state.cards.allCards);
   const dndId = column.dndId;
+
+  // console.log('||||| in Column, cards:', cards)
 
   const cardsOrdered = [];
   cardOrderArr.forEach(cardDndId => {
@@ -28,9 +31,9 @@ export default function Column({ column }) {
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    // dispatch(thunkGetAllCardsForColumn(columnId))
+    dispatch(thunkGetAllCardsForColumn(columnId))
     setIsLoaded(true)
-  }, [dispatch, columnId, boardId, color, title]);
+  }, [dispatch, boardId, columnId, color, title]);
 
   // style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
 
