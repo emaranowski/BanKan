@@ -43,27 +43,27 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button id='nav-profile-dropdown-btn' onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div>
-              Hello, {user.username}
+            <div id='dropdown-username'>
+              Welcome, <br></br>{user.username}
             </div>
             <Link exact to="/boards">
-              <span id='dropdownBoards' onClick={closeMenu} >
+              <span className='dropdown-links' onClick={closeMenu} >
                 Boards
               </span>
             </Link>
             {/* <Link exact to="/account">
-              <span id='dropdownAccount' onClick={closeMenu} >
+              <span id='dropdown-account' onClick={closeMenu} >
                 Account
               </span>
             </Link> */}
             <div>
-              <span id='dropdownLogout' onClick={handleLogout}>
+              <span className='dropdown-links' onClick={handleLogout}>
                 Log Out
               </span>
             </div>

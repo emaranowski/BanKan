@@ -1,45 +1,92 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
-// import OpenModalButton from '../OpenModalButton';
-// import SignupFormModal from '../SignupFormModal';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import OpenModalButton from '../OpenModalButton';
+import SignupFormModal from '../SignupFormModal';
+import Footer from '../Footer';
 import './Home.css'
 
 export default function Home() {
-  // const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user)
 
   return (
     <>
-      <div id='homeBanner'>
-        <div id='homeBannerBg'>
-          {/* <img
-						id='homeBannerImg'
+      <div id='home-banner-bg'>
+        {/* <img
+						id='home-banner-img'
 						src=""
 					/> */}
-        </div>
-        <div id='homeBannerText'>
-          <div id='homeHeader'>
+      </div>
+
+      <div id='home-content'>
+        <div id='home-banner-text'>
+          <div id='home-header'>
             BanKan brings all your<br></br>
             tools and tasks together
           </div>
-          <div id='homeSubHeader'>
-            Keep it all in one place
+          <div id='home-sub-header'>
+            Keep it all in one place.
           </div>
-          {/* <div id='homeSignupBtn'>
-						Sign up for free
-					</div> */}
-
-          {/* {!sessionUser ?
-						<div id='homeSignupBtn'>
-							<OpenModalButton
-								buttonText="Sign up - it's free!"
-								modalComponent={<SignupFormModal />}
-							/>
-						</div>
-						: null
-					} */}
-
+          {!sessionUser ?
+            <div id='home-signup-btn'>
+              <OpenModalButton
+                buttonText="Sign up - it's free!"
+                modalComponent={<SignupFormModal />}
+              />
+            </div>
+            :
+            <Link to='/boards'>
+              <button id='home-my-boards-btn'>
+                Go to my boards
+              </button>
+            </Link>
+          }
         </div>
+
+        <div className='home-content-section'>
+          <div className='home-content-mini-header'>
+            BANKAN 101
+          </div>
+          <div className='home-content-section-header'>
+            Power your productivity
+          </div>
+          <div className='home-content-section-text'>
+            Streamlined and minimalistic.
+            Create dynamic boards. Jot down notes. Check things off your lists.
+            Cut the clutter with just what you need. Start in seconds.
+          </div>
+        </div>
+
+        <div className='home-content-section'>
+          <div className='home-content-mini-header'>
+            BANKAN IN ACTION
+          </div>
+          <div className='home-content-section-header'>
+            Tackle workflows for any project
+          </div>
+          <div className='home-content-section-text'>
+            Whether it's project management, meetings, brainstorming, or onboarding – BanKan makes it easy.
+          </div>
+        </div>
+
+        <div className='home-content-section' id='home-content-last-section'>
+          <div className='home-content-mini-header'>
+            POWERFUL WAYS TO GROW
+          </div>
+          <div className='home-content-section-header'>
+            Focus on what inspires
+          </div>
+          <div className='home-content-section-text'>
+            Take the headache out of tasks, notes, and to-dos.
+            BanKan keeps it all clear and organized,
+            so you can work on what counts.
+          </div>
+        </div>
+
+      </div>
+
+      <div id='home-footer-container'>
+        <Footer></Footer>
       </div>
     </>
   )

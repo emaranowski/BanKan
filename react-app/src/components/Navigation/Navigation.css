@@ -1,64 +1,118 @@
 nav {
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 12px 12px 12px;
-  /* border-bottom: .5px solid grey; */
+  height: 61px;
+  position: sticky;
+  top: 0px;
+  /* box-shadow: 0px 5px 25px rgba(44, 44, 255, 0.2); */
+  box-shadow: 0px 5px 30px rgba(99, 99, 99, 0.2);
+  background-color: #FFFFFF;
 }
 
-#navRight {
+#nav-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 25px;
 }
 
-#navLogo {
+#nav-logo-text {
   font-size: 30px;
+  margin-left: 20px;
+  font-weight: 600;
+  color: #283c5c;
 }
 
-#navFeatures {
+#nav-features {
   font-size: 17px;
 }
 
-#navPlans {
+#nav-plans {
   font-size: 17px;
 }
 
-#navLeft {
+#nav-left {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
+  gap: 13px;
 }
 
-#navLogin {
-  font-size: 17px;
+#nav-login button {
+  font-size: 19px;
+  color: #182c4c;
+  background-color: white;
+  font-weight: 500;
 }
 
-#navSignup {
-  font-size: 17px;
+#nav-signup button {
+  font-size: 19px;
+  height: 61px;
+  color: #FFFFFF;
+  background-color: #0864fc;
+  padding: 0 18px;
+  border-radius: 0;
+  transition: background-color .5s;
+}
+
+#nav-signup button:hover {
+  background-color: #0844a4;
+}
+
+#nav-profile-dropdown-btn {
+  font-size: 19px;
+  height: 61px;
+  width: 69px;
+  color: #FFFFFF;
+  background-color: #0844a4;
+  padding: 0 18px;
+  border-radius: 0;
+  transition: background-color .5s;
+}
+
+#nav-profile-dropdown-btn:hover {
+  background-color: #0864fc;
+}
+
+#nav-profile-dropdown-btn i {
+  font-size: 23px;
+  color: #FFFFFF;
 }
 
 .profile-dropdown {
   position: absolute;
-  top: 0px;
-  right: -1px;
-  height: 15%;
-  width: 120px;
-  padding: 40px 50px;
+  top: 61px;
+  right: 0px;
+  height: 155px;
+  width: 110px;
+  padding: 25px 50px;
   background-color: #FFFFFF;
-  border-radius: 3px;
-  box-shadow: 10px 0px 100px #e5e5e5;
+  /* box-shadow: 10px 0px 100px #e5e5e5; */
+  /* box-shadow: -7px 7px 25px rgba(44, 44, 255, 0.15); */
+  box-shadow: -7px 7px 25px rgba(99, 99, 99, 0.18);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 30px;
 }
 
 .hidden {
   display: none;
 }
 
-#dropdownLogout {
+#dropdown-username {
+  padding-left: 10px;
+}
+
+.dropdown-links {
+  padding: 7px 10px;
+  border-radius: 10px;
+  transition: background-color .4s;
+}
+
+.dropdown-links:hover {
   cursor: pointer;
+  /* background-color: rgba(39, 61, 251, 0.1); */
+  background-color: rgba(99, 99, 99, 0.1);
 }

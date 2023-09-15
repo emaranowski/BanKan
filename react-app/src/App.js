@@ -11,7 +11,7 @@ import BoardsAll from "./components/BoardsAll";
 import BoardDetails from "./components/BoardDetails";
 import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -50,7 +50,5 @@ function App() {
       )}
       {/* <Footer /> */}
     </>
-  );
-}
-
-export default App;
+  )
+};
