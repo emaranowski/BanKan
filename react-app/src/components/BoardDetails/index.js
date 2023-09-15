@@ -137,6 +137,8 @@ export default function BoardDetails() {
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
 
+
+
     //////// CASE 2: drop across two diff cols
     if (source.droppableId !== destination.droppableId) {
 
@@ -223,6 +225,8 @@ export default function BoardDetails() {
       updateCardOrderOnColumn(columnUpdatedDest);
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
+
+
 
     // ORIG
     // cardOrderArr.splice(source.index, 1); // remove 1 at idx
