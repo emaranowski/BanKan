@@ -174,9 +174,9 @@ export default function BoardDetails() {
         cardOrder: cardOrderUpdatedStrDest,
       };
 
-      console.log('|||||| cardUpdated:', cardUpdated)
-      console.log('|||||| columnUpdatedSrc:', columnUpdatedSrc)
-      console.log('|||||| columnUpdatedDest:', columnUpdatedDest)
+      // console.log('|||||| cardUpdated:', cardUpdated)
+      // console.log('|||||| columnUpdatedSrc:', columnUpdatedSrc)
+      // console.log('|||||| columnUpdatedDest:', columnUpdatedDest)
 
       // SRC -- get idx of columnToUpdate (from orig 'columns' arr)
       // SRC -- at that idx in 'columns': 1. remove columnToUpdate, 2. add colUpdated
