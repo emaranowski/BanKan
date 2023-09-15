@@ -80,29 +80,33 @@
     background-color: #0864fc;
 }
 
-#home-content-section {
+.home-content-section {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-bottom: 60px;
 }
 
-#home-content-mini-header {
+.home-content-mini-header {
     color: #283c5c;
     font-size: 15px;
     font-weight: 600;
 }
 
-#home-content-section-header {
+.home-content-section-header {
     font-size: 34px;
     font-weight: 600;
 }
 
-#home-content-section-text {
+.home-content-section-text {
     margin-top: 8px;
     font-size: 19.5px;
     font-weight: 400;
     letter-spacing: .04rem;
     line-height: 1.75rem;
     width: 505px;
+}
+
+#home-content-last-section {
+    margin-bottom: 60px;
 }

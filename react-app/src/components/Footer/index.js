@@ -20,7 +20,7 @@ export default function Footer() {
 
   return (
     <>
-      <div id="footer">
+      <footer id="footer">
 
         <div id='footer-row-1'>
 
@@ -91,7 +91,7 @@ export default function Footer() {
 
         </div>
 
-      </div>
+      </footer>
     </>
   )
 };

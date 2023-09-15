@@ -6,9 +6,16 @@
     text-decoration: none;
 }
 
-/* #root {
-    width: 100% !important;
-} */
+#root {
+    /* width: 100% !important; */
+    /* position: relative; */
+    /* min-height: 100vh; */
+}
+
+#content {
+    /* position: relative; */
+    padding-bottom: 3rem;
+}
 
 button {
     border: none;
