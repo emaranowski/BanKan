@@ -74,7 +74,7 @@ export default function Home() {
             POWERFUL WAYS TO GROW
           </div>
           <div className='home-content-section-header'>
-            Focus on what inspires
+            Focus on what inspires you
           </div>
           <div className='home-content-section-text'>
             Take the headache out of tasks, notes, and to-dos.
