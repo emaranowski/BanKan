@@ -73,12 +73,12 @@ export default function Home() {
             POWERFUL WAYS TO GROW
           </div>
           <div id='home-content-section-header'>
-            Focus on what really counts
+            Focus on what inspires
           </div>
           <div id='home-content-section-text'>
-            Take the headache out of tracking tasks, notes, and to-dos.
+            Take the headache out of tasks, notes, and to-dos.
             BanKan keeps it all clear and organized,
-            so you can focus on the work that inspires you.
+            so you can work on what counts.
           </div>
         </div>
 

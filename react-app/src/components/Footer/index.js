@@ -82,6 +82,11 @@ export default function Footer() {
             <span className='footer-tech-icon'>JS</span>
             <span className='footer-tech-icon'>HTML</span>
             <span className='footer-tech-icon'>CSS</span>
+            {/* <i class="fa-brands fa-react"></i>
+            <i class="fa-brands fa-python"></i>
+            <i class="fa-brands fa-js"></i>
+            <i class="fa-brands fa-html5"></i>
+            <i class="fa-brands fa-css3-alt"></i> */}
           </span>
 
         </div>
