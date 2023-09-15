@@ -73,7 +73,6 @@
     padding: 25px 100px 23px 100px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     gap: 10px;
 }
@@ -84,21 +83,18 @@
 }
 
 #footer-tech {
-    margin-top: -2px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 17px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 #footer-tech-used {
-    color: #FFFFFF;
-    font-size: 12.5px;
-    margin-right: 17px;
+    margin-right: 5px;
 }
 
-.footer-tech-icon {
+#footer-tech span {
     color: #FFFFFF;
     font-size: 12.5px;
 }
