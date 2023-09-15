@@ -78,7 +78,43 @@ export default function BoardDetails() {
       return;
     };
 
-    //////// CASE 2: drop into diff col
+    //////// CASE 1: drop within one single col
+    if (source.droppableId === destination.droppableId) {
+
+      // get col to update (col where dndId matches source.droppableId)
+      const columnArr = columns.filter(column => {
+        return column.dndId === source.droppableId;
+      });
+      const columnToUpdate = columnArr[0];
+
+      // convert cardOrder: str to arr
+      const cardOrderStr = columnToUpdate.cardOrder;
+      const cardOrderArr = cardOrderStr.split(',');
+
+      // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
+      const movedCardDndIdArr = cardOrderArr.splice(source.index, 1); // at srcIdx: remove 1
+      const movedCardDndId = movedCardDndIdArr[0];
+      cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
+
+      // convert cardOrder: arr to str
+      const cardOrderUpdatedStr = cardOrderArr.toString();
+
+      // create colUpdated w/ updated card order
+      const columnUpdated = {
+        ...columnToUpdate,
+        cardOrder: cardOrderUpdatedStr,
+      };
+
+      // get idx of colToUpdate (in orig 'columns' arr)
+      const columnToUpdateIdx = columns.indexOf(columnToUpdate);
+      // at colToUpdateIdx in 'columns': 1. remove colToUpdate, 2. add colUpdated
+      columns.splice(columnToUpdateIdx, 1, columnUpdated);
+
+      updateCardOrderOnColumn(columnUpdated); // update card order property on col
+      setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+    };
+
+    //////// CASE 2: drop across two diff cols
     if (source.droppableId !== destination.droppableId) {
 
       // SRC + DEST -- get col to update (where dndId matches source/dest.droppableId)
@@ -155,42 +191,6 @@ export default function BoardDetails() {
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
 
-    //////// CASE 1: drop within same col
-    if (source.droppableId === destination.droppableId) {
-
-      // get col to update (col where dndId matches source.droppableId)
-      const columnArr = columns.filter(column => {
-        return column.dndId === source.droppableId;
-      });
-      const columnToUpdate = columnArr[0];
-
-      // convert cardOrder: str to arr
-      const cardOrderStr = columnToUpdate.cardOrder;
-      const cardOrderArr = cardOrderStr.split(',');
-
-      // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
-      const movedCardDndIdArr = cardOrderArr.splice(source.index, 1); // at srcIdx: remove 1
-      const movedCardDndId = movedCardDndIdArr[0];
-      cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
-
-      // convert cardOrder: arr to str
-      const cardOrderUpdatedStr = cardOrderArr.toString();
-
-      // create colUpdated w/ updated card order
-      const columnUpdated = {
-        ...columnToUpdate,
-        cardOrder: cardOrderUpdatedStr,
-      };
-
-      // get idx of colToUpdate (in orig 'columns' arr)
-      const columnToUpdateIdx = columns.indexOf(columnToUpdate);
-      // at colToUpdateIdx in 'columns': 1. remove colToUpdate, 2. add colUpdated
-      columns.splice(columnToUpdateIdx, 1, columnUpdated);
-
-      updateCardOrderOnColumn(columnUpdated); // update card order property on col
-      setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
-    };
-
     // ORIG
     // cardOrderArr.splice(source.index, 1); // remove 1 at idx
     // cardOrderArr.splice(destination.index, 0, draggableId); // remove 0, add draggableId at idx
@@ -229,6 +229,7 @@ export default function BoardDetails() {
     //     return data;
     //   }
     // };
+
   };
 
 
