@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+// import { thunkGetOneCard } from '../../store/cards';
+// import { thunkGetAllCardsForColumn } from '../../store/cards';
+// import { thunkGetOneBoard } from '../../store/boards';
 import OpenModalButton from '../../components/OpenModalButton';
 import CardFormUpdate from '../CardFormUpdate';
 import CardDeleteModal from '../CardDeleteModal';
@@ -18,7 +21,8 @@ export default function Card({ boardId, column, card, index }) { // added index
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(true);
-  }, [dispatch, cardId, columnId, boardId, title]);
+    // dispatch(thunkGetAllCardsForColumn(columnId));
+  }, [dispatch, boardId, columnId, cardId, title]);
 
   // key should not include the index
   // can just use draggableId as key

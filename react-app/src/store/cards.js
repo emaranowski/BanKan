@@ -1,6 +1,6 @@
 //////////////////////////////// ACTION TYPE CONSTANTS ////////////////////////////////
 
-// const GET_ONE_CARD = "cards/getOneCard";
+const GET_ONE_CARD = "cards/getOneCard";
 const GET_ALL_CARDS = "cards/getAllCards";
 const CREATE_CARD = "cards/createCard";
 const UPDATE_CARD = "cards/updateCard";
@@ -8,12 +8,12 @@ const DELETE_CARD = "cards/deleteCard";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
 
-// const getOneCard = (card) => {
-//   return {
-//     type: GET_ONE_CARD,
-//     card
-//   }
-// };
+const getOneCard = (card) => {
+  return {
+    type: GET_ONE_CARD,
+    card
+  }
+};
 
 const getAllCards = (cards) => {
   return {
@@ -46,22 +46,22 @@ const deleteCard = (cardId) => {
 //////////////////////////////// THUNKS ////////////////////////////////
 
 // THUNK: GET ONE CARD
-// export const thunkGetOneCard = (cardId) => async (dispatch) => {
-//   // console.log('*** in thunkGetOneCard, cardId:', cardId);
-//   const res = await fetch(`/api/cards/${cardId}`, { method: "GET" });
-//   // console.log('*** in thunkGetOneCard, res:', res);
+export const thunkGetOneCard = (cardId) => async (dispatch) => {
+  // console.log('*** in thunkGetOneCard, cardId:', cardId);
+  const res = await fetch(`/api/cards/${cardId}`, { method: "GET" });
+  // console.log('*** in thunkGetOneCard, res:', res);
 
-//   if (res.ok) {
-//     const card = await res.json();
-//     // console.log('*** in thunkGetOneCard, RES OK card:', card);
-//     dispatch(getOneCard(card));
-//     return card;
-//   } else {
-//     const errors = await res.json();
-//     // console.log('*** in thunkGetOneCard, RES NOTOK errors:', errors);
-//     return errors;
-//   }
-// };
+  if (res.ok) {
+    const card = await res.json();
+    // console.log('*** in thunkGetOneCard, RES OK card:', card);
+    dispatch(getOneCard(card));
+    return card;
+  } else {
+    const errors = await res.json();
+    // console.log('*** in thunkGetOneCard, RES NOTOK errors:', errors);
+    return errors;
+  }
+};
 
 // THUNK: GET ALL CARDS
 export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
@@ -165,11 +165,11 @@ const initialState = {
 export default function cardsReducer(state = initialState, action) {
   switch (action.type) {
 
-    // case GET_ONE_CARD: {
-    //   const newState = { ...state, oneCard: {} };
-    //   newState.oneCard = action.card;
-    //   return newState;
-    // }
+    case GET_ONE_CARD: {
+      const newState = { ...state, oneCard: {} };
+      newState.oneCard = action.card;
+      return newState;
+    }
 
     case GET_ALL_CARDS: {
       const newState = { ...state, allCards: {} };
