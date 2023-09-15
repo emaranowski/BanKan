@@ -5,7 +5,6 @@ import { updateColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../
 // import { thunkUpdateCard } from '../../store/cards';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
-// import DragDropContext from "../../context/ReactBeautifulDnd";
 
 import OpenModalButton from "../OpenModalButton";
 import BoardFormUpdate from "../BoardFormUpdate";
