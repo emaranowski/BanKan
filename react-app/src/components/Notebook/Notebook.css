@@ -1,0 +1,72 @@
+#notebook_details_page_content {
+    padding: 25px 50px 800px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#notebook_details_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#notebook_details_title {
+    margin: 15px 0;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+#notebook_details_title_text {
+    font-weight: 400;
+}
+
+#notebook_details_btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+#notebook_details_btns button {
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+#notebook_details_btns button:hover {
+    background-color: #ededed;
+}
+
+#notebook_details_btns i {
+    color: #707070;
+}
+
+#notebook_details_all_columns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.notebook_details_one_column {
+    min-width: 275px;
+    max-width: 275px;
+}
+
+#notebook_details_add_col_btn button {
+    min-width: 275px;
+    max-width: 275px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    padding: 12.5px;
+    margin-top: -3px;
+
+    border-radius: 9px;
+    background-color: #ededed;
+}
+
+#notebook_details_add_col_btn button:hover {
+    background-color: #e5e5e5;
+}
