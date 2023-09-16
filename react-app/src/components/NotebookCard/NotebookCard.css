@@ -13,6 +13,8 @@
 
 #notebook-card-img-div {
     z-index: -2;
+    width: 350px;
+    height: 185px;
 }
 
 #notebook-card-img {
@@ -28,7 +30,7 @@
     position: absolute;
     margin: 20px;
     padding: 14px 18px;
-    font-size: 20px;
+    font-size: 17px;
     background-color: rgb(255 255 255 / 0.15);
     border-radius: 20px;
     box-shadow: 5px 15px 75px #FFFFFF;
