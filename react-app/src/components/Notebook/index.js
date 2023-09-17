@@ -8,7 +8,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import OpenModalButton from "../OpenModalButton";
 import NotebookFormUpdate from "../NotebookFormUpdate";
 import NotebookDeleteModal from "../NotebookDeleteModal";
-// import NoteFormCreate from '../NoteFormCreate';
+import NoteFormCreate from '../NoteFormCreate';
 import Note from "../Note";
 import './Notebook.css';
 
@@ -173,13 +173,13 @@ export default function Notebook() {
               )}
 
               <span id='notebook_details_add_note_btn'>
-                {/* <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
-                modalComponent={
-                  <NoteFormCreate
-                    notebookId={notebookId}
-                  />}
-              /> */}
+                <OpenModalButton
+                  buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
+                  modalComponent={
+                    <NoteFormCreate
+                      notebook={notebook}
+                    />}
+                />
               </span>
             </div>
 

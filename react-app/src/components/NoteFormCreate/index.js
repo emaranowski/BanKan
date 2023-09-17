@@ -1,9 +1,9 @@
 import NoteForm from '../NoteForm';
 
-export default function NoteFormCreate({ notebookId }) {
+export default function NoteFormCreate({ notebook }) {
 
   let note = {
-    notebookId,
+    notebookId: notebook.id,
     colorName: '',
     title: '',
     text: '',
@@ -12,6 +12,7 @@ export default function NoteFormCreate({ notebookId }) {
   return (
     <NoteForm
       formType='Create Note'
+      notebook={notebook}
       note={note}
     />
   )

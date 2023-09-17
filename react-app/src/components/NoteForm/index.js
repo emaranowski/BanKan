@@ -2,15 +2,17 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
-import { thunkCreateNoteForNotebook } from "../../store/notes";
+import { thunkCreateNoteForNotebook, thunkGetAllNotesForNotebook } from "../../store/notes";
 import { thunkUpdateNote } from "../../store/notes";
 import './NoteForm.css';
+import { thunkGetOneNotebook, thunkUpdateNotebook } from "../../store/notebooks";
 
-export default function NoteForm({ formType, note }) {
+export default function NoteForm({ formType, notebook, note }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
-  const notebookId = note.notebookId;
+  const notebookId = notebook.id;
+  const noteOrderArr = notebook.noteOrder.split(',');
 
   const [colorName, setColorName] = useState(note?.colorName);
   const [colorSelected, setColorSelected] = useState(false);
@@ -20,6 +22,7 @@ export default function NoteForm({ formType, note }) {
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   // console.log('**** in NoteForm, colorName:', colorName)
@@ -93,7 +96,7 @@ export default function NoteForm({ formType, note }) {
     if (formType === 'Create Note') {
       note = {
         ...note,
-        notebookId,
+        // notebookId,
         colorName,
         title,
         text,
@@ -104,9 +107,27 @@ export default function NoteForm({ formType, note }) {
         const res = await dispatch(thunkCreateNoteForNotebook(note)); // VScode gives note about not needing 'await', but it IS needed
         // console.log('**** in CREATE NOTE TRY, res:', res)
         if (res.id) {
+
+          if (noteOrderArr[0] === '') {
+            noteOrderArr.splice(0, 1); // remove 1 at idx 0
+            noteOrderArr.splice(0, 0, res.dndId); // remove 0, add res.dndId at idx 0
+          } else if (noteOrderArr[0] !== '') {
+            noteOrderArr.push(res.dndId)
+          }
+
+          const noteOrderUpdatedStr = noteOrderArr.toString();
+
+          const notebookUpdated = {
+            ...notebook,
+            noteOrder: noteOrderUpdatedStr,
+          };
+
+          dispatch(thunkUpdateNotebook(notebookUpdated));
+
           setErrors({});
           history.push(`/notebooks/${notebookId}`);
           closeModal();
+
         } else if (res.errors) {
           setErrors(res.errors);
         }
@@ -123,7 +144,7 @@ export default function NoteForm({ formType, note }) {
     } else if (formType === 'Update Note') {
       note = {
         ...note,
-        notebookId,
+        // notebookId,
         colorName,
         title,
         text,
@@ -136,6 +157,7 @@ export default function NoteForm({ formType, note }) {
           setErrors({});
           history.push(`/notebooks/${notebookId}`);
           closeModal();
+          dispatch(thunkGetOneNotebook(notebookId));
         } else {
           return res;
         }
@@ -146,6 +168,7 @@ export default function NoteForm({ formType, note }) {
         }
       }
     }
+
   };
 
   return (
