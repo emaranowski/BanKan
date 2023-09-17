@@ -36,16 +36,16 @@ export default function Note({ notebook, note, index }) {
           </span>
 
           <span id='note-btns'>
-            {/* <OpenModalButton
-							buttonText={<i class="fa-regular fa-pen-to-square"></i>}
-							modalComponent={
-								<NoteFormUpdate
-                notebook={notebook}
-									note={note}
-								/>}
-						/>
+            <OpenModalButton
+              buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+              modalComponent={
+                <NoteFormUpdate
+                  notebook={notebook}
+                  note={note}
+                />}
+            />
 
-						<OpenModalButton
+            {/* <OpenModalButton
 							buttonText={<i class="fa-regular fa-trash-can"></i>}
 							modalComponent={
 								<NoteDeleteModal
