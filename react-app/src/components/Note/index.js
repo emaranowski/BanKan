@@ -6,21 +6,22 @@ import NoteFormUpdate from '../NoteFormUpdate';
 import NoteDeleteModal from '../NoteDeleteModal';
 import './Note.css';
 
-export default function Note({ notebook, note, index }) {
+export default function Note({ notebook, note }) {
   const dispatch = useDispatch();
-  const noteId = note.id;
   const notebookId = notebook.id;
+  const noteId = note.id;
+  const color = note.colorName;
   const title = note.title;
   const text = note.text;
   const dndId = note.dndId;
 
-  // console.log('**** in Note, note:', note)
+  console.log('**** in Note, note:', note)
 
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     setIsLoaded(true);
-    // dispatch(thunkGetAllNotesForNotebook(notebookId));
-  }, [dispatch, notebookId, noteId, title, text]);
+  }, [dispatch, noteId, title, text]);
 
   return (<>
     {isLoaded && (
@@ -30,6 +31,10 @@ export default function Note({ notebook, note, index }) {
         id='note'
 
       >
+
+        <div id='note-color-swatch' className={color}>
+        </div>
+
         <div id='note-title-and-btns'>
           <span id='note-title'>
             {title}
