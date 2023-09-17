@@ -4,6 +4,7 @@ import { thunkGetOneNotebook, thunkUpdateNotebook } from '../../store/notebooks'
 import { thunkGetAllNotesForNotebook } from '../../store/notes';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 import OpenModalButton from "../OpenModalButton";
 // import NotebookFormUpdate from "../NotebookFormUpdate";
 // import NotebookDeleteModal from "../NotebookDeleteModal";
@@ -17,7 +18,20 @@ export default function Notebook() {
   const notebook = useSelector(state => state.notebooks.oneNotebook);
   const imageUrl = notebook.imageUrl;
   const title = notebook.title;
-  const notes = Object.values(useSelector(state => state.notes.allNotes));
+  const dndId = notebook.dndId;
+  // const noteOrderArr = notebook.noteOrder.split(',');
+  const notes = notebook.notes;
+  // const notes = Object.values(useSelector(state => state.notes.allNotes));
+  console.log('||||||| in Notebook, notebook:', notebook)
+  console.log('||||||| in Notebook, notebook.noteOrder:', notebook.noteOrder)
+  console.log('||||||| in Notebook, dndId:', dndId)
+
+  const notesOrdered = [];
+  // noteOrderArr.forEach(noteDndId => {
+  //   notes.forEach(note => {
+  //     if (noteDndId === note.dndId) notesOrdered.push(note);
+  //   })
+  // });
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,7 +57,7 @@ export default function Notebook() {
   };
 
   const onDragEnd = (result) => {
-    const { draggableId, source, destination } = result;
+    const { source, destination } = result;
     // return if: no destination, or dropped back into original spot
     if (!destination) return;
     if (source.droppableId === destination.droppableId &&
@@ -89,65 +103,89 @@ export default function Notebook() {
 
 
   return (<>{isLoaded && (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div id='notebook_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-        <div id='notebook_details_page_content'>
-          <Link to={`/notebooks`}>
-            ⬅ Back to my notebooks
-          </Link>
+    <div id='notebook_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-          <div id='notebook_details_header'>
-            <div id='notebook_details_title'>
-              <span id='notebook_details_title_text'>{title}</span>
-            </div>
+      <div id='notebook_details_page_content'>
+        <Link to={`/notebooks`}>
+          ⬅ Back to my notebooks
+        </Link>
 
-            <div id='notebook_details_btns'>
-              <span id='notebook_details_update_btn'>
-                {/* <OpenModalButton
+        <div id='notebook_details_header'>
+          <div id='notebook_details_title'>
+            <span id='notebook_details_title_text'>{title}</span>
+          </div>
+
+          <div id='notebook_details_btns'>
+            <span id='notebook_details_update_btn'>
+              {/* <OpenModalButton
                   buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                   modalComponent={
                     <NotebookFormUpdate
                       notebook={notebook}
                     />}
                 /> */}
-              </span>
+            </span>
 
-              <span id='notebook_details_delete_btn'>
-                {/* <OpenModalButton
+            <span id='notebook_details_delete_btn'>
+              {/* <OpenModalButton
                   buttonText={<i class="fa-regular fa-trash-can"></i>}
                   modalComponent={
                     <NotebookDeleteModal
                       notebookId={notebookId}
                     />}
                 /> */}
-              </span>
+            </span>
 
-            </div>
           </div>
+        </div>
 
-          <div id='notebook_details_all_notes'>
-            {/* {notes && (
-              notes.map((note) => (
-                <span className='notebook_details_one_note' key={note.id}>
-                  <Note key={note.id} note={note} />
-                </span>
-              ))
-            )} */}
+        {/* <Droppable droppableId={dndId}>
+            {(provided, snapshot) => (
+              <div
+                id='notebook_notes'
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {notesOrdered && (
+                  notesOrdered.map((note, index) => (
+                    <Note
+                      key={note.id}
+                      notebook={notebook}
+                      note={note}
+                      index={index}
+                    />
+                  ))
+                )}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable> */}
 
-            <span id='notebook_details_add_note_btn'>
-              {/* <OpenModalButton
+        <div id='notebook_details_all_notes'>
+          {notes && (
+            notes.map((note) => (
+              <span className='notebook_details_one_note' key={note.id}>
+                <Note key={note.id} notebook={notebook} note={note} index={0} />
+              </span>
+            ))
+          )}
+
+          <span id='notebook_details_add_note_btn'>
+            {/* <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
                 modalComponent={
                   <NoteFormCreate
                     notebookId={notebookId}
                   />}
               /> */}
-            </span>
-          </div>
+          </span>
         </div>
 
-      </div >
-    </DragDropContext>
-  )}</>)
+      </div>
+    </div>
+
+
+  )
+  }</>)
 };

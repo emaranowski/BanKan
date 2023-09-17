@@ -6,11 +6,12 @@ import OpenModalButton from '../../components/OpenModalButton';
 // import NoteDeleteModal from '../NoteDeleteModal';
 import './Note.css';
 
-export default function Note({ boardId, notebook, note, index }) { // added index
+export default function Note({ notebook, note, index }) {
 	const dispatch = useDispatch();
 	const noteId = note.id;
-	const notebookId = note.notebookId;
+	const notebookId = notebook.id;
 	const title = note.title;
+	const text = note.text;
 	const dndId = note.dndId;
 
 	// console.log('**** in Note, note:', note)
@@ -19,26 +20,20 @@ export default function Note({ boardId, notebook, note, index }) { // added inde
 	useEffect(() => {
 		setIsLoaded(true);
 		// dispatch(thunkGetAllNotesForNotebook(notebookId));
-	}, [dispatch, boardId, notebookId, noteId, title]);
-
-	// key should not include the index
-	// can just use draggableId as key
+	}, [dispatch, notebookId, noteId, title, text]);
 
 	return (<>{isLoaded && (
-		<Draggable draggableId={dndId} index={index}>
-			{(provided, snapshot) => (
-				<div
-					id='note'
-					ref={provided.innerRef}
-					{...provided.draggableProps}
-					{...provided.dragHandleProps}
-				>
-					<span id='note_title'>
-						{title}
-					</span>
 
-					<span id='note_btns'>
-						{/* <OpenModalButton
+
+		<div
+			id='note'
+		>
+			<span id='note_title'>
+				{title}
+			</span>
+
+			<span id='note_btns'>
+				{/* <OpenModalButton
 							buttonText={<i class="fa-regular fa-pen-to-square"></i>}
 							modalComponent={
 								<NoteFormUpdate
@@ -57,9 +52,9 @@ export default function Note({ boardId, notebook, note, index }) { // added inde
 									notebookId={notebookId}
 								/>}
 						/> */}
-					</span>
-				</div>
-			)}
-		</Draggable>
+			</span>
+		</div>
+
+
 	)}</>)
 };

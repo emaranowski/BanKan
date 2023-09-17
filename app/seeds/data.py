@@ -433,7 +433,7 @@ notebooks = [
     'user_id': 1,
     'image_url': 'https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
     'title': 'Houseplant website idea',
-    'note_order': '',
+    'note_order': 'note-1,note-2,note-3,note-4,note-5,note-6',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
@@ -442,7 +442,7 @@ notebooks = [
     'user_id': 1,
     'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
     'title': 'ShouldReads/GoodReads clone idea',
-    'note_order': '',
+    'note_order': 'note-7,note-8,note-9,note-10,note-11,note-12',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   },
@@ -451,7 +451,7 @@ notebooks = [
     'user_id': 1,
     'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
     'title': 'Coding Resources',
-    'note_order': '',
+    'note_order': 'note-13,note-14,note-15',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
   }
@@ -504,7 +504,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 5,
+    'id': 6,
     'notebook_id': 1,
     'color_name': 'green',
     'title': 'Feature: My past plants',
@@ -513,7 +513,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 6,
+    'id': 7,
     'notebook_id': 2,
     'color_name': 'lightgray',
     'title': 'Try real books API',
@@ -522,7 +522,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 7,
+    'id': 8,
     'notebook_id': 2,
     'color_name': 'lightgray',
     'title': 'Feature: Want to Read',
@@ -531,7 +531,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 8,
+    'id': 9,
     'notebook_id': 2,
     'color_name': 'lightgray',
     'title': 'Feature: Have Read',
@@ -540,7 +540,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 9,
+    'id': 10,
     'notebook_id': 2,
     'color_name': 'lightgray',
     'title': 'Feature: Book',
@@ -549,7 +549,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 10,
+    'id': 11,
     'notebook_id': 2,
     'color_name': 'lightgray',
     'title': 'Feature: Account Profile',
@@ -558,7 +558,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 11,
+    'id': 12,
     'notebook_id': 2,
     'color_name': 'lightgray',
     'title': 'Feature: Groups',
@@ -567,7 +567,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 12,
+    'id': 13,
     'notebook_id': 3,
     'color_name': 'orange',
     'title': 'Leetcode',
@@ -576,7 +576,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 13,
+    'id': 14,
     'notebook_id': 3,
     'color_name': 'orange',
     'title': 'Structy',
@@ -585,7 +585,7 @@ notes = [
     'updated_at': datetime.datetime.now()
   },
   {
-    'id': 14,
+    'id': 15,
     'notebook_id': 3,
     'color_name': 'orange',
     'title': 'a/A Docker Materials',
