@@ -6,17 +6,26 @@
     align-items: flex-start;
     gap: 12px;
     border: .5px solid #e1e1e1;
-    padding: 15px;
+    padding: 10px 9px 15px 15px;
     border-radius: 2.5px;
     background-color: white;
     margin: 10px 0;
 }
 
+#note-color-swatch-and-btns {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -10px;
+}
+
 #note-color-swatch {
     height: 7px;
-    width: 20%;
+    width: 15%;
     border-radius: 50px;
-    margin-bottom: 5px;
+    margin-top: -4px;
 }
 
 .red {
@@ -63,17 +72,9 @@
     font-size: 22px;
 }
 
-#note-title-and-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
 #note-btns {
     display: flex;
     flex-direction: row;
-    gap: 2px;
 }
 
 #note-btns button {
@@ -86,7 +87,7 @@
 }
 
 #note-btns i {
-    color: #707070;
+    color: #bbbbbb;
 }
 
 #note-text {

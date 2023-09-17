@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
+// import { Draggable } from 'react-beautiful-dnd';
 import OpenModalButton from '../../components/OpenModalButton';
 import NoteFormUpdate from '../NoteFormUpdate';
 import NoteDeleteModal from '../NoteDeleteModal';
@@ -32,14 +32,8 @@ export default function Note({ notebook, note }) {
 
       >
 
-        <div id='note-color-swatch' className={color}>
-        </div>
-
-        <div id='note-title-and-btns'>
-          <span id='note-title'>
-            {title}
-          </span>
-
+        <div id='note-color-swatch-and-btns'>
+          <span id='note-color-swatch' className={color}></span>
           <span id='note-btns'>
             <OpenModalButton
               buttonText={<i class="fa-regular fa-pen-to-square"></i>}
@@ -49,7 +43,6 @@ export default function Note({ notebook, note }) {
                   note={note}
                 />}
             />
-
             <OpenModalButton
               buttonText={<i class="fa-regular fa-trash-can"></i>}
               modalComponent={
@@ -60,9 +53,13 @@ export default function Note({ notebook, note }) {
             />
           </span>
         </div>
+        <div id='note-title'>
+          {title}
+        </div>
         <div id='note-text'>
           {text}
         </div>
+
       </div>
 
 
