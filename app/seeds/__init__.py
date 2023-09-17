@@ -5,6 +5,8 @@ from .preset_images import seed_preset_images, undo_preset_images
 from .columns import seed_columns, undo_columns
 from .preset_colors import seed_preset_colors, undo_preset_colors
 from .cards import seed_cards, undo_cards
+from .notebooks import seed_notebooks, undo_notebooks
+from .notes import seed_notes, undo_notes
 
 from app.models.db import db, environment, SCHEMA
 
@@ -37,12 +39,16 @@ def seed():
     seed_preset_colors()
     seed_columns()
     seed_cards()
+    seed_notebooks()
+    seed_notes()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_notes()
+    undo_notebooks()
     undo_cards()
     undo_columns()
     undo_preset_colors()

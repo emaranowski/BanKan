@@ -43,3 +43,6 @@ class User(db.Model, UserMixin):
 
     # one-to-many: one user can have many boards
     boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")
+
+    # one-to-many: one user can have many notebooks
+    notebooks_rel = db.relationship("Notebook", back_populates="users_rel", cascade="all, delete-orphan")

@@ -1,0 +1,37 @@
+#notebook-card {
+    display: flex;
+    justify-items: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    transition: box-shadow .5s;
+}
+
+#notebook-card:hover {
+    box-shadow: 5px 5px 25px #cccccc;
+}
+
+#notebook-card-img-div {
+    z-index: -2;
+    width: 350px;
+    height: 185px;
+}
+
+#notebook-card-img {
+    width: 350px;
+    height: 185px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: -4px;
+}
+
+#notebook-card-title {
+    z-index: -1;
+    position: absolute;
+    margin: 20px;
+    padding: 14px 18px;
+    font-size: 17px;
+    background-color: rgb(255 255 255 / 0.15);
+    border-radius: 20px;
+    box-shadow: 5px 15px 75px #FFFFFF;
+}
