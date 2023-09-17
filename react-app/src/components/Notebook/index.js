@@ -6,8 +6,8 @@ import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable } from 'react-beautiful-dnd';
 import OpenModalButton from "../OpenModalButton";
-// import NotebookFormUpdate from "../NotebookFormUpdate";
-// import NotebookDeleteModal from "../NotebookDeleteModal";
+import NotebookFormUpdate from "../NotebookFormUpdate";
+import NotebookDeleteModal from "../NotebookDeleteModal";
 // import NoteFormCreate from '../NoteFormCreate';
 import Note from "../Note";
 import './Notebook.css';
@@ -119,23 +119,23 @@ export default function Notebook() {
 
               <div id='notebook_details_btns'>
                 <span id='notebook_details_update_btn'>
-                  {/* <OpenModalButton
-                  buttonText={<i class="fa-regular fa-pen-to-square"></i>}
-                  modalComponent={
-                    <NotebookFormUpdate
-                      notebook={notebook}
-                    />}
-                /> */}
+                  <OpenModalButton
+                    buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+                    modalComponent={
+                      <NotebookFormUpdate
+                        notebook={notebook}
+                      />}
+                  />
                 </span>
 
                 <span id='notebook_details_delete_btn'>
-                  {/* <OpenModalButton
-                  buttonText={<i class="fa-regular fa-trash-can"></i>}
-                  modalComponent={
-                    <NotebookDeleteModal
-                      notebookId={notebookId}
-                    />}
-                /> */}
+                  <OpenModalButton
+                    buttonText={<i class="fa-regular fa-trash-can"></i>}
+                    modalComponent={
+                      <NotebookDeleteModal
+                        notebookId={notebookId}
+                      />}
+                  />
                 </span>
 
               </div>

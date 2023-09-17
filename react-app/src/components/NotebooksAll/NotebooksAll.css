@@ -16,8 +16,8 @@
 }
 
 #notebooksHeaderAddBtn button {
-    min-width: 105px;
-    max-width: 105px;
+    min-width: 130px;
+    max-width: 130px;
 
     display: flex;
     flex-direction: row;

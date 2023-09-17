@@ -5,7 +5,7 @@ import { thunkGetAllNotebooks } from '../../store/notebooks';
 import NotebookCard from "../NotebookCard";
 // import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
-// import NotebookFormCreate from "../NotebookFormCreate";
+import NotebookFormCreate from "../NotebookFormCreate";
 import './NotebooksAll.css'
 
 export default function NotebooksAll() {
@@ -13,8 +13,6 @@ export default function NotebooksAll() {
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id;
   const notebooks = Object.values(useSelector(state => state.notebooks.allNotebooks));
-
-  // console.log('**** in NotebooksAll, notebooks:', notebooks)
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -29,13 +27,13 @@ export default function NotebooksAll() {
           <div id='notebooksHeader'>
             <span id='notebooksHeaderText'>My Notebooks</span>
             <span id='notebooksHeaderAddBtn'>
-              {/* <OpenModalButton
+              <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add notebook</span></i>}
                 modalComponent={
                   <NotebookFormCreate
                     userId={userId}
                   />}
-              /> */}
+              />
             </span>
           </div>
           <div id='notebookCards'>
