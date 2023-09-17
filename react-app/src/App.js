@@ -9,7 +9,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import BoardsAll from "./components/BoardsAll";
 import BoardDetails from "./components/BoardDetails";
-import Footer from "./components/Footer";
+import NotebooksAll from "./components/NotebooksAll";
+import Notebook from "./components/Notebook";
+// import Footer from "./components/Footer";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,14 @@ export default function App() {
 
           <ProtectedRoute exact path='/boards/:boardId'>
             <BoardDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path='/notebooks'>
+            <NotebooksAll />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path='/notebooks/:notebookId'>
+            <Notebook />
           </ProtectedRoute>
 
           <Route>

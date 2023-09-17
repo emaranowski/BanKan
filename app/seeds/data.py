@@ -426,3 +426,171 @@ cards = [
     'updated_at': datetime.datetime.now()
   }
 ]
+
+notebooks = [
+  {
+    'id': 1,
+    'user_id': 1,
+    'image_url': 'https://images.unsplash.com/photo-1579547621706-1a9c79d5c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
+    'title': 'Houseplant website',
+    'note_order': 'note-1,note-2,note-3,note-4,note-5,note-6',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 2,
+    'user_id': 1,
+    'image_url': 'https://images.unsplash.com/photo-1621799754526-a0d52c49fad5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3087&q=80',
+    'title': 'ShouldReads/GoodReads clone',
+    'note_order': 'note-7,note-8,note-9,note-10,note-11,note-12',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 3,
+    'user_id': 1,
+    'image_url': 'https://images.unsplash.com/photo-1604340083878-a3947d1775c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
+    'title': 'Coding resources',
+    'note_order': 'note-13,note-14,note-15',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  }
+]
+
+notes = [
+  {
+    'id': 1,
+    'notebook_id': 1,
+    'color_name': 'green',
+    'title': 'Use real plant API',
+    'text': 'Look for good plant API',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 2,
+    'notebook_id': 1,
+    'color_name': 'green',
+    'title': 'Feature: Account',
+    'text': 'Properties: zip code, growing region, humidity',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 3,
+    'notebook_id': 1,
+    'color_name': 'green',
+    'title': 'Feature: Room',
+    'text': 'Properties: lighting, windows, window direction (if windows), temperature',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 4,
+    'notebook_id': 1,
+    'color_name': 'green',
+    'title': 'Feature: Wishlist',
+    'text': 'Properties: plant name, description, size, water, light, notes',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 5,
+    'notebook_id': 1,
+    'color_name': 'green',
+    'title': 'Feature: My current plants',
+    'text': 'Properties: plant name, description, size, water, light, notes',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 6,
+    'notebook_id': 1,
+    'color_name': 'green',
+    'title': 'Feature: My past plants',
+    'text': 'Properties: plant name, description, size, water, light, notes',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 7,
+    'notebook_id': 2,
+    'color_name': 'lightgray',
+    'title': 'Try real books API',
+    'text': 'Maybe Google Books API? Or GoodReads API?',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 8,
+    'notebook_id': 2,
+    'color_name': 'lightgray',
+    'title': 'Feature: Want to Read',
+    'text': 'Properties: books',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 9,
+    'notebook_id': 2,
+    'color_name': 'lightgray',
+    'title': 'Feature: Have Read',
+    'text': 'Properties: books',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 10,
+    'notebook_id': 2,
+    'color_name': 'lightgray',
+    'title': 'Feature: Book',
+    'text': 'Properties: book title, description, genre, pages',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 11,
+    'notebook_id': 2,
+    'color_name': 'lightgray',
+    'title': 'Feature: Account Profile',
+    'text': 'Properties: favorite genres, favorite books, username, about',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 12,
+    'notebook_id': 2,
+    'color_name': 'lightgray',
+    'title': 'Feature: Groups',
+    'text': 'Properties: members, genres, authors',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 13,
+    'notebook_id': 3,
+    'color_name': 'orange',
+    'title': 'Leetcode',
+    'text': '',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 14,
+    'notebook_id': 3,
+    'color_name': 'orange',
+    'title': 'Structy',
+    'text': '',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  },
+  {
+    'id': 15,
+    'notebook_id': 3,
+    'color_name': 'orange',
+    'title': 'a/A Docker Materials',
+    'text': '',
+    'created_at': datetime.datetime.now(),
+    'updated_at': datetime.datetime.now()
+  }
+]

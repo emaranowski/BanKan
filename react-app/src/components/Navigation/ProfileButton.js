@@ -57,6 +57,11 @@ function ProfileButton({ user }) {
                 Boards
               </span>
             </Link>
+            <Link exact to="/notebooks">
+              <span className='dropdown-links' onClick={closeMenu} >
+                Notebooks
+              </span>
+            </Link>
             {/* <Link exact to="/account">
               <span id='dropdown-account' onClick={closeMenu} >
                 Account
