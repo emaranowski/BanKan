@@ -10,7 +10,7 @@ class Note(db.Model):
     notebook_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('notebooks.id')), nullable=False)
     color_name = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(30), nullable=False)
-    text = db.Column(db.String(1500))
+    text = db.Column(db.String(200))
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 

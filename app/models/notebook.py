@@ -9,7 +9,7 @@ class Notebook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
-    title = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(30), nullable=False)
     note_order = db.Column(db.String)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)

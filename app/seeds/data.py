@@ -431,8 +431,8 @@ notebooks = [
   {
     'id': 1,
     'user_id': 1,
-    'image_url': 'https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
-    'title': 'Houseplant website idea',
+    'image_url': 'https://images.unsplash.com/photo-1579547621706-1a9c79d5c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
+    'title': 'Houseplant website',
     'note_order': 'note-1,note-2,note-3,note-4,note-5,note-6',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -440,8 +440,8 @@ notebooks = [
   {
     'id': 2,
     'user_id': 1,
-    'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
-    'title': 'ShouldReads/GoodReads clone idea',
+    'image_url': 'https://images.unsplash.com/photo-1621799754526-a0d52c49fad5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3087&q=80',
+    'title': 'ShouldReads/GoodReads clone',
     'note_order': 'note-7,note-8,note-9,note-10,note-11,note-12',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
@@ -449,8 +449,8 @@ notebooks = [
   {
     'id': 3,
     'user_id': 1,
-    'image_url': 'https://images.unsplash.com/photo-1635776062043-223faf322554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
-    'title': 'Coding Resources',
+    'image_url': 'https://images.unsplash.com/photo-1604340083878-a3947d1775c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
+    'title': 'Coding resources',
     'note_order': 'note-13,note-14,note-15',
     'created_at': datetime.datetime.now(),
     'updated_at': datetime.datetime.now()
