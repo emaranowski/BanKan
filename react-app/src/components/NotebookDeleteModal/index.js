@@ -34,7 +34,7 @@ export default function NotebookDeleteModal({ notebookId }) {
         <div id='notebook-delete-modal-text'>
           Delete notebook?
         </div>
-        <div id='notebook_delete_modal_btns'>
+        <div id='notebook-delete-modal-btns'>
           <button onClick={closeModal} id='notebook-cancel-delete-btn'>
             No
           </button>

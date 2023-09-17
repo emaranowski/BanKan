@@ -1,4 +1,4 @@
-#note_delete_modal_outermost_box {
+#note-delete-modal-outermost-box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,18 +6,18 @@
     padding: 20px 0;
 }
 
-#note_delete_modal_text {
+#note-delete-modal-text {
     font-size: 25px;
     padding-bottom: 10px;
 }
 
-#note_delete_modal_btns {
+#note-delete-modal-btns {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-#note_cancel_delete_btn {
+#note-cancel-delete-btn {
     color: #000000;
     background-color: rgb(219, 219, 219);
     font-size: 17px;
@@ -26,12 +26,12 @@
     border: none;
 }
 
-#note_cancel_delete_btn:hover {
+#note-cancel-delete-btn:hover {
     background-color: rgb(190, 190, 190);
     cursor: pointer;
 }
 
-#note_confirm_delete_btn {
+#note-confirm-delete-btn {
     color: #FFFFFF;
     background-color: #991900de;
     font-size: 17px;
@@ -40,7 +40,7 @@
     border: none;
 }
 
-#note_confirm_delete_btn:hover {
+#note-confirm-delete-btn:hover {
     background-color: #711300de;
     cursor: pointer;
 }

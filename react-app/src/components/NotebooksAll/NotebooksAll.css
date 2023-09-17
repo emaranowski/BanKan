@@ -1,21 +1,21 @@
-#notebooksPage {
+#notebooks-page {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 50px;
 }
 
-#notebooksHeader {
+#notebooks-header {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-#notebooksHeaderText {
+#notebooks-header-text {
     font-size: 40px;
 }
 
-#notebooksHeaderAddBtn button {
+#notebooks-header-add-btn button {
     min-width: 130px;
     max-width: 130px;
 
@@ -30,11 +30,11 @@
     background-color: #ededed;
 }
 
-#notebooksHeaderAddBtn button:hover {
+#notebooks-header-add-btn button:hover {
     background-color: #e5e5e5;
 }
 
-#notebookCards {
+#notebook-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

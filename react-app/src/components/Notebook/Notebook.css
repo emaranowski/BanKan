@@ -1,59 +1,59 @@
-#notebook_details_page_content {
+#notebook-details-page-content {
     padding: 25px 50px 800px 50px;
     display: flex;
     flex-direction: column;
 }
 
-#notebook_details_header {
+#notebook-details-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
 }
 
-#notebook_details_title {
+#notebook-details-title {
     margin: 15px 0;
     font-size: 30px;
     font-weight: 100;
 }
 
-#notebook_details_title_text {
+#notebook-details-title-text {
     font-weight: 400;
 }
 
-#notebook_details_btns {
+#notebook-details-btns {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
 }
 
-#notebook_details_btns button {
+#notebook-details-btns button {
     border-radius: 6px;
     background-color: #FFFFFF;
 }
 
-#notebook_details_btns button:hover {
+#notebook-details-btns button:hover {
     background-color: #ededed;
 }
 
-#notebook_details_btns i {
+#notebook-details-btns i {
     color: #707070;
 }
 
-#notebook_details_all_notes {
+#notebook-details-all-notes {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.notebook_details_one_note {
+.notebook-details-one-note {
     min-width: 275px;
     max-width: 275px;
 }
 
-#notebook_details_add_note_btn button {
+#notebook-details-add-note-btn button {
     min-width: 275px;
     max-width: 275px;
 
@@ -69,6 +69,6 @@
     border: .5px solid #e1e1e1;
 }
 
-#notebook_details_add_note_btn button:hover {
+#notebook-details-add-note-btn button:hover {
     background-color: #ededed;
 }

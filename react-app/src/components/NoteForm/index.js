@@ -176,14 +176,14 @@ export default function NoteForm({ formType, notebook, note }) {
       {isLoaded && (
         <form onSubmit={handleSubmit}>
 
-          <div className='create_note_form_section'>
-            <div className='note_form_top_header'>
+          <div className='create-note-form-section'>
+            <div className='note-form-top-header'>
               {formType === 'Create Note' ? 'Create Note' : 'Update Note'}
             </div>
           </div>
 
-          <div className='create_note_form_section'>
-            <div id='colorButtons'>
+          <div className='create-note-form-section'>
+            <div id='color-buttons'>
               {colorNames.length ?
                 colorNames.map((clrName) => (
                   <div
@@ -199,10 +199,10 @@ export default function NoteForm({ formType, notebook, note }) {
               }
             </div>
             {colorError && !colorName ? ('Please select a color') : null}
-            {/* {errors.background && (<div className="note_error_text">{errors.background}</div>)} */}
+            {/* {errors.background && (<div className="note-error-text">{errors.background}</div>)} */}
           </div>
 
-          <div className='create_note_form_section'>
+          <div className='create-note-form-section'>
             <div>
               <input
                 size="57"
@@ -214,10 +214,10 @@ export default function NoteForm({ formType, notebook, note }) {
                 required
               />
             </div>
-            {errors.title && (<div className="note_error_text">{errors.title}</div>)}
+            {errors.title && (<div className="note-error-text">{errors.title}</div>)}
           </div>
 
-          <div className='create_note_form_section'>
+          <div className='create-note-form-section'>
             <div>
               <input
                 size="57"
@@ -228,11 +228,11 @@ export default function NoteForm({ formType, notebook, note }) {
                 placeholder='Text (optional)'
               />
             </div>
-            {errors.text && (<div className="note_error_text">{errors.text}</div>)}
+            {errors.text && (<div className="note-error-text">{errors.text}</div>)}
           </div>
 
           <button
-            className={disabled ? "create_note_form_button_disabled" : "create_note_form_button"}
+            className={disabled ? "create-note-form-button-disabled" : "create-note-form-button"}
             disabled={disabled}
           >
             {formType === 'Create Note' ? 'Add' : 'Update'}

@@ -212,11 +212,11 @@ export default function NotebookForm({ formType, notebook }) {
       </div>
 
       <div className='create-notebook-form-section'>
-        <div id='imageButtons'>
+        <div id='image-buttons'>
           {imageUrls.length ?
             imageUrls.map((imgUrl) => (
               <img
-                id='imageButtonDiv'
+                id='image-button-div'
                 key={imgUrl.id}
                 src={imgUrl.url}
                 onClick={() => {

@@ -28,15 +28,15 @@ export default function NoteDeleteModal({ notebookId, noteId }) {
 
   return (
     <>
-      <div id='note_delete_modal_outermost_box'>
-        <div id='note_delete_modal_text'>
+      <div id='note-delete-modal-outermost-box'>
+        <div id='note-delete-modal-text'>
           Delete note?
         </div>
-        <div id='note_delete_modal_btns'>
-          <button onClick={closeModal} id='note_cancel_delete_btn'>
+        <div id='note-delete-modal-btns'>
+          <button onClick={closeModal} id='note-cancel-delete-btn'>
             No
           </button>
-          <button onClick={handleDelete} id='note_confirm_delete_btn'>
+          <button onClick={handleDelete} id='note-confirm-delete-btn'>
             Yes
           </button>
         </div>

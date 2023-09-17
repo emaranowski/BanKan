@@ -23,10 +23,10 @@ export default function NotebooksAll() {
   return (
     <>
       {isLoaded && (
-        <div id='notebooksPage'>
-          <div id='notebooksHeader'>
-            <span id='notebooksHeaderText'>My Notebooks</span>
-            <span id='notebooksHeaderAddBtn'>
+        <div id='notebooks-page'>
+          <div id='notebooks-header'>
+            <span id='notebooks-header-text'>My Notebooks</span>
+            <span id='notebooks-header-add-btn'>
               <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add notebook</span></i>}
                 modalComponent={
@@ -36,10 +36,10 @@ export default function NotebooksAll() {
               />
             </span>
           </div>
-          <div id='notebookCards'>
+          <div id='notebook-cards'>
             {notebooks.length ?
               notebooks.map((notebook) => (
-                <div id='notebookCardDiv' key={notebook.id}>
+                <div key={notebook.id}>
                   <NotebookCard notebook={notebook} />
                 </div>
               ))

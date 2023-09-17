@@ -8,13 +8,13 @@
     font-size: 11.5px;
 }
 
-#colorButtons {
+#color-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 35px;
 }
 
-/* #colorButtonDiv {
+/* #color-button-div {
     width: 50px;
     height: 50px;
     border-radius: 5px;
@@ -22,12 +22,12 @@
     border: 1.5px solid #ffffff;
 }
 
-#colorButtonDiv:hover {
+#color-button-div:hover {
     border: 1.5px solid #d3d3d3;
     box-shadow: 2px 2px 10px #bbbbbb;
 } */
 
-/* #colorButtonImg {
+/* #color-button-img {
     width: 100%;
     height: 100%;
     object-fit: cover;

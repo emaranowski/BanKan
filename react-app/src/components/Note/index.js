@@ -15,7 +15,7 @@ export default function Note({ notebook, note }) {
   const text = note.text;
   const dndId = note.dndId;
 
-  console.log('**** in Note, note:', note)
+  // console.log('**** in Note, note:', note)
 
   const [isLoaded, setIsLoaded] = useState(false);
 

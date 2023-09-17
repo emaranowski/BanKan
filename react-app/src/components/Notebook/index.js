@@ -22,9 +22,9 @@ export default function Notebook() {
   // const noteOrderArr = notebook.noteOrder.split(',');
   const notes = notebook.notes;
   // const notes = Object.values(useSelector(state => state.notes.allNotes));
-  console.log('||||||| in Notebook, notebook:', notebook)
-  console.log('||||||| in Notebook, notebook.noteOrder:', notebook.noteOrder)
-  console.log('||||||| in Notebook, dndId:', dndId)
+  // console.log('||||||| in Notebook, notebook:', notebook)
+  // console.log('||||||| in Notebook, notebook.noteOrder:', notebook.noteOrder)
+  // console.log('||||||| in Notebook, dndId:', dndId)
 
   const notesOrdered = [];
   // noteOrderArr.forEach(noteDndId => {
@@ -105,20 +105,20 @@ export default function Notebook() {
   return (<>
     {isLoaded && (
       <DragDropContext onDragEnd={onDragEnd}>
-        <div id='notebook_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
+        <div id='notebook-details-page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-          <div id='notebook_details_page_content'>
+          <div id='notebook-details-page-content'>
             <Link to={`/notebooks`}>
               ⬅ Back to my notebooks
             </Link>
 
-            <div id='notebook_details_header'>
-              <div id='notebook_details_title'>
-                <span id='notebook_details_title_text'>{title}</span>
+            <div id='notebook-details-header'>
+              <div id='notebook-details-title'>
+                <span id='notebook-details-title-text'>{title}</span>
               </div>
 
-              <div id='notebook_details_btns'>
-                <span id='notebook_details_update_btn'>
+              <div id='notebook-details-btns'>
+                <span id='notebook-details-update-btn'>
                   <OpenModalButton
                     buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                     modalComponent={
@@ -128,7 +128,7 @@ export default function Notebook() {
                   />
                 </span>
 
-                <span id='notebook_details_delete_btn'>
+                <span id='notebook-details-delete-btn'>
                   <OpenModalButton
                     buttonText={<i class="fa-regular fa-trash-can"></i>}
                     modalComponent={
@@ -143,7 +143,7 @@ export default function Notebook() {
             <Droppable droppableId={dndId}>
               {(provided, snapshot) => (
                 <div
-                  id='notebook_notes'
+                  id='notebook-notes'
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
@@ -162,17 +162,17 @@ export default function Notebook() {
               )}
             </Droppable>
 
-            <div id='notebook_details_all_notes'>
+            <div id='notebook-details-all-notes'>
               {notes && (
                 notes.map((note) => (
-                  <span className='notebook_details_one_note' key={note.id}>
+                  <span className='notebook-details-one-note' key={note.id}>
                     <Note key={note.id} notebook={notebook} note={note} index={0} />
                   </span>
                 ))
               )}
             </div>
 
-            <div id='notebook_details_add_note_btn'>
+            <div id='notebook-details-add-note-btn'>
               <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
                 modalComponent={
