@@ -108,9 +108,11 @@ export default function Notebook() {
         <div id='notebook-details-page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
           <div id='notebook-details-page-content'>
-            <Link to={`/notebooks`}>
-              ⬅ Back to my notebooks
-            </Link>
+            <span>
+              <Link to={`/notebooks`}>
+                ⬅ Back to my notebooks
+              </Link>
+            </span>
 
             <div id='notebook-details-header'>
               <div id='notebook-details-title'>
@@ -127,13 +129,21 @@ export default function Notebook() {
                       />}
                   />
                 </span>
-
                 <span id='notebook-details-delete-btn'>
                   <OpenModalButton
                     buttonText={<i class="fa-regular fa-trash-can"></i>}
                     modalComponent={
                       <NotebookDeleteModal
                         notebookId={notebookId}
+                      />}
+                  />
+                </span>
+                <span id='notebook-details-add-note-btn'>
+                  <OpenModalButton
+                    buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
+                    modalComponent={
+                      <NoteFormCreate
+                        notebook={notebook}
                       />}
                   />
                 </span>
@@ -170,16 +180,6 @@ export default function Notebook() {
                   </span>
                 ))
               )}
-            </div>
-
-            <div id='notebook-details-add-note-btn'>
-              <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
-                modalComponent={
-                  <NoteFormCreate
-                    notebook={notebook}
-                  />}
-              />
             </div>
 
           </div>

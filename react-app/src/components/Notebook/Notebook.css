@@ -54,15 +54,15 @@
 }
 
 #notebook-details-add-note-btn button {
-    min-width: 275px;
-    max-width: 275px;
+    min-width: 155px;
+    max-width: 155px;
+    height: 30px;
 
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 
-    padding: 12.5px;
-    margin-top: 25px;
+    padding: 7.5px 12px 5px 12px;
 
     border-radius: 3px;
     background-color: #FFFFFF;
