@@ -41,18 +41,18 @@
     color: #707070;
 }
 
-#notebook_details_all_columns {
+#notebook_details_all_notes {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.notebook_details_one_column {
+.notebook_details_one_note {
     min-width: 275px;
     max-width: 275px;
 }
 
-#notebook_details_add_col_btn button {
+#notebook_details_add_note_btn button {
     min-width: 275px;
     max-width: 275px;
 
@@ -67,6 +67,6 @@
     background-color: #ededed;
 }
 
-#notebook_details_add_col_btn button:hover {
+#notebook_details_add_note_btn button:hover {
     background-color: #e5e5e5;
 }

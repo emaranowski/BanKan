@@ -5,13 +5,13 @@ import { thunkGetAllNotesForNotebook } from '../../store/notes';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
 import OpenModalButton from "../OpenModalButton";
-import NotebookFormUpdate from "../NotebookFormUpdate";
-import NotebookDeleteModal from "../NotebookDeleteModal";
-import NoteFormCreate from '../NoteFormCreate';
+// import NotebookFormUpdate from "../NotebookFormUpdate";
+// import NotebookDeleteModal from "../NotebookDeleteModal";
+// import NoteFormCreate from '../NoteFormCreate';
 import Note from "../Note";
-import './NotebookDetails.css';
+import './Notebook.css';
 
-export default function NotebookDetails() {
+export default function Notebook() {
   const dispatch = useDispatch();
   const { notebookId } = useParams();
   const notebook = useSelector(state => state.notebooks.oneNotebook);
@@ -42,49 +42,50 @@ export default function NotebookDetails() {
     }
   };
 
-  // const onDragEnd = (result) => {
-  //   const { draggableId, source, destination } = result;
-  //   // return if: no destination, or dropped back into original spot
-  //   if (!destination) return;
-  //   if (source.droppableId === destination.droppableId &&
-  //     source.index === destination.index) {
-  //     return;
-  //   };
-  //   //////// CASE 1: drop within one single notebook
-  //   if (source.droppableId === destination.droppableId) {
-  //     // get notebook to update (notebook where dndId matches source.droppableId)
-  //     const notebookArr = notebooks.filter(notebook => {
-  //       return notebook.dndId === source.droppableId;
-  //     });
-  //     const notebookToUpdate = notebookArr[0];
+  const onDragEnd = (result) => {
+    const { draggableId, source, destination } = result;
+    // return if: no destination, or dropped back into original spot
+    if (!destination) return;
+    if (source.droppableId === destination.droppableId &&
+      source.index === destination.index) {
+      return;
+    };
+    //////// CASE 1: drop within one single notebook
+    if (source.droppableId === destination.droppableId) {
 
-  //     // convert cardOrder: str to arr
-  //     const cardOrderStr = notebookToUpdate.cardOrder;
-  //     const cardOrderArr = cardOrderStr.split(',');
+      // get notebook to update (notebook where dndId matches source.droppableId)
+      // const notebookArr = notebooks.filter(notebook => {
+      //   return notebook.dndId === source.droppableId;
+      // });
+      const notebookToUpdate = notebook;
 
-  //     // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
-  //     const movedCardDndIdArr = cardOrderArr.splice(source.index, 1); // at srcIdx: remove 1
-  //     const movedCardDndId = movedCardDndIdArr[0];
-  //     cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
+      // convert cardOrder: str to arr
+      const cardOrderStr = notebookToUpdate.cardOrder;
+      const cardOrderArr = cardOrderStr.split(',');
 
-  //     // convert cardOrder: arr to str
-  //     const cardOrderUpdatedStr = cardOrderArr.toString();
+      // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
+      const movedCardDndIdArr = cardOrderArr.splice(source.index, 1); // at srcIdx: remove 1
+      const movedCardDndId = movedCardDndIdArr[0];
+      cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
 
-  //     // create notebookUpdated w/ updated card order
-  //     const notebookUpdated = {
-  //       ...notebookToUpdate,
-  //       cardOrder: cardOrderUpdatedStr,
-  //     };
+      // convert cardOrder: arr to str
+      const cardOrderUpdatedStr = cardOrderArr.toString();
 
-  //     // get idx of notebookToUpdate (in orig 'notebooks' arr)
-  //     const notebookToUpdateIdx = notebooks.indexOf(notebookToUpdate);
-  //     // at notebookToUpdateIdx in 'notebooks': 1. remove notebookToUpdate, 2. add notebooklUpdated
-  //     notebooks.splice(notebookToUpdateIdx, 1, notebookUpdated);
+      // create notebookUpdated w/ updated card order
+      const notebookUpdated = {
+        ...notebookToUpdate,
+        cardOrder: cardOrderUpdatedStr,
+      };
 
-  //     updateNoteOrderOnNotebook(notebookUpdated); // update card order property on notebook
-  //     setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
-  //   };
-  // };
+      // // get idx of notebookToUpdate (in orig 'notebooks' arr)
+      // const notebookToUpdateIdx = notebooks.indexOf(notebookToUpdate);
+      // // at notebookToUpdateIdx in 'notebooks': 1. remove notebookToUpdate, 2. add notebooklUpdated
+      // notebooks.splice(notebookToUpdateIdx, 1, notebookUpdated);
+
+      updateNoteOrderOnNotebook(notebookUpdated); // update card order property on notebook
+      setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+    };
+  };
 
 
   return (<>{isLoaded && (
@@ -125,18 +126,18 @@ export default function NotebookDetails() {
             </div>
           </div>
 
-          <div id='notebook_details_all_columns'>
-            {columns && (
-              columns.map((column) => (
-                <span className='notebook_details_one_column' key={column.id}>
-                  <Note key={column.id} column={column} />
+          <div id='notebook_details_all_notes'>
+            {/* {notes && (
+              notes.map((note) => (
+                <span className='notebook_details_one_note' key={note.id}>
+                  <Note key={note.id} note={note} />
                 </span>
               ))
-            )}
+            )} */}
 
-            <span id='notebook_details_add_col_btn'>
+            <span id='notebook_details_add_note_btn'>
               {/* <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
+                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
                 modalComponent={
                   <NoteFormCreate
                     notebookId={notebookId}

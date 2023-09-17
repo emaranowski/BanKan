@@ -10,6 +10,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import BoardsAll from "./components/BoardsAll";
 import BoardDetails from "./components/BoardDetails";
 import NotebooksAll from "./components/NotebooksAll";
+import Notebook from "./components/Notebook";
 // import Footer from "./components/Footer";
 
 export default function App() {
@@ -46,6 +47,10 @@ export default function App() {
 
           <ProtectedRoute exact path='/notebooks'>
             <NotebooksAll />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path='/notebooks/:notebookId'>
+            <Notebook />
           </ProtectedRoute>
 
           <Route>
