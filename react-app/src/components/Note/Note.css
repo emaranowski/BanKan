@@ -1,31 +1,47 @@
 #note {
     z-index: -1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    border: .5px solid #cecece;
-    padding: 10px 5px 10px 10px;
-    border-radius: 14px;
+    align-items: flex-start;
+    gap: 12px;
+    border: .5px solid #e1e1e1;
+    padding: 15px;
+    border-radius: 2.5px;
     background-color: white;
     margin: 10px 0;
 }
 
-#note_btns {
+#note-title {
+    font-size: 22px;
+}
+
+#note-title-and-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#note-btns {
     display: flex;
     flex-direction: row;
     gap: 2px;
 }
 
-#note_btns button {
+#note-btns button {
     border-radius: 6px;
     background-color: #FFFFFF;
 }
 
-#note_btns button:hover {
+#note-btns button:hover {
     background-color: #ededed;
 }
 
-#note_btns i {
+#note-btns i {
     color: #707070;
+}
+
+#note-text {
+    font-size: 17px;
 }

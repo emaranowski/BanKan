@@ -73,22 +73,22 @@ export default function Notebook() {
       // });
       const notebookToUpdate = notebook;
 
-      // convert cardOrder: str to arr
-      const cardOrderStr = notebookToUpdate.cardOrder;
-      const cardOrderArr = cardOrderStr.split(',');
+      // convert noteOrder: str to arr
+      const noteOrderStr = notebookToUpdate.noteOrder;
+      const noteOrderArr = noteOrderStr.split(',');
 
-      // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
-      const movedCardDndIdArr = cardOrderArr.splice(source.index, 1); // at srcIdx: remove 1
-      const movedCardDndId = movedCardDndIdArr[0];
-      cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
+      // update noteOrder: 1. remove noteDndId at srcIdx, 2. add noteDndId at destIdx
+      const movedNoteDndIdArr = noteOrderArr.splice(source.index, 1); // at srcIdx: remove 1
+      const movedNoteDndId = movedNoteDndIdArr[0];
+      noteOrderArr.splice(destination.index, 0, movedNoteDndId); // at destIdx: remove 0, add movedNoteDndId
 
-      // convert cardOrder: arr to str
-      const cardOrderUpdatedStr = cardOrderArr.toString();
+      // convert noteOrder: arr to str
+      const noteOrderUpdatedStr = noteOrderArr.toString();
 
-      // create notebookUpdated w/ updated card order
+      // create notebookUpdated w/ updated note order
       const notebookUpdated = {
         ...notebookToUpdate,
-        cardOrder: cardOrderUpdatedStr,
+        noteOrder: noteOrderUpdatedStr,
       };
 
       // // get idx of notebookToUpdate (in orig 'notebooks' arr)
@@ -96,96 +96,96 @@ export default function Notebook() {
       // // at notebookToUpdateIdx in 'notebooks': 1. remove notebookToUpdate, 2. add notebooklUpdated
       // notebooks.splice(notebookToUpdateIdx, 1, notebookUpdated);
 
-      updateNoteOrderOnNotebook(notebookUpdated); // update card order property on notebook
+      updateNoteOrderOnNotebook(notebookUpdated); // update note order property on notebook
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
   };
 
 
-  return (<>{isLoaded && (
+  return (<>
+    {isLoaded && (
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div id='notebook_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-    <div id='notebook_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
+          <div id='notebook_details_page_content'>
+            <Link to={`/notebooks`}>
+              ⬅ Back to my notebooks
+            </Link>
 
-      <div id='notebook_details_page_content'>
-        <Link to={`/notebooks`}>
-          ⬅ Back to my notebooks
-        </Link>
+            <div id='notebook_details_header'>
+              <div id='notebook_details_title'>
+                <span id='notebook_details_title_text'>{title}</span>
+              </div>
 
-        <div id='notebook_details_header'>
-          <div id='notebook_details_title'>
-            <span id='notebook_details_title_text'>{title}</span>
-          </div>
-
-          <div id='notebook_details_btns'>
-            <span id='notebook_details_update_btn'>
-              {/* <OpenModalButton
+              <div id='notebook_details_btns'>
+                <span id='notebook_details_update_btn'>
+                  {/* <OpenModalButton
                   buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                   modalComponent={
                     <NotebookFormUpdate
                       notebook={notebook}
                     />}
                 /> */}
-            </span>
+                </span>
 
-            <span id='notebook_details_delete_btn'>
-              {/* <OpenModalButton
+                <span id='notebook_details_delete_btn'>
+                  {/* <OpenModalButton
                   buttonText={<i class="fa-regular fa-trash-can"></i>}
                   modalComponent={
                     <NotebookDeleteModal
                       notebookId={notebookId}
                     />}
                 /> */}
-            </span>
+                </span>
 
-          </div>
-        </div>
-
-        {/* <Droppable droppableId={dndId}>
-            {(provided, snapshot) => (
-              <div
-                id='notebook_notes'
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {notesOrdered && (
-                  notesOrdered.map((note, index) => (
-                    <Note
-                      key={note.id}
-                      notebook={notebook}
-                      note={note}
-                      index={index}
-                    />
-                  ))
-                )}
-                {provided.placeholder}
               </div>
-            )}
-          </Droppable> */}
+            </div>
 
-        <div id='notebook_details_all_notes'>
-          {notes && (
-            notes.map((note) => (
-              <span className='notebook_details_one_note' key={note.id}>
-                <Note key={note.id} notebook={notebook} note={note} index={0} />
-              </span>
-            ))
-          )}
+            <Droppable droppableId={dndId}>
+              {(provided, snapshot) => (
+                <div
+                  id='notebook_notes'
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {notesOrdered && (
+                    notesOrdered.map((note, index) => (
+                      <Note
+                        key={note.id}
+                        notebook={notebook}
+                        note={note}
+                        index={index}
+                      />
+                    ))
+                  )}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
 
-          <span id='notebook_details_add_note_btn'>
-            {/* <OpenModalButton
+            <div id='notebook_details_all_notes'>
+              {notes && (
+                notes.map((note) => (
+                  <span className='notebook_details_one_note' key={note.id}>
+                    <Note key={note.id} notebook={notebook} note={note} index={0} />
+                  </span>
+                ))
+              )}
+
+              <span id='notebook_details_add_note_btn'>
+                {/* <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
                 modalComponent={
                   <NoteFormCreate
                     notebookId={notebookId}
                   />}
               /> */}
-          </span>
+              </span>
+            </div>
+
+          </div>
         </div>
-
-      </div>
-    </div>
-
-
-  )
-  }</>)
+      </DragDropContext>
+    )}
+  </>)
 };

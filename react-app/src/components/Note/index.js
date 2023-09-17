@@ -22,18 +22,21 @@ export default function Note({ notebook, note, index }) {
 		// dispatch(thunkGetAllNotesForNotebook(notebookId));
 	}, [dispatch, notebookId, noteId, title, text]);
 
-	return (<>{isLoaded && (
+	return (<>
+		{isLoaded && (
 
 
-		<div
-			id='note'
-		>
-			<span id='note_title'>
-				{title}
-			</span>
+			<div
+				id='note'
 
-			<span id='note_btns'>
-				{/* <OpenModalButton
+			>
+				<div id='note-title-and-btns'>
+					<span id='note-title'>
+						{title}
+					</span>
+
+					<span id='note-btns'>
+						{/* <OpenModalButton
 							buttonText={<i class="fa-regular fa-pen-to-square"></i>}
 							modalComponent={
 								<NoteFormUpdate
@@ -52,9 +55,14 @@ export default function Note({ notebook, note, index }) {
 									notebookId={notebookId}
 								/>}
 						/> */}
-			</span>
-		</div>
+					</span>
+				</div>
+				<div id='note-text'>
+					{text}
+				</div>
+			</div>
 
 
-	)}</>)
+		)}
+	</>)
 };
