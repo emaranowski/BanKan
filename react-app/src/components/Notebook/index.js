@@ -137,7 +137,6 @@ export default function Notebook() {
                       />}
                   />
                 </span>
-
               </div>
             </div>
 
@@ -171,16 +170,16 @@ export default function Notebook() {
                   </span>
                 ))
               )}
+            </div>
 
-              <span id='notebook_details_add_note_btn'>
-                <OpenModalButton
-                  buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
-                  modalComponent={
-                    <NoteFormCreate
-                      notebook={notebook}
-                    />}
-                />
-              </span>
+            <div id='notebook_details_add_note_btn'>
+              <OpenModalButton
+                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add note</span></i>}
+                modalComponent={
+                  <NoteFormCreate
+                    notebook={notebook}
+                  />}
+              />
             </div>
 
           </div>
