@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import OpenModalButton from '../../components/OpenModalButton';
 import NoteFormUpdate from '../NoteFormUpdate';
-// import NoteDeleteModal from '../NoteDeleteModal';
+import NoteDeleteModal from '../NoteDeleteModal';
 import './Note.css';
 
 export default function Note({ notebook, note, index }) {
@@ -45,15 +45,14 @@ export default function Note({ notebook, note, index }) {
                 />}
             />
 
-            {/* <OpenModalButton
-							buttonText={<i class="fa-regular fa-trash-can"></i>}
-							modalComponent={
-								<NoteDeleteModal
-									note={note}
-									notebook={notebook}
-									notebookId={notebookId}
-								/>}
-						/> */}
+            <OpenModalButton
+              buttonText={<i class="fa-regular fa-trash-can"></i>}
+              modalComponent={
+                <NoteDeleteModal
+                  notebookId={notebookId}
+                  noteId={noteId}
+                />}
+            />
           </span>
         </div>
         <div id='note-text'>
