@@ -12,7 +12,7 @@ export default function NoteForm({ formType, notebook, note }) {
   const history = useHistory();
   const { closeModal } = useModal();
   const notebookId = notebook.id;
-  const noteOrderArr = notebook.noteOrder.split(',');
+  // const noteOrderArr = notebook.noteOrder.split(',');
 
   const [colorName, setColorName] = useState(note?.colorName);
   const [colorSelected, setColorSelected] = useState(false);
@@ -108,21 +108,21 @@ export default function NoteForm({ formType, notebook, note }) {
         // console.log('**** in CREATE NOTE TRY, res:', res)
         if (res.id) {
 
-          if (noteOrderArr[0] === '') {
-            noteOrderArr.splice(0, 1); // remove 1 at idx 0
-            noteOrderArr.splice(0, 0, res.dndId); // remove 0, add res.dndId at idx 0
-          } else if (noteOrderArr[0] !== '') {
-            noteOrderArr.push(res.dndId)
-          }
+          // if (noteOrderArr[0] === '') {
+          //   noteOrderArr.splice(0, 1); // remove 1 at idx 0
+          //   noteOrderArr.splice(0, 0, res.dndId); // remove 0, add res.dndId at idx 0
+          // } else if (noteOrderArr[0] !== '') {
+          //   noteOrderArr.push(res.dndId)
+          // }
 
-          const noteOrderUpdatedStr = noteOrderArr.toString();
+          // const noteOrderUpdatedStr = noteOrderArr.toString();
 
-          const notebookUpdated = {
-            ...notebook,
-            noteOrder: noteOrderUpdatedStr,
-          };
+          // const notebookUpdated = {
+          //   ...notebook,
+          //   noteOrder: noteOrderUpdatedStr,
+          // };
 
-          dispatch(thunkUpdateNotebook(notebookUpdated));
+          // dispatch(thunkUpdateNotebook(notebookUpdated));
 
           setErrors({});
           history.push(`/notebooks/${notebookId}`);
