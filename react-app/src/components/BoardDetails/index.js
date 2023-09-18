@@ -35,12 +35,14 @@ export default function BoardDetails() {
 
   useEffect(async () => {
 
+    dispatch(thunkGetOneBoard(boardId))
+
     if (!userId || userId !== board.userId) {
       history.push('/');
     }
 
-    dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
+
     setIsLoaded(true)
   }, [dispatch, boardId, imageUrl, title, triggerRerenderToggle]);
 
