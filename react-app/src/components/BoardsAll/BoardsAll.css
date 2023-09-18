@@ -5,6 +5,10 @@
     padding: 50px;
 }
 
+.dashboard-breadcrumb {
+    margin-bottom: 5px;
+}
+
 #boardsHeader {
     display: flex;
     flex-direction: row;

@@ -61,14 +61,14 @@
     background-color: #0844a4;
 }
 
-#home-my-boards-btn {
+#home-dashboard-btn {
     z-index: 0;
     position: relative;
     top: -425px;
     font-size: 16px;
     font-weight: 500;
-    min-width: 165px;
-    max-width: 165px;
+    min-width: 185px;
+    max-width: 185px;
     padding: 16px 0;
     color: #FFFFFF;
     background-color: #0844a4;
@@ -77,7 +77,7 @@
     transition: background-color .5s;
 }
 
-#home-my-boards-btn:hover {
+#home-dashboard-btn:hover {
     background-color: #0864fc;
 }
 

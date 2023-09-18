@@ -52,6 +52,11 @@ function ProfileButton({ user }) {
             <div id='dropdown-username'>
               Welcome, <br></br>{user.username}
             </div>
+            <Link exact to="/dashboard">
+              <span className='dropdown-links' onClick={closeMenu} >
+                Dashboard
+              </span>
+            </Link>
             <Link exact to="/boards">
               <span className='dropdown-links' onClick={closeMenu} >
                 Boards
@@ -68,7 +73,7 @@ function ProfileButton({ user }) {
               </span>
             </Link> */}
             <div>
-              <span className='dropdown-links' onClick={handleLogout}>
+              <span id='dropdown-logout' className='dropdown-links' onClick={handleLogout}>
                 Log Out
               </span>
             </div>

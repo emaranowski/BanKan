@@ -276,7 +276,7 @@ export default function BoardDetails() {
 
         <div id='board_details_page_content'>
           <Link to={`/boards`}>
-            ⬅ Back to my boards
+            ⬅ Boards
           </Link>
 
           <div id='board_details_header'>

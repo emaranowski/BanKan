@@ -1,0 +1,70 @@
+#dashboard-page {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 50px;
+}
+
+#dashboard-header {
+    font-size: 29px;
+    font-weight: 300;
+    margin-top: -19px;
+    margin-left: 3px;
+    margin-bottom: 13px;
+}
+
+#dashboard-section-header {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#dashboard-section-subheader {
+    font-size: 40px;
+}
+
+#dashboard-section-add-btn button {
+    min-width: 105px;
+    max-width: 105px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    padding: 12.5px;
+    margin-top: -3px;
+
+    border-radius: 9px;
+    background-color: #ededed;
+}
+
+#dashboard-section-add-btn button:hover {
+    background-color: #e5e5e5;
+}
+
+#dashboard-section-add-btn-notebook button {
+    min-width: 130px;
+    max-width: 130px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    padding: 12.5px;
+    margin-top: -3px;
+
+    border-radius: 9px;
+    background-color: #ededed;
+}
+
+#dashboard-section-add-btn-notebook button:hover {
+    background-color: #e5e5e5;
+}
+
+#dashboard-section-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
