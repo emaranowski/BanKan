@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 // import { createImageFileAndUrl, deleteImageFileNotebook } from "../../store/image"
-import { thunkCreateNotebook } from "../../store/notebooks";
+import { thunkCreateNotebook, thunkGetAllNotebooks, thunkGetOneNotebook } from "../../store/notebooks";
 import { thunkUpdateNotebook } from "../../store/notebooks";
 import './NotebookForm.css';
 
@@ -113,6 +113,8 @@ export default function NotebookForm({ formType, notebook }) {
         // console.log('**** in Create Notebook TRY, res:', res)
         if (res.id) {
           setErrors({});
+          // dispatch(thunkGetAllNotebooks(userId));
+          // dispatch(thunkGetOneNotebook(res.id));
           history.push(`/notebooks/${res.id}`);
           closeModal();
         } else if (res.errors) {

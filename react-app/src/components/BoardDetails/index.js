@@ -29,22 +29,26 @@ export default function BoardDetails() {
   // const dndId = board.dndId;
   // const columnDndIds = board.columnDndIds;
   // const columnsDnd = board.columnsDnd;
+  console.log('||||||| in BoardDetails, sessionUser:', sessionUser)
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(async () => {
-
     dispatch(thunkGetOneBoard(boardId))
-
-    if (!userId || userId !== board.userId) {
-      history.push('/');
-    }
-
     dispatch(thunkGetAllColumnsForBoard(boardId))
-
     setIsLoaded(true)
   }, [dispatch, boardId, imageUrl, title, triggerRerenderToggle]);
+
+  useEffect(async () => {
+    if (Object.values(board).length > 0) {
+      if (!userId || userId !== board.userId) {
+        // console.log('///////////', userId, board.userId);
+        history.push('/');
+        // window.alert('Invalid Permissions')
+      }
+    }
+  }, [sessionUser, board]);
 
   const updateCardOrderOnColumn = async (columnUpdated) => {
     try {

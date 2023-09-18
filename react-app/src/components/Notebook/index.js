@@ -28,7 +28,7 @@ export default function Notebook() {
   // const notes = Object.values(useSelector(state => state.notes.allNotes));
   // console.log('||||||| in Notebook, notebook:', notebook)
   // console.log('||||||| in Notebook, notebook.noteOrder:', notebook.noteOrder)
-  // console.log('||||||| in Notebook, dndId:', dndId)
+  console.log('||||||| in Notebook, sessionUser:', sessionUser)
 
   const notesOrdered = [];
   // noteOrderArr.forEach(noteDndId => {
@@ -41,16 +41,22 @@ export default function Notebook() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(async () => {
-
     dispatch(thunkGetOneNotebook(notebookId))
-
-    if (!userId || userId !== notebook.userId) {
-      history.push('/');
-    }
-
     dispatch(thunkGetAllNotesForNotebook(notebookId))
     setIsLoaded(true)
   }, [dispatch, notebookId, imageUrl, title, triggerRerenderToggle]);
+
+  useEffect(async () => {
+    if (Object.values(notebook).length > 0) {
+      if (!userId || userId !== notebook.userId) {
+        // console.log('///////////', userId, notebook.userId);
+        history.push('/');
+        // window.alert('Invalid Permissions')
+      }
+    }
+  }, [sessionUser, notebook]);
+
+  useEffect(() => console.log(notebook), [notebook])
 
   const updateNoteOrderOnNotebook = async (notebookUpdated) => {
     try {
