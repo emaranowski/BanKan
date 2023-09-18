@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { thunkGetOneBoard } from '../../store/boards';
 import { updateColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
 import { thunkUpdateCard } from '../../store/cards';
@@ -17,6 +18,9 @@ import './BoardDetails.css';
 
 export default function BoardDetails() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
+  const userId = sessionUser.id;
   const { boardId } = useParams();
   const board = useSelector(state => state.boards.oneBoard);
   const imageUrl = board.imageUrl;
@@ -30,6 +34,11 @@ export default function BoardDetails() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(async () => {
+
+    if (!userId || userId !== board.userId) {
+      history.push('/');
+    }
+
     dispatch(thunkGetOneBoard(boardId))
     dispatch(thunkGetAllColumnsForBoard(boardId))
     setIsLoaded(true)
