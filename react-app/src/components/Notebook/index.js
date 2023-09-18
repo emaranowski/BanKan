@@ -42,11 +42,12 @@ export default function Notebook() {
 
   useEffect(async () => {
 
+    dispatch(thunkGetOneNotebook(notebookId))
+
     if (!userId || userId !== notebook.userId) {
       history.push('/');
     }
 
-    dispatch(thunkGetOneNotebook(notebookId))
     dispatch(thunkGetAllNotesForNotebook(notebookId))
     setIsLoaded(true)
   }, [dispatch, notebookId, imageUrl, title, triggerRerenderToggle]);
