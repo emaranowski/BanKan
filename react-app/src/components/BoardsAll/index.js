@@ -56,9 +56,9 @@ export default function BoardsAll() {
           }
         </div>
       </div>
-      <div id='boardsall-footer'>
+      {/* <div id='boardsall-footer'>
         <Footer></Footer>
-      </div>
+      </div> */}
     </>)}
   </>)
 };

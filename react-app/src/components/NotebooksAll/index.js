@@ -54,9 +54,9 @@ export default function NotebooksAll() {
           }
         </div>
       </div>
-      <div id='notebooksall-footer'>
+      {/* <div id='notebooksall-footer'>
         <Footer></Footer>
-      </div>
+      </div> */}
     </>)}
   </>)
 }
