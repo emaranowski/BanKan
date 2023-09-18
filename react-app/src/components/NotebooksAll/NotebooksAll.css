@@ -45,8 +45,8 @@
     gap: 20px;
 }
 
-#notebooksall-footer {
-    position: fixed;
+#notebooksall-footer Footer {
+    position: absolute;
     width: 100%;
     bottom: 0;
 }

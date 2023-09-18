@@ -45,8 +45,8 @@
     gap: 20px;
 }
 
-#boardsall-footer {
-    position: fixed;
+#boardsall-footer Footer {
+    position: absolute;
     width: 100%;
     bottom: 0;
 }
