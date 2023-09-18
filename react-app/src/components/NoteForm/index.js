@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateNoteForNotebook, thunkGetAllNotesForNotebook } from "../../store/notes";
@@ -9,7 +9,7 @@ import { thunkGetOneNotebook, thunkUpdateNotebook } from "../../store/notebooks"
 
 export default function NoteForm({ formType, notebook, note }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const { closeModal } = useModal();
   const notebookId = notebook.id;
   // const noteOrderArr = notebook.noteOrder.split(',');
@@ -125,8 +125,9 @@ export default function NoteForm({ formType, notebook, note }) {
           // dispatch(thunkUpdateNotebook(notebookUpdated));
 
           setErrors({});
-          history.push(`/notebooks/${notebookId}`);
+          // history.push(`/notebooks/${notebookId}`);
           closeModal();
+          dispatch(thunkGetOneNotebook(notebookId));
 
         } else if (res.errors) {
           setErrors(res.errors);
@@ -155,7 +156,7 @@ export default function NoteForm({ formType, notebook, note }) {
         const res = await dispatch(thunkUpdateNote(note)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
-          history.push(`/notebooks/${notebookId}`);
+          // history.push(`/notebooks/${notebookId}`);
           closeModal();
           dispatch(thunkGetOneNotebook(notebookId));
         } else {
