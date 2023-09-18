@@ -8,7 +8,7 @@ import "./NoteDeleteModal.css";
 
 export default function NoteDeleteModal({ notebookId, noteId }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const { closeModal } = useModal();
 
   const handleDelete = async (e) => {
@@ -18,7 +18,7 @@ export default function NoteDeleteModal({ notebookId, noteId }) {
       const res = await dispatch(thunkDeleteNote(noteId));
       if (res.message) {
         closeModal();
-        history.push(`/notebooks/${notebookId}`);
+        // history.push(`/notebooks/${notebookId}`);
         dispatch(thunkGetOneNotebook(notebookId));
       }
     } catch {

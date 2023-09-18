@@ -1,15 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 // import { deleteImageFileNotebook } from "../../store/image";
-import { thunkDeleteNotebook } from "../../store/notebooks";
+import { thunkDeleteNotebook, thunkGetAllNotebooks } from "../../store/notebooks";
 import "./NotebookDeleteModal.css";
 
 export default function NotebookDeleteModal({ notebookId }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
+
+  const sessionUser = useSelector(state => state.session.user);
+  const userId = sessionUser.id;
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -22,6 +25,7 @@ export default function NotebookDeleteModal({ notebookId }) {
       //   }
       if (res.message) {
         closeModal();
+        dispatch(thunkGetAllNotebooks(userId))
         history.push(`/notebooks`);
       }
     } catch {
