@@ -9,6 +9,7 @@ import BoardCard from "../BoardCard";
 import BoardFormCreate from "../BoardFormCreate";
 import NotebookCard from "../NotebookCard";
 import NotebookFormCreate from "../NotebookFormCreate";
+import Footer from '../Footer';
 import './AccountDashboard.css'
 
 export default function AccountDashboard() {
@@ -29,7 +30,7 @@ export default function AccountDashboard() {
   }, [dispatch, userId]);
 
   return (<>
-    {isLoaded && (
+    {isLoaded && (<>
       <div id='dashboard-page'>
 
         <div id='dashboard-header'>
@@ -92,7 +93,11 @@ export default function AccountDashboard() {
           }
         </div>
 
+
       </div>
-    )}
+      <div>
+        <Footer></Footer>
+      </div>
+    </>)}
   </>)
 };

@@ -6,6 +6,7 @@ import BoardCard from "../BoardCard";
 import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormCreate from "../BoardFormCreate";
+import Footer from '../Footer';
 import './BoardsAll.css'
 
 export default function BoardsAll() {
@@ -22,41 +23,42 @@ export default function BoardsAll() {
       .then(() => setIsLoaded(true))
   }, [dispatch, userId]);
 
-  return (
-    <>
-      {isLoaded && (
-        <div id='boardsPage'>
-          <div className='dashboard-breadcrumb'>
-            <Link to={`/dashboard`}>
-              ⬅ Dashboard
-            </Link>
-          </div>
-
-          <div id='boardsHeader'>
-            <span id='boardsHeaderText'>Boards</span>
-            <span id='boardsHeaderAddBtn'>
-              <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
-                modalComponent={
-                  <BoardFormCreate
-                    userId={userId}
-                  />}
-              />
-            </span>
-          </div>
-          <div id='boardCards'>
-            {boards.length ?
-              boards.map((board) => (
-                <div id='boardCardDiv' key={board.id}>
-                  <BoardCard board={board} />
-                </div>
-              ))
-              :
-              (<span>You have no boards!</span>)
-            }
-          </div>
+  return (<>
+    {isLoaded && (<>
+      <div id='boardsPage'>
+        <div className='dashboard-breadcrumb'>
+          <Link to={`/dashboard`}>
+            ⬅ Dashboard
+          </Link>
         </div>
-      )}
-    </>
-  )
-}
+
+        <div id='boardsHeader'>
+          <span id='boardsHeaderText'>Boards</span>
+          <span id='boardsHeaderAddBtn'>
+            <OpenModalButton
+              buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
+              modalComponent={
+                <BoardFormCreate
+                  userId={userId}
+                />}
+            />
+          </span>
+        </div>
+        <div id='boardCards'>
+          {boards.length ?
+            boards.map((board) => (
+              <div id='boardCardDiv' key={board.id}>
+                <BoardCard board={board} />
+              </div>
+            ))
+            :
+            (<span>You have no boards!</span>)
+          }
+        </div>
+      </div>
+      <div id='boardsall-footer'>
+        <Footer></Footer>
+      </div>
+    </>)}
+  </>)
+};

@@ -44,3 +44,9 @@
     flex-wrap: wrap;
     gap: 20px;
 }
+
+#notebooksall-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
