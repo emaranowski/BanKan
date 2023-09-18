@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { thunkGetAllBoards } from '../../store/boards';
 import BoardCard from "../BoardCard";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormCreate from "../BoardFormCreate";
 import './BoardsAll.css'
@@ -26,8 +26,14 @@ export default function BoardsAll() {
     <>
       {isLoaded && (
         <div id='boardsPage'>
+          <div className='dashboard-breadcrumb'>
+            <Link to={`/dashboard`}>
+              ⬅ Dashboard
+            </Link>
+          </div>
+
           <div id='boardsHeader'>
-            <span id='boardsHeaderText'>My Boards</span>
+            <span id='boardsHeaderText'>Boards</span>
             <span id='boardsHeaderAddBtn'>
               <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}

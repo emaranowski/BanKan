@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
+import AccountDashboard from "./components/AccountDashboard";
 import BoardsAll from "./components/BoardsAll";
 import BoardDetails from "./components/BoardDetails";
 import NotebooksAll from "./components/NotebooksAll";
@@ -36,6 +37,10 @@ export default function App() {
           <Route path="/login" >
             <LoginFormPage />
           </Route>
+
+          <ProtectedRoute exact path='/dashboard'>
+            <AccountDashboard />
+          </ProtectedRoute>
 
           <ProtectedRoute exact path='/boards'>
             <BoardsAll />
