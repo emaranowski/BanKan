@@ -33,7 +33,7 @@ export default function AccountDashboard() {
       <div id='dashboard-page'>
 
         <div id='dashboard-header'>
-          Hello, {sessionUser.username}. Welcome to your Dashboard.
+          Hello, {sessionUser.username}. Welcome to your dashboard.
         </div>
 
         <div id='dashboard-section-header'>
