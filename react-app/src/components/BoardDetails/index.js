@@ -331,5 +331,6 @@ export default function BoardDetails() {
 
       </div >
     </DragDropContext>
-  )}</>)
+  )}
+  </>)
 };
