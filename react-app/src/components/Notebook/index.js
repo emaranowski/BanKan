@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { thunkGetOneNotebook, thunkUpdateNotebook } from '../../store/notebooks';
 import { thunkGetAllNotesForNotebook } from '../../store/notes';
 import { useParams, Link } from 'react-router-dom';
@@ -14,6 +15,9 @@ import './Notebook.css';
 
 export default function Notebook() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
+  const userId = sessionUser.id;
   const { notebookId } = useParams();
   const notebook = useSelector(state => state.notebooks.oneNotebook);
   const imageUrl = notebook.imageUrl;
@@ -37,6 +41,11 @@ export default function Notebook() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(async () => {
+
+    if (!userId || userId !== notebook.userId) {
+      history.push('/');
+    }
+
     dispatch(thunkGetOneNotebook(notebookId))
     dispatch(thunkGetAllNotesForNotebook(notebookId))
     setIsLoaded(true)
