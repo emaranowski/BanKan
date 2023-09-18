@@ -40,6 +40,14 @@ nav {
   gap: 13px;
 }
 
+#nav-dashboard {
+  font-size: 19px;
+  color: #182c4c;
+  background-color: white;
+  font-weight: 500;
+  margin-right: 12px;
+}
+
 #nav-login button {
   font-size: 19px;
   color: #182c4c;
@@ -85,7 +93,7 @@ nav {
   position: absolute;
   top: 61px;
   right: 0px;
-  height: 200px;
+  height: 250px;
   width: 110px;
   padding: 25px 50px;
   background-color: #FFFFFF;
@@ -103,16 +111,26 @@ nav {
 
 #dropdown-username {
   padding-left: 10px;
+  color: #283c5c;
+  font-weight: 300;
 }
 
 .dropdown-links {
   padding: 7px 10px;
   border-radius: 10px;
   transition: background-color .4s;
+  font-weight: 600;
+  color: #283c5c;
 }
 
 .dropdown-links:hover {
   cursor: pointer;
   /* background-color: rgba(39, 61, 251, 0.1); */
   background-color: rgba(99, 99, 99, 0.1);
+}
+
+#dropdown-logout {
+  padding-left: 10px;
+  color: #283c5c;
+  font-weight: 300;
 }

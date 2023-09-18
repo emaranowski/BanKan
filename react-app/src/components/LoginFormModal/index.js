@@ -20,7 +20,7 @@ export default function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal();
-      history.push(`/boards`);
+      history.push(`/dashboard`);
     }
   };
 
@@ -33,7 +33,7 @@ export default function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal();
-      history.push(`/boards`);
+      history.push(`/dashboard`);
     }
   };
 

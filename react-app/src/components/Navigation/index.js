@@ -42,9 +42,11 @@ export default function Navigation({ isLoaded }) {
       <span id="nav-left">
         {sessionUser ?
           (<>
-            {/* <button onClick={handleLogout}>
-              Log Out
-            </button> */}
+            <NavLink exact to="/dashboard">
+              <span id='nav-dashboard'>
+                Dashboard
+              </span>
+            </NavLink>
             <span>
               {isLoaded && (<ProfileButton user={sessionUser} />)}
             </span>

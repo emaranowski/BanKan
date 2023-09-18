@@ -35,9 +35,9 @@ export default function Home() {
               />
             </div>
             :
-            <Link to='/boards'>
-              <button id='home-my-boards-btn'>
-                Go to my boards
+            <Link to='/dashboard'>
+              <button id='home-dashboard-btn'>
+                Go to my dashboard
               </button>
             </Link>
           }
