@@ -207,18 +207,16 @@ export default function NotebookForm({ formType, notebook }) {
   return (<>{isLoaded && (
     <form onSubmit={handleSubmit}>
 
-      <div className='create-notebook-form-section'>
-        <div className='notebook-form-top-header'>
-          {formType === 'Create Notebook' ? 'Create Notebook' : 'Update Notebook'}
-        </div>
+      <div className='notebook-form-top-header'>
+        {formType === 'Create Notebook' ? 'Create Notebook' : 'Update Notebook'}
       </div>
 
-      <div className='create-notebook-form-section'>
-        <div id='image-buttons'>
+      <div>
+        <div id='image-btns'>
           {imageUrls.length ?
             imageUrls.map((imgUrl) => (
               <img
-                id='image-button-div'
+                id='image-btn-div'
                 key={imgUrl.id}
                 src={imgUrl.url}
                 onClick={() => {
@@ -237,7 +235,7 @@ export default function NotebookForm({ formType, notebook }) {
         {errors.missingImage && (<div className="notebook-error-text">{errors.missingImage}</div>)}
       </div>
 
-      {/* <div className='create-notebook-form-section'>
+      {/* <div>
         <div>
           <input
             size="57"
@@ -252,7 +250,7 @@ export default function NotebookForm({ formType, notebook }) {
         {errors.background && (<div className="notebook-error-text">{errors.background}</div>)}
       </div> */}
 
-      <div className='create-notebook-form-section'>
+      <div>
         <div>
           <input
             size="57"
@@ -300,7 +298,7 @@ export default function NotebookForm({ formType, notebook }) {
           } */}
 
       <button
-        className={disabled ? "create-notebook-form-button-disabled" : "create-notebook-form-button"}
+        className={disabled ? "notebook-form-btn-disabled" : "notebook-form-btn"}
         disabled={disabled}
       >
         {formType === 'Create Notebook' ? 'Add' : 'Update'}

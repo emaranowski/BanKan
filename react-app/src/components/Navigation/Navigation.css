@@ -89,7 +89,7 @@ nav {
   color: #FFFFFF;
 }
 
-.profile-dropdown {
+.nav-profile-dropdown {
   position: absolute;
   top: 61px;
   right: 0px;
@@ -109,13 +109,13 @@ nav {
   display: none;
 }
 
-#dropdown-username {
+#nav-profile-dropdown-username {
   padding-left: 10px;
   color: #283c5c;
   font-weight: 300;
 }
 
-.dropdown-links {
+.nav-profile-dropdown-links {
   padding: 7px 10px;
   border-radius: 10px;
   transition: background-color .4s;
@@ -123,13 +123,13 @@ nav {
   color: #283c5c;
 }
 
-.dropdown-links:hover {
+.nav-profile-dropdown-links:hover {
   cursor: pointer;
   /* background-color: rgba(39, 61, 251, 0.1); */
   background-color: rgba(99, 99, 99, 0.1);
 }
 
-#dropdown-logout {
+#nav-profile-dropdown-logout {
   padding-left: 10px;
   color: #283c5c;
   font-weight: 300;
