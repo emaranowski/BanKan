@@ -287,20 +287,20 @@ export default function Board() {
 
   return (<>{isLoaded && (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div id='board_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
+      <div id='board-page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-        <div id='board_details_page_content'>
+        <div id='board-page-content'>
           <Link to={`/dashboard`}>
             ⬅ Dashboard
           </Link>
 
-          <div id='board_details_header'>
-            <div id='board_details_title'>
-              <span id='board_details_title_text'>{title}</span>
+          <div id='board-header'>
+            <div id='board-title'>
+              <span id='board-title-text'>{title}</span>
             </div>
 
-            <div id='board_details_btns'>
-              <span id='board_details_update_btn'>
+            <div id='board-btns'>
+              <span>
                 <OpenModalButton
                   buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                   modalComponent={
@@ -310,7 +310,7 @@ export default function Board() {
                 />
               </span>
 
-              <span id='board_details_delete_btn'>
+              <span>
                 <OpenModalButton
                   buttonText={<i class="fa-regular fa-trash-can"></i>}
                   modalComponent={
@@ -323,16 +323,16 @@ export default function Board() {
             </div>
           </div>
 
-          <div id='board_details_all_columns'>
+          <div id='board-columns'>
             {columns && (
               columns.map((column) => (
-                <span className='board_details_one_column' key={column.id}>
+                <span className='board-one-column' key={column.id}>
                   <Column key={column.id} column={column} />
                 </span>
               ))
             )}
 
-            <span id='board_details_add_col_btn'>
+            <span id='board-add-col-btn'>
               <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
                 modalComponent={

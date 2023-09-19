@@ -9,13 +9,6 @@
     gap: 5px;
 }
 
-#column_title_and_btns {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 0 5px 0 5px;
-}
-
 #column_color_swatch {
     height: 7px;
     border-radius: 50px;
@@ -62,6 +55,13 @@
     background-color: #000000;
 }
 
+#column_title_and_btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 5px 0 5px;
+}
+
 #column_title {
     font-size: 18.5px;
 }
@@ -83,6 +83,7 @@
 }
 
 #column_btn_add_card {
+    margin-top: 8px;
     align-self: end;
 }
 
