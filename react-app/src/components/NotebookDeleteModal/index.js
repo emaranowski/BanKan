@@ -26,7 +26,7 @@ export default function NotebookDeleteModal({ notebookId }) {
       if (res.message) {
         closeModal();
         dispatch(thunkGetAllNotebooks(userId))
-        history.push(`/notebooks`);
+        history.push(`/dashboard`);
       }
     } catch {
     }
@@ -40,10 +40,10 @@ export default function NotebookDeleteModal({ notebookId }) {
         </div>
         <div id='notebook-delete-modal-btns'>
           <button onClick={closeModal} id='notebook-cancel-delete-btn'>
-            No
+            Cancel
           </button>
           <button onClick={handleDelete} id='notebook-confirm-delete-btn'>
-            Yes
+            Delete
           </button>
         </div>
       </div>

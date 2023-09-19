@@ -1,15 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 // import { deleteImageFileBoard } from "../../store/image";
-import { thunkDeleteBoard } from "../../store/boards";
+import { thunkDeleteBoard, thunkGetAllBoards } from "../../store/boards";
 import "./BoardDeleteModal.css";
 
 export default function BoardDeleteModal({ boardId }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
+
+  const sessionUser = useSelector(state => state.session.user);
+  const userId = sessionUser.id;
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -22,7 +25,8 @@ export default function BoardDeleteModal({ boardId }) {
       //   }
       if (res.message) {
         closeModal();
-        history.push(`/boards`);
+        dispatch(thunkGetAllBoards(userId))
+        history.push(`/dashboard`);
       }
     } catch {
     }
