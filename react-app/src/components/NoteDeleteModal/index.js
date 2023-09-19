@@ -34,10 +34,10 @@ export default function NoteDeleteModal({ notebookId, noteId }) {
         </div>
         <div id='note-delete-modal-btns'>
           <button onClick={closeModal} id='note-cancel-delete-btn'>
-            No
+            Cancel
           </button>
           <button onClick={handleDelete} id='note-confirm-delete-btn'>
-            Yes
+            Delete
           </button>
         </div>
       </div>

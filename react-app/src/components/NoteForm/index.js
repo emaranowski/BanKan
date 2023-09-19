@@ -184,7 +184,7 @@ export default function NoteForm({ formType, notebook, note }) {
           </div>
 
           <div className='create-note-form-section'>
-            <div id='color-buttons'>
+            <div id='color-btns'>
               {colorNames.length ?
                 colorNames.map((clrName) => (
                   <div

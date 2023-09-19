@@ -1,28 +1,28 @@
-.board-form-top-header {
+.card-form-top-header {
     font-size: 24px;
     padding: 15px 0 5px 3px;
 }
 
-.board-error-text {
+.card-error-text {
     color: rgba(159, 0, 0, 0.778);
     font-size: 11.5px;
 }
 
-#colorButtons {
+/* #color-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 35px;
-}
+} */
 
-#colorButtonDiv {
+/* #color-button-div {
     width: 50px;
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    /* background-color: #a11800; */
-}
+    background-color: #a11800;
+} */
 
-/* #colorButtonImg {
+/* #color-button-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -30,7 +30,7 @@
     cursor: pointer;
 } */
 
-.red {
+/* .red {
     background-color: #a11800;
 }
 
@@ -68,4 +68,4 @@
 
 .black {
     background-color: #000000;
-}
+} */

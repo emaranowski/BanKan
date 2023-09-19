@@ -1,58 +1,58 @@
-#board_details_page_content {
+#board-page-content {
     padding: 25px 50px 800px 50px;
     display: flex;
     flex-direction: column;
 }
 
-#board_details_header {
+#board-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
 }
 
-#board_details_title {
+#board-title {
     margin: 15px 0;
     font-size: 30px;
     font-weight: 100;
 }
 
-#board_details_title_text {
+#board-title-text {
     font-weight: 400;
 }
 
-#board_details_btns {
+#board-btns {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
 }
 
-#board_details_btns button {
+#board-btns button {
     border-radius: 6px;
     background-color: #FFFFFF;
 }
 
-#board_details_btns button:hover {
+#board-btns button:hover {
     background-color: #ededed;
 }
 
-#board_details_btns i {
+#board-btns i {
     color: #707070;
 }
 
-#board_details_all_columns {
+#board-columns {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.board_details_one_column {
+.board-one-column {
     min-width: 275px;
     max-width: 275px;
 }
 
-#board_details_add_col_btn button {
+#board-add-col-btn button {
     min-width: 275px;
     max-width: 275px;
 
@@ -61,12 +61,11 @@
     justify-content: end;
 
     padding: 12.5px;
-    margin-top: -3px;
 
     border-radius: 9px;
     background-color: #ededed;
 }
 
-#board_details_add_col_btn button:hover {
+#board-add-col-btn button:hover {
     background-color: #e5e5e5;
 }

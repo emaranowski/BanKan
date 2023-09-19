@@ -9,7 +9,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import AccountDashboard from "./components/AccountDashboard";
 import BoardsAll from "./components/BoardsAll";
-import BoardDetails from "./components/BoardDetails";
+import Board from "./components/Board";
 import NotebooksAll from "./components/NotebooksAll";
 import Notebook from "./components/Notebook";
 // import Footer from "./components/Footer";
@@ -47,7 +47,7 @@ export default function App() {
           </ProtectedRoute>
 
           <ProtectedRoute exact path='/boards/:boardId'>
-            <BoardDetails />
+            <Board />
           </ProtectedRoute>
 
           <ProtectedRoute exact path='/notebooks'>

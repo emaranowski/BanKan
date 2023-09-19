@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 
-function SignupFormModal() {
+export default function SignupFormModal() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
@@ -29,7 +29,7 @@ function SignupFormModal() {
       }
     } else {
       setErrors([
-        "Confirm Password field must be the same as the Password field",
+        "Passwords must match",
       ]);
     }
   };
@@ -115,6 +115,4 @@ function SignupFormModal() {
       </form>
     </div>
   );
-}
-
-export default SignupFormModal;
+};

@@ -40,16 +40,15 @@ export default function Column({ column }) {
   return (<>{isLoaded && (
     <div id='column'>
 
-      <div id='column_color_swatch' className={color}>
-      </div>
+      <div id='column-color-swatch' className={color}></div>
 
-      <div id='column_title_and_btns'>
-        <div id='column_title'>
+      <div id='column-title-and-btns'>
+        <div id='column-title'>
           {title}
         </div>
 
-        <div id='column_btns'>
-          <span className='column_btn'>
+        <div id='column-btns'>
+          <span>
             <OpenModalButton
               buttonText={<i class="fa-regular fa-pen-to-square"></i>}
               modalComponent={
@@ -58,8 +57,7 @@ export default function Column({ column }) {
                 />}
             />
           </span>
-
-          <span className='column_btn'>
+          <span>
             <OpenModalButton
               buttonText={<i class="fa-regular fa-trash-can"></i>}
               modalComponent={<ColumnDeleteModal
@@ -74,7 +72,7 @@ export default function Column({ column }) {
       <Droppable droppableId={dndId}>
         {(provided, snapshot) => (
           <div
-            id='column_cards'
+            id='column-cards'
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
@@ -94,7 +92,7 @@ export default function Column({ column }) {
         )}
       </Droppable>
 
-      <div id='column_btn_add_card'>
+      <div id='column-btn-add-card'>
         <div className='column_btn'>
           <OpenModalButton
             buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add card</span></i>}

@@ -214,11 +214,11 @@ export default function BoardForm({ formType, board }) {
       </div>
 
       <div className='create-board-form-section'>
-        <div id='imageButtons'>
+        <div id='image-buttons'>
           {imageUrls.length ?
             imageUrls.map((imgUrl) => (
               <img
-                id='imageButtonDiv'
+                id='image-button-div'
                 key={imgUrl.id}
                 src={imgUrl.url}
                 onClick={() => {

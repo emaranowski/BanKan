@@ -1,4 +1,4 @@
-#boardsPage {
+#boards-page {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -9,17 +9,17 @@
     margin-bottom: 5px;
 }
 
-#boardsHeader {
+#boards-header {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-#boardsHeaderText {
+#boards-header-text {
     font-size: 40px;
 }
 
-#boardsHeaderAddBtn button {
+#boards-header-add-btn button {
     min-width: 105px;
     max-width: 105px;
 
@@ -34,11 +34,11 @@
     background-color: #ededed;
 }
 
-#boardsHeaderAddBtn button:hover {
+#boards-header-add-btn button:hover {
     background-color: #e5e5e5;
 }
 
-#boardCards {
+#board-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

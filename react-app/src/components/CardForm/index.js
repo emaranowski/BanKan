@@ -101,13 +101,13 @@ export default function CardForm({ formType, card, column, boardId }) {
       {isLoaded && (
         <form onSubmit={handleSubmit}>
 
-          <div className='create_card_form_section'>
-            <div className='card_form_top_header'>
+          <div className='create-card-form-section'>
+            <div className='card-form-top-header'>
               {formType === 'Create Card' ? 'Create Card' : 'Update Card'}
             </div>
           </div>
 
-          <div className='create_card_form_section'>
+          <div className='create-card-form-section'>
             <div>
               <input
                 size="57"
@@ -119,10 +119,10 @@ export default function CardForm({ formType, card, column, boardId }) {
                 required
               />
             </div>
-            {errors.title && (<div className="card_error_text">{errors.title}</div>)}
+            {errors.title && (<div className="card-error-text">{errors.title}</div>)}
           </div>
 
-          <div className='create_card_form_section'>
+          <div className='create-card-form-section'>
             <div>
               <input
                 size="57"
@@ -133,11 +133,11 @@ export default function CardForm({ formType, card, column, boardId }) {
                 placeholder='Description (optional)'
               />
             </div>
-            {errors.description && (<div className="card_error_text">{errors.description}</div>)}
+            {errors.description && (<div className="card-error-text">{errors.description}</div>)}
           </div>
 
           <button
-            className={disabled ? "create_card_form_button_disabled" : "create_card_form_button"}
+            className={disabled ? "create-card-form-button-disabled" : "create-card-form-button"}
             disabled={disabled}
           >
             {formType === 'Create Card' ? 'Add' : 'Update'}
