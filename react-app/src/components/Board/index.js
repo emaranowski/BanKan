@@ -14,9 +14,9 @@ import BoardFormUpdate from "../BoardFormUpdate";
 import BoardDeleteModal from "../BoardDeleteModal";
 import ColumnFormCreate from '../ColumnFormCreate';
 import Column from "../Column";
-import './BoardDetails.css';
+import './Board.css';
 
-export default function BoardDetails() {
+export default function Board() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
@@ -29,7 +29,7 @@ export default function BoardDetails() {
   // const dndId = board.dndId;
   // const columnDndIds = board.columnDndIds;
   // const columnsDnd = board.columnsDnd;
-  console.log('||||||| in BoardDetails, sessionUser:', sessionUser)
+  console.log('||||||| in Board, sessionUser:', sessionUser)
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
