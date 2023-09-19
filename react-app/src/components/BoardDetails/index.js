@@ -290,8 +290,8 @@ export default function BoardDetails() {
       <div id='board_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
         <div id='board_details_page_content'>
-          <Link to={`/boards`}>
-            ⬅ Boards
+          <Link to={`/dashboard`}>
+            ⬅ Dashboard
           </Link>
 
           <div id='board_details_header'>
