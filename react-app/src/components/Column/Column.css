@@ -9,7 +9,7 @@
     gap: 5px;
 }
 
-#column_color_swatch {
+#column-color-swatch {
     height: 7px;
     border-radius: 50px;
     margin-bottom: 5px;
@@ -55,39 +55,43 @@
     background-color: #000000;
 }
 
-#column_title_and_btns {
+#column-title-and-btns {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: 0 5px 0 5px;
 }
 
-#column_title {
+#column-title {
     font-size: 18.5px;
 }
 
-#column_btns {
+#column-btns {
     display: flex;
     flex-direction: row;
     justify-content: end;
     gap: 2px;
 }
 
-#column_btns button {
+#column-btns button {
     border-radius: 6px;
     background-color: #FFFFFF;
 }
 
-#column_btns button:hover {
+#column-btns button:hover {
     background-color: #ededed;
 }
 
-#column_btn_add_card {
+#column-btns i {
+    color: #707070;
+}
+
+#column-btn-add-card {
     margin-top: 8px;
     align-self: end;
 }
 
-#column_btn_add_card button {
+#column-btn-add-card button {
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -99,10 +103,6 @@
     width: 253px;
 }
 
-#column_btn_add_card button:hover {
+#column-btn-add-card button:hover {
     background-color: #e5e5e5;
-}
-
-#column_btns i {
-    color: #707070;
 }

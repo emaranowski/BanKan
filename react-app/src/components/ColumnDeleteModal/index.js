@@ -26,16 +26,16 @@ export default function ColumnDeleteModal({ columnId, boardId }) {
 
   return (
     <>
-      <div id='column_delete_modal_outermost_box'>
-        <div id='column_delete_modal_text'>
+      <div id='column-delete-modal-outermost-box'>
+        <div id='column-delete-modal-text'>
           Delete column?
         </div>
-        <div id='column_delete_modal_btns'>
-          <button onClick={closeModal} id='column_cancel_delete_btn'>
-            No
+        <div id='column-delete-modal-btns'>
+          <button onClick={closeModal} id='column-cancel-delete-btn'>
+            Cancel
           </button>
-          <button onClick={handleDelete} id='column_confirm_delete_btn'>
-            Yes
+          <button onClick={handleDelete} id='column-confirm-delete-btn'>
+            Delete
           </button>
         </div>
       </div>
