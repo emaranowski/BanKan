@@ -19,18 +19,18 @@ export default function BoardCard({ board }) {
 
   return (<>{isLoaded && (
     <Link to={`/boards/${boardId}`}>
-      <div id='boardCard'>
+      <div id='board-card'>
 
-        <div id='boardCardImgDiv'>
-          <img id='boardCardImg' src={imageUrl}></img>
+        <div id='board-card-img-div'>
+          <img id='board-card-img' src={imageUrl}></img>
         </div>
 
-        <div id='boardCardTitle'>
+        <div id='board-card-title'>
           {title}
         </div>
 
-        {/* <div id='boardCardBtns'>
-          <div className='boardCardUpdateAndDeleteBtns'>
+        {/* <div id='board-card-btns'>
+          <div className='board-card-update-and-delete-btns'>
             <OpenModalButton
               buttonText="Update"
               modalComponent={
@@ -39,7 +39,7 @@ export default function BoardCard({ board }) {
                 />}
             />
           </div>
-          <div className='boardCardUpdateAndDeleteBtns'>
+          <div className='board-card-update-and-delete-btns'>
             <OpenModalButton
               buttonText="Delete"
               modalComponent={<BoardDeleteModal

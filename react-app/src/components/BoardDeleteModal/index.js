@@ -34,12 +34,12 @@ export default function BoardDeleteModal({ boardId }) {
         <div id='board-delete-modal-text'>
           Delete board?
         </div>
-        <div id='board_delete_modal_btns'>
+        <div id='board-delete-modal-btns'>
           <button onClick={closeModal} id='board-cancel-delete-btn'>
-            No
+            Cancel
           </button>
           <button onClick={handleDelete} id='board-confirm-delete-btn'>
-            Yes
+            Delete
           </button>
         </div>
       </div>
