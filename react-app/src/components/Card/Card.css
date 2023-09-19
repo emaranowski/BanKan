@@ -11,21 +11,21 @@
     margin: 10px 0;
 }
 
-#card_btns {
+#card-btns {
     display: flex;
     flex-direction: row;
     gap: 2px;
 }
 
-#card_btns button {
+#card-btns button {
     border-radius: 6px;
     background-color: #FFFFFF;
 }
 
-#card_btns button:hover {
+#card-btns button:hover {
     background-color: #ededed;
 }
 
-#card_btns i {
+#card-btns i {
     color: #707070;
 }

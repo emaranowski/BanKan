@@ -36,11 +36,11 @@ export default function Card({ boardId, column, card, index }) { // added index
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <span id='card_title'>
+          <span>
             {title}
           </span>
 
-          <span id='card_btns'>
+          <span id='card-btns'>
             <OpenModalButton
               buttonText={<i class="fa-regular fa-pen-to-square"></i>}
               modalComponent={
