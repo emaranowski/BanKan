@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { thunkGetOneBoard } from '../../store/boards';
-import { updateColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
+import { updateColumn, thunkGetOneColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
 import { thunkUpdateCard } from '../../store/cards';
 // import { thunkGetOneCard } from '../../store/cards';
 // import { thunkGetOneColumn } from '../../store/columns';
@@ -29,7 +29,20 @@ export default function Board() {
   // const dndId = board.dndId;
   // const columnDndIds = board.columnDndIds;
   // const columnsDnd = board.columnsDnd;
-  console.log('||||||| in Board, sessionUser:', sessionUser)
+
+  // const board2Arr = sessionUser.boards.filter(board => {
+  //   return board.userId === sessionUser.id;
+  // })
+  // const board = board2Arr[0];
+  // const imageUrl = board.imageUrl;
+  // const title = board.title;
+  // const columns = board.columns;
+
+  // console.log('||||||| in Board, sessionUser:', sessionUser)
+  // console.log('||||||| in Board, board:', board)
+  // console.log('||||||| in Board, board.columns:', board.columns)
+  // console.log('||||||| in Board, board2Arr:', board2Arr)
+  // console.log('||||||| in Board, board2:', board2)
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -56,7 +69,7 @@ export default function Board() {
       const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
         // setTriggerRerenderToggle(!triggerRerenderToggle);
-        // dispatch(thunkGetOneBoard(boardId));
+        dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         // dispatch(thunkGetOneColumn(columnUpdated.id))
         return res;
@@ -78,7 +91,7 @@ export default function Board() {
         // setTriggerRerenderToggle(!triggerRerenderToggle);
         // dispatch(thunkGetOneCard(cardUpdated.id));
         // dispatch(thunkGetOneColumn(cardUpdated.columnId))
-        // dispatch(thunkGetOneBoard(boardId));
+        dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         return res;
       } else {
@@ -107,6 +120,7 @@ export default function Board() {
   // }
 
   const onDragEnd = (result) => {
+    console.log('||||||| ondragend begins')
     const { draggableId, source, destination } = result;
 
     // return if: no destination, or dropped back into original spot
@@ -238,6 +252,8 @@ export default function Board() {
       updateCardOrderOnColumn(columnUpdatedSrc);
       updateColumnIdOnCard(cardUpdated, columnUpdatedSrc, columnUpdatedDest);
       updateCardOrderOnColumn(columnUpdatedDest);
+      // dispatch(thunkGetOneBoard(boardId));
+      // dispatch(thunkGetAllColumnsForBoard(boardId));
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
 
