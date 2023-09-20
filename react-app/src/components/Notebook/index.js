@@ -125,8 +125,8 @@ export default function Notebook() {
 
           <div id='notebook-details-page-content'>
             <span>
-              <Link to={`/notebooks`}>
-                ⬅ Notebooks
+              <Link to={`/dashboard`}>
+                ⬅ Dashboard
               </Link>
             </span>
 

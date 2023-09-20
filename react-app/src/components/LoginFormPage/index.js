@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import './LoginForm.css';
 
-function LoginFormPage() {
+export default function LoginFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,17 +22,29 @@ function LoginFormPage() {
     }
   };
 
+  const handleDemoUser = async (e) => {
+    e.preventDefault()
+    const demoEmail = 'demo@aa.io'
+    const demoPassword = 'password'
+    const data = await dispatch(login(demoEmail, demoPassword));
+    if (data) {
+      setErrors(data);
+    } else {
+      history.push(`/dashboard`);
+    }
+  };
+
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div id='login-page'>
+      <div id='login-page-header'>Please log in to continue</div>
+      <form id='login-page-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
         <label>
-          Email
+          <div>Email:</div>
           <input
             type="text"
             value={email}
@@ -40,7 +53,7 @@ function LoginFormPage() {
           />
         </label>
         <label>
-          Password
+          <div>Password:</div>
           <input
             type="password"
             value={password}
@@ -48,10 +61,13 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className='login-page-btn' type="submit">
+          Log in
+        </button>
+        <button className='login-page-btn' id='login-page-demo-user-btn' onClick={handleDemoUser}>
+          Log in as demo user
+        </button>
       </form>
-    </>
-  );
-}
-
-export default LoginFormPage;
+    </div>
+  )
+};

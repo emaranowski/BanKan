@@ -25,16 +25,16 @@ export default function BoardsAll() {
 
   return (<>
     {isLoaded && (<>
-      <div id='boardsPage'>
+      <div id='boards-page'>
         <div className='dashboard-breadcrumb'>
           <Link to={`/dashboard`}>
             ⬅ Dashboard
           </Link>
         </div>
 
-        <div id='boardsHeader'>
-          <span id='boardsHeaderText'>Boards</span>
-          <span id='boardsHeaderAddBtn'>
+        <div id='boards-header'>
+          <span id='boards-header-text'>Boards</span>
+          <span id='boards-header-add-btn'>
             <OpenModalButton
               buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
               modalComponent={
@@ -44,10 +44,10 @@ export default function BoardsAll() {
             />
           </span>
         </div>
-        <div id='boardCards'>
+        <div id='board-cards'>
           {boards.length ?
             boards.map((board) => (
-              <div id='boardCardDiv' key={board.id}>
+              <div key={board.id}>
                 <BoardCard board={board} />
               </div>
             ))

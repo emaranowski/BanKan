@@ -18,12 +18,12 @@ function SignupFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
-        if (data) {
-          setErrors(data)
-        }
+      const data = await dispatch(signUp(username, email, password));
+      if (data) {
+        setErrors(data)
+      }
     } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+      setErrors(['Passwords must match']);
     }
   };
 

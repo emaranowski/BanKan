@@ -46,16 +46,16 @@ export default function CardDeleteModal({ card, column, boardId }) {
 
   return (
     <>
-      <div id='card_delete_modal_outermost_box'>
-        <div id='card_delete_modal_text'>
+      <div id='card-delete-modal-outermost-box'>
+        <div id='card-delete-modal-text'>
           Delete card?
         </div>
-        <div id='card_delete_modal_btns'>
-          <button onClick={closeModal} id='card_cancel_delete_btn'>
-            No
+        <div id='card-delete-modal-btns'>
+          <button onClick={closeModal} id='card-cancel-delete-btn'>
+            Cancel
           </button>
-          <button onClick={handleDelete} id='card_confirm_delete_btn'>
-            Yes
+          <button onClick={handleDelete} id='card-confirm-delete-btn'>
+            Delete
           </button>
         </div>
       </div>

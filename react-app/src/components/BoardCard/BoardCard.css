@@ -1,4 +1,4 @@
-#boardCard {
+#board-card {
     display: flex;
     justify-items: start;
     flex-direction: row;
@@ -7,15 +7,15 @@
     transition: box-shadow .5s;
 }
 
-#boardCard:hover {
+#board-card:hover {
     box-shadow: 5px 5px 25px #cccccc;
 }
 
-#boardCardImgDiv {
+#board-card-img-div {
     z-index: -2;
 }
 
-#boardCardImg {
+#board-card-img {
     width: 350px;
     height: 185px;
     object-fit: cover;
@@ -23,7 +23,7 @@
     margin-bottom: -4px;
 }
 
-#boardCardTitle {
+#board-card-title {
     z-index: -1;
     position: absolute;
     margin: 20px;

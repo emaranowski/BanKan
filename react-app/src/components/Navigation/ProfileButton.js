@@ -7,7 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
 
-function ProfileButton({ user }) {
+export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
@@ -38,7 +38,7 @@ function ProfileButton({ user }) {
     history.push('/');
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = "nav-profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
@@ -49,21 +49,21 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div id='dropdown-username'>
+            <div id='nav-profile-dropdown-username'>
               Welcome, <br></br>{user.username}
             </div>
             <Link exact to="/dashboard">
-              <span className='dropdown-links' onClick={closeMenu} >
+              <span className='nav-profile-dropdown-links' onClick={closeMenu} >
                 Dashboard
               </span>
             </Link>
             <Link exact to="/boards">
-              <span className='dropdown-links' onClick={closeMenu} >
+              <span className='nav-profile-dropdown-links' onClick={closeMenu} >
                 Boards
               </span>
             </Link>
             <Link exact to="/notebooks">
-              <span className='dropdown-links' onClick={closeMenu} >
+              <span className='nav-profile-dropdown-links' onClick={closeMenu} >
                 Notebooks
               </span>
             </Link>
@@ -73,7 +73,7 @@ function ProfileButton({ user }) {
               </span>
             </Link> */}
             <div>
-              <span id='dropdown-logout' className='dropdown-links' onClick={handleLogout}>
+              <span id='nav-profile-dropdown-logout' className='nav-profile-dropdown-links' onClick={handleLogout}>
                 Log Out
               </span>
             </div>
@@ -95,7 +95,5 @@ function ProfileButton({ user }) {
         )}
       </div>
     </>
-  );
-}
-
-export default ProfileButton;
+  )
+};

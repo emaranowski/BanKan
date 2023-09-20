@@ -1,4 +1,4 @@
-#card_delete_modal_outermost_box {
+#card-delete-modal-outermost-box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,18 +6,18 @@
     padding: 20px 0;
 }
 
-#card_delete_modal_text {
+#card-delete-modal-text {
     font-size: 25px;
     padding-bottom: 10px;
 }
 
-#card_delete_modal_btns {
+#card-delete-modal-btns {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-#card_cancel_delete_btn {
+#card-cancel-delete-btn {
     color: #000000;
     background-color: rgb(219, 219, 219);
     font-size: 17px;
@@ -26,12 +26,12 @@
     border: none;
 }
 
-#card_cancel_delete_btn:hover {
+#card-cancel-delete-btn:hover {
     background-color: rgb(190, 190, 190);
     cursor: pointer;
 }
 
-#card_confirm_delete_btn {
+#card-confirm-delete-btn {
     color: #FFFFFF;
     background-color: #991900de;
     font-size: 17px;
@@ -40,7 +40,7 @@
     border: none;
 }
 
-#card_confirm_delete_btn:hover {
+#card-confirm-delete-btn:hover {
     background-color: #711300de;
     cursor: pointer;
 }

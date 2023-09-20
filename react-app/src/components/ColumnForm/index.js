@@ -23,7 +23,7 @@ export default function ColumnForm({ formType, column }) {
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log('**** in ColumnForm, colorName:', colorName)
+  // console.log('**** in ColumnForm, colorName:', colorName)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -152,14 +152,12 @@ export default function ColumnForm({ formType, column }) {
       {isLoaded && (
         <form onSubmit={handleSubmit}>
 
-          <div className='create_column_form_section'>
-            <div className='column_form_top_header'>
-              {formType === 'Create Column' ? 'Create Column' : 'Update Column'}
-            </div>
+          <div className='column-form-top-header'>
+            {formType === 'Create Column' ? 'Create Column' : 'Update Column'}
           </div>
 
-          <div className='create_column_form_section'>
-            <div id='colorButtons'>
+          <div>
+            <div id='color-btns'>
               {colorNames.length ?
                 colorNames.map((clrName) => (
                   <div
@@ -178,7 +176,7 @@ export default function ColumnForm({ formType, column }) {
             {/* {errors.background && (<div className="column_error_text">{errors.background}</div>)} */}
           </div>
 
-          <div className='create_column_form_section'>
+          <div>
             <div>
               <input
                 size="57"
@@ -190,11 +188,11 @@ export default function ColumnForm({ formType, column }) {
                 required
               />
             </div>
-            {errors.title && (<div className="column_error_text">{errors.title}</div>)}
+            {errors.title && (<div className="column-error-text">{errors.title}</div>)}
           </div>
 
           <button
-            className={disabled ? "create_column_form_button_disabled" : "create_column_form_button"}
+            className={disabled ? "column-form-btn-disabled" : "column-form-btn"}
             disabled={disabled}
           >
             {formType === 'Create Column' ? 'Add' : 'Update'}

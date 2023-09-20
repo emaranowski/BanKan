@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { thunkGetOneBoard } from '../../store/boards';
-import { updateColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
+import { updateColumn, thunkGetOneColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
 import { thunkUpdateCard } from '../../store/cards';
 // import { thunkGetOneCard } from '../../store/cards';
 // import { thunkGetOneColumn } from '../../store/columns';
@@ -14,9 +14,9 @@ import BoardFormUpdate from "../BoardFormUpdate";
 import BoardDeleteModal from "../BoardDeleteModal";
 import ColumnFormCreate from '../ColumnFormCreate';
 import Column from "../Column";
-import './BoardDetails.css';
+import './Board.css';
 
-export default function BoardDetails() {
+export default function Board() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
@@ -29,7 +29,20 @@ export default function BoardDetails() {
   // const dndId = board.dndId;
   // const columnDndIds = board.columnDndIds;
   // const columnsDnd = board.columnsDnd;
-  console.log('||||||| in BoardDetails, sessionUser:', sessionUser)
+
+  // const board2Arr = sessionUser.boards.filter(board => {
+  //   return board.userId === sessionUser.id;
+  // })
+  // const board = board2Arr[0];
+  // const imageUrl = board.imageUrl;
+  // const title = board.title;
+  // const columns = board.columns;
+
+  // console.log('||||||| in Board, sessionUser:', sessionUser)
+  // console.log('||||||| in Board, board:', board)
+  // console.log('||||||| in Board, board.columns:', board.columns)
+  // console.log('||||||| in Board, board2Arr:', board2Arr)
+  // console.log('||||||| in Board, board2:', board2)
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -56,7 +69,7 @@ export default function BoardDetails() {
       const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
         // setTriggerRerenderToggle(!triggerRerenderToggle);
-        // dispatch(thunkGetOneBoard(boardId));
+        dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         // dispatch(thunkGetOneColumn(columnUpdated.id))
         return res;
@@ -78,7 +91,7 @@ export default function BoardDetails() {
         // setTriggerRerenderToggle(!triggerRerenderToggle);
         // dispatch(thunkGetOneCard(cardUpdated.id));
         // dispatch(thunkGetOneColumn(cardUpdated.columnId))
-        // dispatch(thunkGetOneBoard(boardId));
+        dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         return res;
       } else {
@@ -107,6 +120,7 @@ export default function BoardDetails() {
   // }
 
   const onDragEnd = (result) => {
+    console.log('||||||| ondragend begins')
     const { draggableId, source, destination } = result;
 
     // return if: no destination, or dropped back into original spot
@@ -238,6 +252,8 @@ export default function BoardDetails() {
       updateCardOrderOnColumn(columnUpdatedSrc);
       updateColumnIdOnCard(cardUpdated, columnUpdatedSrc, columnUpdatedDest);
       updateCardOrderOnColumn(columnUpdatedDest);
+      // dispatch(thunkGetOneBoard(boardId));
+      // dispatch(thunkGetAllColumnsForBoard(boardId));
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
 
@@ -287,20 +303,20 @@ export default function BoardDetails() {
 
   return (<>{isLoaded && (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div id='board_details_page' style={{ backgroundImage: `url(${imageUrl})` }}>
+      <div id='board-page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-        <div id='board_details_page_content'>
-          <Link to={`/boards`}>
-            ⬅ Boards
+        <div id='board-page-content'>
+          <Link to={`/dashboard`}>
+            ⬅ Dashboard
           </Link>
 
-          <div id='board_details_header'>
-            <div id='board_details_title'>
-              <span id='board_details_title_text'>{title}</span>
+          <div id='board-header'>
+            <div id='board-title'>
+              <span id='board-title-text'>{title}</span>
             </div>
 
-            <div id='board_details_btns'>
-              <span id='board_details_update_btn'>
+            <div id='board-btns'>
+              <span>
                 <OpenModalButton
                   buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                   modalComponent={
@@ -310,7 +326,7 @@ export default function BoardDetails() {
                 />
               </span>
 
-              <span id='board_details_delete_btn'>
+              <span>
                 <OpenModalButton
                   buttonText={<i class="fa-regular fa-trash-can"></i>}
                   modalComponent={
@@ -323,16 +339,16 @@ export default function BoardDetails() {
             </div>
           </div>
 
-          <div id='board_details_all_columns'>
+          <div id='board-columns'>
             {columns && (
               columns.map((column) => (
-                <span className='board_details_one_column' key={column.id}>
+                <span className='board-one-column' key={column.id}>
                   <Column key={column.id} column={column} />
                 </span>
               ))
             )}
 
-            <span id='board_details_add_col_btn'>
+            <span id='board-add-col-btn'>
               <OpenModalButton
                 buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
                 modalComponent={

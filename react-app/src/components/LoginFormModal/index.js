@@ -49,32 +49,28 @@ export default function LoginFormModal() {
           </ul>
         </div>
         <label>
-          Email:
-          <div>
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+          <div>Email:</div>
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </label>
         <label>
-          Password:
-          <div>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+          <div>Password:</div>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </label>
         <button type="submit">
           Log in
         </button>
       </form>
-      <div id='demoUserBtnDiv'>
+      <div>
         <button id='demo-user-btn' onClick={handleDemoUser}>
           Log in as demo user
         </button>

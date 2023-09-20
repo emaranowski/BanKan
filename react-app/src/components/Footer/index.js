@@ -47,7 +47,7 @@ export default function Footer() {
           </span>
 
           <span id='footer-dev-info'>
-            <div id='footer-contact-the-dev'>
+            <div id='footer-reach-the-dev'>
               Reach the developer
             </div>
             <div id='footer-dev-name-and-links'>

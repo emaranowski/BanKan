@@ -18,6 +18,21 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+# @auth_routes.route('/<int:id>', methods=['GET'])
+# @login_required
+# def get_user(id):
+#     """
+#     Get details of one user (by user_id): GET /api/auth/:user_id
+#     """
+#     # print('***** in get_user, id:', id)
+#     user = User.query.get(id)
+#     # print('***** in get_user, user:', user)
+
+#     if user:
+#         return user.to_dict()
+#     else:
+#         return { "error": "User could not be found" }, 404
+
 
 @auth_routes.route('/')
 def authenticate():
