@@ -41,7 +41,13 @@
   gap: 17px;
 }
 
+#modal-content form ul {
+  padding-left: 10px;
+}
+
 #modal-content form label {
+  display: flex;
+  flex-direction: column;
   font-weight: 600;
   color: #182c4c;
 }
