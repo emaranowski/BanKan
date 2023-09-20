@@ -5,8 +5,9 @@
     align-items: center;
 }
 
-#login-page-h1 {
-    margin-bottom: -25px;
+#login-page-header {
+    font-size: 35px;
+    /* margin-bottom: -10px; */
 }
 
 #login-page-form {
@@ -14,6 +15,12 @@
     flex-direction: column;
     width: 250px;
     gap: 30px;
+}
+
+#login-page-form ul {
+    width: 100%;
+    margin-bottom: -10px;
+    padding-left: 15px;
 }
 
 #login-page-form label {

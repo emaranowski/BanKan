@@ -36,7 +36,7 @@ export default function LoginFormPage() {
 
   return (
     <div id='login-page'>
-      <h1 id='login-page-h1'>Please log in to continue</h1>
+      <div id='login-page-header'>Please log in to continue</div>
       <form id='login-page-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
