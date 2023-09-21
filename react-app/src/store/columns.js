@@ -144,7 +144,7 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
     if (res.ok) {
         const column = await res.json();
         dispatch(updateColumn(column));
-        dispatch(thunkGetAllColumnsForBoard(boardId));
+        // dispatch(thunkGetAllColumnsForBoard(boardId));
         return column;
     } else {
         // dispatch(updateColumn(oldColumn));
