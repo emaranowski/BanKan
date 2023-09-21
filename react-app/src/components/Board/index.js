@@ -41,9 +41,9 @@ export default function Board() {
     async function getUpdatedBoardAndCols() {
       await dispatch(thunkGetOneBoard(boardId));
       await dispatch(thunkGetAllColumnsForBoard(boardId));
-      setIsLoaded(true);
     };
     getUpdatedBoardAndCols();
+    setIsLoaded(true);
   }, [dispatch, boardId, imageUrl, title, triggerRerenderToggle]);
 
   useEffect(() => {
@@ -401,7 +401,7 @@ export default function Board() {
             {columns && (
               columns.map((column) => (
                 <span className='board-one-column' key={column.id}>
-                  <Column key={column.id} column={column} />
+                  <Column key={column.id} boardId={boardId} columnId={column.id} column={column} />
                 </span>
               ))
             )}
