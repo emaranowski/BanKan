@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkDeleteCard } from "../../store/cards";
-import { thunkUpdateColumn, thunkGetAllColumnsForBoard } from '../../store/columns';
+import { thunkUpdateColumn } from '../../store/columns';
 import "./CardDeleteModal.css";
 
 export default function CardDeleteModal({ card, column, boardId }) {
@@ -37,7 +37,6 @@ export default function CardDeleteModal({ card, column, boardId }) {
         dispatch(thunkUpdateColumn(columnUpdated))
 
         closeModal();
-        // dispatch(thunkGetAllColumnsForBoard(boardId));
       }
     } catch {
       closeModal();

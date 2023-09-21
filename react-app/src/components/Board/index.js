@@ -8,7 +8,6 @@ import { thunkUpdateCard } from '../../store/cards';
 // import { thunkGetOneColumn } from '../../store/columns';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
-
 import OpenModalButton from "../OpenModalButton";
 import BoardFormUpdate from "../BoardFormUpdate";
 import BoardDeleteModal from "../BoardDeleteModal";
@@ -26,34 +25,26 @@ export default function Board() {
   const imageUrl = board.imageUrl;
   const title = board.title;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
-  // const dndId = board.dndId;
-  // const columnDndIds = board.columnDndIds;
-  // const columnsDnd = board.columnsDnd;
 
-  // const board2Arr = sessionUser.boards.filter(board => {
-  //   return board.userId === sessionUser.id;
-  // })
-  // const board = board2Arr[0];
-  // const imageUrl = board.imageUrl;
-  // const title = board.title;
-  // const columns = board.columns;
-
-  // console.log('||||||| in Board, sessionUser:', sessionUser)
   // console.log('||||||| in Board, board:', board)
   // console.log('||||||| in Board, board.columns:', board.columns)
-  // console.log('||||||| in Board, board2Arr:', board2Arr)
-  // console.log('||||||| in Board, board2:', board2)
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(async () => {
-    dispatch(thunkGetOneBoard(boardId))
-    dispatch(thunkGetAllColumnsForBoard(boardId))
-    setIsLoaded(true)
+  useEffect(() => {
+    // dispatch(thunkGetOneBoard(boardId));
+    // dispatch(thunkGetAllColumnsForBoard(boardId));
+    // setIsLoaded(true);
+    async function getUpdatedBoardAndCols() {
+      await dispatch(thunkGetOneBoard(boardId));
+      await dispatch(thunkGetAllColumnsForBoard(boardId));
+      setIsLoaded(true);
+    };
+    getUpdatedBoardAndCols();
   }, [dispatch, boardId, imageUrl, title, triggerRerenderToggle]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (Object.values(board).length > 0) {
       if (!userId || userId !== board.userId) {
         // console.log('///////////', userId, board.userId);
@@ -61,7 +52,7 @@ export default function Board() {
         // window.alert('Invalid Permissions')
       }
     }
-  }, [sessionUser, board]);
+  }, [sessionUser, board, userId, history]);
 
   const updateCardOrderOnColumn = async (columnUpdated) => {
     try {

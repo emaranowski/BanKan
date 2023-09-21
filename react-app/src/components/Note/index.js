@@ -13,7 +13,7 @@ export default function Note({ notebook, note }) {
   const color = note.colorName;
   const title = note.title;
   const text = note.text;
-  const dndId = note.dndId;
+  // const dndId = note.dndId;
 
   // console.log('**** in Note, note:', note)
 

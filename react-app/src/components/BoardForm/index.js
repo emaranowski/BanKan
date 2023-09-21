@@ -16,7 +16,7 @@ export default function BoardForm({ formType, board }) {
 
   const [title, setTitle] = useState(board?.title);
   const [imageUrl, setImageUrl] = useState(board?.imageUrl);
-  const [imageFile, setImageFile] = useState('');
+  // const [imageFile, setImageFile] = useState('');
   const [imageFileUpdated, setImageFileUpdated] = useState(false);
   const [imageSelected, setImageSelected] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -221,6 +221,7 @@ export default function BoardForm({ formType, board }) {
                 id='image-button-div'
                 key={imgUrl.id}
                 src={imgUrl.url}
+                alt='Board background option'
                 onClick={() => {
                   setImageUrl(imgUrl.url)
                   setImageSelected(true)

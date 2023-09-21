@@ -22,7 +22,7 @@ export default function NotebookCard({ notebook }) {
       <div id='notebook-card'>
 
         <div id='notebook-card-img-div'>
-          <img id='notebook-card-img' src={imageUrl}></img>
+          <img id='notebook-card-img' src={imageUrl} alt='Notebook background'></img>
         </div>
 
         <div id='notebook-card-title'>
