@@ -69,7 +69,7 @@
 #column-btns {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 2px;
 }
 
@@ -94,7 +94,7 @@
 #column-btn-add-card button {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
 
     padding: 12.5px;
     margin-top: -3px;

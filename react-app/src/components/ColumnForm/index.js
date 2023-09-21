@@ -10,13 +10,13 @@ export default function ColumnForm({ formType, column }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
-  const columnId = column.id;
+  // const columnId = column.id;
   const boardId = column.boardId;
 
   const [title, setTitle] = useState(column?.title);
   // const [colorHex, setColorHex] = useState(column?.colorHex);
   const [colorName, setColorName] = useState(column?.colorName);
-  const [colorSelected, setColorSelected] = useState(false);
+  // const [colorSelected, setColorSelected] = useState(false);
   const [colorError, setColorError] = useState(false);
 
   const [disabled, setDisabled] = useState(false);

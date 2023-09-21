@@ -8,7 +8,6 @@ import { thunkUpdateCard } from '../../store/cards';
 // import { thunkGetOneColumn } from '../../store/columns';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
-
 import OpenModalButton from "../OpenModalButton";
 import BoardFormUpdate from "../BoardFormUpdate";
 import BoardDeleteModal from "../BoardDeleteModal";
@@ -26,34 +25,28 @@ export default function Board() {
   const imageUrl = board.imageUrl;
   const title = board.title;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
-  // const dndId = board.dndId;
-  // const columnDndIds = board.columnDndIds;
-  // const columnsDnd = board.columnsDnd;
 
-  // const board2Arr = sessionUser.boards.filter(board => {
-  //   return board.userId === sessionUser.id;
-  // })
-  // const board = board2Arr[0];
-  // const imageUrl = board.imageUrl;
-  // const title = board.title;
-  // const columns = board.columns;
-
-  // console.log('||||||| in Board, sessionUser:', sessionUser)
   // console.log('||||||| in Board, board:', board)
   // console.log('||||||| in Board, board.columns:', board.columns)
-  // console.log('||||||| in Board, board2Arr:', board2Arr)
-  // console.log('||||||| in Board, board2:', board2)
+  // console.log('||||||| columns:', columns)
+  // console.log('||||||| columns[0]:', columns[0])
 
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(async () => {
-    dispatch(thunkGetOneBoard(boardId))
-    dispatch(thunkGetAllColumnsForBoard(boardId))
-    setIsLoaded(true)
+  useEffect(() => {
+    // dispatch(thunkGetOneBoard(boardId));
+    // dispatch(thunkGetAllColumnsForBoard(boardId));
+    // setIsLoaded(true);
+    async function getUpdatedBoardAndCols() {
+      await dispatch(thunkGetOneBoard(boardId));
+      await dispatch(thunkGetAllColumnsForBoard(boardId));
+      setIsLoaded(true);
+    };
+    getUpdatedBoardAndCols();
   }, [dispatch, boardId, imageUrl, title, triggerRerenderToggle]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (Object.values(board).length > 0) {
       if (!userId || userId !== board.userId) {
         // console.log('///////////', userId, board.userId);
@@ -61,15 +54,15 @@ export default function Board() {
         // window.alert('Invalid Permissions')
       }
     }
-  }, [sessionUser, board]);
+  }, [sessionUser, board, userId, history]);
 
   const updateCardOrderOnColumn = async (columnUpdated) => {
     try {
       // dispatch(updateColumn(columnUpdated));
       const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
-        // setTriggerRerenderToggle(!triggerRerenderToggle);
-        dispatch(thunkGetOneBoard(boardId));
+        setTriggerRerenderToggle(!triggerRerenderToggle);
+        // dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         // dispatch(thunkGetOneColumn(columnUpdated.id))
         return res;
@@ -119,8 +112,20 @@ export default function Board() {
   //   }
   // }
 
+  const onDragStart = (result) => {
+    console.log('-----||||||| onDragStart BEGINS')
+
+    console.log('||||||| columns[0]:', columns[0])
+
+    console.log('-----||||||| onDragStart ENDS')
+  }
+
+  console.log('||||||| columns[0]:', columns[0])
+
   const onDragEnd = (result) => {
-    console.log('||||||| ondragend begins')
+    console.log('-----||||||| onDragEnd BEGINS')
+    console.log('||||||| columns[0]:', columns[0])
+
     const { draggableId, source, destination } = result;
 
     // return if: no destination, or dropped back into original spot
@@ -133,13 +138,13 @@ export default function Board() {
     //////// CASE 1: drop within one single col
     if (source.droppableId === destination.droppableId) {
 
-      // get col to update (col where dndId matches source.droppableId)
+      // get col to update (where dndId matches source.droppableId)
       const columnArr = columns.filter(column => {
         return column.dndId === source.droppableId;
       });
       const columnToUpdate = columnArr[0];
 
-      // convert cardOrder: str to arr
+      // convert cardOrder: from str to arr
       const cardOrderStr = columnToUpdate.cardOrder;
       const cardOrderArr = cardOrderStr.split(',');
 
@@ -148,7 +153,7 @@ export default function Board() {
       const movedCardDndId = movedCardDndIdArr[0];
       cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
 
-      // convert cardOrder: arr to str
+      // convert cardOrder: from arr to str
       const cardOrderUpdatedStr = cardOrderArr.toString();
 
       // create colUpdated w/ updated card order
@@ -159,14 +164,20 @@ export default function Board() {
 
       // get idx of colToUpdate (in orig 'columns' arr)
       const columnToUpdateIdx = columns.indexOf(columnToUpdate);
-      // at colToUpdateIdx in 'columns': 1. remove colToUpdate, 2. add colUpdated
+      // at colToUpdateIdx: 1. remove colToUpdate, 2. add colUpdated
       columns.splice(columnToUpdateIdx, 1, columnUpdated);
 
-      updateCardOrderOnColumn(columnUpdated); // update card order property on col
+      console.log('||||||| columns[0]:', columns[0])
+      // const res = updateCardOrderOnColumn(columnUpdated); // update card order on col
+      async function updateCardOrderOnColumnWrap() {
+        const res = await updateCardOrderOnColumn(columnUpdated); // update card order on col
+        console.log('||||||| res:', res)
+      };
+      updateCardOrderOnColumnWrap();
+      console.log('||||||| columns[0]:', columns[0])
+
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
-
-
 
     //////// CASE 2: drop across two diff cols
     if (source.droppableId !== destination.droppableId) {
@@ -193,7 +204,7 @@ export default function Board() {
         columnId: columnToUpdateDest.id,
       };
 
-      // SRC + DEST -- convert cardOrder: str to arr
+      // SRC + DEST -- convert cardOrder: from str to arr
       const cardOrderStrSrc = columnToUpdateSrc.cardOrder;
       const cardOrderStrDest = columnToUpdateDest.cardOrder;
       const cardOrderArrSrc = cardOrderStrSrc.split(',');
@@ -214,7 +225,7 @@ export default function Board() {
         cardOrderArrDest.splice(destination.index, 1, movedCardDndId);
       };
 
-      // SRC + DEST -- convert cardOrder: arr to str
+      // SRC + DEST -- convert cardOrder: from arr to str
       const cardOrderUpdatedStrSrc = cardOrderArrSrc.toString();
       const cardOrderUpdatedStrDest = cardOrderArrDest.toString();
 
@@ -233,7 +244,7 @@ export default function Board() {
       // console.log('|||||| columnUpdatedDest:', columnUpdatedDest)
 
       // SRC -- get idx of columnToUpdate (from orig 'columns' arr)
-      // SRC -- at that idx in 'columns': 1. remove columnToUpdate, 2. add colUpdated
+      // SRC -- at that idx: 1. remove columnToUpdate, 2. add columnUpdated
       const columnToUpdateIdxSrc = columns.indexOf(columnToUpdateSrc);
       const columnToUpdateIdxDest = columns.indexOf(columnToUpdateDest);
       columns.splice(columnToUpdateIdxSrc, 1, columnUpdatedSrc);
@@ -257,7 +268,7 @@ export default function Board() {
       setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     };
 
-
+    console.log('-----||||||| onDragEnd ENDS')
 
     // ORIG
     // cardOrderArr.splice(source.index, 1); // remove 1 at idx
@@ -302,7 +313,7 @@ export default function Board() {
 
 
   return (<>{isLoaded && (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <div id='board-page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
         <div id='board-page-content'>
@@ -310,34 +321,36 @@ export default function Board() {
             ⬅ Dashboard
           </Link>
 
-          <div id='board-header'>
-            <div id='board-title'>
-              <span id='board-title-text'>{title}</span>
+          {board && (
+            <div id='board-header'>
+              <div id='board-title'>
+                <span id='board-title-text'>{title}</span>
+              </div>
+
+              <div id='board-btns'>
+                <span>
+                  <OpenModalButton
+                    buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+                    modalComponent={
+                      <BoardFormUpdate
+                        board={board}
+                      />}
+                  />
+                </span>
+
+                <span>
+                  <OpenModalButton
+                    buttonText={<i class="fa-regular fa-trash-can"></i>}
+                    modalComponent={
+                      <BoardDeleteModal
+                        boardId={boardId}
+                      />}
+                  />
+                </span>
+
+              </div>
             </div>
-
-            <div id='board-btns'>
-              <span>
-                <OpenModalButton
-                  buttonText={<i class="fa-regular fa-pen-to-square"></i>}
-                  modalComponent={
-                    <BoardFormUpdate
-                      board={board}
-                    />}
-                />
-              </span>
-
-              <span>
-                <OpenModalButton
-                  buttonText={<i class="fa-regular fa-trash-can"></i>}
-                  modalComponent={
-                    <BoardDeleteModal
-                      boardId={boardId}
-                    />}
-                />
-              </span>
-
-            </div>
-          </div>
+          )}
 
           <div id='board-columns'>
             {columns && (
@@ -348,15 +361,17 @@ export default function Board() {
               ))
             )}
 
-            <span id='board-add-col-btn'>
-              <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
-                modalComponent={
-                  <ColumnFormCreate
-                    boardId={boardId}
-                  />}
-              />
-            </span>
+            {board && (
+              <span id='board-add-col-btn'>
+                <OpenModalButton
+                  buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
+                  modalComponent={
+                    <ColumnFormCreate
+                      boardId={boardId}
+                    />}
+                />
+              </span>
+            )}
           </div>
         </div>
 

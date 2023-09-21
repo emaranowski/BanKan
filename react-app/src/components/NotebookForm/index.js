@@ -16,7 +16,7 @@ export default function NotebookForm({ formType, notebook }) {
 
   const [title, setTitle] = useState(notebook?.title);
   const [imageUrl, setImageUrl] = useState(notebook?.imageUrl);
-  const [imageFile, setImageFile] = useState('');
+  // const [imageFile, setImageFile] = useState('');
   const [imageFileUpdated, setImageFileUpdated] = useState(false);
   const [imageSelected, setImageSelected] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -219,6 +219,7 @@ export default function NotebookForm({ formType, notebook }) {
                 id='image-btn-div'
                 key={imgUrl.id}
                 src={imgUrl.url}
+                alt='Notebook background option'
                 onClick={() => {
                   setImageUrl(imgUrl.url)
                   setImageSelected(true)
