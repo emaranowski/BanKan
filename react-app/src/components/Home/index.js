@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
-import Footer from '../Footer';
 import './Home.css'
 
 export default function Home() {
@@ -85,9 +84,7 @@ export default function Home() {
 
       </div>
 
-      <div id='home-footer-container'>
-        <Footer></Footer>
-      </div>
+      <div id='home-bottom-spacer'></div>
     </>
   )
 }

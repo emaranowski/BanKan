@@ -12,7 +12,7 @@ import BoardsAll from "./components/BoardsAll";
 import Board from "./components/Board";
 import NotebooksAll from "./components/NotebooksAll";
 import Notebook from "./components/Notebook";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -23,47 +23,53 @@ export default function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
+      <div id="page-container">
+        <div id="content-wrap">
+          <Navigation isLoaded={isLoaded} />
+          {isLoaded && (
+            <Switch>
+              <Route exact path='/'>
+                <Home />
+              </Route>
 
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+              <Route path="/signup">
+                <SignupFormPage />
+              </Route>
 
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
+              <Route path="/login" >
+                <LoginFormPage />
+              </Route>
 
-          <ProtectedRoute exact path='/dashboard'>
-            <AccountDashboard />
-          </ProtectedRoute>
+              <ProtectedRoute exact path='/dashboard'>
+                <AccountDashboard />
+              </ProtectedRoute>
 
-          <ProtectedRoute exact path='/boards'>
-            <BoardsAll />
-          </ProtectedRoute>
+              <ProtectedRoute exact path='/boards'>
+                <BoardsAll />
+              </ProtectedRoute>
 
-          <ProtectedRoute exact path='/boards/:boardId'>
-            <Board />
-          </ProtectedRoute>
+              <ProtectedRoute exact path='/boards/:boardId'>
+                <Board />
+              </ProtectedRoute>
 
-          <ProtectedRoute exact path='/notebooks'>
-            <NotebooksAll />
-          </ProtectedRoute>
+              <ProtectedRoute exact path='/notebooks'>
+                <NotebooksAll />
+              </ProtectedRoute>
 
-          <ProtectedRoute exact path='/notebooks/:notebookId'>
-            <Notebook />
-          </ProtectedRoute>
+              <ProtectedRoute exact path='/notebooks/:notebookId'>
+                <Notebook />
+              </ProtectedRoute>
 
-          <Route>
-            <h1>Route does not exist</h1>
-          </Route>
-        </Switch>
-      )}
-      {/* <Footer /> */}
+              <Route>
+                <h1>Route does not exist</h1>
+              </Route>
+            </Switch>
+          )}
+        </div>
+        <div id="footer">
+          <Footer />
+        </div>
+      </div>
     </>
   )
 };
