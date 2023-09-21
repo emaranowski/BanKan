@@ -109,6 +109,6 @@
     width: 505px;
 }
 
-/* #home-content-last-section {
-    margin-bottom: 60px;
-} */
+#home-bottom-spacer {
+    height: 100px;
+}

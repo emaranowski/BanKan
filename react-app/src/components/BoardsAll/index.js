@@ -6,7 +6,6 @@ import BoardCard from "../BoardCard";
 import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import BoardFormCreate from "../BoardFormCreate";
-import Footer from '../Footer';
 import './BoardsAll.css'
 
 export default function BoardsAll() {
@@ -56,9 +55,8 @@ export default function BoardsAll() {
           }
         </div>
       </div>
-      {/* <div id='boardsall-footer'>
-        <Footer></Footer>
-      </div> */}
+
+      <div id='boards-bottom-spacer'></div>
     </>)}
   </>)
 };

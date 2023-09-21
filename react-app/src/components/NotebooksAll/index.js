@@ -6,8 +6,7 @@ import { thunkGetAllNotebooks } from '../../store/notebooks';
 import OpenModalButton from "../OpenModalButton";
 import NotebookCard from "../NotebookCard";
 import NotebookFormCreate from "../NotebookFormCreate";
-import Footer from '../Footer';
-import './NotebooksAll.css'
+import './NotebooksAll.css';
 
 export default function NotebooksAll() {
   const dispatch = useDispatch();
@@ -54,9 +53,8 @@ export default function NotebooksAll() {
           }
         </div>
       </div>
-      {/* <div id='notebooks-footer'>
-        <Footer></Footer>
-      </div> */}
+
+      <div id='notebooks-bottom-spacer'></div>
     </>)}
   </>)
 }
