@@ -55,18 +55,18 @@ const deleteColumn = (columnId) => {
 
 // THUNK: GET ONE COLUMN
 export const thunkGetOneColumn = (columnId) => async (dispatch) => {
-    // console.log('*** in thunkGetOneColumn, columnId:', columnId);
+    console.log('*** in thunkGetOneColumn, columnId:', columnId);
     const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
-    // console.log('*** in thunkGetOneColumn, res:', res);
+    console.log('*** in thunkGetOneColumn, res:', res);
 
     if (res.ok) {
         const column = await res.json();
-        // console.log('*** in thunkGetOneColumn, RES OK column:', column);
+        console.log('*** in thunkGetOneColumn, RES OK column:', column);
         dispatch(getOneColumn(column));
         return column;
     } else {
         const errors = await res.json();
-        // console.log('*** in thunkGetOneColumn, RES NOTOK errors:', errors);
+        console.log('*** in thunkGetOneColumn, RES NOTOK errors:', errors);
         return errors;
     }
 };
