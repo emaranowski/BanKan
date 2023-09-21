@@ -112,7 +112,7 @@ export default function BoardForm({ formType, board }) {
 
       try { // CREATE BOARD
         const res = await dispatch(thunkCreateBoard(board)); // VScode gives note about not needing 'await', but it IS needed
-        console.log('**** in Create Board TRY, res:', res)
+        // console.log('**** in Create Board TRY, res:', res)
         if (res.id) {
           setErrors({});
           history.push(`/boards/${res.id}`);
