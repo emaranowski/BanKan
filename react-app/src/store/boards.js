@@ -79,8 +79,8 @@ export const thunkGetAllBoards = (userId) => async (dispatch) => {
 
 // THUNK: CREATE BOARD
 export const thunkCreateBoard = (board) => async (dispatch) => {
-  console.log('**** in thunkCreateBoard ****')
-  console.log('**** in thunkCreateBoard, board:', board)
+  // console.log('**** in thunkCreateBoard ****')
+  // console.log('**** in thunkCreateBoard, board:', board)
 
   const { imageUrl, title, userId } = board;
 
@@ -106,9 +106,9 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
 
 // THUNK: UPDATE BOARD
 export const thunkUpdateBoard = (board) => async (dispatch) => {
-  console.log('**** in thunkUpdateBoard, board:', board)
+  // console.log('**** in thunkUpdateBoard, board:', board)
   const { imageUrl, title, id, userId } = board;
-  console.log('**** in thunkUpdateBoard, id:', id)
+  // console.log('**** in thunkUpdateBoard, id:', id)
 
   const res = await fetch(`/api/boards/${id}/update`, {
     method: "PUT",
@@ -119,7 +119,7 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
       user_id: userId,
     })
   })
-  console.log('**** in thunkUpdateBoard, res:', res)
+  // console.log('**** in thunkUpdateBoard, res:', res)
 
   if (res.ok) {
     const board = await res.json();
@@ -127,7 +127,7 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
     return board;
   } else {
     const errors = await res.json();
-    console.log('**** in thunkUpdateBoard, errors:', errors)
+    // console.log('**** in thunkUpdateBoard, errors:', errors)
     return errors;
   }
 };

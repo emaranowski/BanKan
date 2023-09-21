@@ -79,8 +79,8 @@ export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
 
 // THUNK: CREATE CARD
 export const thunkCreateCardForColumn = (card) => async (dispatch) => {
-  console.log('**** in thunkCreateCardForColumn ****')
-  console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
+  // console.log('**** in thunkCreateCardForColumn ****')
+  // console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
 
   const { columnId, index, title, description } = card;
   // const columnId = card.columnId;
@@ -95,16 +95,16 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
       description,
     })
   })
-  console.log('**** in thunkCreateCardForColumn, res:', res)
+  // console.log('**** in thunkCreateCardForColumn, res:', res)
 
   if (res.ok) {
     const card = await res.json();
-    console.log('**** in thunkCreateCardForColumn RES.OK, card:', card)
+    // console.log('**** in thunkCreateCardForColumn RES.OK, card:', card)
     dispatch(createCard(card));
     return card;
   } else {
     const errors = await res.json();
-    console.log('**** in thunkCreateCardForColumn, errors:', errors)
+    // console.log('**** in thunkCreateCardForColumn, errors:', errors)
     return errors;
   }
 };

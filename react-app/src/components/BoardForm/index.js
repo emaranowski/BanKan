@@ -25,7 +25,7 @@ export default function BoardForm({ formType, board }) {
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log('**** in BoardForm, imageUrl:', imageUrl)
+  // console.log('**** in BoardForm, imageUrl:', imageUrl)
 
   useEffect(() => {
     setIsLoaded(true);
