@@ -9,8 +9,7 @@ import BoardCard from "../BoardCard";
 import BoardFormCreate from "../BoardFormCreate";
 import NotebookCard from "../NotebookCard";
 import NotebookFormCreate from "../NotebookFormCreate";
-import Footer from '../Footer';
-import './AccountDashboard.css'
+import './AccountDashboard.css';
 
 export default function AccountDashboard() {
   const dispatch = useDispatch();
@@ -95,9 +94,7 @@ export default function AccountDashboard() {
 
 
       </div>
-      <div>
-        <Footer></Footer>
-      </div>
+      <div id='dashboard-bottom-spacer'></div>
     </>)}
   </>)
 };

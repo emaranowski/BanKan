@@ -45,8 +45,6 @@
     gap: 20px;
 }
 
-#boardsall-footer Footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
+#boards-bottom-spacer {
+    height: 100px;
 }
