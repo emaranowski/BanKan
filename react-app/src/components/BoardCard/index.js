@@ -22,7 +22,7 @@ export default function BoardCard({ board }) {
       <div id='board-card'>
 
         <div id='board-card-img-div'>
-          <img id='board-card-img' src={imageUrl}></img>
+          <img id='board-card-img' src={imageUrl} alt='Board background'></img>
         </div>
 
         <div id='board-card-title'>

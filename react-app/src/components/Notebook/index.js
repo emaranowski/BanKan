@@ -40,13 +40,19 @@ export default function Notebook() {
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(async () => {
-    dispatch(thunkGetOneNotebook(notebookId))
-    dispatch(thunkGetAllNotesForNotebook(notebookId))
-    setIsLoaded(true)
+  useEffect(() => {
+    // dispatch(thunkGetOneNotebook(notebookId))
+    // dispatch(thunkGetAllNotesForNotebook(notebookId))
+    // setIsLoaded(true)
+    async function getUpdatedBoardAndCols() {
+      await dispatch(thunkGetOneNotebook(notebookId));
+      await dispatch(thunkGetAllNotesForNotebook(notebookId));
+      setIsLoaded(true);
+    };
+    getUpdatedBoardAndCols();
   }, [dispatch, notebookId, imageUrl, title, triggerRerenderToggle]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (Object.values(notebook).length > 0) {
       if (!userId || userId !== notebook.userId) {
         // console.log('///////////', userId, notebook.userId);
@@ -54,9 +60,9 @@ export default function Notebook() {
         // window.alert('Invalid Permissions')
       }
     }
-  }, [sessionUser, notebook]);
+  }, [sessionUser, notebook, userId, history]);
 
-  useEffect(() => console.log(notebook), [notebook])
+  // useEffect(() => console.log(notebook), [notebook])
 
   const updateNoteOrderOnNotebook = async (notebookUpdated) => {
     try {

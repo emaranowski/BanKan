@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateCardForColumn } from "../../store/cards";
@@ -9,9 +9,9 @@ import './CardForm.css';
 export default function CardForm({ formType, card, column, boardId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const columnId = column.id;
+  // const columnId = column.id;
   const cardOrderArr = column.cardOrder.split(',');
-  const cards = column.cards;
+  // const cards = column.cards;
   const numCardsInColumn = column.cards.length;
 
   const [title, setTitle] = useState(card?.title);
