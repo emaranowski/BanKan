@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { thunkGetOneColumn, thunkGetAllColumnsForBoard } from '../../store/columns';
-import { thunkGetAllCardsForColumn } from '../../store/cards';
+import { thunkGetAllCardsForColumn, thunkGetAllCardsForBoard } from '../../store/cards';
 import OpenModalButton from '../../components/OpenModalButton';
 import Card from '../Card';
 import CardFormCreate from '../CardFormCreate';
@@ -47,7 +47,8 @@ export default function Column({ boardId, columnId }) {
     async function getData() {
       await dispatch(thunkGetOneColumn(columnId))
       await dispatch(thunkGetAllColumnsForBoard(boardId))
-      await dispatch(thunkGetAllCardsForColumn(columnId))
+      await dispatch(thunkGetAllCardsForBoard(boardId))
+      // await dispatch(thunkGetAllCardsForColumn(columnId))
     };
     getData();
     setIsLoaded(true)
