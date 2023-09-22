@@ -54,11 +54,11 @@ export default function CardForm({ formType, card, column, boardId }) {
             cardOrder: cardOrderUpdatedStr,
           };
 
-          dispatch(thunkUpdateColumn(columnUpdated))
+          await dispatch(thunkUpdateColumn(columnUpdated))
+          await dispatch(thunkGetAllColumnsForBoard(boardId));
 
           setErrors({});
           closeModal();
-          // dispatch(thunkGetAllColumnsForBoard(boardId));
         } else if (res.errors) {
           setErrors(res.errors);
         }

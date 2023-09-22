@@ -2,6 +2,7 @@
 
 const GET_ONE_CARD = "cards/getOneCard";
 const GET_ALL_CARDS = "cards/getAllCards";
+// const GET_ALL_CARDS_FOR_BOARD = "cards/getAllCardsForBoard";
 const CREATE_CARD = "cards/createCard";
 const UPDATE_CARD = "cards/updateCard";
 const DELETE_CARD = "cards/deleteCard";
@@ -21,6 +22,13 @@ const getAllCards = (cards) => {
     cards
   }
 };
+
+// const getAllCardsForBoard = (cards) => {
+//   return {
+//     type: GET_ALL_CARDS_FOR_BOARD,
+//     cards
+//   }
+// };
 
 const createCard = (card) => {
   return {
@@ -63,7 +71,7 @@ export const thunkGetOneCard = (cardId) => async (dispatch) => {
   }
 };
 
-// THUNK: GET ALL CARDS
+// THUNK: GET ALL CARDS FOR COLUMN
 export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}/cards`, { method: "GET" });
 
@@ -76,6 +84,21 @@ export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
     return errors;
   }
 };
+
+// // THUNK: GET ALL CARDS FOR BOARD
+// export const thunkGetAllCardsForBoard = (boardId) => async (dispatch) => {
+//   const res = await fetch(`/api/boards/${boardId}/cards`, { method: "GET" });
+
+//   if (res.ok) {
+//     const cards = await res.json();
+//     dispatch(getAllCardsForBoard(cards));
+//     console.log('*** in thunkGetAllCardsForBoard, RES OK cards:', cards);
+//     return cards;
+//   } else {
+//     const errors = await res.json();
+//     return errors;
+//   }
+// };
 
 // THUNK: CREATE CARD
 export const thunkCreateCardForColumn = (card) => async (dispatch) => {
@@ -129,7 +152,7 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
 
   if (res.ok) {
     const card = await res.json();
-    dispatch(updateCard(card));
+    // dispatch(updateCard(card));
     console.log('**** in thunkUpdateCard, card:', card)
     return card;
   } else {
@@ -179,6 +202,14 @@ export default function cardsReducer(state = initialState, action) {
       });
       return newState;
     }
+
+    // case GET_ALL_CARDS_FOR_BOARD: {
+    //   const newState = { ...state, allCards: {} };
+    //   action.cards.cards.forEach((cardObj) => {
+    //     newState.allCards[cardObj.id] = cardObj
+    //   });
+    //   return newState;
+    // }
 
     case CREATE_CARD: {
       const newState = { ...state };
