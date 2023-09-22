@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Board, Column
+from app.models import db, Board, Column, Card
 from ..forms.board_form import BoardForm
 from ..forms.column_form import ColumnForm
 import datetime
@@ -139,3 +139,31 @@ def create_column_for_board(id):
         return new_column.to_dict()
     if form.errors:
         return { "errors": form.errors }, 400
+
+
+@board_routes.route('/<int:id>/cards', methods=['GET'])
+@login_required
+def get_all_cards_for_board(id):
+    """
+    Get all cards for board (by board_id): GET /api/boards/:board_id/cards
+    """
+    columns = Column.query.filter(Column.board_id == id).all()
+    print('###### get_all_cards_for_board, columns:', columns)
+    cards = []
+    for column in columns:
+        col_to_dict = column.to_dict()
+        print('###### get_all_cards_for_board, col_to_dict:', col_to_dict)
+
+        cards_to_loop = col_to_dict['cards']
+        print('###### *********** ######')
+        print('###### get_all_cards_for_board, cards_to_loop:', cards_to_loop)
+
+        for card in cards_to_loop:
+            cards.append(card)
+
+    print('###### get_all_cards_for_board, cards:', cards)
+
+    return { "cards": cards }
+
+    # cards = Card.query.filter(Card.board_id == id).all()
+    # return { "cards": [card.to_dict() for card in cards] }
