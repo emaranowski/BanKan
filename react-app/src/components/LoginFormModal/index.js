@@ -70,10 +70,8 @@ export default function LoginFormModal() {
           Log in
         </button>
       </form>
-      <div>
-        <button id='demo-user-btn' onClick={handleDemoUser}>
-          Log in as demo user
-        </button>
+      <div id='demo-user-link' onClick={handleDemoUser}>
+        Log in as demo user
       </div>
     </div>
   )

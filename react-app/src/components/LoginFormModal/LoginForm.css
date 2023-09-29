@@ -1,15 +1,16 @@
-#demo-user-btn {
+#demo-user-link {
     width: 100%;
-    font-size: 14px;
-    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
-    margin-top: 25px;
-    color: #FFFFFF;
-    background-color: #60ac44;
-    transition: background-color .5s;
+    margin-top: 16px;
+    color: #283c5c;
+    transition: color .3s;
+    cursor: pointer;
 }
 
-#demo-user-btn:hover {
-    background-color: #68bc4c;
+#demo-user-link:hover {
+    color: #60ac44;
+    /* text-decoration: underline; */
 }
