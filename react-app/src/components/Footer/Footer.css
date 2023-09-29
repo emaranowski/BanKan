@@ -23,26 +23,32 @@
     padding: 0;
     margin: 0;
     font-size: 15.5px;
+    transition: color .7s;
 }
 
 #footer-login button:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    color: #c6d2ff;
 }
 
 #footer-logout {
     color: #FFFFFF;
     font-size: 15.5px;
+    transition: color .7s;
+    cursor: pointer;
 }
 
 #footer-logout:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    color: #c6d2ff;
 }
 
 #footer-dev-info {
     margin-top: 3px;
+    margin-left: 40px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
 }
 
 #footer-reach-the-dev {
@@ -55,13 +61,31 @@
     color: #FFFFFF;
     display: flex;
     flex-direction: row;
-    gap: 18px;
+    flex-wrap: wrap;
+    gap: 17px;
 }
 
 #footer-dev-name-and-links i {
     color: #FFFFFF;
-    font-size: 24.5px;
+    font-size: 23.5px;
     transition: color .7s;
+}
+
+#footer-dev-name {
+    color: #FFFFFF;
+    font-size: 19.5px;
+    font-weight: 100;
+    transition: color .7s;
+}
+
+#footer-dev-name:hover {
+    color: #c6d2ff;
+}
+
+#footer-dev-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
 
 #github-icon {
