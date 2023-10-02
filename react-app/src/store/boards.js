@@ -4,6 +4,7 @@ const GET_ONE_BOARD = "boards/getOneBoard";
 const GET_ALL_BOARDS = "boards/getAllBoards";
 const CREATE_BOARD = "boards/createBoard";
 const UPDATE_BOARD = "boards/updateBoard";
+
 const DELETE_BOARD = "boards/deleteBoard";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
