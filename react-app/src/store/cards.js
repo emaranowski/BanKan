@@ -134,7 +134,7 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
 
 // THUNK: UPDATE CARD
 export const thunkUpdateCard = (card) => async (dispatch) => {
-  console.log('**** in thunkUpdateCard, card:', card)
+  // console.log('**** in thunkUpdateCard, card:', card)
   const { id, columnId, index, title, description } = card;
   dispatch(updateCard(card));
 
@@ -148,12 +148,12 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
       description,
     })
   })
-  console.log('**** in thunkUpdateCard, res:', res)
+  // console.log('**** in thunkUpdateCard, res:', res)
 
   if (res.ok) {
     const card = await res.json();
     // dispatch(updateCard(card));
-    console.log('**** in thunkUpdateCard, card:', card)
+    // console.log('**** in thunkUpdateCard, card:', card)
     return card;
   } else {
     const errors = await res.json();
