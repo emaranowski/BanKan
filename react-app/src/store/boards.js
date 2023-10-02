@@ -4,7 +4,7 @@ const GET_ONE_BOARD = "boards/getOneBoard";
 const GET_ALL_BOARDS = "boards/getAllBoards";
 const CREATE_BOARD = "boards/createBoard";
 const UPDATE_BOARD = "boards/updateBoard";
-
+const UPDATE_BOARD_FOR_DND = "boards/updateBoardForDnd";
 const DELETE_BOARD = "boards/deleteBoard";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
@@ -33,6 +33,14 @@ const createBoard = (board) => {
 const updateBoard = (board) => {
   return {
     type: UPDATE_BOARD,
+    board
+  }
+};
+
+const updateBoardForDnd = (board) => {
+  // console.log('******* in updateBoardForDnd')
+  return {
+    type: UPDATE_BOARD_FOR_DND,
     board
   }
 };
@@ -133,6 +141,36 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
   }
 };
 
+// DEMI-THUNK: UPDATE BOARD FOR DND
+export const demiThunkUpdateBoardForDnd = (board) => async (dispatch) => {
+  // console.log('******* in demiThunkUpdateBoardForDnd')
+
+  // console.log('**** in thunkUpdateBoardForDnd, board:', board)
+  // const { imageUrl, title, id, userId } = board;
+  // console.log('**** in thunkUpdateBoardForDnd, id:', id)
+
+  // const res = await fetch(`/api/boards/${id}/update`, {
+  //   method: "PUT",
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({
+  //     image_url: imageUrl,
+  //     title,
+  //     user_id: userId,
+  //   })
+  // })
+  // console.log('**** in thunkUpdateBoardForDnd, res:', res)
+  dispatch(updateBoardForDnd(board));
+
+  // if (res.ok) {
+  //   const board = await res.json();
+  //   return board;
+  // } else {
+  //   const errors = await res.json();
+  //   // console.log('**** in thunkUpdateBoardForDnd, errors:', errors)
+  //   return errors;
+  // }
+};
+
 // THUNK: DELETE BOARD
 export const thunkDeleteBoard = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}/delete`, {
@@ -182,6 +220,14 @@ export default function boardsReducer(state = initialState, action) {
 
     case UPDATE_BOARD: {
       const newState = { ...state, oneBoard: {} };
+      newState.allBoards[action.board.id] = action.board;
+      return newState;
+    }
+
+    case UPDATE_BOARD_FOR_DND: {
+      // console.log('******* in UPDATE_BOARD_FOR_DND')
+      const newState = { ...state, oneBoard: {} };
+      newState.oneBoard = action.board;
       newState.allBoards[action.board.id] = action.board;
       return newState;
     }

@@ -16,6 +16,16 @@ class Column(db.Model):
     updated_at = db.Column(db.Date, nullable=False)
 
     def to_dict(self):
+
+        # cards_lst = [card.to_dict() for card in self.cards_rel]
+        # card_order_lst = self.card_order.split(',')
+        # cards_ordered_lst = []
+
+        # for card_dnd_id in card_order_lst:
+        #     for card in cards_lst:
+        #         if card_dnd_id == 'card-'+str(card.id):
+        #             cards_ordered_lst.append(card)
+
         return {
             'id': self.id,
             'boardId': self.board_id,
@@ -27,6 +37,7 @@ class Column(db.Model):
             'updatedAt': self.updated_at,
             # 'board': [board.to_dict() for board in self.boards_rel],
             'cards': [card.to_dict() for card in self.cards_rel],
+            # 'cards': cards_ordered_lst,
             'dndId': 'column-'+str(self.id),
             'cardDndIds': ['card-'+str(card.id) for card in self.cards_rel]
         }

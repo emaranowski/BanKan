@@ -29,11 +29,13 @@ export default function Column({ column }) {
     })
   });
 
+  // const cardsOrdered = cards;
+
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(thunkGetAllCardsForColumn(columnId))
     setIsLoaded(true)
-  }, [dispatch, boardId, columnId, color, title]);
+  }, [dispatch, boardId, columnId, color, title, cards]);
 
   // style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
 

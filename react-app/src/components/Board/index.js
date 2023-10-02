@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { thunkGetOneBoard } from '../../store/boards';
-import { updateColumn, thunkGetOneColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn, thunkUpdateTwoColumns } from '../../store/columns';
-import { thunkUpdateCard } from '../../store/cards';
+import { thunkGetOneBoard, demiThunkUpdateBoardForDnd } from '../../store/boards';
+import { updateColumn, thunkGetOneColumn, thunkGetAllColumnsForBoard, thunkUpdateColumn, thunkUpdateTwoColumns, thunkUpdateTwoColumnsDbOnly } from '../../store/columns';
+import { thunkUpdateCard, thunkUpdateCardDbOnly } from '../../store/cards';
 // import { thunkGetOneCard } from '../../store/cards';
 // import { thunkGetOneColumn } from '../../store/columns';
 import { useParams, Link } from 'react-router-dom';
@@ -24,7 +24,8 @@ export default function Board() {
   const board = useSelector(state => state.boards.oneBoard);
   const imageUrl = board.imageUrl;
   const title = board.title;
-  const columns = Object.values(useSelector(state => state.columns.allColumns));
+  // const columns = Object.values(useSelector(state => state.columns.allColumns));
+  const columns = board.columns;
 
   // console.log('||||||| in Board, board:', board)
   // console.log('||||||| in Board, board.columns:', board.columns)
@@ -89,10 +90,12 @@ export default function Board() {
 
   const updateColumnIdOnCard = async (cardUpdated) => {
     try {
-      const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+      // const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+      const res = await dispatch(thunkUpdateCardDbOnly(cardUpdated)); // VScode notes not needing 'await', but it IS needed
+
+      // dispatch(thunkGetOneBoard(boardId));
       if (res.id) {
-        setTriggerRerenderToggle(!triggerRerenderToggle);
-        // dispatch(thunkGetOneBoard(boardId));
+        // setTriggerRerenderToggle(!triggerRerenderToggle);
 
         // dispatch(thunkGetOneCard(cardUpdated.id));
         // dispatch(thunkGetOneColumn(cardUpdated.columnId))
@@ -111,7 +114,9 @@ export default function Board() {
     // console.log('*** in Board updateCardOrderOnTwoColumns');
     try {
       // dispatch(updateColumn(columnUpdated));
-      const res = await dispatch(thunkUpdateTwoColumns(twoColumnsUpdated)); // VScode notes not needing 'await', but it IS needed
+      // const res = await dispatch(thunkUpdateTwoColumns(twoColumnsUpdated)); // VScode notes not needing 'await', but it IS needed
+      const res = await dispatch(thunkUpdateTwoColumnsDbOnly(twoColumnsUpdated)); // VScode notes not needing 'await', but it IS needed
+
       // console.log('*** in Board updateCardOrderOnTwoColumns TRY, res', res);
       // dispatch(thunkGetOneBoard(boardId));
       if (res.id) {
@@ -149,6 +154,12 @@ export default function Board() {
       return data;
     }
   };
+
+  const updateBoardState = async (board) => {
+    await dispatch(demiThunkUpdateBoardForDnd(board));
+    // await dispatch(thunkGetAllColumnsForBoard(boardId));
+    // setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+  }
 
   // // ORIG
   // const updateCardAndCols = async (cardUpdated, columnUpdatedSrc, columnUpdatedDest) => {
@@ -241,44 +252,41 @@ export default function Board() {
     if (source.droppableId !== destination.droppableId) {
 
       // SRC + DEST -- get cols to update (to edit cards & cardOrder)
-      const columnArrSrc = columns.filter(column => {
+      const columnToUpdateSrc = columns.filter(column => {
         return column.dndId === source.droppableId;
-      });
-      const columnArrDest = columns.filter(column => {
+      })[0];
+      const columnToUpdateDest = columns.filter(column => {
         return column.dndId === destination.droppableId;
-      });
-      const columnToUpdateSrc = columnArrSrc[0];
-      const columnToUpdateDest = columnArrDest[0];
+      })[0];
 
       // get card to update (to edit columnId from SRC to DEST)
-      const cardsFromSrc = columnToUpdateSrc.cards;
-      const cardArr = cardsFromSrc.filter(card => {
+      const cardToUpdate = columnToUpdateSrc.cards.filter(card => {
         return card.dndId === draggableId;
-      });
-      const cardToUpdate = cardArr[0];
-      // create cardUpdated w/ updated columnId
+      })[0];
+
+      // create cardUpdated, updated to have columnId of destination column
       const cardUpdated = {
         ...cardToUpdate,
         columnId: columnToUpdateDest.id,
       };
 
+      // console.log('&&&&&& columnToUpdateSrc.cardOrder:', columnToUpdateSrc.cardOrder)
+      // console.log('&&&&&& columnToUpdateDest.cardOrder:', columnToUpdateDest.cardOrder)
+
       // SRC + DEST -- convert cardOrder: from str to arr
-      const cardOrderStrSrc = columnToUpdateSrc.cardOrder;
-      const cardOrderStrDest = columnToUpdateDest.cardOrder;
-      const cardOrderArrSrc = cardOrderStrSrc.split(',');
-      const cardOrderArrDest = cardOrderStrDest.split(',');
+      const cardOrderArrSrc = columnToUpdateSrc.cardOrder.split(',');
+      const cardOrderArrDest = columnToUpdateDest.cardOrder.split(',');
 
       // SRC -- update cardOrder: remove cardDndId at srcIdx
       const movedCardDndId = cardOrderArrSrc.splice(source.index, 1)[0]; // at srcIdx: remove 1
-      // const movedCardDndId = movedCardDndIdArr[0];
 
-      // DEST -- update cardOrder: add cardDndId at destIdx
-      // CASE 1: if dest col has 1+ CARDS (i.e. cardOrder has cards):
-      // at destIdx: remove 0; add movedCardDndId
+      // DEST -- update cardOrder: add movedCardDndId at destIdx
+      // If dest col has 1+ cards (cardOrder !== empty str):
+      // at destIdx: remove 0, add movedCardDndId
       if (cardOrderArrDest[destination.index] !== '') {
         cardOrderArrDest.splice(destination.index, 0, movedCardDndId);
-        // CASE 2: if dest col has ZERO CARDS (i.e. cardOrder is empty str: ''):
-        // at destIdx (will be idx0): remove 1 (to remove ''); add movedCardDndId
+        // If dest col has 0 cards (cardOrder === empty str):
+        // at destIdx (will be idx0): remove 1 (to remove ''), add movedCardDndId
       } else if (cardOrderArrDest[destination.index] === '') {
         cardOrderArrDest.splice(destination.index, 1, movedCardDndId);
       };
@@ -287,7 +295,8 @@ export default function Board() {
       const cardOrderUpdatedStrSrc = cardOrderArrSrc.toString();
       const cardOrderUpdatedStrDest = cardOrderArrDest.toString();
 
-
+      // console.log('&&&&&& cardOrderUpdatedStrSrc:', cardOrderUpdatedStrSrc)
+      // console.log('&&&&&& cardOrderUpdatedStrDest:', cardOrderUpdatedStrDest)
 
 
       // SRC -- get card in 'cards', where card.dndId === movedCardDndId
@@ -309,30 +318,37 @@ export default function Board() {
       // console.log('%%%%%%% 4. movedCard:', movedCard)
 
       // DEST -- add card to end of 'cards' (order should not matter, since we sort elsewhere?)
-      columnToUpdateDest.cards.push(movedCard);
+      // columnToUpdateDest.cards.push(movedCard);
+      columnToUpdateDest.cards.splice(destination.index, 0, movedCard);
       // console.log('%%%%%%% 5. columnToUpdateSrc:', columnToUpdateSrc)
       // console.log('%%%%%%% 6. columnToUpdateDest:', columnToUpdateDest)
 
       ////////////
 
-      // // SRC -- get cardDndId in 'cardDndIds', where cardDndId === movedCardDndId
-      // const cardDndIdToMove = columnToUpdateSrc.cardDndIds.filter(cardDndId => {
-      //   return cardDndId === movedCardDndId;
-      // })[0];
-      // // console.log('%%%%%%% 1. cardDndIdToMove:', cardDndIdToMove)
+      // SRC -- get cardDndId in 'cardDndIds', where cardDndId === movedCardDndId
+      const cardDndIdToMove = columnToUpdateSrc.cardDndIds.filter(cardDndId => {
+        return cardDndId === movedCardDndId;
+      })[0];
+      // console.log('%%%%%%% 1. cardDndIdToMove:', cardDndIdToMove)
 
-      // // SRC -- get idx of cardDndId in 'cardDndIds'
-      // const cardDndIdToMoveSrcIdx = columnToUpdateSrc.cardDndIds.indexOf(cardDndIdToMove);
-      // // console.log('%%%%%%% 2. cardDndIdToMoveSrcIdx:', cardDndIdToMoveSrcIdx)
+      // SRC -- get idx of cardDndId in 'cardDndIds'
+      const cardDndIdToMoveSrcIdx = columnToUpdateSrc.cardDndIds.indexOf(cardDndIdToMove);
+      // console.log('%%%%%%% 2. cardDndIdToMoveSrcIdx:', cardDndIdToMoveSrcIdx)
 
+      // SRC -- remove cardDndId from 'cardDndIds'
+      const cardDndIdForMoving = columnToUpdateSrc.cardDndIds.splice(cardDndIdToMoveSrcIdx, 1)[0]; // at cardToMoveSrcIdx: remove 1
+      // console.log('%%%%%%% 3. cardDndIdForMoving:', cardDndIdForMoving)
+      // console.log('%%%%%%% 4. columnToUpdateSrc:', columnToUpdateSrc)
+
+      // DEST -- add cardDndIdForMoving to destIdx of 'cardDndIds'
+      columnToUpdateDest.cardDndIds.splice(destination.index, 0, cardDndIdForMoving);
+      // console.log('%%%%%%% 5. columnToUpdateDest:', columnToUpdateDest)
+
+      // // ^ shorter version of above, but not working correctly:
       // // SRC -- remove cardDndId from 'cardDndIds'
-      // const cardDndIdForMoving = columnToUpdateSrc.cardDndIds.splice(cardDndIdToMoveSrcIdx, 1)[0]; // at cardToMoveSrcIdx: remove 1
-      // // console.log('%%%%%%% 3. cardDndIdForMoving:', cardDndIdForMoving)
-
-      // // DEST -- add cardDndIdForMoving to end of 'cardDndIds'
+      // const cardDndIdForMoving = columnToUpdateSrc.cardDndIds.splice(source.index, 1)[0];
+      // // DEST -- add cardDndIdForMoving to destIdx of 'cardDndIds'
       // columnToUpdateDest.cardDndIds.splice(destination.index, 0, cardDndIdForMoving);
-      // // console.log('%%%%%%% 4. columnToUpdateSrc:', columnToUpdateSrc)
-      // // console.log('%%%%%%% 5. columnToUpdateDest:', columnToUpdateDest)
 
       // SRC + DEST -- create columnUpdated w/ updated cardOrder
       const columnUpdatedSrc = {
@@ -354,6 +370,8 @@ export default function Board() {
       const columnToUpdateDestIdx = columns.indexOf(columnToUpdateDest);
       columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
       columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
+      // board.columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
+      // board.columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
 
       // const updateCardAndBothCols = async () => {
       //   updateColumnIdOnCard(cardUpdated);
@@ -366,29 +384,42 @@ export default function Board() {
 
       const twoColumnsUpdated = { columnUpdatedSrc, columnUpdatedDest };
 
+      // indexes of columns
+      // console.log('$$$$$$ in Board, columnToUpdateSrcIdx:', columnToUpdateSrcIdx);
+      // console.log('$$$$$$ in Board, columnToUpdateDestIdx:', columnToUpdateDestIdx);
+
+
       console.log('$$$$$$ in Board, board is:', board);
+      // console.log('$$$$$$ in Board, board.columns:', board.columns); // cols arr
+      // console.log('$$$$$$ in Board, board.columns[columnToUpdateDestIdx]:', board.columns[columnToUpdateDestIdx]); // col obj
+      // console.log('$$$$$$ in Board, board.columns[columnToUpdateDestIdx].cards:', board.columns[columnToUpdateDestIdx].cards); // cards arr
       // console.log('$$$$$$ in Board, cardUpdated:', cardUpdated);
-      console.log('$$$$$$ in Board, columnUpdatedSrc:', columnUpdatedSrc);
-      console.log('$$$$$$ in Board, columnUpdatedDest:', columnUpdatedDest);
+      // console.log('$$$$$$ in Board, cardUpdated.columnId:', cardUpdated.columnId);
+      // console.log('$$$$$$ in Board, columnUpdatedSrc:', columnUpdatedSrc);
+      // console.log('$$$$$$ in Board, columnUpdatedDest:', columnUpdatedDest);
 
 
       const boardToUpdate = {
-        ...board
+        ...board,
+        columnDndIds: [...board.columnDndIds],
+        columns: [...columns],
+        // columns[columnToUpdateDestIdx].cards: [],
       }
 
-      console.log('$$$$$$ in Board, boardToUpdate:', boardToUpdate);
+      console.log('$$$$$$ in Board, boardToUpdate BEFORE UPDATE:', boardToUpdate);
       boardToUpdate.columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
       boardToUpdate.columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
-      console.log('$$$$$$ in Board, boardToUpdate:', boardToUpdate);
+      console.log('$$$$$$ in Board, boardToUpdate AFTER UPDATE:', boardToUpdate);
 
 
+      updateBoardState(boardToUpdate);
       updateColumnIdOnCard(cardUpdated);
       updateCardOrderOnTwoColumns(twoColumnsUpdated);
       // updateCardOrderOnColumn(columnUpdatedSrc);
       // updateCardOrderOnColumn(columnUpdatedDest);
       // dispatch(thunkGetOneBoard(boardId));
       // getUpdatedBoardAndCols();
-      // setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+      setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
 
 
       // console.log('||||||| in onDragEnd, columns[0]:', columns[0])
@@ -419,7 +450,7 @@ export default function Board() {
     //   },
     // };
 
-    // setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+    setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     console.log('-----||||||| onDragEnd ENDS')
   };
 

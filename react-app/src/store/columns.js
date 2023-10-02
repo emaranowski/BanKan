@@ -210,6 +210,54 @@ export const thunkUpdateTwoColumns = (columns) => async (dispatch) => { // maybe
     }
 };
 
+// THUNK: UPDATE TWO COLUMNS -- IN DATABASE ONLY, NOT IN STATE
+export const thunkUpdateTwoColumnsDbOnly = (columns) => async (dispatch) => { // maybe add oldCol param
+    // console.log('**** in thunkUpdateTwoColumns, columns:', columns)
+    const { columnUpdatedSrc, columnUpdatedDest } = columns;
+    // dispatch(updateTwoColumns(columns));
+    const resSrc = await fetch(`/api/columns/${columnUpdatedSrc.id}/update`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            board_id: columnUpdatedSrc.boardId,
+            card_order: columnUpdatedSrc.cardOrder,
+            color_name: columnUpdatedSrc.colorName,
+            title: columnUpdatedSrc.title,
+        })
+    })
+    // console.log('**** in thunkUpdateTwoColumns, resSrc:', resSrc)
+    const resDest = await fetch(`/api/columns/${columnUpdatedDest.id}/update`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            board_id: columnUpdatedDest.boardId,
+            card_order: columnUpdatedDest.cardOrder,
+            color_name: columnUpdatedDest.colorName,
+            title: columnUpdatedDest.title,
+        })
+    })
+    // console.log('**** in thunkUpdateTwoColumns, resDest:', resDest)
+
+    if (resSrc.ok && resDest.ok) {
+        // console.log('**** in thunkUpdateTwoColumns, resSrc OK:', resSrc)
+        // console.log('**** in thunkUpdateTwoColumns, resDest OK:', resDest)
+        const columnSrc = await resSrc.json();
+        const columnDest = await resDest.json();
+        // dispatch(updateColumn(column));
+        // dispatch(thunkGetAllColumnsForBoard(boardId));
+        return { columnSrc, columnDest };
+    } else {
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, resSrc:', resSrc)
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, resSrc:', resDest)
+        // dispatch(updateColumn(oldColumn));
+        const errorsSrc = await resSrc.json();
+        const errorsDest = await resDest.json();
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, errorsSrc:', errorsSrc)
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, errorsDest:', errorsDest)
+        return { errorsSrc, errorsDest };
+    }
+};
+
 // // THUNK: UPDATE TWO COLUMNS
 // export const thunkUpdateTwoColumns = (columns) => async (dispatch) => { // maybe add oldCol param
 //     console.log('**** in thunkUpdateTwoColumns, columns:', columns)
@@ -312,10 +360,10 @@ export default function columnsReducer(state = initialState, action) {
             // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState)
 
             const deepCopyOfDndIdsSrc = [...action.columns.columnUpdatedSrc.cardDndIds];
-            console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
+            // console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
             newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds = deepCopyOfDndIdsSrc;
-            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
-            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
+            // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
+            // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
             const deepCopyOfDndIdsDest = [...action.columns.columnUpdatedDest.cardDndIds];
             newState.allColumns[action.columns.columnUpdatedDest.id].cardDndIds = deepCopyOfDndIdsDest;
 
