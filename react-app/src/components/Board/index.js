@@ -30,6 +30,7 @@ export default function Board() {
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id;
   const { boardId } = useParams();
+  const boardIdAsNum = parseInt(boardId);
   const board = useSelector(state => state.boards.oneBoard);
   const imageUrl = board.imageUrl;
   const title = board.title;
@@ -43,18 +44,49 @@ export default function Board() {
   const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // // get board and cols, 1x on mount
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await fetch(`${baseUrl}/boards/details/${boardId}`);
-  //     console.log('**** in board & cols, 1x on mount, res:', res)
-  //     const data = await res.json();
-  //     const { board, cards, lists } = data;
-  //     const loadBoardOrg = buildBoardOrg(board, cards, lists);
-  //     console.log(loadBoardOrg);
-  //     setBoardOrg(loadBoardOrg);
-  //   })();
-  // }, [boardId]);
+  // get board & cols, 1x on mount
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`/api/boards/${boardIdAsNum}/get-board-and-cols`,
+        {
+          method: 'GET',
+          headers: { "Content-Type": "application/json" }
+        });
+      console.log('******* in board & cols, 1x on mount, res:', res)
+      const data = await res.json();
+      console.log('******* in board & cols, 1x on mount, data:', data)
+      const { board, columns } = data;
+      const loadBoardOrg = buildBoardOrg(board, columns);
+      console.log('******* in board & cols, 1x on mount, loadBoardOrg:', loadBoardOrg)
+      setBoardOrg(loadBoardOrg);
+    })();
+  }, [boardId]);
+
+
+  // const saveBoard = async (newBoard) => {
+  //   // const { board, columns } = newBoard
+  //   // console.log('@@@@@ in onDragEnd, baseUrl:', baseUrl)
+  //   // console.log('@@@@@ in onDragEnd, newBoard:', newBoard)
+  //   // console.log('@@@@@ in onDragEnd, newBoard.columns:', newBoard.columns)
+
+  //   // const res = await fetch(`${baseUrl}/boards/save`,
+  //   const res = await fetch(`/api/boards/save`,
+  //     {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         newBoard
+  //         // board,
+  //         // columns
+  //       }),
+  //     }
+  //   );
+  //   const data = res.json();
+  //   if (data.error) {
+  //     alert("Board could not be saved.");
+  //   };
+  // };
+
 
   useEffect(() => {
     // dispatch(thunkGetOneBoard(boardId));
@@ -221,8 +253,9 @@ export default function Board() {
 
   const saveBoard = async (newBoard) => {
     // const { board, columns } = newBoard
-    console.log('@@@@@ in onDragEnd, newBoard:', newBoard)
-    console.log('@@@@@ in onDragEnd, baseUrl:', baseUrl)
+    // console.log('@@@@@ in onDragEnd, baseUrl:', baseUrl)
+    // console.log('@@@@@ in onDragEnd, newBoard:', newBoard)
+    // console.log('@@@@@ in onDragEnd, newBoard.columns:', newBoard.columns)
 
     // const res = await fetch(`${baseUrl}/boards/save`,
     const res = await fetch(`/api/boards/save`,
@@ -305,58 +338,91 @@ export default function Board() {
     })[0];
 
     // console.log('@@@@@ in onDragEnd, boardOrg:', boardOrg)
+
+    // console.log('@@@@@ in onDragEnd, board:', board)
+
+
+    // console.log('@@@@@ in onDragEnd, start:', start)
     // console.log('@@@@@ in onDragEnd, finish:', finish)
-
-    console.log('@@@@@ in onDragEnd, board:', board)
-
-
-    console.log('@@@@@ in onDragEnd, start:', start)
-    console.log('@@@@@ in onDragEnd, finish:', finish)
 
 
     if (start === finish) {
-      const newCardDndIds = Array.from(start.cardDndIds)
-      console.log('@@@@@ in onDragEnd, newCardDndIds:', newCardDndIds)
+
+      // // STEP 1: Update 'cardDndIds'
+      const newCardDndIds = Array.from(start.cardDndIds);
+      // console.log('@@@@@ in onDragEnd, newCardDndIds BEFORE SPLICE:', newCardDndIds) // good
 
       newCardDndIds.splice(source.index, 1);
       newCardDndIds.splice(destination.index, 0, draggableId);
-      console.log('@@@@@ in onDragEnd, newCardDndIds:', newCardDndIds)
+      // console.log('@@@@@ in onDragEnd, newCardDndIds AFTER SPLICE:', newCardDndIds) // good
 
+      // // STEP 2: Update 'cardOrder'
       // convert cardOrder: from str to arr
       const cardOrderArr = start.cardOrder.split(',');
+      // console.log('@@@@@ in onDragEnd, cardOrderArr BEFORE SPLICE:', cardOrderArr) // good
 
       // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
       const movedCardDndId = cardOrderArr.splice(source.index, 1)[0]; // at srcIdx: remove 1
       cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
+      // console.log('@@@@@ in onDragEnd, movedCardDndId:', movedCardDndId) // good
+      // console.log('@@@@@ in onDragEnd, cardOrderArr AFTER SPLICE:', cardOrderArr) // good
 
       // convert cardOrder: from arr to str
       const cardOrderUpdatedStr = cardOrderArr.toString();
+      // console.log('@@@@@ in onDragEnd, cardOrderUpdatedStr:', cardOrderUpdatedStr) // good
 
-      // create newColumn, w/ updated cardDndIds and cardOrder
+      // // STEP 3: Update 'cards'
+      const newCards = Array.from(start.cards);
+      // console.log('@@@@@ in onDragEnd, newCards BEFORE SPLICE:', newCards) // good
+
+      const movedCard = newCards.splice(source.index, 1)[0];
+      newCards.splice(destination.index, 0, movedCard);
+      // console.log('@@@@@ in onDragEnd, newCards AFTER SPLICE:', newCards) // good
+
+      // // STEP 4: Create 'newColumn'
+      // create newColumn, w/ updated 'cardDndIds', 'cardOrder', 'cards'
       const newColumn = {
         ...start,
         cardDndIds: newCardDndIds,
         cardOrder: cardOrderUpdatedStr,
+        cards: newCards,
       };
 
-      // // get idx of start (in orig 'columns' arr)
-      // const newColumnIdx = columns.indexOf(start);
-      // // at newColumnIdx: 1. remove orig column, 2. add newColumn
-      // columns.splice(newColumnIdx, 1, newColumn);
+      // console.log('@@@@@ in onDragEnd, start.cards:', start.cards) // good
 
-      console.log('@@@@@ in onDragEnd, newColumn:', newColumn)
+      // console.log('@@@@@ in onDragEnd, start:', start) // good
+      // console.log('@@@@@ in onDragEnd, newColumn:', newColumn) // good
+
+
+
+      // // STEP 5: Update 'columns' arr in board obj, changing it to 'columns' obj
+      // (each key is the corresponding idx in 'columns' arr)
+
+      // get idx of start (in orig 'columns' arr)
+      const newColumnIdx = columns.indexOf(start);
+      // at newColumnIdx: 1. remove orig column, 2. add newColumn
+      // columns.splice(newColumnIdx, 1, newColumn);
 
       const newBoard = {
         ...board,
         columns: {
-          ...board.columns,
-          [newColumn.id]: newColumn,
+          ...board.columns, // spreading in eles from arr: will set each key as idx of ele in arr
+          [newColumnIdx]: newColumn,
         },
       };
+
+      console.log('@@@@@ in onDragEnd, board:', board)
+      console.log('@@@@@ in onDragEnd, newBoard:', newBoard)
+
+      // console.log('@@@@@ in onDragEnd, newBoard.columns:', newBoard.columns)
+
       setBoardOrg(newBoard);
       saveBoard(newBoard);
       return;
     };
+
+
+
 
     // CASE #2 -- across TWO columns:
     const startCardDndIds = Array.from(start.cardDndIds);

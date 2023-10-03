@@ -169,8 +169,45 @@ def get_all_cards_for_board(id):
     # return { "cards": [card.to_dict() for card in cards] }
 
 
+
+
+
+
+@board_routes.route("/<int:id>/get-board-and-cols", methods=['GET'])
+def board_dnd_get_board_and_cols(boardId):
+    """
+    Get board DnD details: GET /api/boards/:board_id/get-board-and-cols
+    """
+
+    print("@@@@@--------------- boardId:", boardId) # good
+    board = Board.query.get(int(boardId))
+    print("@@@@@--------------- board:", board) # good
+
+    if board:
+        columns = Column.query.filter(Column.boardId == boardId).all()
+        columns_to_dict = []
+        # cards = []
+
+        for column in columns:
+            # column_cards = Card.query.filter(Card.columnId == column.id).all()
+            # cards_dict = [card.to_dict() for card in column_cards]
+            # cards.append(cards_dict)
+            # column_to_dict = column.to_dict()
+            columns_to_dict.append(column.to_dict())
+            # column_title = column['column_name']
+            # column_cards = column['card_order']
+            # columns[f'column-{column_index}'] = {
+            #     'id': f'column-{column_index}', 'title': column_title, 'cardIds': column_cards
+            # }
+
+        return jsonify({ 'board': board.to_dict(), 'columns': columns_to_dict })
+
+    else:
+        return jsonify({"error": "No board found."}), 404
+
+
 @board_routes.route('/save', methods=['POST'])
-def board_dnd():
+def board_dnd_update_board_and_cols():
     """
     Create board DnD details: POST /api/boards/save
     """
@@ -190,35 +227,49 @@ def board_dnd():
 
     try:
         board = Board.query.get(data['newBoard']['id'])
-        # print("@@@@@-----@@@@@-----@@@@@----- board")
-        # print("@@@@@ in board_dnd, board:", board) # good
+
+        # print("@@@@@--------------- board:", board) # good
 
         columns = data['newBoard']['columns']
-        # print("@@@@@-----@@@@@-----@@@@@----- columns")
-        # print("@@@@@ in board_dnd, columns:", columns) # good
 
-        # print("@@@@@-----@@@@@-----@@@@@----- columns.keys()")
-        # print("@@@@@ in board_dnd, columns.keys():", columns.keys()) # good
+        # print("@@@@@--------------- columns:", columns) # good: {'0': {'boardId': 1, 'cardDndIds': ['card-1', ...
+        print("@@@@@--------------- column keys:", columns.keys()) # good: dict_keys(['0', '1', '2'])
 
         for key in columns.keys():
 
-            print("@@@@@-----@@@@@-----@@@@@----- columns[key]['cardDndIds']")
-            print("@@@@@ in board_dnd, columns[key]['cardDndIds']:", columns[key]['cardDndIds'])
+            # print("@@@@@--------------- columns[key]['cardDndIds']")
+            # print("@@@@@ in board_dnd, columns[key]['cardDndIds']:", columns[key]['cardDndIds'])
 
-            print("@@@@@-----@@@@@-----@@@@@----- columns[key]['cardOrder']")
-            print("@@@@@ in board_dnd, columns[key]['cardOrder']:", columns[key]['cardOrder'])
+            print("@@@@@----------------START KEY INFO---------------@@@@@")
+
+            print("@@@@@--------------- key:", key)
+
+            print("@@@@@--------------- columns[key]:", columns[key])
+
+            print("@@@@@--------------- columns[key]['id']:", columns[key]['id'])
+
+            print("@@@@@--------------- columns[key]['title']:", columns[key]['title'])
+
+            print("@@@@@--------------- columns[key]['cardOrder']:", columns[key]['cardOrder'])
+
+            print("@@@@@----------------END KEY INFO---------------@@@@@")
+            print("@@@@@------------------------------------------------")
 
             if len(columns[key]['cardDndIds']) > 0:
                 column = Column.query.get(int(columns[key]['id']))
                 column.card_order = columns[key]['cardOrder']
                 # column.card_order = ','.join(columns[key]['cardDndIds'])
+                db.session.commit()
+                print("@@@@@----- Column saved.")
             else:
                 column = Column.query.get(int(columns[key]['id']))
                 # column.card_order = columns[key]['cardOrder']
                 column.card_order = ''
+                db.session.commit()
+                print("@@@@@----- Column saved.")
 
         db.session.commit()
-        print("Board saved.")
+        print("@@@@@----- Board saved.")
         return jsonify("Board saved.")
 
     except AssertionError as message:
