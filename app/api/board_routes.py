@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import db, Board, Column, Card
 from ..forms.board_form import BoardForm
@@ -167,3 +167,60 @@ def get_all_cards_for_board(id):
 
     # cards = Card.query.filter(Card.board_id == id).all()
     # return { "cards": [card.to_dict() for card in cards] }
+
+
+@board_routes.route('/save', methods=['POST'])
+def board_dnd():
+    """
+    Create board DnD details: POST /api/boards/save
+    """
+    data = request.json
+    # print("@@@@@-----@@@@@-----@@@@@-----data")
+    # print("@@@@@ in board_dnd, data:", data)
+    # print("@@@@@-----@@@@@-----@@@@@-----data['columns']")
+    # print("@@@@@ in board_dnd, data['columns']:", data['columns'])
+    # print("@@@@@-----@@@@@-----@@@@@-----data['id']")
+    # print("@@@@@ in board_dnd, data['id']:", data['id'])
+    # print("@@@@@-----@@@@@-----@@@@@-----data['newBoard']")
+    # print("@@@@@ in board_dnd, data['newBoard']:", data['newBoard'])
+
+    # print("@@@@@-----@@@@@-----@@@@@-----data.keys()")
+    # print("@@@@@ in board_dnd, data.keys():", data.keys())
+
+
+    try:
+        board = Board.query.get(data['newBoard']['id'])
+        # print("@@@@@-----@@@@@-----@@@@@----- board")
+        # print("@@@@@ in board_dnd, board:", board) # good
+
+        columns = data['newBoard']['columns']
+        # print("@@@@@-----@@@@@-----@@@@@----- columns")
+        # print("@@@@@ in board_dnd, columns:", columns) # good
+
+        # print("@@@@@-----@@@@@-----@@@@@----- columns.keys()")
+        # print("@@@@@ in board_dnd, columns.keys():", columns.keys()) # good
+
+        for key in columns.keys():
+
+            print("@@@@@-----@@@@@-----@@@@@----- columns[key]['cardDndIds']")
+            print("@@@@@ in board_dnd, columns[key]['cardDndIds']:", columns[key]['cardDndIds'])
+
+            print("@@@@@-----@@@@@-----@@@@@----- columns[key]['cardOrder']")
+            print("@@@@@ in board_dnd, columns[key]['cardOrder']:", columns[key]['cardOrder'])
+
+            if len(columns[key]['cardDndIds']) > 0:
+                column = Column.query.get(int(columns[key]['id']))
+                column.card_order = columns[key]['cardOrder']
+                # column.card_order = ','.join(columns[key]['cardDndIds'])
+            else:
+                column = Column.query.get(int(columns[key]['id']))
+                # column.card_order = columns[key]['cardOrder']
+                column.card_order = ''
+
+        db.session.commit()
+        print("Board saved.")
+        return jsonify("Board saved.")
+
+    except AssertionError as message:
+        print(str(message))
+        return jsonify({"error": str(message)}), 400
