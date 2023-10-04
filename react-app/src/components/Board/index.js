@@ -25,7 +25,6 @@ export default function Board() {
   const columns = Object.values(useSelector(state => state.columns.allColumns));
   // const columns = board.columns;
 
-  // const [triggerRerenderToggle, setTriggerRerenderToggle] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,9 +35,6 @@ export default function Board() {
     getBoardAndCols();
     setIsLoaded(true);
   }, [dispatch, boardId, imageUrl, title]);
-
-  // useEffect(() => {
-  // }, [triggerRerenderToggle]);
 
   useEffect(() => {
     if (Object.values(board).length > 0) {
@@ -152,13 +148,7 @@ export default function Board() {
       // // at colToUpdateIdx: 1. remove colToUpdate, 2. add colUpdated
       // columns.splice(columnToUpdateIdx, 1, columnUpdated);
 
-      // const res = updateCardOrderOnColumn(columnUpdated); // update card order on col
-      async function updateCardOrderOnColumnWrap() {
-        const res = await updateCardOrderOnColumn(columnUpdated); // update card order on col
-      };
-      updateCardOrderOnColumnWrap();
-
-      // setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+      updateCardOrderOnColumn(columnUpdated);
     };
 
     //////// CASE #2: drop across TWO columns (horizonal movement)
