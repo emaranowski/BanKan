@@ -196,6 +196,8 @@ export default function cardsReducer(state = initialState, action) {
     }
 
     case GET_ALL_CARDS: {
+      // console.log('**** in GET_ALL_CARDS')
+
       const newState = { ...state, allCards: {} };
       action.cards.cards.forEach((cardObj) => {
         newState.allCards[cardObj.id] = cardObj

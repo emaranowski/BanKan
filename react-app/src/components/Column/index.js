@@ -17,17 +17,20 @@ export default function Column({ column }) {
   const title = column.title;
   const cardOrderArr = column.cardOrder.split(',');
   const cards = column.cards;
-  // const cards = useSelector(state => state.cards.allCards);
+  // const cards = useSelector(state => state.cards?.allCards);
   const dndId = column.dndId;
 
-  // console.log('||||| in Column, cards:', cards)
+  console.log('||||| in Column, title:', title)
+  console.log('||||| in Column, cards:', cards)
 
   const cardsOrdered = [];
+  // if (cards.length) {
   cardOrderArr.forEach(cardDndId => {
     cards.forEach(card => {
       if (cardDndId === card.dndId) cardsOrdered.push(card);
     })
   });
+  // }
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {

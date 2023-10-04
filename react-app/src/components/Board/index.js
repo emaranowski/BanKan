@@ -45,8 +45,8 @@ export default function Board() {
     setIsLoaded(true);
   }, [dispatch, boardId, imageUrl, title]);
 
-  useEffect(() => {
-  }, [triggerRerenderToggle]);
+  // useEffect(() => {
+  // }, [triggerRerenderToggle]);
 
   useEffect(() => {
     if (Object.values(board).length > 0) {
@@ -68,12 +68,12 @@ export default function Board() {
   //   setTriggerRerenderToggle(!triggerRerenderToggle);
   // };
 
-  const updateCardOrderOnColumn = async (columnUpdated) => {
+  const updateCardOrderOnColumn = async (columnToUpdate, srcIdx, destIdx) => {
     try {
       // dispatch(updateColumn(columnUpdated));
-      const res = await dispatch(thunkUpdateColumn(columnUpdated)); // VScode notes not needing 'await', but it IS needed
+      const res = await dispatch(thunkUpdateColumn(columnToUpdate, srcIdx, destIdx)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
-        setTriggerRerenderToggle(!triggerRerenderToggle);
+        // setTriggerRerenderToggle(!triggerRerenderToggle);
         // dispatch(thunkGetOneBoard(boardId));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         // dispatch(thunkGetOneColumn(columnUpdated.id))
@@ -91,7 +91,7 @@ export default function Board() {
     try {
       const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
-        setTriggerRerenderToggle(!triggerRerenderToggle);
+        // setTriggerRerenderToggle(!triggerRerenderToggle);
         // dispatch(thunkGetOneBoard(boardId));
 
         // dispatch(thunkGetOneCard(cardUpdated.id));
@@ -197,18 +197,15 @@ export default function Board() {
     if (source.droppableId === destination.droppableId) {
 
       // get col to update (where dndId matches source.droppableId)
-      const columnArr = columns.filter(column => {
+      const columnToUpdate = columns.filter(column => {
         return column.dndId === source.droppableId;
-      });
-      const columnToUpdate = columnArr[0];
+      })[0];
 
       // convert cardOrder: from str to arr
-      const cardOrderStr = columnToUpdate.cardOrder;
-      const cardOrderArr = cardOrderStr.split(',');
+      const cardOrderArr = columnToUpdate.cardOrder.split(',');
 
       // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
-      const movedCardDndIdArr = cardOrderArr.splice(source.index, 1); // at srcIdx: remove 1
-      const movedCardDndId = movedCardDndIdArr[0];
+      const movedCardDndId = cardOrderArr.splice(source.index, 1)[0]; // at srcIdx: remove 1
       cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
 
       // convert cardOrder: from arr to str
@@ -229,6 +226,7 @@ export default function Board() {
       // const res = updateCardOrderOnColumn(columnUpdated); // update card order on col
       async function updateCardOrderOnColumnWrap() {
         const res = await updateCardOrderOnColumn(columnUpdated); // update card order on col
+        // const res = await updateCardOrderOnColumn(columnToUpdate, source.index, destination.index); // update card order on col
         // console.log('---- in updateCardOrderOnColumnWrap, res:', res)
       };
       updateCardOrderOnColumnWrap();
@@ -372,14 +370,14 @@ export default function Board() {
       console.log('$$$$$$ in Board, columnUpdatedDest:', columnUpdatedDest);
 
 
-      const boardToUpdate = {
-        ...board
-      }
+      // const boardToUpdate = {
+      //   ...board
+      // }
 
-      console.log('$$$$$$ in Board, boardToUpdate:', boardToUpdate);
-      boardToUpdate.columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
-      boardToUpdate.columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
-      console.log('$$$$$$ in Board, boardToUpdate:', boardToUpdate);
+      // console.log('$$$$$$ in Board, boardToUpdate:', boardToUpdate);
+      // boardToUpdate.columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
+      // boardToUpdate.columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
+      // console.log('$$$$$$ in Board, boardToUpdate:', boardToUpdate);
 
 
       updateColumnIdOnCard(cardUpdated);

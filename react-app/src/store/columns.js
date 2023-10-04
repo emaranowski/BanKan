@@ -1,3 +1,5 @@
+const _ = require("lodash");
+
 //////////////////////////////// ACTION TYPE CONSTANTS ////////////////////////////////
 
 const GET_ONE_COLUMN = "columns/getOneColumn";
@@ -131,17 +133,39 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
 };
 
 // THUNK: UPDATE COLUMN
-export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add oldCol param
+export const thunkUpdateColumn = (columnToUpdate, srcIdx, destIdx) => async (dispatch) => { // maybe add oldCol param
     // console.log('**** in thunkUpdateColumn, column:', column)
-    const { id, boardId, cardOrder, colorName, title } = column; // removed colorHex
+    const { id, boardId, cardOrder, colorName, title } = columnToUpdate; // removed colorHex
+
+    console.log('**** in thunkUpdateColumn, cardOrder:', cardOrder)
+
+    // convert cardOrder: from str to arr
+    const cardOrderArr = cardOrder.split(',');
+
+    // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
+    const movedCardDndId = cardOrderArr.splice(srcIdx, 1)[0]; // at srcIdx: remove 1
+    cardOrderArr.splice(destIdx, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
+
+    // convert cardOrder: from arr to str
+    const cardOrderUpdatedStr = cardOrderArr.toString();
+
+    // create colUpdated w/ updated card order
+    const columnUpdated = {
+        ...columnToUpdate,
+        cardOrder: cardOrderUpdatedStr,
+    };
+    console.log('**** in thunkUpdateColumn, columnUpdated.cardOrder:', columnUpdated.cardOrder)
+
+
+
     // console.log('**** in thunkUpdateColumn, id:', id)
-    dispatch(updateColumn(column));
+    dispatch(updateColumn(columnUpdated));
     const res = await fetch(`/api/columns/${id}/update`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             board_id: boardId,
-            card_order: cardOrder,
+            card_order: cardOrderUpdatedStr,
             // color_hex: colorHex,
             color_name: colorName,
             title,
@@ -151,6 +175,8 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
 
     if (res.ok) {
         const column = await res.json();
+        console.log('**** in thunkUpdateColumn RES OK, column:', column)
+
         // dispatch(updateColumn(column));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         return column;
@@ -298,7 +324,7 @@ export default function columnsReducer(state = initialState, action) {
         }
 
         case UPDATE_COLUMN: {
-            const newState = { ...state, oneColumn: {} };
+            const newState = { ...state };
             newState.allColumns[action.column.id] = action.column;
             return newState;
         }
@@ -306,23 +332,41 @@ export default function columnsReducer(state = initialState, action) {
         case UPDATE_TWO_COLUMNS: {
             const newState = { ...state };
 
-            // console.log('**** in UPDATE_TWO_COLUMNS, action:', action)
-            newState.allColumns[action.columns.columnUpdatedSrc.id] = { ...action.columns.columnUpdatedSrc };
-            newState.allColumns[action.columns.columnUpdatedDest.id] = { ...action.columns.columnUpdatedDest };
-            // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState)
+            console.log('**** in UPDATE_TWO_COLUMNS, action.columns:', action.columns)
+            _.merge({}, newState.allColumns, action.columns.columnUpdatedSrc, action.columns.columnUpdatedDest);
+            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState)
 
-            const deepCopyOfDndIdsSrc = [...action.columns.columnUpdatedSrc.cardDndIds];
-            console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
-            newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds = deepCopyOfDndIdsSrc;
-            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
-            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
-            const deepCopyOfDndIdsDest = [...action.columns.columnUpdatedDest.cardDndIds];
-            newState.allColumns[action.columns.columnUpdatedDest.id].cardDndIds = deepCopyOfDndIdsDest;
+            const stateCopy = { ...state };
+            // allColumns['1'] = action.columns.columnUpdatedSrc;
+            // allColumns['2'] = action.columns.columnUpdatedDest;
 
-            const deepCopyOfCardsSrc = [...action.columns.columnUpdatedSrc.cards];
-            newState.allColumns[action.columns.columnUpdatedSrc.id].cards = deepCopyOfCardsSrc;
-            const deepCopyOfCardsDest = [...action.columns.columnUpdatedDest.cards];
-            newState.allColumns[action.columns.columnUpdatedDest.id].cards = deepCopyOfCardsDest;
+            const allColumnsCopy = stateCopy.allColumns;
+            console.log('**** in UPDATE_TWO_COLUMNS, allColumnsCopy:', allColumnsCopy)
+
+            const updatedTwoCols = action.columns;
+            console.log('**** in UPDATE_TWO_COLUMNS, updatedTwoCols:', updatedTwoCols)
+
+
+
+
+
+            // // console.log('**** in UPDATE_TWO_COLUMNS, action:', action)
+            // newState.allColumns[action.columns.columnUpdatedSrc.id] = { ...action.columns.columnUpdatedSrc };
+            // newState.allColumns[action.columns.columnUpdatedDest.id] = { ...action.columns.columnUpdatedDest };
+            // // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState)
+
+            // const deepCopyOfDndIdsSrc = [...action.columns.columnUpdatedSrc.cardDndIds];
+            // // console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
+            // newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds = deepCopyOfDndIdsSrc;
+            // // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
+            // // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
+            // const deepCopyOfDndIdsDest = [...action.columns.columnUpdatedDest.cardDndIds];
+            // newState.allColumns[action.columns.columnUpdatedDest.id].cardDndIds = deepCopyOfDndIdsDest;
+
+            // const deepCopyOfCardsSrc = [...action.columns.columnUpdatedSrc.cards];
+            // newState.allColumns[action.columns.columnUpdatedSrc.id].cards = deepCopyOfCardsSrc;
+            // const deepCopyOfCardsDest = [...action.columns.columnUpdatedDest.cards];
+            // newState.allColumns[action.columns.columnUpdatedDest.id].cards = deepCopyOfCardsDest;
 
             return newState;
         }
