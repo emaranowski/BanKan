@@ -18,16 +18,17 @@ export default function Card({ boardId, column, card, index }) { // added index
 
   // console.log('**** in Card, card:', card)
 
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-    // dispatch(thunkGetAllCardsForColumn(columnId));
-  }, [dispatch, boardId, columnId, cardId, title]);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // useEffect(() => {
+  //   setIsLoaded(true);
+  //   // dispatch(thunkGetAllCardsForColumn(columnId));
+  // }, [dispatch, boardId, cardId, title]);
 
   // key should not include the index
   // can just use draggableId as key
+  if (card.id === 2) console.log("RENDERz", card.id)
 
-  return (<>{isLoaded && (
+  return (
     <Draggable draggableId={dndId} index={index}>
       {(provided, snapshot) => (
         <div
@@ -64,5 +65,5 @@ export default function Card({ boardId, column, card, index }) { // added index
         </div>
       )}
     </Draggable>
-  )}</>)
+  )
 };
