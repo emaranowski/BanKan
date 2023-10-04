@@ -23,7 +23,6 @@ export default function Board() {
   const imageUrl = board.imageUrl;
   const title = board.title;
   const columns = Object.values(useSelector(state => state.columns.allColumns));
-  // const columns = board.columns;
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -64,20 +63,6 @@ export default function Board() {
   const updateColumnIdOnCard = async (cardUpdated) => {
     try {
       const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
-      if (res.id) {
-        return res;
-      } else {
-        return res;
-      }
-    } catch (res) {
-      const data = await res.json();
-      return data;
-    }
-  };
-
-  const updateCardOrderOnTwoColumns = async (twoColumnsUpdated) => {
-    try {
-      const res = await dispatch(thunkUpdateTwoColumns(twoColumnsUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
         return res;
       } else {
@@ -180,8 +165,6 @@ export default function Board() {
       const cardOrderUpdatedStrDest = cardOrderArrDest.toString();
 
 
-
-
       // SRC -- get card in 'cards', where card.dndId === movedCardDndId
       const cardToMove = columnToUpdateSrc.cards.filter(card => {
         return card.dndId === movedCardDndId;
@@ -237,12 +220,9 @@ export default function Board() {
       // columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
       // columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
 
-      const twoColumnsUpdated = { columnUpdatedSrc, columnUpdatedDest };
-
       updateColumnIdOnCard(cardUpdated);
-      updateCardOrderOnTwoColumns(twoColumnsUpdated);
-      // updateCardOrderOnColumn(columnUpdatedSrc);
-      // updateCardOrderOnColumn(columnUpdatedDest);
+      updateCardOrderOnColumn(columnUpdatedSrc);
+      updateCardOrderOnColumn(columnUpdatedDest);
     };
 
     // ORIG
