@@ -64,10 +64,10 @@ export default function LoginFormPage() {
         <button className='login-page-btn' type="submit">
           Log in
         </button>
-        <button className='login-page-btn' id='login-page-demo-user-btn' onClick={handleDemoUser}>
-          Log in as demo user
-        </button>
       </form>
+      <div id='demo-user-link' onClick={handleDemoUser}>
+        Log in as demo user
+      </div>
     </div>
   )
 };

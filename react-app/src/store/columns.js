@@ -5,6 +5,7 @@ const GET_ONE_COLUMN = "columns/getOneColumn";
 const GET_ALL_COLUMNS = "columns/getAllColumns";
 const CREATE_COLUMN = "columns/createColumn";
 const UPDATE_COLUMN = "columns/updateColumn";
+const UPDATE_TWO_COLUMNS = "columns/updateTwoColumns";
 const DELETE_COLUMN = "columns/deleteColumn";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
@@ -44,6 +45,13 @@ export const updateColumn = (column) => {
     }
 };
 
+const updateTwoColumns = (columns) => {
+    return {
+        type: UPDATE_TWO_COLUMNS,
+        columns
+    }
+};
+
 const deleteColumn = (columnId) => {
     return {
         type: DELETE_COLUMN,
@@ -55,13 +63,13 @@ const deleteColumn = (columnId) => {
 
 // THUNK: GET ONE COLUMN
 export const thunkGetOneColumn = (columnId) => async (dispatch) => {
-    console.log('*** in thunkGetOneColumn, columnId:', columnId);
+    // console.log('*** in thunkGetOneColumn, columnId:', columnId);
     const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
-    console.log('*** in thunkGetOneColumn, res:', res);
+    // console.log('*** in thunkGetOneColumn, res:', res);
 
     if (res.ok) {
         const column = await res.json();
-        console.log('*** in thunkGetOneColumn, RES OK column:', column);
+        // console.log('*** in thunkGetOneColumn, RES OK column:', column);
         dispatch(getOneColumn(column));
         return column;
     } else {
@@ -143,7 +151,7 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
 
     if (res.ok) {
         const column = await res.json();
-        dispatch(updateColumn(column));
+        // dispatch(updateColumn(column));
         // dispatch(thunkGetAllColumnsForBoard(boardId));
         return column;
     } else {
@@ -153,6 +161,93 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
         return errors;
     }
 };
+
+// THUNK: UPDATE TWO COLUMNS
+export const thunkUpdateTwoColumns = (columns) => async (dispatch) => { // maybe add oldCol param
+    // console.log('**** in thunkUpdateTwoColumns, columns:', columns)
+    const { columnUpdatedSrc, columnUpdatedDest } = columns;
+    dispatch(updateTwoColumns(columns));
+    const resSrc = await fetch(`/api/columns/${columnUpdatedSrc.id}/update`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            board_id: columnUpdatedSrc.boardId,
+            card_order: columnUpdatedSrc.cardOrder,
+            color_name: columnUpdatedSrc.colorName,
+            title: columnUpdatedSrc.title,
+        })
+    })
+    // console.log('**** in thunkUpdateTwoColumns, resSrc:', resSrc)
+    const resDest = await fetch(`/api/columns/${columnUpdatedDest.id}/update`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            board_id: columnUpdatedDest.boardId,
+            card_order: columnUpdatedDest.cardOrder,
+            color_name: columnUpdatedDest.colorName,
+            title: columnUpdatedDest.title,
+        })
+    })
+    // console.log('**** in thunkUpdateTwoColumns, resDest:', resDest)
+
+    if (resSrc.ok && resDest.ok) {
+        // console.log('**** in thunkUpdateTwoColumns, resSrc OK:', resSrc)
+        // console.log('**** in thunkUpdateTwoColumns, resDest OK:', resDest)
+        const columnSrc = await resSrc.json();
+        const columnDest = await resDest.json();
+        // dispatch(updateColumn(column));
+        // dispatch(thunkGetAllColumnsForBoard(boardId));
+        return { columnSrc, columnDest };
+    } else {
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, resSrc:', resSrc)
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, resSrc:', resDest)
+        // dispatch(updateColumn(oldColumn));
+        const errorsSrc = await resSrc.json();
+        const errorsDest = await resDest.json();
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, errorsSrc:', errorsSrc)
+        // console.log('**** in thunkUpdateTwoColumns, res NOT OK, errorsDest:', errorsDest)
+        return { errorsSrc, errorsDest };
+    }
+};
+
+// // THUNK: UPDATE TWO COLUMNS
+// export const thunkUpdateTwoColumns = (columns) => async (dispatch) => { // maybe add oldCol param
+//     console.log('**** in thunkUpdateTwoColumns, columns:', columns)
+//     const { columnUpdatedSrc, columnUpdatedDest } = columns;
+//     dispatch(updateTwoColumns(columns));
+//     const res = await fetch(`/api/columns/update-two-columns`, {
+//         method: "PUT",
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             column_id_src: columnUpdatedSrc.id,
+//             board_id_src: columnUpdatedSrc.boardId,
+//             card_order_src: columnUpdatedSrc.cardOrder,
+//             color_name_src: columnUpdatedSrc.colorName,
+//             title_src: columnUpdatedSrc.title,
+
+//             column_id_dest: columnUpdatedDest.id,
+//             board_id_dest: columnUpdatedDest.boardId,
+//             card_order_dest: columnUpdatedDest.cardOrder,
+//             color_name_dest: columnUpdatedDest.colorName,
+//             title_dest: columnUpdatedDest.title,
+//         })
+//     })
+//     console.log('**** in thunkUpdateTwoColumns, res:', res)
+
+//     if (res.ok) {
+//         console.log('**** in thunkUpdateTwoColumns, res OK:', res)
+//         const columns = await res.json();
+//         // dispatch(updateColumn(column));
+//         // dispatch(thunkGetAllColumnsForBoard(boardId));
+//         return columns;
+//     } else {
+//         console.log('**** in thunkUpdateTwoColumns, res NOT OK, res:', res)
+//         // dispatch(updateColumn(oldColumn));
+//         const errors = await res.json(); // THIS IS WHERE I'M GETTING AN ISSUE
+//         console.log('**** in thunkUpdateTwoColumns, res NOT OK, errors:', errors)
+//         return errors;
+//     }
+// };
 
 // THUNK: DELETE COLUMN
 export const thunkDeleteColumn = (columnId) => async (dispatch) => {
@@ -203,8 +298,32 @@ export default function columnsReducer(state = initialState, action) {
         }
 
         case UPDATE_COLUMN: {
-            const newState = { ...state, oneColumn: {} };
+            const newState = { ...state };
             newState.allColumns[action.column.id] = action.column;
+            return newState;
+        }
+
+        case UPDATE_TWO_COLUMNS: {
+            const newState = { ...state };
+
+            // console.log('**** in UPDATE_TWO_COLUMNS, action:', action)
+            newState.allColumns[action.columns.columnUpdatedSrc.id] = { ...action.columns.columnUpdatedSrc };
+            newState.allColumns[action.columns.columnUpdatedDest.id] = { ...action.columns.columnUpdatedDest };
+            // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState)
+
+            const deepCopyOfDndIdsSrc = [...action.columns.columnUpdatedSrc.cardDndIds];
+            console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
+            newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds = deepCopyOfDndIdsSrc;
+            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
+            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
+            const deepCopyOfDndIdsDest = [...action.columns.columnUpdatedDest.cardDndIds];
+            newState.allColumns[action.columns.columnUpdatedDest.id].cardDndIds = deepCopyOfDndIdsDest;
+
+            const deepCopyOfCardsSrc = [...action.columns.columnUpdatedSrc.cards];
+            newState.allColumns[action.columns.columnUpdatedSrc.id].cards = deepCopyOfCardsSrc;
+            const deepCopyOfCardsDest = [...action.columns.columnUpdatedDest.cards];
+            newState.allColumns[action.columns.columnUpdatedDest.id].cards = deepCopyOfCardsDest;
+
             return newState;
         }
 
