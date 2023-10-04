@@ -89,23 +89,6 @@ export default function Board() {
     }
   };
 
-  const updateCardAndCols = async (cardUpdated, columnUpdatedSrc, columnUpdatedDest) => {
-    try {
-      const card = await updateColumnIdOnCard(cardUpdated); // VScode notes not needing 'await', but it IS needed
-      const colSrc = await updateCardOrderOnColumn(columnUpdatedSrc); // VScode notes not needing 'await', but it IS needed
-      const colDest = await updateCardOrderOnColumn(columnUpdatedDest); // VScode notes not needing 'await', but it IS needed
-      if (card.id && colSrc.id && colDest.id) {
-        return { card, colSrc, colDest };
-      } else {
-        return { card, colSrc, colDest };
-      }
-    } catch (res) {
-      const data = await res.json();
-      return data;
-    }
-  };
-
-
   const onDragEnd = (result) => {
 
     const { draggableId, source, destination } = result;
@@ -253,8 +236,6 @@ export default function Board() {
       // const columnToUpdateDestIdx = columns.indexOf(columnToUpdateDest);
       // columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
       // columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
-
-      // updateCardAndCols(cardUpdated, columnUpdatedSrc, columnUpdatedDest);
 
       const twoColumnsUpdated = { columnUpdatedSrc, columnUpdatedDest };
 
