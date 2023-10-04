@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { thunkGetAllCardsForColumn } from '../../store/cards';
@@ -19,9 +19,6 @@ export default function Column({ column }) {
   const cards = column.cards;
   // const cards = useSelector(state => state.cards?.allCards);
   const dndId = column.dndId;
-
-  console.log('||||| in Column, title:', title)
-  console.log('||||| in Column, cards:', cards)
 
   const cardsOrdered = [];
   // if (cards.length) {
