@@ -38,7 +38,7 @@ const createColumn = (column) => {
     }
 };
 
-export const updateColumn = (column) => {
+const updateColumn = (column) => {
     return {
         type: UPDATE_COLUMN,
         column
