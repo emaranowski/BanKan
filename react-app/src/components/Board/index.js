@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { thunkGetOneBoard } from '../../store/boards';
-import { thunkGetAllColumnsForBoard, thunkUpdateColumn, thunkUpdateTwoColumns } from '../../store/columns';
+import { thunkGetAllColumnsForBoard, thunkUpdateColumn } from '../../store/columns';
 import { thunkUpdateCard } from '../../store/cards';
 import { useParams, Link } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
