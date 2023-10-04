@@ -92,7 +92,7 @@ export default function Board() {
     try {
       const res = await dispatch(thunkUpdateCard(cardUpdated)); // VScode notes not needing 'await', but it IS needed
       if (res.id) {
-        setTriggerRerenderToggle(!triggerRerenderToggle);
+        // setTriggerRerenderToggle(!triggerRerenderToggle);
         // dispatch(thunkGetOneBoard(boardId));
 
         // dispatch(thunkGetOneCard(cardUpdated.id));
@@ -136,7 +136,7 @@ export default function Board() {
       const colSrc = await updateCardOrderOnColumn(columnUpdatedSrc); // VScode notes not needing 'await', but it IS needed
       const colDest = await updateCardOrderOnColumn(columnUpdatedDest); // VScode notes not needing 'await', but it IS needed
       if (card.id && colSrc.id && colDest.id) {
-        setTriggerRerenderToggle(!triggerRerenderToggle);
+        // setTriggerRerenderToggle(!triggerRerenderToggle);
         // dispatch(thunkGetOneCard(cardUpdated.id));
         // dispatch(thunkGetOneColumn(cardUpdated.columnId))
         // await dispatch(thunkGetOneBoard(boardId));
@@ -417,7 +417,7 @@ export default function Board() {
     //   },
     // };
 
-    setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
+    // setTriggerRerenderToggle(!triggerRerenderToggle); // trigger useEffect when onDragEnd is done
     console.log('-----||||||| onDragEnd ENDS')
   };
 

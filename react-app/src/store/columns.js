@@ -298,13 +298,13 @@ export default function columnsReducer(state = initialState, action) {
         }
 
         case UPDATE_COLUMN: {
-            const newState = { ...state };
+            const newState = { ...state, allColumns: { ...state.allColumns } };
             newState.allColumns[action.column.id] = action.column;
             return newState;
         }
 
         case UPDATE_TWO_COLUMNS: {
-            const newState = { ...state };
+            const newState = { ...state, allColumns: { ...state.allColumns } };
 
             // console.log('**** in UPDATE_TWO_COLUMNS, action:', action)
             newState.allColumns[action.columns.columnUpdatedSrc.id] = { ...action.columns.columnUpdatedSrc };
