@@ -312,10 +312,10 @@ export default function columnsReducer(state = initialState, action) {
             // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState)
 
             const deepCopyOfDndIdsSrc = [...action.columns.columnUpdatedSrc.cardDndIds];
-            console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
+            // console.log('**** in UPDATE_TWO_COLUMNS, deepCopyOfDndIdsSrc:', deepCopyOfDndIdsSrc);
             newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds = deepCopyOfDndIdsSrc;
-            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
-            console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
+            // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState.allColumns[action.columns.columnUpdatedSrc.id].cardDndIds);
+            // console.log('**** in UPDATE_TWO_COLUMNS, newState:', newState);
             const deepCopyOfDndIdsDest = [...action.columns.columnUpdatedDest.cardDndIds];
             newState.allColumns[action.columns.columnUpdatedDest.id].cardDndIds = deepCopyOfDndIdsDest;
 
