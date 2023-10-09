@@ -65,13 +65,13 @@ def update_board(id):
     """
     Update board (by board_id): PUT /api/boards/:board_id/update
     """
-    print('**** in update_board, id:', id)
+    # print('**** in update_board, id:', id)
     form = BoardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         board_to_update = Board.query.get(id)
-        print('**** in update_board, board_to_update:', board_to_update)
+        # print('**** in update_board, board_to_update:', board_to_update)
         board_to_update.user_id = form.data['user_id']
         board_to_update.image_url = form.data['image_url']
         board_to_update.title = form.data['title']
@@ -82,7 +82,7 @@ def update_board(id):
         return res
     if form.errors:
         res = { "errors": form.errors }
-        print('**** in update_board, res:', res)
+        # print('**** in update_board, res:', res)
         return res, 400
 
 
@@ -148,20 +148,20 @@ def get_all_cards_for_board(id):
     Get all cards for board (by board_id): GET /api/boards/:board_id/cards
     """
     columns = Column.query.filter(Column.board_id == id).all()
-    print('###### get_all_cards_for_board, columns:', columns)
+    # print('###### get_all_cards_for_board, columns:', columns)
     cards = []
     for column in columns:
         col_to_dict = column.to_dict()
-        print('###### get_all_cards_for_board, col_to_dict:', col_to_dict)
+        # print('###### get_all_cards_for_board, col_to_dict:', col_to_dict)
 
         cards_to_loop = col_to_dict['cards']
-        print('###### *********** ######')
-        print('###### get_all_cards_for_board, cards_to_loop:', cards_to_loop)
+        # print('###### *********** ######')
+        # print('###### get_all_cards_for_board, cards_to_loop:', cards_to_loop)
 
         for card in cards_to_loop:
             cards.append(card)
 
-    print('###### get_all_cards_for_board, cards:', cards)
+    # print('###### get_all_cards_for_board, cards:', cards)
 
     return { "cards": cards }
 

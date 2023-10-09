@@ -31,13 +31,13 @@ def update_column(id):
     """
     Update column (by column_id): PUT /api/columns/:column_id/update
     """
-    print('**** in update_column, id:', id)
+    # print('**** in update_column, id:', id)
     form = ColumnForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         column_to_update = Column.query.get(id)
-        print('**** in update_column, column_to_update:', column_to_update)
+        # print('**** in update_column, column_to_update:', column_to_update)
         column_to_update.board_id = form.data['board_id']
         column_to_update.card_order = form.data['card_order']
         # column_to_update.color_hex = form.data['color_hex']
@@ -49,7 +49,7 @@ def update_column(id):
         return res
     if form.errors:
         res = { "errors": form.errors }
-        print('**** in update_column, res:', res)
+        # print('**** in update_column, res:', res)
         return res, 400
 
 
@@ -65,14 +65,14 @@ def update_two_columns():
     form2['csrf_token'].data = request.cookies['csrf_token']
     # body = request.body
 
-    print('*******************')
-    print('*******************')
-    print('*******************')
-    print('*******************')
-    print('*******************')
+    # print('*******************')
+    # print('*******************')
+    # print('*******************')
+    # print('*******************')
+    # print('*******************')
 
-    print("**** in update_two_columns, form1.data", form1.data)
-    print("**** in update_two_columns, form2.data",  form2.data)
+    # print("**** in update_two_columns, form1.data", form1.data)
+    # print("**** in update_two_columns, form2.data",  form2.data)
     # print('**** in update_two_columns, request.body:', request.body)
     # print('**** in update_two_columns, request.body:', request.body)
     # print('**** in update_two_columns, request.body:', request.body)
@@ -82,9 +82,9 @@ def update_two_columns():
     id_dest_res = {}
 
     if form1.validate_on_submit():
-        print('**** in form1.validate_on_submit #1')
+        # print('**** in form1.validate_on_submit #1')
         column_to_update = Column.query.get(form1.data['column_id_src'])
-        print('**** in form1.validate_on_submit #1, column_to_update:', column_to_update)
+        # print('**** in form1.validate_on_submit #1, column_to_update:', column_to_update)
         column_to_update.board_id = form1.data['board_id_src']
         column_to_update.card_order = form1.data['card_order_src']
         column_to_update.color_name = form1.data['color_name_src']
@@ -92,19 +92,19 @@ def update_two_columns():
         column_to_update.updated_at = datetime.datetime.now()
         db.session.commit()
         id_src_res = column_to_update.to_dict()
-        print('**** in form1.validate_on_submit #1, column_to_update:', column_to_update)
-        print('**** in form1.validate_on_submit #1, id_src_res:', id_src_res)
+        # print('**** in form1.validate_on_submit #1, column_to_update:', column_to_update)
+        # print('**** in form1.validate_on_submit #1, id_src_res:', id_src_res)
         # return id_src_res
     if form1.errors:
-        print('**** in form1.errors #1')
+        # print('**** in form1.errors #1')
         id_src_res = { "errors": form1.errors }
-        print('**** in form1.errors #1, id_src_res:', id_src_res)
+        # print('**** in form1.errors #1, id_src_res:', id_src_res)
         # return id_src_res, 400
 
     if form2.validate_on_submit():
-        print('**** in form2.validate_on_submit #2')
+        # print('**** in form2.validate_on_submit #2')
         column_to_update = Column.query.get(form2.data['column_id_dest'])
-        print('**** in form2.validate_on_submit, column_to_update:', column_to_update)
+        # print('**** in form2.validate_on_submit, column_to_update:', column_to_update)
         column_to_update.board_id = form2.data['board_id_dest']
         column_to_update.card_order = form2.data['card_order_dest']
         column_to_update.color_name = form2.data['color_name_dest']
@@ -112,23 +112,23 @@ def update_two_columns():
         column_to_update.updated_at = datetime.datetime.now()
         db.session.commit()
         id_dest_res = column_to_update.to_dict()
-        print('**** in form2.validate_on_submit #2, column_to_update:', column_to_update)
-        print('**** in form2.validate_on_submit #2, id_dest_res:', id_dest_res)
+        # print('**** in form2.validate_on_submit #2, column_to_update:', column_to_update)
+        # print('**** in form2.validate_on_submit #2, id_dest_res:', id_dest_res)
         # return id_dest_res
     if form2.errors:
-        print('**** in form2.errors #2')
+        # print('**** in form2.errors #2')
         id_dest_res = { "errors": form2.errors }
-        print('**** in form2.errors #2, id_dest_res:', id_dest_res)
+        # print('**** in form2.errors #2, id_dest_res:', id_dest_res)
         # return id_dest_res, 400
 
-    print('**** in update_two_columns, id_src_res:', id_src_res)
-    print('**** in update_two_columns, id_dest_res:', id_dest_res)
+    # print('**** in update_two_columns, id_src_res:', id_src_res)
+    # print('**** in update_two_columns, id_dest_res:', id_dest_res)
 
     if id_src_res.errors and id_dest_res.errors:
-        print('**** in id_src_res.errors and id_dest_res.errors')
+        # print('**** in id_src_res.errors and id_dest_res.errors')
         return { id_src_res, id_dest_res }, 400
     else:
-        print('**** in ELSE id_src_res.errors and id_dest_res.errors ELSE')
+        # print('**** in ELSE id_src_res.errors and id_dest_res.errors ELSE')
         return { id_src_res, id_dest_res }
 
 

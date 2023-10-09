@@ -157,7 +157,7 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
     return card;
   } else {
     const errors = await res.json();
-    console.log('**** in thunkUpdateCard, errors:', errors)
+    // console.log('**** in thunkUpdateCard, errors:', errors)
     return errors;
   }
 };

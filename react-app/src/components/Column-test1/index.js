@@ -30,8 +30,8 @@ export default function Column({ boardId, columnId }) {
   const dndId = column.dndId;
 
   // console.log('||||| in Column, cards:', cards)
-  console.log('||||| %%%%% in Column, columnId:', columnId)
-  console.log('||||| %%%%% in Column, column:', column)
+  // console.log('||||| %%%%% in Column, columnId:', columnId)
+  // console.log('||||| %%%%% in Column, column:', column)
 
 
   const cardsOrdered = [];
