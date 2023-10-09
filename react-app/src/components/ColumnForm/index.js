@@ -127,7 +127,7 @@ export default function ColumnForm({ formType, column }) {
         colorName,
         boardId
       };
-      console.log('**** in UPDATE COLUMN, column:', column)
+      // console.log('**** in UPDATE COLUMN, column:', column)
 
       try {
         const res = await dispatch(thunkUpdateColumn(column)); // VScode notes not needing 'await', but it IS needed
