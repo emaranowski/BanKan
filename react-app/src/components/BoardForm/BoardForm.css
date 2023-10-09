@@ -11,7 +11,8 @@
 #image-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 35px;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 33px;
 }
 
 #image-button-div {

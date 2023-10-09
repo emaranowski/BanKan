@@ -11,7 +11,8 @@
 #color-btns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 35px;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 33px;
 }
 
 /* #color-btn-div {
@@ -19,12 +20,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #color-btn-div:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 } */
 
 /* #color-btn-img {
@@ -41,12 +42,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #red:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #orange {
@@ -55,12 +56,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #orange:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #yellow {
@@ -69,12 +70,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #yellow:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #green {
@@ -83,12 +84,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #green:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #blue {
@@ -97,12 +98,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #blue:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #purple {
@@ -111,12 +112,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #purple:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #lightgray {
@@ -125,12 +126,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #lightgray:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #medgray {
@@ -139,12 +140,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #medgray:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #darkgray {
@@ -153,12 +154,12 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #darkgray:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 #black {
@@ -167,14 +168,20 @@
     height: 50px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
 }
 
 #black:hover {
-    border: 1.5px solid #d3d3d3;
-    box-shadow: 2px 2px 10px #bbbbbb;
+    border: 2px solid #d3d3d3;
+    box-shadow: 2px 2px 10px #b0b0b0;
 }
 
 .selected {
-    border: 1.5px solid #8d8d8d !important;
+    border: 2px solid #8d8d8d !important;
+    box-shadow: 2px 2px 10px #b0b0b0;
+}
+
+.color-bg-checkmark {
+    color: white;
+    margin: 16px 0 0 18px;
 }

@@ -230,8 +230,7 @@ export default function BoardForm({ formType, board }) {
               >
               </img>
             ))
-            :
-            (<></>)
+            : (<></>)
           }
         </div>
         {imageError && !imageUrl ? ('Please select an image') : null}
