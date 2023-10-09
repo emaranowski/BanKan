@@ -28,7 +28,7 @@ export default function Notebook() {
   // const notes = Object.values(useSelector(state => state.notes.allNotes));
   // console.log('||||||| in Notebook, notebook:', notebook)
   // console.log('||||||| in Notebook, notebook.noteOrder:', notebook.noteOrder)
-  console.log('||||||| in Notebook, sessionUser:', sessionUser)
+  // console.log('||||||| in Notebook, sessionUser:', sessionUser)
 
   const notesOrdered = [];
   // noteOrderArr.forEach(noteDndId => {
