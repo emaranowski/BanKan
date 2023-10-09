@@ -139,19 +139,17 @@ export default function NoteForm({ formType, notebook, note }) {
                     onClick={() => setColorName(clrName.name)}
                     className={colorName === clrName.name ? 'selected' : ''}
                   >
-
                     {colorName === clrName.name ?
                       <>
                         <div className="color-bg-checkmark">
                           ✔
                         </div>
                       </>
-                      : null}
-
+                      : null
+                    }
                   </div>
                 ))
-                :
-                (<></>)
+                : (<></>)
               }
             </div>
             {colorError && !colorName ? ('Please select a color') : null}

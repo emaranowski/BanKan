@@ -166,10 +166,17 @@ export default function ColumnForm({ formType, column }) {
                     onClick={() => setColorName(clrName.name)}
                     className={colorName === clrName.name ? 'selected' : ''}
                   >
+                    {colorName === clrName.name ?
+                      <>
+                        <div className="color-bg-checkmark">
+                          ✔
+                        </div>
+                      </>
+                      : null
+                    }
                   </div>
                 ))
-                :
-                (<></>)
+                : (<></>)
               }
             </div>
             {colorError && !colorName ? ('Please select a color') : null}
