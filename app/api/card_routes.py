@@ -14,13 +14,13 @@ def update_card(id):
     """
     Update card (by card_id): PUT /api/cards/:card_id/update
     """
-    print('**** in update_card, id:', id)
+    # print('**** in update_card, id:', id)
     form = CardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         card_to_update = Card.query.get(id)
-        print('**** in update_card, card_to_update:', card_to_update)
+        # print('**** in update_card, card_to_update:', card_to_update)
         card_to_update.column_id = form.data['column_id']
         card_to_update.index = form.data['index']
         card_to_update.title = form.data['title']
@@ -31,7 +31,7 @@ def update_card(id):
         return res
     if form.errors:
         res = { "errors": form.errors }
-        print('**** in update_card, res:', res)
+        # print('**** in update_card, res:', res)
         return res, 400
 
 
