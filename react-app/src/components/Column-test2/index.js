@@ -22,7 +22,7 @@ export default function Column({ column }) {
 
   const dndId = column.dndId;
 
-  console.log('||||| in Column, cards:', cards)
+  // console.log('||||| in Column, cards:', cards)
 
   const cardsOrdered = [];
   if (Array.isArray(cards)) {
