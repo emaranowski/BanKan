@@ -68,7 +68,12 @@
 #footer-dev-name-and-links i {
     color: #FFFFFF;
     font-size: 23.5px;
-    transition: color .7s;
+    transition: color .7s, box-shadow .7s;
+}
+
+#footer-dev-name-and-links i:hover {
+    color: #c6d2ff;
+    box-shadow: 0px 0px 15px rgba(223, 223, 255, 0.25);
 }
 
 #footer-dev-name {
@@ -90,11 +95,6 @@
 
 #github-icon {
     border-radius: 50px;
-}
-
-#footer-dev-name-and-links i:hover {
-    color: #c6d2ff;
-    box-shadow: 0px 0px 15px rgba(223, 223, 255, 0.25);
 }
 
 #footer-row-2 {

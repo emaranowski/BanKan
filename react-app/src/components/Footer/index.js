@@ -55,7 +55,7 @@ export default function Footer() {
                 <span id='footer-dev-name'>Erica Maranowski</span>
               </a>
               <span id='footer-dev-icons'>
-                <a href="https://www.linkedin.com/in/erica-maranowski/" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/erica-maranowski/" target="_blank" rel="noopener noreferrer">
                   <i class="fa-brands fa-linkedin"></i>
                 </a>
                 <a href="https://github.com/emaranowski" target="_blank" rel="noopener noreferrer">
@@ -68,7 +68,6 @@ export default function Footer() {
         </div>
 
         <div id='footer-row-2'>
-
           <span id='footer-copyright'>
             @ 2023 BanKan
           </span>
@@ -80,19 +79,13 @@ export default function Footer() {
             <span className='footer-tech-icon'>REACT BEAUTIFUL DND</span>
             <span className='footer-tech-icon'>REACT</span>
             <span className='footer-tech-icon'>REDUX</span>
+            <span className='footer-tech-icon'>JS</span>
             <span className='footer-tech-icon'>PYTHON</span>
             <span className='footer-tech-icon'>POSTGRESQL</span>
             <span className='footer-tech-icon'>SQL</span>
-            <span className='footer-tech-icon'>JS</span>
             <span className='footer-tech-icon'>HTML</span>
             <span className='footer-tech-icon'>CSS</span>
-            {/* <i class="fa-brands fa-react"></i>
-            <i class="fa-brands fa-python"></i>
-            <i class="fa-brands fa-js"></i>
-            <i class="fa-brands fa-html5"></i>
-            <i class="fa-brands fa-css3-alt"></i> */}
           </span>
-
         </div>
 
       </footer>
