@@ -74,15 +74,18 @@ export default function Footer() {
 
           <span id='footer-tech'>
             <span id='footer-tech-used'>
-              TECHNOLOGIES USED:
+              Technologies Used:
             </span>
-            <span className='footer-tech-icon'>REACT BEAUTIFUL DND</span>
-            <span className='footer-tech-icon'>REACT</span>
-            <span className='footer-tech-icon'>REDUX</span>
-            <span className='footer-tech-icon'>JS</span>
-            <span className='footer-tech-icon'>PYTHON</span>
-            <span className='footer-tech-icon'>POSTGRESQL</span>
+            <span className='footer-tech-icon'>React Beautiful DnD</span>
+            <span className='footer-tech-icon'>React</span>
+            <span className='footer-tech-icon'>Redux</span>
+            <span className='footer-tech-icon'>Flask</span>
+            <span className='footer-tech-icon'>SQLAlchemy</span>
             <span className='footer-tech-icon'>SQL</span>
+            <span className='footer-tech-icon'>MySQL</span>
+            <span className='footer-tech-icon'>PostgreSQL</span>
+            <span className='footer-tech-icon'>Python</span>
+            <span className='footer-tech-icon'>JS</span>
             <span className='footer-tech-icon'>HTML</span>
             <span className='footer-tech-icon'>CSS</span>
           </span>
