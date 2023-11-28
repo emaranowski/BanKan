@@ -158,6 +158,5 @@ def create_card_for_column(id):
         db.session.add(new_card)  # add card to SQLAlchemy session/staging area
         db.session.commit()  # persist new card to database
         return new_card.to_dict()
-
     if form.errors:  # return 400 'bad request' & errors as dict
         return {"errors": form.errors}, 400
