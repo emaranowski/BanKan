@@ -1,13 +1,16 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+
 class Card(db.Model):
-    __tablename__ = 'cards'
+    __tablename__ = "cards"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    column_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('columns.id')), nullable=False)
+    column_id = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("columns.id")), nullable=False
+    )
     index = db.Column(db.Integer)
     title = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(255))
@@ -16,15 +19,14 @@ class Card(db.Model):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'columnId': self.column_id,
-            'index': self.index,
-            'title': self.title,
-            'description': self.description,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at,
-            # 'column': [column.to_dict() for column in self.columns_rel],
-            'dndId': 'card-'+str(self.id)
+            "id": self.id,
+            "columnId": self.column_id,
+            "index": self.index,
+            "title": self.title,
+            "description": self.description,
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at,
+            "dndId": "card-" + str(self.id),
         }
 
     # one-to-many: one column can have many cards
