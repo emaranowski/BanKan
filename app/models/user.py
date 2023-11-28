@@ -4,10 +4,10 @@ from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30))
@@ -31,18 +31,22 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'firstName': self.first_name,
-            'lastName': self.last_name,
-            'username': self.username,
-            'email': self.email,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at,
-            'boards': [board.to_dict() for board in self.boards_rel]
+            "id": self.id,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
+            "username": self.username,
+            "email": self.email,
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at,
+            "boards": [board.to_dict() for board in self.boards_rel],
         }
 
     # one-to-many: one user can have many boards
-    boards_rel = db.relationship("Board", back_populates="users_rel", cascade="all, delete-orphan")
+    boards_rel = db.relationship(
+        "Board", back_populates="users_rel", cascade="all, delete-orphan"
+    )
 
     # one-to-many: one user can have many notebooks
-    notebooks_rel = db.relationship("Notebook", back_populates="users_rel", cascade="all, delete-orphan")
+    notebooks_rel = db.relationship(
+        "Notebook", back_populates="users_rel", cascade="all, delete-orphan"
+    )
