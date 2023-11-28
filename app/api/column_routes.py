@@ -56,7 +56,7 @@ def update_column(id):
 @login_required
 def update_two_columns():
     """
-    Update two columns (by column_ids),
+    Update two columns (by column_ids) -- this is a special case
     used when dropping a card from one column to another column:
     PUT /api/columns/update-two-columns
     """
