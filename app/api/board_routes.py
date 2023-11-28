@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Board, Column, Card
+from app.models import db, Board, Column
 from ..forms.board_form import BoardForm
 from ..forms.column_form import ColumnForm
 import datetime
