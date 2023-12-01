@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { thunkCreateNoteForNotebook, thunkGetAllNotesForNotebook } from "../../store/notes";
@@ -10,16 +9,15 @@ import './NoteForm.css';
 
 export default function NoteForm({ formType, notebook, note }) {
   const dispatch = useDispatch();
-  // const history = useHistory();
   const { closeModal } = useModal();
   const notebookId = notebook.id;
   // const noteOrderArr = notebook.noteOrder.split(',');
 
   const [colorName, setColorName] = useState(note?.colorName);
-  // const [colorSelected, setColorSelected] = useState(false);
   const [colorError, setColorError] = useState(false);
   const [title, setTitle] = useState(note?.title);
   const [text, setText] = useState(note?.text);
+  // const [colorSelected, setColorSelected] = useState(false);
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
@@ -71,7 +69,6 @@ export default function NoteForm({ formType, notebook, note }) {
           // dispatch(thunkUpdateNotebook(notebookUpdated));
 
           setErrors({});
-          // history.push(`/notebooks/${notebookId}`);
           closeModal();
           dispatch(thunkGetOneNotebook(notebookId));
 
@@ -102,7 +99,6 @@ export default function NoteForm({ formType, notebook, note }) {
         const res = await dispatch(thunkUpdateNote(note)); // VScode notes not needing 'await', but it IS needed
         if (res.id) {
           setErrors({});
-          // history.push(`/notebooks/${notebookId}`);
           closeModal();
           dispatch(thunkGetOneNotebook(notebookId));
         } else {

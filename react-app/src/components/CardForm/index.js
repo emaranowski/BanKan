@@ -9,9 +9,7 @@ import './CardForm.css';
 export default function CardForm({ formType, card, column, boardId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  // const columnId = column.id;
   const cardOrderArr = column.cardOrder.split(',');
-  // const cards = column.cards;
   const numCardsInColumn = column.cards.length;
 
   const [title, setTitle] = useState(card?.title);
