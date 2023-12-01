@@ -10,20 +10,17 @@ export default function ColumnForm({ formType, column }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
-  // const columnId = column.id;
   const boardId = column.boardId;
 
   const [title, setTitle] = useState(column?.title);
-  // const [colorHex, setColorHex] = useState(column?.colorHex);
   const [colorName, setColorName] = useState(column?.colorName);
-  // const [colorSelected, setColorSelected] = useState(false);
   const [colorError, setColorError] = useState(false);
+  // const [colorHex, setColorHex] = useState(column?.colorHex);
+  // const [colorSelected, setColorSelected] = useState(false);
 
   const [disabled, setDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // console.log('**** in ColumnForm, colorName:', colorName)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -98,11 +95,9 @@ export default function ColumnForm({ formType, column }) {
         colorName,
         boardId
       };
-      // console.log('**** in CREATE COLUMN, column:', column)
 
       try {
         const res = await dispatch(thunkCreateColumnForBoard(column)); // VScode gives note about not needing 'await', but it IS needed
-        // console.log('**** in CREATE COLUMN TRY, res:', res)
         if (res.id) {
           setErrors({});
           history.push(`/boards/${boardId}`);
@@ -111,9 +106,7 @@ export default function ColumnForm({ formType, column }) {
           setErrors(res.errors);
         }
       } catch (res) {
-        // console.log('**** in CREATE COLUMN CATCH, res:', res)
         const data = await res.json();
-        // console.log('**** in CREATE COLUMN CATCH, data:', data)
         if (data && data.errors) {
           setErrors(data.errors);
         }
@@ -127,7 +120,6 @@ export default function ColumnForm({ formType, column }) {
         colorName,
         boardId
       };
-      // console.log('**** in UPDATE COLUMN, column:', column)
 
       try {
         const res = await dispatch(thunkUpdateColumn(column)); // VScode notes not needing 'await', but it IS needed
@@ -180,7 +172,6 @@ export default function ColumnForm({ formType, column }) {
               }
             </div>
             {colorError && !colorName ? ('Please select a color') : null}
-            {/* {errors.background && (<div className="column_error_text">{errors.background}</div>)} */}
           </div>
 
           <div>

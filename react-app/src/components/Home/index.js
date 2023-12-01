@@ -10,12 +10,7 @@ export default function Home() {
 
   return (
     <>
-      <div id='home-banner-bg'>
-        {/* <img
-						id='home-banner-img'
-						src=""
-					/> */}
-      </div>
+      <div id='home-banner-bg'></div>
 
       <div id='home-content'>
         <div id='home-banner-text'>

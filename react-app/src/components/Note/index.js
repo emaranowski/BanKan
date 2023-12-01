@@ -15,8 +15,6 @@ export default function Note({ notebook, note }) {
   const text = note.text;
   // const dndId = note.dndId;
 
-  // console.log('**** in Note, note:', note)
-
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -29,7 +27,6 @@ export default function Note({ notebook, note }) {
 
       <div
         id='note'
-
       >
 
         <div id='note-color-swatch-and-btns'>

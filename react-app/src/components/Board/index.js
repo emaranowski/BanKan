@@ -38,7 +38,6 @@ export default function Board() {
   useEffect(() => {
     if (Object.values(board).length > 0) {
       if (!userId || userId !== board.userId) {
-        // console.log('///////////', userId, board.userId);
         history.push('/');
         // window.alert('Invalid Permissions')
       }

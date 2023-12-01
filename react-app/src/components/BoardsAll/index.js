@@ -14,8 +14,6 @@ export default function BoardsAll() {
   const userId = sessionUser.id;
   const boards = Object.values(useSelector(state => state.boards.allBoards));
 
-  // console.log('**** in BoardsAll, boards:', boards)
-
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(thunkGetAllBoards(userId))
