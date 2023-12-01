@@ -17,7 +17,6 @@ export default function Column({ column }) {
   const title = column.title;
   const cardOrderArr = column.cardOrder.split(',');
   const cards = column.cards;
-  // const cards = useSelector(state => state.cards.allCards);
   const dndId = column.dndId;
 
   const cardsOrdered = [];
