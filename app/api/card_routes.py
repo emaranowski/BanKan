@@ -49,7 +49,7 @@ def delete_card(id):
     db.session.commit()  # persist deletion to DB
     card_to_delete = Card.query.get(id)  # try to get card again
 
-    if card_to_delete == None:  # if card no longer exists
+    if card_to_delete == None:  # if deletion succeeded
         return {"message": "Successfully deleted card", "id": id}
-    else:
+    else:  # if deletion failed
         return {"error": "Card could not be deleted"}
