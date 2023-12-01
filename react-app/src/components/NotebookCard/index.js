@@ -1,9 +1,7 @@
+// this component is a small card representing each notebook, displayed when viewing all notebooks
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import OpenModalButton from '../../components/OpenModalButton';
-// import NotebookDeleteModal from '../NotebookDeleteModal';
-// import NotebookFormUpdate from '../NotebookFormUpdate';
 import './NotebookCard.css';
 
 export default function NotebookCard({ notebook }) {
@@ -28,27 +26,6 @@ export default function NotebookCard({ notebook }) {
         <div id='notebook-card-title'>
           {title}
         </div>
-
-        {/* <div id='notebook-card-btns'>
-          <div className='notebook-card-update-and-delete-btns'>
-            <OpenModalButton
-              buttonText="Update"
-              modalComponent={
-                <NotebookFormUpdate
-                  notebook={notebook}
-                />}
-            />
-          </div>
-          <div className='notebook-card-update-and-delete-btns'>
-            <OpenModalButton
-              buttonText="Delete"
-              modalComponent={<NotebookDeleteModal
-                notebookId={notebookId}
-                userId={userId}
-              />}
-            />
-          </div>
-        </div> */}
 
       </div>
     </Link>
