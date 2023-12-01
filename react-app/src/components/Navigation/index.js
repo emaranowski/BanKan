@@ -1,9 +1,6 @@
 import React from 'react';
-// import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-// import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -11,15 +8,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 export default function Navigation({ isLoaded }) {
-  // const dispatch = useDispatch();
-  // const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
-
-  // const handleLogout = (e) => {
-  //   e.preventDefault();
-  //   dispatch(logout());
-  //   history.push('/');
-  // };
 
   return (
     <nav>
