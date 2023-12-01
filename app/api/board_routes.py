@@ -31,6 +31,7 @@ def get_all_boards(id):
     Get all boards for user (by user_id):
     GET /api/boards/user/:user_id
     """
+    # get all boards where user_id matches id from params
     boards = Board.query.filter(Board.user_id == id).all()
     return {"boards": [board.to_dict() for board in boards]}
 
@@ -103,9 +104,9 @@ def delete_board(id):
     db.session.commit()  # persist deletion to DB
     board_to_delete = Board.query.get(id)  # try to get board again
 
-    if board_to_delete == None:  # if board no longer exists
+    if board_to_delete == None:  # if deletion succeeded
         return {"message": "Successfully deleted board", "id": id}
-    else:  # if board still exists
+    else:  # if deletion failed
         return {"error": "Board could not be deleted"}
 
 
