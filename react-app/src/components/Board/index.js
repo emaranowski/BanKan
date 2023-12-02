@@ -77,52 +77,49 @@ export default function Board() {
 
     const { draggableId, source, destination } = result;
 
-    // return if: no destination (dropped into empty space)
+    // return if: no destination (card dropped into empty space)
     if (!destination) return;
-    // return if: destination is same col, same idx (dropped into original spot)
+    // return if: destination is same col + same idx (card dropped into original spot)
     if (source.droppableId === destination.droppableId &&
       source.index === destination.index) {
       return;
     };
 
-    //////// CASE #1: drop within ONE column (vertical movement)
-    //////// 1 item to update: column
-    if (source.droppableId === destination.droppableId) {
+    //////// CASE #1: drop card within ONE column (vertical movement)
+    //////// ONE item to update: column
+    if (source.droppableId === destination.droppableId) { // if src + dest cols are same
 
-      // get col to update (where dndId matches source.droppableId)
+      // get col to update (where dndId matches droppableId)
+      // (to edit cardOrder)
       const columnToUpdate = columns.filter(column => {
-        return column.dndId === source.droppableId;
+        return column.dndId === source.droppableId; // could also use destination.droppableId
       })[0];
 
       // convert cardOrder: from str to arr
       const cardOrderArr = columnToUpdate.cardOrder.split(',');
 
       // update cardOrder: 1. remove cardDndId at srcIdx, 2. add cardDndId at destIdx
-      const movedCardDndId = cardOrderArr.splice(source.index, 1)[0]; // at srcIdx: remove 1
-      cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0, add movedCardDndId
+      const movedCardDndId = cardOrderArr.splice(source.index, 1)[0]; // at srcIdx: remove 1 ele
+      cardOrderArr.splice(destination.index, 0, movedCardDndId); // at destIdx: remove 0 eles, add movedCardDndId
 
-      // convert cardOrder: from arr to str
+      // convert cardOrderArr: from arr back to str
       const cardOrderUpdatedStr = cardOrderArr.toString();
 
-      // create colUpdated w/ updated card order
+      // create columnUpdated, with updated cardOrder string property
       const columnUpdated = {
         ...columnToUpdate,
         cardOrder: cardOrderUpdatedStr,
       };
 
-      // // get idx of colToUpdate (in orig 'columns' arr)
-      // const columnToUpdateIdx = columns.indexOf(columnToUpdate);
-      // // at colToUpdateIdx: 1. remove colToUpdate, 2. add colUpdated
-      // columns.splice(columnToUpdateIdx, 1, columnUpdated);
-
       updateCardOrderOnColumn(columnUpdated);
     };
 
-    //////// CASE #2: drop across TWO columns (horizonal movement)
-    //////// 3 items to update: card, columnSrc, columnDest
-    if (source.droppableId !== destination.droppableId) {
+    //////// CASE #2: drop card across TWO columns (horizonal movement)
+    //////// THREE items to update: SRC COL, DEST COL, CARD
+    if (source.droppableId !== destination.droppableId) { // if src + dest cols are different
 
-      // SRC + DEST -- get cols to update (to edit cards & cardOrder)
+      // SRC + DEST COLS -- get cols to update (where dndId matches droppableId)
+      // (to edit cards & cardOrder)
       const columnToUpdateSrc = columns.filter(column => {
         return column.dndId === source.droppableId;
       })[0];
@@ -130,58 +127,59 @@ export default function Board() {
         return column.dndId === destination.droppableId;
       })[0];
 
-      // CARD -- get card to update (to edit columnId from columnSrc.id to columnDest.id)
+      // CARD -- get card to update (from SRC col, where dndId matches draggableId)
+      // (to edit card's columnId: starts as SRC col id, will become DEST col id)
       const cardToUpdate = columnToUpdateSrc.cards.filter(card => {
         return card.dndId === draggableId;
       })[0];
 
-      // create cardUpdated, w/ updated columnId
+      // create cardUpdated, and update columnId to become DEST col id
       const cardUpdated = {
         ...cardToUpdate,
         columnId: columnToUpdateDest.id,
       };
 
-      // SRC + DEST -- convert cardOrder: from str to arr
+      // SRC + DEST COLS -- convert cardOrder: from str to arr
       const cardOrderArrSrc = columnToUpdateSrc.cardOrder.split(',');
       const cardOrderArrDest = columnToUpdateDest.cardOrder.split(',');
 
-      // SRC -- update cardOrder: remove cardDndId at srcIdx
+      // SRC COL -- update cardOrder: REMOVE cardDndId at srcIdx (for card to move)
       const movedCardDndId = cardOrderArrSrc.splice(source.index, 1)[0]; // at srcIdx: remove 1
 
-      // DEST -- update cardOrder: add cardDndId at destIdx
-      // CASE 1: if dest col has 1+ cards (cardOrder !== ''):
+      // DEST COL -- update cardOrder: ADD cardDndId at destIdx
+      // (note: if col has 0 cards, its cardOrder is just an empty string)
+      // CASE #1: if dest col has 1+ cards (i.e. cardOrder !== ''):
       // at destIdx: remove 0, add movedCardDndId
-      if (cardOrderArrDest[destination.index] !== '') {
-        cardOrderArrDest.splice(destination.index, 0, movedCardDndId);
-        // CASE 2: if dest col has 0 CARDS (cardOrder === ''):
-        // at destIdx (will be idx0): remove 1 (to remove ''), add movedCardDndId
-      } else if (cardOrderArrDest[destination.index] === '') {
-        cardOrderArrDest.splice(destination.index, 1, movedCardDndId);
+      if (cardOrderArrDest[destination.index] !== '') { // 1+ cards
+        cardOrderArrDest.splice(destination.index, 0, movedCardDndId); // destIdx will vary
+        // CASE #2: if dest col has 0 cards (i.e. cardOrder === ''):
+        // at destIdx (will be idx0): remove 1 (to remove empty str ''), add movedCardDndId
+      } else if (cardOrderArrDest[destination.index] === '') { // 0 cards
+        cardOrderArrDest.splice(destination.index, 1, movedCardDndId); // destIdx will be 0
       };
 
-      // SRC + DEST -- convert cardOrder: from arr to str
+      // SRC + DEST COLS -- convert cardOrder: from arr back to str
       const cardOrderUpdatedStrSrc = cardOrderArrSrc.toString();
       const cardOrderUpdatedStrDest = cardOrderArrDest.toString();
 
-
-      // SRC -- get card in 'cards', where card.dndId === movedCardDndId
+      // SRC COL -- get card to move (where dndId matches movedCardDndId)
       const cardToMove = columnToUpdateSrc.cards.filter(card => {
         return card.dndId === movedCardDndId;
       })[0];
 
-      // SRC -- get idx of card in 'cards'
+      // SRC COL -- get index of cardToMove within SRC 'cards' arr
       const cardToMoveSrcIdx = columnToUpdateSrc.cards.indexOf(cardToMove);
 
-      // SRC -- remove card from 'cards'
+      // SRC COL -- remove cardToMove from SRC 'cards' arr
       const movedCard = columnToUpdateSrc.cards.splice(cardToMoveSrcIdx, 1)[0]; // at cardToMoveSrcIdx: remove 1
 
-      // CARD -- update columnId
+      // CARD -- update columnId on movedCard
+      // from SRC col id, to become DEST col id
       movedCard.columnId = columnToUpdateDest.id;
 
-      // DEST -- add card to end of 'cards' (order should not matter, since we sort elsewhere?)
+      // DEST COL -- add movedCard to end of DEST 'cards' arr
+      // (order should not matter, since we sort elsewhere)
       columnToUpdateDest.cards.push(movedCard);
-
-      ////////////
 
       // // SRC -- get cardDndId in 'cardDndIds', where cardDndId === movedCardDndId
       // const cardDndIdToMove = columnToUpdateSrc.cardDndIds.filter(cardDndId => {
@@ -202,7 +200,7 @@ export default function Board() {
       // // console.log('%%%%%%% 4. columnToUpdateSrc:', columnToUpdateSrc)
       // // console.log('%%%%%%% 5. columnToUpdateDest:', columnToUpdateDest)
 
-      // SRC + DEST -- create columnUpdated w/ updated cardOrder
+      // SRC + DEST COLS -- create columnUpdated, with updated cardOrder string
       const columnUpdatedSrc = {
         ...columnToUpdateSrc,
         cardOrder: cardOrderUpdatedStrSrc,
@@ -219,6 +217,7 @@ export default function Board() {
       // columns.splice(columnToUpdateSrcIdx, 1, columnUpdatedSrc);
       // columns.splice(columnToUpdateDestIdx, 1, columnUpdatedDest);
 
+      // send updates to thunks, to update store, and to send to backend to update DB
       updateColumnIdOnCard(cardUpdated);
       updateCardOrderOnColumn(columnUpdatedSrc);
       updateCardOrderOnColumn(columnUpdatedDest);
@@ -235,72 +234,76 @@ export default function Board() {
     //     [columnUpdated.id]: columnUpdated,
     //   },
     // };
-  };
+  }; // end of onDragEnd function
 
-  return (<>{isLoaded && (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div id='board-page' style={{ backgroundImage: `url(${imageUrl})` }}>
+  return (
+    <>
+      {isLoaded && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div id='board-page' style={{ backgroundImage: `url(${imageUrl})` }}>
 
-        <div id='board-page-content'>
-          <Link to={`/dashboard`}>
-            ⬅ Dashboard
-          </Link>
+            <div id='board-page-content'>
+              <Link to={`/dashboard`}>
+                ⬅ Dashboard
+              </Link>
 
-          {board && (
-            <div id='board-header'>
-              <div id='board-title'>
-                <span id='board-title-text'>{title}</span>
-              </div>
+              {board && (
+                <div id='board-header'>
+                  <div id='board-title'>
+                    <span id='board-title-text'>{title}</span>
+                  </div>
 
-              <div id='board-btns'>
-                <span>
-                  <OpenModalButton
-                    buttonText={<i class="fa-regular fa-pen-to-square"></i>}
-                    modalComponent={
-                      <BoardFormUpdate
-                        board={board}
-                      />}
-                  />
-                </span>
+                  <div id='board-btns'>
+                    <span>
+                      <OpenModalButton
+                        buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+                        modalComponent={
+                          <BoardFormUpdate
+                            board={board}
+                          />}
+                      />
+                    </span>
 
-                <span>
-                  <OpenModalButton
-                    buttonText={<i class="fa-regular fa-trash-can"></i>}
-                    modalComponent={
-                      <BoardDeleteModal
-                        boardId={boardId}
-                      />}
-                  />
-                </span>
+                    <span>
+                      <OpenModalButton
+                        buttonText={<i class="fa-regular fa-trash-can"></i>}
+                        modalComponent={
+                          <BoardDeleteModal
+                            boardId={boardId}
+                          />}
+                      />
+                    </span>
 
+                  </div>
+                </div>
+              )}
+
+              <div id='board-columns'>
+                {columns && (
+                  columns.map((column) => (
+                    <span className='board-one-column' key={column.id}>
+                      <Column key={column.id} boardId={boardId} columnId={column.id} column={column} />
+                    </span>
+                  ))
+                )}
+
+                {board && (
+                  <span id='board-add-col-btn'>
+                    <OpenModalButton
+                      buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
+                      modalComponent={
+                        <ColumnFormCreate
+                          boardId={boardId}
+                        />}
+                    />
+                  </span>
+                )}
               </div>
             </div>
-          )}
 
-          <div id='board-columns'>
-            {columns && (
-              columns.map((column) => (
-                <span className='board-one-column' key={column.id}>
-                  <Column key={column.id} boardId={boardId} columnId={column.id} column={column} />
-                </span>
-              ))
-            )}
-
-            {board && (
-              <span id='board-add-col-btn'>
-                <OpenModalButton
-                  buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add column</span></i>}
-                  modalComponent={
-                    <ColumnFormCreate
-                      boardId={boardId}
-                    />}
-                />
-              </span>
-            )}
-          </div>
-        </div>
-
-      </div >
-    </DragDropContext>
-  )}</>)
+          </div >
+        </DragDropContext>
+      )}
+    </>
+  );
 };
