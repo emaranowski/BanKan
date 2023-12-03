@@ -46,6 +46,11 @@ nav {
   background-color: white;
   font-weight: 500;
   margin-right: 12px;
+  transition: color .5s;
+}
+
+#nav-dashboard:hover {
+  color: #0844a4;
 }
 
 #nav-login button {
@@ -53,6 +58,11 @@ nav {
   color: #182c4c;
   background-color: white;
   font-weight: 500;
+  transition: color .5s;
+}
+
+#nav-login button:hover {
+  color: #0844a4;
 }
 
 #nav-signup button {
@@ -121,6 +131,7 @@ nav {
   transition: background-color .4s;
   font-weight: 600;
   color: #283c5c;
+  transition: background-color .5s;
 }
 
 .nav-profile-dropdown-links:hover {
