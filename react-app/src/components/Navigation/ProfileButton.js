@@ -53,27 +53,42 @@ export default function ProfileButton({ user }) {
               Welcome, <br></br>{user.username}
             </div>
             <Link exact to="/dashboard">
-              <span className='nav-profile-dropdown-links' onClick={closeMenu} >
+              <span
+                className='nav-profile-dropdown-links'
+                onClick={closeMenu}
+              >
                 Dashboard
               </span>
             </Link>
             <Link exact to="/boards">
-              <span className='nav-profile-dropdown-links' onClick={closeMenu} >
+              <span
+                className='nav-profile-dropdown-links'
+                onClick={closeMenu}
+              >
                 Boards
               </span>
             </Link>
             <Link exact to="/notebooks">
-              <span className='nav-profile-dropdown-links' onClick={closeMenu} >
+              <span
+                className='nav-profile-dropdown-links'
+                onClick={closeMenu}
+              >
                 Notebooks
               </span>
             </Link>
             {/* <Link exact to="/account">
-              <span id='dropdown-account' onClick={closeMenu} >
+              <span
+                id='dropdown-account'
+                onClick={closeMenu} >
                 Account
               </span>
             </Link> */}
             <div>
-              <span id='nav-profile-dropdown-logout' className='nav-profile-dropdown-links' onClick={handleLogout}>
+              <span
+                className='nav-profile-dropdown-links'
+                id='nav-profile-dropdown-logout'
+                onClick={handleLogout}
+              >
                 Log Out
               </span>
             </div>

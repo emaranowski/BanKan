@@ -121,6 +121,7 @@ nav {
   transition: background-color .4s;
   font-weight: 600;
   color: #283c5c;
+  transition: background-color .5s;
 }
 
 .nav-profile-dropdown-links:hover {
