@@ -32,6 +32,7 @@
 
     border-radius: 9px;
     background-color: #ededed;
+    transition: background-color .5s;
 }
 
 #notebooks-header-add-btn button:hover {

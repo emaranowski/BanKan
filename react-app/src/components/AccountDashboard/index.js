@@ -1,3 +1,4 @@
+// AccountDashboard displays all boards & all notebooks
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -17,84 +18,91 @@ export default function AccountDashboard() {
   const userId = sessionUser.id;
   const boards = Object.values(useSelector(state => state.boards.allBoards));
   const notebooks = Object.values(useSelector(state => state.notebooks.allNotebooks));
-
-  // console.log('**** in Dashboard, boards:', boards)
-  // console.log('**** in Dashboard, notebooks:', notebooks)
-
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(thunkGetAllBoards(userId))
       .then(() => dispatch(thunkGetAllNotebooks(userId)))
       .then(() => setIsLoaded(true))
   }, [dispatch, userId]);
 
-  return (<>
-    {isLoaded && (<>
-      <div id='dashboard-page'>
+  return (
+    <>
+      {isLoaded && (<>
+        <div id='dashboard-page'>
 
-        <div id='dashboard-header'>
-          Hello, {sessionUser.username}. Welcome to your dashboard.
-        </div>
+          <div id='dashboard-header'>
+            Hello, {sessionUser.username}. Welcome to your dashboard.
+          </div>
 
-        <div id='dashboard-section-header'>
-          <span id='dashboard-section-subheader'>
-            <Link to={`/boards`}>
-              Boards
-            </Link>
-          </span>
-          <span id='dashboard-section-add-btn'>
-            <OpenModalButton
-              buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
-              modalComponent={
-                <BoardFormCreate
-                  userId={userId}
-                />}
-            />
-          </span>
-        </div>
-        <div id='dashboard-section-cards'>
-          {boards.length ?
-            boards.map((board) => (
-              <div key={board.id}>
-                <BoardCard board={board} />
-              </div>
-            ))
-            :
-            (<span>You have no boards!</span>)
-          }
-        </div>
+          <div id='dashboard-section-header'>
+            <span id='dashboard-section-subheader'>
+              <Link to={`/boards`}>
+                <span id='dashboard-section-subheader-text'>Boards</span>
+              </Link>
+            </span>
+            <span id='dashboard-section-add-btn'>
+              <OpenModalButton
+                buttonText={
+                  <i class="fa-solid fa-plus">
+                    <span> </span><span>Add board</span>
+                  </i>
+                }
+                modalComponent={
+                  <BoardFormCreate
+                    userId={userId}
+                  />}
+              />
+            </span>
+          </div>
+          <div id='dashboard-section-cards'>
+            {boards.length ?
+              boards.map((board) => (
+                <div key={board.id}>
+                  <BoardCard board={board} />
+                </div>
+              ))
+              :
+              (<span>You have no boards!</span>)
+            }
+          </div>
 
-        <div id='dashboard-section-header'>
-          <span id='dashboard-section-subheader'>
-            <Link to={`/notebooks`}>
-              Notebooks
-            </Link>
-          </span>
-          <span id='dashboard-section-add-btn-notebook'>
-            <OpenModalButton
-              buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add notebook</span></i>}
-              modalComponent={
-                <NotebookFormCreate
-                  userId={userId}
-                />}
-            />
-          </span>
-        </div>
-        <div id='dashboard-section-cards'>
-          {notebooks.length ?
-            notebooks.map((notebook) => (
-              <div key={notebook.id}>
-                <NotebookCard notebook={notebook} />
-              </div>
-            ))
-            :
-            (<span>You have no notebooks!</span>)
-          }
-        </div>
+          <div id='dashboard-section-header'>
+            <span id='dashboard-section-subheader'>
+              <Link to={`/notebooks`}>
+                <span id='dashboard-section-subheader-text'>Notebooks</span>
+              </Link>
+            </span>
+            <span id='dashboard-section-add-btn-notebook'>
+              <OpenModalButton
+                buttonText={
+                  <i class="fa-solid fa-plus">
+                    <span> </span><span>Add notebook</span>
+                  </i>
+                }
+                modalComponent={
+                  <NotebookFormCreate
+                    userId={userId}
+                  />}
+              />
+            </span>
+          </div>
+          <div id='dashboard-section-cards'>
+            {notebooks.length ?
+              notebooks.map((notebook) => (
+                <div key={notebook.id}>
+                  <NotebookCard notebook={notebook} />
+                </div>
+              ))
+              :
+              (<span>You have no notebooks!</span>)
+            }
+          </div>
 
 
-      </div>
-      <div id='dashboard-bottom-spacer'></div>
-    </>)}
-  </>)
+        </div>
+        <div id='dashboard-bottom-spacer'></div>
+      </>)}
+    </>
+  );
 };
