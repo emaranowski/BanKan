@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
-import './Home.css'
+import './Home.css';
 
 export default function Home() {
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user);
 
   return (
     <>
@@ -81,5 +81,5 @@ export default function Home() {
 
       <div id='home-bottom-spacer'></div>
     </>
-  )
-}
+  );
+};
