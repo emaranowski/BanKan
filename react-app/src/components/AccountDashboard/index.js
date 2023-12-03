@@ -1,4 +1,4 @@
-// AccountDashboard component displays all boards & all notebooks
+// AccountDashboard displays all boards & all notebooks
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -38,12 +38,16 @@ export default function AccountDashboard() {
           <div id='dashboard-section-header'>
             <span id='dashboard-section-subheader'>
               <Link to={`/boards`}>
-                Boards
+                <span id='dashboard-section-subheader-text'>Boards</span>
               </Link>
             </span>
             <span id='dashboard-section-add-btn'>
               <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
+                buttonText={
+                  <i class="fa-solid fa-plus">
+                    <span> </span><span>Add board</span>
+                  </i>
+                }
                 modalComponent={
                   <BoardFormCreate
                     userId={userId}
@@ -66,12 +70,16 @@ export default function AccountDashboard() {
           <div id='dashboard-section-header'>
             <span id='dashboard-section-subheader'>
               <Link to={`/notebooks`}>
-                Notebooks
+                <span id='dashboard-section-subheader-text'>Notebooks</span>
               </Link>
             </span>
             <span id='dashboard-section-add-btn-notebook'>
               <OpenModalButton
-                buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add notebook</span></i>}
+                buttonText={
+                  <i class="fa-solid fa-plus">
+                    <span> </span><span>Add notebook</span>
+                  </i>
+                }
                 modalComponent={
                   <NotebookFormCreate
                     userId={userId}

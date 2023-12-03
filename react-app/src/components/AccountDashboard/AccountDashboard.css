@@ -23,6 +23,14 @@
     font-size: 40px;
 }
 
+#dashboard-section-subheader-text {
+    transition: color .5s;
+}
+
+#dashboard-section-subheader-text:hover {
+    color: #0844a4;
+}
+
 #dashboard-section-add-btn button {
     min-width: 105px;
     max-width: 105px;
