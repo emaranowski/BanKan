@@ -46,6 +46,11 @@ nav {
   background-color: white;
   font-weight: 500;
   margin-right: 12px;
+  transition: color .5s;
+}
+
+#nav-dashboard:hover {
+  color: #0844a4;
 }
 
 #nav-login button {
