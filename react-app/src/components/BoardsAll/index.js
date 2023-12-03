@@ -1,3 +1,4 @@
+// similar to AccountDashboard, but displays only all boards (no notebookds)
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
