@@ -131,17 +131,24 @@ nav {
   transition: background-color .4s;
   font-weight: 600;
   color: #283c5c;
-  transition: background-color .5s;
+  transition: color .5s;
+  transition: background-color .5s, color .5s;
 }
 
 .nav-profile-dropdown-links:hover {
   cursor: pointer;
-  /* background-color: rgba(39, 61, 251, 0.1); */
-  background-color: rgba(99, 99, 99, 0.1);
+  color: #0844a4;
+  background-color: rgba(39, 61, 251, 0.075);
 }
 
 #nav-profile-dropdown-logout {
   padding-left: 10px;
   color: #283c5c;
   font-weight: 300;
+  transition: background-color .5s, color .5s;
+}
+
+#nav-profile-dropdown-logout:hover {
+  color: #0844a4;
+  background-color: rgba(39, 61, 251, 0.075);
 }
