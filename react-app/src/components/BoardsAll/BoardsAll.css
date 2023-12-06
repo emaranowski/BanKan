@@ -31,12 +31,13 @@
     margin-top: -3px;
 
     border-radius: 9px;
-    background-color: #ededed;
-    transition: background-color .5s;
+    background-color: #efefef;
+    transition: background-color .5s, color .5s;
 }
 
 #boards-header-add-btn button:hover {
-    background-color: #e5e5e5;
+    color: #0844a4;
+    background-color: rgba(39, 61, 251, 0.085);
 }
 
 #board-cards {

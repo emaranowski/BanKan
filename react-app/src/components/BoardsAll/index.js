@@ -34,7 +34,11 @@ export default function BoardsAll() {
           <span id='boards-header-text'>Boards</span>
           <span id='boards-header-add-btn'>
             <OpenModalButton
-              buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add board</span></i>}
+              buttonText={
+                <i class="fa-solid fa-plus">
+                  <span> </span><span>Add board</span>
+                </i>
+              }
               modalComponent={
                 <BoardFormCreate
                   userId={userId}
