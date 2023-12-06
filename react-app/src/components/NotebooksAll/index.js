@@ -33,7 +33,11 @@ export default function NotebooksAll() {
           <span id='notebooks-header-text'>Notebooks</span>
           <span id='notebooks-header-add-btn'>
             <OpenModalButton
-              buttonText={<i class="fa-solid fa-plus"><span> </span><span>Add notebook</span></i>}
+              buttonText={
+                <i class="fa-solid fa-plus">
+                  <span> </span><span>Add notebook</span>
+                </i>
+              }
               modalComponent={
                 <NotebookFormCreate
                   userId={userId}
