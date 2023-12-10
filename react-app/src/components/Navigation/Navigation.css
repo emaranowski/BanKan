@@ -20,8 +20,8 @@ nav {
 
 #nav-logo-text {
   font-size: 30px;
-  margin-left: 20px;
   font-weight: 600;
+  margin-left: 20px;
   color: #283c5c;
 }
 
@@ -65,9 +65,9 @@ nav {
 
 #nav-dashboard {
   font-size: 19px;
+  font-weight: 500;
   color: #182c4c;
   background-color: white;
-  font-weight: 500;
   margin-right: 12px;
   transition: color .5s;
 }
@@ -78,9 +78,9 @@ nav {
 
 #nav-login button {
   font-size: 19px;
+  font-weight: 500;
   color: #182c4c;
   background-color: white;
-  font-weight: 500;
   transition: color .5s;
 }
 
@@ -143,16 +143,16 @@ nav {
 }
 
 #nav-profile-dropdown-username {
+  font-weight: 300;
   padding-left: 10px;
   color: #283c5c;
-  font-weight: 300;
 }
 
 .nav-profile-dropdown-links {
+  font-weight: 600;
   padding: 7px 10px;
   border-radius: 10px;
   transition: background-color .4s;
-  font-weight: 600;
   color: #283c5c;
   transition: background-color .5s, color .5s;
 }
@@ -164,9 +164,9 @@ nav {
 }
 
 #nav-profile-dropdown-logout {
+  font-weight: 300;
   padding-left: 10px;
   color: #283c5c;
-  font-weight: 300;
   transition: background-color .5s, color .5s;
 }
 
