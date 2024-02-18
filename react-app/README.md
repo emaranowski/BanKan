@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Your React App will live here.  You will need to run `npm install` to install all your dependencies before starting up the application. While in development, run this application from this location using `npm start`.
+The frontend React application lives here. In the react-app directory, before starting the app, run `npm install` to install all dependencies. To run the app in development, run `npm start`.
 
-No environment variables are needed to run this application in development, but be sure to set the REACT_APP_BASE_URL environment variable when you deploy!
+No environment variables are needed to run this app in development. For deployment, be sure to set the REACT_APP_BASE_URL environment variable.
 
-This app will be automatically built when you push to your main branch on Github.
+NOTE: This React app requires Node v16.20.1.
