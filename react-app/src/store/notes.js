@@ -165,35 +165,51 @@ export default function notesReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_NOTE: {
-      const newState = { ...state, oneNote: {} };
-      newState.oneNote = action.note;
-      return newState;
+      return {
+        ...state,
+        oneNote: action.note,
+      };
     }
 
     case GET_ALL_NOTES: {
-      const newState = { ...state, allNotes: {} };
-      action.notes.notes.forEach((noteObj) => {
-        newState.allNotes[noteObj.id] = noteObj
-      });
-      return newState;
+      return {
+        ...state,
+        allNotes: action.notes.notes.reduce((acc, note) => {
+          acc[note.id] = note;
+          return acc;
+        }, { ...state.allNotes }),
+      };
     }
 
     case CREATE_NOTE: {
-      const newState = { ...state };
-      newState.allNotes[action.note.id] = action.note;
-      return newState;
+      return {
+        ...state,
+        allNotes: {
+          ...state.allNotes,
+          [action.note.id]: action.note,
+        },
+      };
     }
 
     case UPDATE_NOTE: {
-      const newState = { ...state, oneNote: {} };
-      newState.allNotes[action.note.id] = action.note;
-      return newState;
+      return {
+        ...state,
+        oneNote: {},
+        allNotes: {
+          ...state.allNotes,
+          [action.note.id]: action.note,
+        },
+      };
     }
 
     case DELETE_NOTE: {
-      const newState = { ...state, oneNote: {}, allNotes: { ...state.allNotes } };
-      delete newState.allNotes[action.noteId];
-      return newState;
+      const newAllNotes = { ...state.allNotes };
+      delete newAllNotes[action.noteId];
+      return {
+        ...state,
+        oneNote: {},
+        allNotes: newAllNotes,
+      };
     }
 
     default: {
