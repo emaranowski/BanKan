@@ -173,7 +173,7 @@ export default function boardsReducer(state = initialState, action) {
         allBoards: action.boards.boards.reduce((acc, board) => {
           acc[board.id] = board;
           return acc;
-        }, { ...state.allBoards })
+        }, { ...state.allBoards }),
       };
     }
 
