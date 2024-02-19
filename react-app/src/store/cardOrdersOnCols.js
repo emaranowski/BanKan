@@ -188,7 +188,7 @@ export default function columnsReducer(state = initialState, action) {
       };
     }
 
-    case GET_ALL_COLUMNS: { // new
+    case GET_ALL_COLUMNS: {
       return {
         ...state,
         allColumns: action.columns.columns.reduce((acc, column) => {
@@ -197,17 +197,6 @@ export default function columnsReducer(state = initialState, action) {
         }, { ...state.allColumns }),
       };
     }
-
-    // case GET_ALL_COLUMNS: { // orig
-    //   const newState = {
-    //     ...state,
-    //     allColumns: {}
-    //   };
-    //   action.columns.columns.forEach((columnObj) => {
-    //     newState.allColumns[columnObj.id] = columnObj
-    //   });
-    //   return newState;
-    // }
 
     case CREATE_COLUMN: {
       return {
