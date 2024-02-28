@@ -146,13 +146,19 @@ export default function notesReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_NOTE: {
-      const newState = { ...state, oneNote: {} };
+      const newState = {
+        ...state,
+        oneNote: {}
+      };
       newState.oneNote = action.note;
       return newState;
     }
 
     case GET_ALL_NOTES: {
-      const newState = { ...state, allNotes: {} };
+      const newState = {
+        ...state,
+        allNotes: {}
+      };
       action.notes.notes.forEach((noteObj) => {
         newState.allNotes[noteObj.id] = noteObj
       });
@@ -160,19 +166,30 @@ export default function notesReducer(state = initialState, action) {
     }
 
     case CREATE_NOTE: {
-      const newState = { ...state };
+      const newState = {
+        ...state
+      };
       newState.allNotes[action.note.id] = action.note;
       return newState;
     }
 
     case UPDATE_NOTE: {
-      const newState = { ...state, oneNote: {} };
+      const newState = {
+        ...state,
+        oneNote: {}
+      };
       newState.allNotes[action.note.id] = action.note;
       return newState;
     }
 
     case DELETE_NOTE: {
-      const newState = { ...state, oneNote: {}, allNotes: { ...state.allNotes } };
+      const newState = {
+        ...state,
+        oneNote: {},
+        allNotes: {
+          ...state.allNotes
+        }
+      };
       delete newState.allNotes[action.noteId];
       return newState;
     }
