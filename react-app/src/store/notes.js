@@ -146,12 +146,10 @@ export default function notesReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_NOTE: {
-      const newState = {
+      return {
         ...state,
-        oneNote: {}
+        oneNote: action.note,
       };
-      newState.oneNote = action.note;
-      return newState;
     }
 
     case GET_ALL_NOTES: {
