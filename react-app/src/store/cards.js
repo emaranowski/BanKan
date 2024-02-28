@@ -196,11 +196,13 @@ export default function cardsReducer(state = initialState, action) {
     // }
 
     case CREATE_CARD: {
-      const newState = {
-        ...state
+      return {
+        ...state,
+        allCards: {
+          ...state.allCards,
+          [action.card.id]: action.card
+        }
       };
-      newState.allCards[action.card.id] = action.card;
-      return newState;
     }
 
     case UPDATE_CARD: {
