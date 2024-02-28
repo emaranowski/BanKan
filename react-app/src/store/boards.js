@@ -4,7 +4,6 @@ const GET_ONE_BOARD = "boards/getOneBoard";
 const GET_ALL_BOARDS = "boards/getAllBoards";
 const CREATE_BOARD = "boards/createBoard";
 const UPDATE_BOARD = "boards/updateBoard";
-
 const DELETE_BOARD = "boards/deleteBoard";
 
 //////////////////////////////// ACTION CREATORS ////////////////////////////////
@@ -46,25 +45,19 @@ const deleteBoard = (boardId) => {
 
 //////////////////////////////// THUNKS ////////////////////////////////
 
-// THUNK: GET ONE BOARD
 export const thunkGetOneBoard = (boardId) => async (dispatch) => {
-  // console.log('*** in thunkGetOneBoard, boardId:', boardId);
   const res = await fetch(`/api/boards/${boardId}`, { method: "GET" });
-  // console.log('*** in thunkGetOneBoard, res:', res);
 
   if (res.ok) {
     const board = await res.json();
-    // console.log('*** in thunkGetOneBoard, RES OK board:', board);
     dispatch(getOneBoard(board));
     return board;
   } else {
     const errors = await res.json();
-    // console.log('*** in thunkGetOneBoard, RES NOTOK errors:', errors);
     return errors;
   }
 };
 
-// THUNK: GET ALL BOARDS
 export const thunkGetAllBoards = (userId) => async (dispatch) => {
   const res = await fetch(`/api/boards/user/${userId}`, { method: "GET" });
 
@@ -78,11 +71,7 @@ export const thunkGetAllBoards = (userId) => async (dispatch) => {
   }
 };
 
-// THUNK: CREATE BOARD
 export const thunkCreateBoard = (board) => async (dispatch) => {
-  // console.log('**** in thunkCreateBoard ****')
-  // console.log('**** in thunkCreateBoard, board:', board)
-
   const { imageUrl, title, userId } = board;
 
   const res = await fetch(`/api/boards/create/user/${userId}`, {
@@ -105,11 +94,8 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
   }
 };
 
-// THUNK: UPDATE BOARD
 export const thunkUpdateBoard = (board) => async (dispatch) => {
-  // console.log('**** in thunkUpdateBoard, board:', board)
   const { imageUrl, title, id, userId } = board;
-  // console.log('**** in thunkUpdateBoard, id:', id)
 
   const res = await fetch(`/api/boards/${id}/update`, {
     method: "PUT",
@@ -120,7 +106,6 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
       user_id: userId,
     })
   })
-  // console.log('**** in thunkUpdateBoard, res:', res)
 
   if (res.ok) {
     const board = await res.json();
@@ -128,12 +113,10 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
     return board;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkUpdateBoard, errors:', errors)
     return errors;
   }
 };
 
-// THUNK: DELETE BOARD
 export const thunkDeleteBoard = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}/delete`, {
     method: "DELETE",
