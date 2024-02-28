@@ -178,14 +178,13 @@ export default function columnsReducer(state = initialState, action) {
     }
 
     case UPDATE_COLUMN: {
-      const newState = {
+      return {
         ...state,
         allColumns: {
-          ...state.allColumns
+          ...state.allColumns,
+          [action.column.id]: action.column
         }
       };
-      newState.allColumns[action.column.id] = action.column;
-      return newState;
     }
 
     case DELETE_COLUMN: {
