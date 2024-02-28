@@ -185,15 +185,13 @@ export default function notesReducer(state = initialState, action) {
     }
 
     case DELETE_NOTE: {
-      const newState = {
+      const newAllNotes = { ...state.allNotes };
+      delete newAllNotes[action.noteId];
+      return {
         ...state,
         oneNote: {},
-        allNotes: {
-          ...state.allNotes
-        }
+        allNotes: newAllNotes
       };
-      delete newState.allNotes[action.noteId];
-      return newState;
     }
 
     default: {
