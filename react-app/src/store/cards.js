@@ -170,12 +170,10 @@ export default function cardsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_CARD: {
-      const newState = {
+      return {
         ...state,
-        oneCard: {}
+        oneCard: action.card,
       };
-      newState.oneCard = action.card;
-      return newState;
     }
 
     case GET_ALL_CARDS: {
