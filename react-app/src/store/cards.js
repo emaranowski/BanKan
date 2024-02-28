@@ -206,12 +206,14 @@ export default function cardsReducer(state = initialState, action) {
     }
 
     case UPDATE_CARD: {
-      const newState = {
+      return {
         ...state,
-        oneCard: {}
+        oneCard: {},
+        allCards: {
+          ...state.allCards,
+          [action.card.id]: action.card
+        }
       };
-      newState.allCards[action.card.id] = action.card;
-      return newState;
     }
 
     case DELETE_CARD: {
