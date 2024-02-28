@@ -151,14 +151,13 @@ export default function boardsReducer(state = initialState, action) {
     }
 
     case GET_ALL_BOARDS: {
-      const newState = {
+      return {
         ...state,
-        allBoards: {}
+        allBoards: action.boards.boards.reduce((acc, board) => {
+          acc[board.id] = board;
+          return acc;
+        }, {}),
       };
-      action.boards.boards.forEach((board) => {
-        newState.allBoards[board.id] = board
-      });
-      return newState;
     }
 
     case CREATE_BOARD: {
