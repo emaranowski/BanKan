@@ -150,13 +150,19 @@ export default function columnsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_COLUMN: {
-      const newState = { ...state, oneColumn: {} };
+      const newState = {
+        ...state,
+        oneColumn: {}
+      };
       newState.oneColumn = action.column;
       return newState;
     }
 
     case GET_ALL_COLUMNS: {
-      const newState = { ...state, allColumns: {} };
+      const newState = {
+        ...state,
+        allColumns: {}
+      };
       action.columns.columns.forEach((columnObj) => {
         newState.allColumns[columnObj.id] = columnObj
       });
@@ -164,19 +170,32 @@ export default function columnsReducer(state = initialState, action) {
     }
 
     case CREATE_COLUMN: {
-      const newState = { ...state };
+      const newState = {
+        ...state
+      };
       newState.allColumns[action.column.id] = action.column;
       return newState;
     }
 
     case UPDATE_COLUMN: {
-      const newState = { ...state, allColumns: { ...state.allColumns } };
+      const newState = {
+        ...state,
+        allColumns: {
+          ...state.allColumns
+        }
+      };
       newState.allColumns[action.column.id] = action.column;
       return newState;
     }
 
     case DELETE_COLUMN: {
-      const newState = { ...state, oneColumn: {}, allColumns: { ...state.allColumns } };
+      const newState = {
+        ...state,
+        oneColumn: {},
+        allColumns: {
+          ...state.allColumns
+        }
+      };
       delete newState.allColumns[action.columnId];
       return newState;
     }
