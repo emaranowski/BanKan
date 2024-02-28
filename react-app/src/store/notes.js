@@ -153,14 +153,13 @@ export default function notesReducer(state = initialState, action) {
     }
 
     case GET_ALL_NOTES: {
-      const newState = {
+      return {
         ...state,
-        allNotes: {}
+        allNotes: action.notes.notes.reduce((acc, note) => {
+          acc[note.id] = note;
+          return acc;
+        }, {})
       };
-      action.notes.notes.forEach((noteObj) => {
-        newState.allNotes[noteObj.id] = noteObj
-      });
-      return newState;
     }
 
     case CREATE_NOTE: {

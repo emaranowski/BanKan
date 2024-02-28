@@ -177,14 +177,13 @@ export default function cardsReducer(state = initialState, action) {
     }
 
     case GET_ALL_CARDS: {
-      const newState = {
+      return {
         ...state,
-        allCards: {}
+        allCards: action.cards.cards.reduce((acc, card) => {
+          acc[card.id] = card;
+          return acc;
+        }, {})
       };
-      action.cards.cards.forEach((cardObj) => {
-        newState.allCards[cardObj.id] = cardObj
-      });
-      return newState;
     }
 
     // case GET_ALL_CARDS_FOR_BOARD: {
