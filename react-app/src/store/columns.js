@@ -157,14 +157,13 @@ export default function columnsReducer(state = initialState, action) {
     }
 
     case GET_ALL_COLUMNS: {
-      const newState = {
+      return {
         ...state,
-        allColumns: {}
+        allColumns: action.columns.columns.reduce((acc, column) => {
+          acc[column.id] = column;
+          return acc;
+        }, {})
       };
-      action.columns.columns.forEach((column) => {
-        newState.allColumns[column.id] = column
-      });
-      return newState;
     }
 
     case CREATE_COLUMN: {
