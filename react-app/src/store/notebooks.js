@@ -174,12 +174,14 @@ export default function notebooksReducer(state = initialState, action) {
     }
 
     case UPDATE_NOTEBOOK: {
-      const newState = {
+      return {
         ...state,
-        oneNotebook: {}
+        oneNotebook: {},
+        allNotebooks: {
+          ...state.allNotebooks,
+          [action.notebook.id]: action.notebook
+        }
       };
-      newState.allNotebooks[action.notebook.id] = action.notebook;
-      return newState;
     }
 
     case DELETE_NOTEBOOK: {
