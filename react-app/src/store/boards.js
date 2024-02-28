@@ -184,7 +184,9 @@ export default function boardsReducer(state = initialState, action) {
       const newState = {
         ...state,
         oneBoard: {},
-        allBoards: { ...state.allBoards }
+        allBoards: {
+          ...state.allBoards
+        }
       };
       delete newState.allBoards[action.boardId];
       return newState;
