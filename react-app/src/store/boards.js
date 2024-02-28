@@ -144,12 +144,10 @@ export default function boardsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_BOARD: {
-      const newState = {
+      return {
         ...state,
-        oneBoard: {}
+        oneBoard: action.board,
       };
-      newState.oneBoard = action.board;
-      return newState;
     }
 
     case GET_ALL_BOARDS: {
