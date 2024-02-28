@@ -166,12 +166,10 @@ export default function columnsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_COLUMN: {
-      const newState = {
+      return {
         ...state,
-        oneColumn: {}
+        oneColumn: action.column,
       };
-      newState.oneColumn = action.column;
-      return newState;
     }
 
     case GET_ALL_COLUMNS: {
