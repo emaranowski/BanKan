@@ -162,11 +162,13 @@ export default function boardsReducer(state = initialState, action) {
     }
 
     case CREATE_BOARD: {
-      const newState = {
-        ...state
+      return {
+        ...state,
+        allBoards: {
+          ...state.allBoards,
+          [action.board.id]: action.board,
+        },
       };
-      newState.allBoards[action.board.id] = action.board;
-      return newState;
     }
 
     case UPDATE_BOARD: {
