@@ -146,13 +146,19 @@ export default function notebooksReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_NOTEBOOK: {
-      const newState = { ...state, oneNotebook: {} };
+      const newState = {
+        ...state,
+        oneNotebook: {}
+      };
       newState.oneNotebook = action.notebook;
       return newState;
     }
 
     case GET_ALL_NOTEBOOKS: {
-      const newState = { ...state, allNotebooks: {} };
+      const newState = {
+        ...state,
+        allNotebooks: {}
+      };
       action.notebooks.notebooks.forEach((notebookObj) => {
         newState.allNotebooks[notebookObj.id] = notebookObj
       });
@@ -160,19 +166,30 @@ export default function notebooksReducer(state = initialState, action) {
     }
 
     case CREATE_NOTEBOOK: {
-      const newState = { ...state };
+      const newState = {
+        ...state
+      };
       newState.allNotebooks[action.notebook.id] = action.notebook;
       return newState;
     }
 
     case UPDATE_NOTEBOOK: {
-      const newState = { ...state, oneNotebook: {} };
+      const newState = {
+        ...state,
+        oneNotebook: {}
+      };
       newState.allNotebooks[action.notebook.id] = action.notebook;
       return newState;
     }
 
     case DELETE_NOTEBOOK: {
-      const newState = { ...state, oneNotebook: {}, allNotebooks: { ...state.allNotebooks } };
+      const newState = {
+        ...state,
+        oneNotebook: {},
+        allNotebooks: {
+          ...state.allNotebooks
+        }
+      };
       delete newState.allNotebooks[action.notebookId];
       return newState;
     }
