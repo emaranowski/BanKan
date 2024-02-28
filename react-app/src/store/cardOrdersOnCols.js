@@ -54,18 +54,14 @@ const deleteColumn = (columnId) => {
 
 // THUNK: GET ONE COLUMN
 export const thunkGetOneColumn = (columnId) => async (dispatch) => {
-  // console.log('*** in thunkGetOneColumn, columnId:', columnId);
   const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
-  // console.log('*** in thunkGetOneColumn, res:', res);
 
   if (res.ok) {
     const column = await res.json();
-    // console.log('*** in thunkGetOneColumn, RES OK column:', column);
     dispatch(getOneColumn(column));
     return column;
   } else {
     const errors = await res.json();
-    // console.log('*** in thunkGetOneColumn, RES NOTOK errors:', errors);
     return errors;
   }
 };
@@ -94,9 +90,6 @@ export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
 
 // THUNK: CREATE COLUMN
 export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
-  // console.log('**** in thunkCreateColumnForBoard ****')
-  // console.log('**** in thunkCreateColumnForBoard, column:', column)
-
   const { boardId, cardOrder, colorName, title } = column; // removed colorHex
 
   const res = await fetch(`/api/boards/${boardId}/columns/create`, {
@@ -123,9 +116,7 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
 
 // THUNK: UPDATE COLUMN
 export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add oldCol param
-  // console.log('**** in thunkUpdateColumn, column:', column)
   const { id, boardId, cardOrder, colorName, title } = column; // removed colorHex
-  // console.log('**** in thunkUpdateColumn, id:', id)
   dispatch(updateColumn(column));
   const res = await fetch(`/api/columns/${id}/update`, {
     method: "PUT",
@@ -138,7 +129,6 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
       title,
     })
   })
-  // console.log('**** in thunkUpdateColumn, res:', res)
 
   if (res.ok) {
     const column = await res.json();
@@ -148,7 +138,6 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
   } else {
     // dispatch(updateColumn(oldColumn));
     const errors = await res.json();
-    // console.log('**** in thunkUpdateColumn, errors:', errors)
     return errors;
   }
 };
