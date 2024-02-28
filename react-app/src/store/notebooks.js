@@ -146,12 +146,10 @@ export default function notebooksReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_NOTEBOOK: {
-      const newState = {
+      return {
         ...state,
-        oneNotebook: {}
+        oneNotebook: action.notebook,
       };
-      newState.oneNotebook = action.notebook;
-      return newState;
     }
 
     case GET_ALL_NOTEBOOKS: {
