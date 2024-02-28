@@ -144,13 +144,19 @@ export default function boardsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_BOARD: {
-      const newState = { ...state, oneBoard: {} };
+      const newState = {
+        ...state,
+        oneBoard: {}
+      };
       newState.oneBoard = action.board;
       return newState;
     }
 
     case GET_ALL_BOARDS: {
-      const newState = { ...state, allBoards: {} };
+      const newState = {
+        ...state,
+        allBoards: {}
+      };
       action.boards.boards.forEach((boardObj) => {
         newState.allBoards[boardObj.id] = boardObj
       });
@@ -158,19 +164,28 @@ export default function boardsReducer(state = initialState, action) {
     }
 
     case CREATE_BOARD: {
-      const newState = { ...state };
+      const newState = {
+        ...state
+      };
       newState.allBoards[action.board.id] = action.board;
       return newState;
     }
 
     case UPDATE_BOARD: {
-      const newState = { ...state, oneBoard: {} };
+      const newState = {
+        ...state,
+        oneBoard: {}
+      };
       newState.allBoards[action.board.id] = action.board;
       return newState;
     }
 
     case DELETE_BOARD: {
-      const newState = { ...state, oneBoard: {}, allBoards: { ...state.allBoards } };
+      const newState = {
+        ...state,
+        oneBoard: {},
+        allBoards: { ...state.allBoards }
+      };
       delete newState.allBoards[action.boardId];
       return newState;
     }
