@@ -45,25 +45,19 @@ const deleteNotebook = (notebookId) => {
 
 //////////////////////////////// THUNKS ////////////////////////////////
 
-// THUNK: GET ONE NOTEBOOK
 export const thunkGetOneNotebook = (notebookId) => async (dispatch) => {
-  // console.log('*** in thunkGetOneNotebook, notebookId:', notebookId);
   const res = await fetch(`/api/notebooks/${notebookId}`, { method: "GET" });
-  // console.log('*** in thunkGetOneNotebook, res:', res);
 
   if (res.ok) {
     const notebook = await res.json();
-    // console.log('*** in thunkGetOneNotebook, RES OK notebook:', notebook);
     dispatch(getOneNotebook(notebook));
     return notebook;
   } else {
     const errors = await res.json();
-    // console.log('*** in thunkGetOneNotebook, RES NOTOK errors:', errors);
     return errors;
   }
 };
 
-// THUNK: GET ALL NOTEBOOKS
 export const thunkGetAllNotebooks = (userId) => async (dispatch) => {
   const res = await fetch(`/api/notebooks/user/${userId}`, { method: "GET" });
 
@@ -77,11 +71,7 @@ export const thunkGetAllNotebooks = (userId) => async (dispatch) => {
   }
 };
 
-// THUNK: CREATE NOTEBOOK
 export const thunkCreateNotebook = (notebook) => async (dispatch) => {
-  // console.log('**** in thunkCreateNotebook ****')
-  // console.log('**** in thunkCreateNotebook, notebook:', notebook)
-
   const { userId, imageUrl, title, noteOrder } = notebook;
 
   const res = await fetch(`/api/notebooks/create/user/${userId}`, {
@@ -105,11 +95,8 @@ export const thunkCreateNotebook = (notebook) => async (dispatch) => {
   }
 };
 
-// THUNK: UPDATE NOTEBOOK
 export const thunkUpdateNotebook = (notebook) => async (dispatch) => {
-  // console.log('**** in thunkUpdateNotebook, notebook:', notebook)
   const { id, userId, imageUrl, title, noteOrder } = notebook;
-  // console.log('**** in thunkUpdateNotebook, id:', id)
 
   const res = await fetch(`/api/notebooks/${id}/update`, {
     method: "PUT",
@@ -121,7 +108,6 @@ export const thunkUpdateNotebook = (notebook) => async (dispatch) => {
       note_order: noteOrder,
     })
   })
-  // console.log('**** in thunkUpdateNotebook, res:', res)
 
   if (res.ok) {
     const notebook = await res.json();
@@ -129,12 +115,10 @@ export const thunkUpdateNotebook = (notebook) => async (dispatch) => {
     return notebook;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkUpdateNotebook, errors:', errors)
     return errors;
   }
 };
 
-// THUNK: DELETE NOTEBOOK
 export const thunkDeleteNotebook = (notebookId) => async (dispatch) => {
   const res = await fetch(`/api/notebooks/${notebookId}/delete`, {
     method: "DELETE",
