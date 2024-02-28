@@ -164,11 +164,13 @@ export default function notesReducer(state = initialState, action) {
     }
 
     case CREATE_NOTE: {
-      const newState = {
-        ...state
+      return {
+        ...state,
+        allNotes: {
+          ...state.allNotes,
+          [action.note.id]: action.note
+        }
       };
-      newState.allNotes[action.note.id] = action.note;
-      return newState;
     }
 
     case UPDATE_NOTE: {
