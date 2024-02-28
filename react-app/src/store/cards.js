@@ -170,13 +170,19 @@ export default function cardsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_CARD: {
-      const newState = { ...state, oneCard: {} };
+      const newState = {
+        ...state,
+        oneCard: {}
+      };
       newState.oneCard = action.card;
       return newState;
     }
 
     case GET_ALL_CARDS: {
-      const newState = { ...state, allCards: {} };
+      const newState = {
+        ...state,
+        allCards: {}
+      };
       action.cards.cards.forEach((cardObj) => {
         newState.allCards[cardObj.id] = cardObj
       });
@@ -192,19 +198,30 @@ export default function cardsReducer(state = initialState, action) {
     // }
 
     case CREATE_CARD: {
-      const newState = { ...state };
+      const newState = {
+        ...state
+      };
       newState.allCards[action.card.id] = action.card;
       return newState;
     }
 
     case UPDATE_CARD: {
-      const newState = { ...state, oneCard: {} };
+      const newState = {
+        ...state,
+        oneCard: {}
+      };
       newState.allCards[action.card.id] = action.card;
       return newState;
     }
 
     case DELETE_CARD: {
-      const newState = { ...state, oneCard: {}, allCards: { ...state.allCards } };
+      const newState = {
+        ...state,
+        oneCard: {},
+        allCards: {
+          ...state.allCards
+        }
+      };
       delete newState.allCards[action.cardId];
       return newState;
     }
