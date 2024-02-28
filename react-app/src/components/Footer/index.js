@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div id='footer-row-2'>
           <span id='footer-copyright'>
-            @ 2023 BanKan
+            @ 2024 BanKan
           </span>
 
           <span id='footer-tech'>
@@ -81,9 +81,9 @@ export default function Footer() {
             <span className='footer-tech-icon'>Redux</span>
             <span className='footer-tech-icon'>Flask</span>
             <span className='footer-tech-icon'>SQLAlchemy</span>
-            <span className='footer-tech-icon'>SQL</span>
-            <span className='footer-tech-icon'>MySQL</span>
             <span className='footer-tech-icon'>PostgreSQL</span>
+            <span className='footer-tech-icon'>SQLite</span>
+            <span className='footer-tech-icon'>SQL</span>
             <span className='footer-tech-icon'>Python</span>
             <span className='footer-tech-icon'>JS</span>
             <span className='footer-tech-icon'>HTML</span>

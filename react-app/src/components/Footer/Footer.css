@@ -15,6 +15,11 @@
     font-weight: 500;
     color: #FFFFFF;
     margin-bottom: 20px;
+    transition: color .7s;
+}
+
+#footer-logo:hover {
+    color: #c6d2ff;
 }
 
 #footer-login button {
@@ -27,7 +32,6 @@
 }
 
 #footer-login button:hover {
-    /* text-decoration: underline; */
     color: #c6d2ff;
 }
 
@@ -39,7 +43,6 @@
 }
 
 #footer-logout:hover {
-    /* text-decoration: underline; */
     color: #c6d2ff;
 }
 
