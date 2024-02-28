@@ -53,25 +53,19 @@ const deleteCard = (cardId) => {
 
 //////////////////////////////// THUNKS ////////////////////////////////
 
-// THUNK: GET ONE CARD
 export const thunkGetOneCard = (cardId) => async (dispatch) => {
-  // console.log('*** in thunkGetOneCard, cardId:', cardId);
   const res = await fetch(`/api/cards/${cardId}`, { method: "GET" });
-  // console.log('*** in thunkGetOneCard, res:', res);
 
   if (res.ok) {
     const card = await res.json();
-    // console.log('*** in thunkGetOneCard, RES OK card:', card);
     dispatch(getOneCard(card));
     return card;
   } else {
     const errors = await res.json();
-    // console.log('*** in thunkGetOneCard, RES NOTOK errors:', errors);
     return errors;
   }
 };
 
-// THUNK: GET ALL CARDS FOR COLUMN
 export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}/cards`, { method: "GET" });
 
@@ -100,13 +94,8 @@ export const thunkGetAllCardsForColumn = (columnId) => async (dispatch) => {
 //   }
 // };
 
-// THUNK: CREATE CARD
 export const thunkCreateCardForColumn = (card) => async (dispatch) => {
-  // console.log('**** in thunkCreateCardForColumn ****')
-  // console.log('**** in thunkCreateCardForColumn, ORIG card:', card)
-
   const { columnId, index, title, description } = card;
-  // const columnId = card.columnId;
 
   const res = await fetch(`/api/columns/${columnId}/cards/create`, {
     method: "POST",
@@ -118,23 +107,18 @@ export const thunkCreateCardForColumn = (card) => async (dispatch) => {
       description,
     })
   })
-  // console.log('**** in thunkCreateCardForColumn, res:', res)
 
   if (res.ok) {
     const card = await res.json();
-    // console.log('**** in thunkCreateCardForColumn RES.OK, card:', card)
     dispatch(createCard(card));
     return card;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkCreateCardForColumn, errors:', errors)
     return errors;
   }
 };
 
-// THUNK: UPDATE CARD
 export const thunkUpdateCard = (card) => async (dispatch) => {
-  // console.log('**** in thunkUpdateCard, card:', card)
   const { id, columnId, index, title, description } = card;
   dispatch(updateCard(card));
 
@@ -148,21 +132,17 @@ export const thunkUpdateCard = (card) => async (dispatch) => {
       description,
     })
   })
-  // console.log('**** in thunkUpdateCard, res:', res)
 
   if (res.ok) {
     const card = await res.json();
     // dispatch(updateCard(card));
-    // console.log('**** in thunkUpdateCard, card:', card)
     return card;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkUpdateCard, errors:', errors)
     return errors;
   }
 };
 
-// THUNK: DELETE CARD
 export const thunkDeleteCard = (cardId) => async (dispatch) => {
   const res = await fetch(`/api/cards/${cardId}/delete`, {
     method: "DELETE",
