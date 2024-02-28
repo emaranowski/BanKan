@@ -161,8 +161,8 @@ export default function columnsReducer(state = initialState, action) {
         ...state,
         allColumns: {}
       };
-      action.columns.columns.forEach((columnObj) => {
-        newState.allColumns[columnObj.id] = columnObj
+      action.columns.columns.forEach((column) => {
+        newState.allColumns[column.id] = column
       });
       return newState;
     }
