@@ -155,8 +155,8 @@ export default function boardsReducer(state = initialState, action) {
         ...state,
         allBoards: {}
       };
-      action.boards.boards.forEach((boardObj) => {
-        newState.allBoards[boardObj.id] = boardObj
+      action.boards.boards.forEach((board) => {
+        newState.allBoards[board.id] = board
       });
       return newState;
     }
