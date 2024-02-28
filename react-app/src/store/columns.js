@@ -45,7 +45,6 @@ const deleteColumn = (columnId) => {
 
 //////////////////////////////// THUNKS ////////////////////////////////
 
-// THUNK: GET ONE COLUMN
 export const thunkGetOneColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
 
@@ -59,7 +58,6 @@ export const thunkGetOneColumn = (columnId) => async (dispatch) => {
   }
 };
 
-// THUNK: GET ALL COLUMNS
 export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}/columns`, { method: "GET" });
 
@@ -73,7 +71,6 @@ export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
   }
 };
 
-// THUNK: CREATE COLUMN
 export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
   const { boardId, cardOrder, colorName, title } = column; // removed colorHex
 
@@ -99,7 +96,6 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
   }
 };
 
-// THUNK: UPDATE COLUMN
 export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add oldCol param
   const { id, boardId, cardOrder, colorName, title } = column; // removed colorHex
   dispatch(updateColumn(column));
@@ -127,7 +123,6 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
   }
 };
 
-// THUNK: DELETE COLUMN
 export const thunkDeleteColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}/delete`, {
     method: "DELETE",
@@ -155,50 +150,35 @@ export default function columnsReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_COLUMN: {
-      return {
-        ...state,
-        oneColumn: action.column,
-      };
+      const newState = { ...state, oneColumn: {} };
+      newState.oneColumn = action.column;
+      return newState;
     }
 
     case GET_ALL_COLUMNS: {
-      return {
-        ...state,
-        allColumns: action.columns.columns.reduce((acc, column) => {
-          acc[column.id] = column;
-          return acc;
-        }, { ...state.allColumns }),
-      };
+      const newState = { ...state, allColumns: {} };
+      action.columns.columns.forEach((columnObj) => {
+        newState.allColumns[columnObj.id] = columnObj
+      });
+      return newState;
     }
 
     case CREATE_COLUMN: {
-      return {
-        ...state,
-        allColumns: {
-          ...state.allColumns,
-          [action.column.id]: action.column,
-        },
-      };
+      const newState = { ...state };
+      newState.allColumns[action.column.id] = action.column;
+      return newState;
     }
 
     case UPDATE_COLUMN: {
-      return {
-        ...state,
-        allColumns: {
-          ...state.allColumns,
-          [action.column.id]: action.column,
-        },
-      };
+      const newState = { ...state, allColumns: { ...state.allColumns } };
+      newState.allColumns[action.column.id] = action.column;
+      return newState;
     }
 
     case DELETE_COLUMN: {
-      const newAllColumns = { ...state.allColumns };
-      delete newAllColumns[action.columnId];
-      return {
-        ...state,
-        oneColumn: {},
-        allColumns: newAllColumns,
-      };
+      const newState = { ...state, oneColumn: {}, allColumns: { ...state.allColumns } };
+      delete newState.allColumns[action.columnId];
+      return newState;
     }
 
     default: {

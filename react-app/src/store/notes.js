@@ -45,25 +45,19 @@ const deleteNote = (noteId) => {
 
 //////////////////////////////// THUNKS ////////////////////////////////
 
-// THUNK: GET ONE NOTE
 export const thunkGetOneNote = (noteId) => async (dispatch) => {
-  // console.log('*** in thunkGetOneNote, noteId:', noteId);
   const res = await fetch(`/api/notes/${noteId}`, { method: "GET" });
-  // console.log('*** in thunkGetOneNote, res:', res);
 
   if (res.ok) {
     const note = await res.json();
-    // console.log('*** in thunkGetOneNote, RES OK note:', note);
     dispatch(getOneNote(note));
     return note;
   } else {
     const errors = await res.json();
-    // console.log('*** in thunkGetOneNote, RES NOTOK errors:', errors);
     return errors;
   }
 };
 
-// THUNK: GET ALL NOTES
 export const thunkGetAllNotesForNotebook = (notebookId) => async (dispatch) => {
   const res = await fetch(`/api/notebooks/${notebookId}/notes`, { method: "GET" });
 
@@ -77,12 +71,8 @@ export const thunkGetAllNotesForNotebook = (notebookId) => async (dispatch) => {
   }
 };
 
-// THUNK: CREATE NOTE
 export const thunkCreateNoteForNotebook = (note) => async (dispatch) => {
-  // console.log('**** in thunkCreateNoteForNotebook ****')
-  // console.log('**** in thunkCreateNoteForNotebook, ORIG note:', note)
   const { notebookId, colorName, title, text } = note;
-  // const notebookId = note.notebookId;
 
   const res = await fetch(`/api/notebooks/${notebookId}/notes/create`, {
     method: "POST",
@@ -94,25 +84,19 @@ export const thunkCreateNoteForNotebook = (note) => async (dispatch) => {
       text,
     })
   })
-  // console.log('**** in thunkCreateNoteForNotebook, res:', res)
 
   if (res.ok) {
     const note = await res.json();
-    // console.log('**** in thunkCreateNoteForNotebook RES.OK, note:', note)
     dispatch(createNote(note));
     return note;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkCreateNoteForNotebook, errors:', errors)
     return errors;
   }
 };
 
-// THUNK: UPDATE NOTE
 export const thunkUpdateNote = (note) => async (dispatch) => {
-  // console.log('**** in thunkUpdateNote, note:', note)
   const { id, notebookId, colorName, title, text } = note;
-  // console.log('**** in thunkUpdateNote, id:', id)
 
   const res = await fetch(`/api/notes/${id}/update`, {
     method: "PUT",
@@ -124,7 +108,6 @@ export const thunkUpdateNote = (note) => async (dispatch) => {
       text,
     })
   })
-  // console.log('**** in thunkUpdateNote, res:', res)
 
   if (res.ok) {
     const note = await res.json();
@@ -132,12 +115,10 @@ export const thunkUpdateNote = (note) => async (dispatch) => {
     return note;
   } else {
     const errors = await res.json();
-    // console.log('**** in thunkUpdateNote, errors:', errors)
     return errors;
   }
 };
 
-// THUNK: DELETE NOTE
 export const thunkDeleteNote = (noteId) => async (dispatch) => {
   const res = await fetch(`/api/notes/${noteId}/delete`, {
     method: "DELETE",
@@ -165,51 +146,35 @@ export default function notesReducer(state = initialState, action) {
   switch (action.type) {
 
     case GET_ONE_NOTE: {
-      return {
-        ...state,
-        oneNote: action.note,
-      };
+      const newState = { ...state, oneNote: {} };
+      newState.oneNote = action.note;
+      return newState;
     }
 
     case GET_ALL_NOTES: {
-      return {
-        ...state,
-        allNotes: action.notes.notes.reduce((acc, note) => {
-          acc[note.id] = note;
-          return acc;
-        }, { ...state.allNotes }),
-      };
+      const newState = { ...state, allNotes: {} };
+      action.notes.notes.forEach((noteObj) => {
+        newState.allNotes[noteObj.id] = noteObj
+      });
+      return newState;
     }
 
     case CREATE_NOTE: {
-      return {
-        ...state,
-        allNotes: {
-          ...state.allNotes,
-          [action.note.id]: action.note,
-        },
-      };
+      const newState = { ...state };
+      newState.allNotes[action.note.id] = action.note;
+      return newState;
     }
 
     case UPDATE_NOTE: {
-      return {
-        ...state,
-        oneNote: {},
-        allNotes: {
-          ...state.allNotes,
-          [action.note.id]: action.note,
-        },
-      };
+      const newState = { ...state, oneNote: {} };
+      newState.allNotes[action.note.id] = action.note;
+      return newState;
     }
 
     case DELETE_NOTE: {
-      const newAllNotes = { ...state.allNotes };
-      delete newAllNotes[action.noteId];
-      return {
-        ...state,
-        oneNote: {},
-        allNotes: newAllNotes,
-      };
+      const newState = { ...state, oneNote: {}, allNotes: { ...state.allNotes } };
+      delete newState.allNotes[action.noteId];
+      return newState;
     }
 
     default: {
