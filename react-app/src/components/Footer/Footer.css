@@ -27,7 +27,6 @@
 }
 
 #footer-login button:hover {
-    /* text-decoration: underline; */
     color: #c6d2ff;
 }
 
@@ -39,7 +38,6 @@
 }
 
 #footer-logout:hover {
-    /* text-decoration: underline; */
     color: #c6d2ff;
 }
 
