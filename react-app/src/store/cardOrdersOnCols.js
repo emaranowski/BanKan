@@ -52,7 +52,6 @@ const deleteColumn = (columnId) => {
 
 //////////////////////////////// THUNKS ////////////////////////////////
 
-// THUNK: GET ONE COLUMN
 export const thunkGetOneColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}`, { method: "GET" });
 
@@ -74,7 +73,6 @@ export const thunkGetOneColumn = (columnId) => async (dispatch) => {
 //     dispatch(getOneColumnCardOrder(columnId));
 // };
 
-// THUNK: GET ALL COLUMNS
 export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}/columns`, { method: "GET" });
 
@@ -88,7 +86,6 @@ export const thunkGetAllColumnsForBoard = (boardId) => async (dispatch) => {
   }
 };
 
-// THUNK: CREATE COLUMN
 export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
   const { boardId, cardOrder, colorName, title } = column; // removed colorHex
 
@@ -114,7 +111,6 @@ export const thunkCreateColumnForBoard = (column) => async (dispatch) => {
   }
 };
 
-// THUNK: UPDATE COLUMN
 export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add oldCol param
   const { id, boardId, cardOrder, colorName, title } = column; // removed colorHex
   dispatch(updateColumn(column));
@@ -142,7 +138,6 @@ export const thunkUpdateColumn = (column) => async (dispatch) => { // maybe add 
   }
 };
 
-// THUNK: DELETE COLUMN
 export const thunkDeleteColumn = (columnId) => async (dispatch) => {
   const res = await fetch(`/api/columns/${columnId}/delete`, {
     method: "DELETE",
