@@ -153,14 +153,13 @@ export default function notebooksReducer(state = initialState, action) {
     }
 
     case GET_ALL_NOTEBOOKS: {
-      const newState = {
+      return {
         ...state,
-        allNotebooks: {}
+        allNotebooks: action.notebooks.notebooks.reduce((acc, notebook) => {
+          acc[notebook.id] = notebook;
+          return acc;
+        }, {})
       };
-      action.notebooks.notebooks.forEach((notebookObj) => {
-        newState.allNotebooks[notebookObj.id] = notebookObj
-      });
-      return newState;
     }
 
     case CREATE_NOTEBOOK: {
