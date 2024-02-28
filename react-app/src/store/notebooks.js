@@ -185,15 +185,13 @@ export default function notebooksReducer(state = initialState, action) {
     }
 
     case DELETE_NOTEBOOK: {
-      const newState = {
+      const newAllNotebooks = { ...state.allNotebooks };
+      delete newAllNotebooks[action.notebookId];
+      return {
         ...state,
         oneNotebook: {},
-        allNotebooks: {
-          ...state.allNotebooks
-        }
+        allNotebooks: newAllNotebooks
       };
-      delete newState.allNotebooks[action.notebookId];
-      return newState;
     }
 
     default: {
