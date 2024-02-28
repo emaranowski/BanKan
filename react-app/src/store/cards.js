@@ -217,15 +217,13 @@ export default function cardsReducer(state = initialState, action) {
     }
 
     case DELETE_CARD: {
-      const newState = {
+      const newAllCards = { ...state.allCards };
+      delete newAllCards[action.cardId];
+      return {
         ...state,
-        oneCard: {},
-        allCards: {
-          ...state.allCards
-        }
+        oneBoard: {},
+        allCards: newAllCards,
       };
-      delete newState.allCards[action.cardId];
-      return newState;
     }
 
     default: {
